@@ -18,7 +18,6 @@ class GoogleAuthController extends Controller
     {
         try {
             $user = Socialite::driver('google')->stateless()->user();
-
             $existingUser = User::where('email', $user->email)->first();
 
             if ($existingUser) {
