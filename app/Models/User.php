@@ -6,21 +6,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded=[];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,5 +42,35 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = static::generateHashedId($model->email);
+        });
+    }
+
+    public static function generateHashedId($email)
+    {
+        $appKey = config('app.key');
+        return hash_hmac('md5', $email, $appKey);
+    }
+
+
+    public function updatePassword($passwordLama,$passwordBaru, bool $checkRole = true){
+        if($this->canGantiPassword($checkRole) || Hash::check($passwordLama,$this->password)){
+            $this->update([
+                'password'=>Hash::make($passwordBaru)
+            ]);
+            return true;
+        }
+        return null;
+    }
+    public function canGantiPassword(bool $checkRole = true){
+        if(!$checkRole) return true;
+        return $this->hasRole('super_admin') || $this->hasRole('kepala_satker');
     }
 }

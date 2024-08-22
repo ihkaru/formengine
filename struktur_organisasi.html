@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi Pendataan Desa Wajok Hilir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .org-chart {
+            display: flex;
+            justify-content: center;
+        }
+        .org-chart ul {
+            padding-top: 20px;
+            position: relative;
+            transition: all 0.5s;
+        }
+        .org-chart li {
+            float: left;
+            text-align: center;
+            list-style-type: none;
+            padding: 20px 10px;
+            position: relative;
+            transition: all 0.5s;
+        }
+        .org-chart li::before, .org-chart li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 1px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+        .org-chart li::after {
+            right: auto;
+            left: 50%;
+            border-left: 1px solid #ccc;
+        }
+        .org-chart li:only-child::after, .org-chart li:only-child::before {
+            display: none;
+        }
+        .org-chart li:first-child::before, .org-chart li:last-child::after {
+            border: 0 none;
+        }
+        .org-chart li:last-child::before {
+            border-right: 1px solid #ccc;
+            border-radius: 0 5px 0 0;
+        }
+        .org-chart li:first-child::after {
+            border-radius: 5px 0 0 0;
+        }
+        .org-chart ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 1px solid #ccc;
+            width: 0;
+            height: 20px;
+        }
+        .org-chart li div {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 0 10px;
+            background-color: white;
+            border-radius: 5px;
+            min-width: 150px;
+        }
+        .org-chart li div:hover {
+            background-color: #e0e0e0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Struktur Organisasi Pendataan Desa Wajok Hilir</h1>
+    <div class="org-chart">
+        <ul>
+            <li>
+                <div>Koordinator Utama<br>(Kepala Desa)</div>
+                <ul>
+                    <li>
+                        <div>Tim Teknis<br>(2-3 orang)</div>
+                    </li>
+                    <li>
+                        <div>Koordinator Dusun</div>
+                        <ul>
+                            <li>
+                                <div>Tim Pencacah<br>(RT, RW, Relawan)</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
