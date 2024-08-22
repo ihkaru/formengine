@@ -1,0 +1,21 @@
+name: Publish Backend to Dev
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: composer --version && php --version
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER_DESA_SM}}
+        password: ${{ secrets.FTP_PASSWORD_DESA_SM }}
+        protocol: ftps
+        port: 21
