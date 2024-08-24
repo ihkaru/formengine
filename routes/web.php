@@ -11,4 +11,4 @@ Route::get("/run",[ArtisanController::class,"run"]);
 
 // routes/web.php
 
-Route::get('/survey/{surveyId}', RespondentSurvey::class)->name('respondent.survey');
+
