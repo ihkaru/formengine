@@ -17,5 +17,5 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USER_DESA_SM}}
         password: ${{ secrets.FTP_PASSWORD_DESA_SM }}
-        protocol: sftp
+        protocol: ftps
         port: 21
