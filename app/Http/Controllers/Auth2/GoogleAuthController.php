@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
+
+class GoogleAuthController extends Controller
+{
+    public function redirectToGoogle()
+    {
+        dump('test2');
+        return Socialite::driver('google')->stateless()->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        dump('test');
+        try {
+            $user = Socialite::driver('google')->stateless()->user();
+            $existingUser = User::where('email', $user->email)->first();
+
+            if ($existingUser) {
+                $token = $existingUser->createToken('auth_token')->plainTextToken;
+            } else {
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id' => $user->id,
+                    'password' => encrypt('dummy-password') // You might want to handle this differently
+                ]);
+                $token = $newUser->createToken('auth_token')->plainTextToken;
+            }
+
+            return response()->json([
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Something went wrong loh'], 500);
+        }
+    }
+}

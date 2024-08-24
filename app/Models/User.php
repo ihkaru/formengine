@@ -3,15 +3,21 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Str;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable, HasRoles;
+    use HasPanelShield;
 
     /**
      * The attributes that are mass assignable.
@@ -49,7 +55,7 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = static::generateHashedId($model->email);
+            $model->id = Str::uuid();
         });
     }
 
@@ -72,5 +78,10 @@ class User extends Authenticatable
     public function canGantiPassword(bool $checkRole = true){
         if(!$checkRole) return true;
         return $this->hasRole('super_admin') || $this->hasRole('kepala_satker');
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
     }
 }
