@@ -19,9 +19,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:9000','http://formengine.test','https://desa.dvlp.asia','https://desa-sm.dvlp.asia'],
+    'allowed_origins' => ['*'],
 
-    'allowed_origins_patterns' => ['http://localhost:9000/*','http://formengine.test/*','https://desa.dvlp.asia/*','https://desa-sm.dvlp.asia/*'],
+    'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 
