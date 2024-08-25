@@ -11,15 +11,11 @@ class GoogleAuthController extends Controller
 {
     public function redirectToGoogle()
     {
-        header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length');
-        header('Access-Control-Allow-Origin: *');
 
-        return Socialite::driver('google')->redirect()->withHeaders(
+        return Socialite::driver('google')->stateless()->redirect()->withHeaders(
            [
                 "Access-Control-Allow-Methods"=>'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-                "Access-Control-Allow-Headers"=>'Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length',
-                "Access-Control-Allow-Origin"=>'*'
+                "Access-Control-Allow-Headers"=>'Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length'
            ]
         );
     }
@@ -28,7 +24,7 @@ class GoogleAuthController extends Controller
     {
         dump('test');
         try {
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
             $existingUser = User::where('email', $user->email)->first();
 
             if ($existingUser) {
