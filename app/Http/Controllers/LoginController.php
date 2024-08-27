@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Supports\Constants;
 use Google_Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,8 @@ class LoginController extends Controller
         $user = User::create([
             'name'=>$payload['name'],
             'email'=>$payload['email'],
-            'password'=>Hash::make($payload['email'])
+            'password'=>Hash::make($payload['email']),
+            'jenis'=>Constants::JENIS_USER_NON_ORGANIK
         ]);
 
     }
