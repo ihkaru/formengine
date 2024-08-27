@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use Rupadana\ApiService\Contracts\HasAllowedFields;
+use Rupadana\ApiService\Contracts\HasAllowedFilters;
+use Rupadana\ApiService\Contracts\HasAllowedSorts;
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser,HasAllowedFields, HasAllowedSorts, HasAllowedFilters
 {
     use HasFactory, Notifiable, HasRoles,HasApiTokens;
     use HasPanelShield;
@@ -84,5 +87,26 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
+    }
+
+    public static function getAllowedIncludes(): array
+    {
+        return [];
+    }
+    public static function getAllowedFields(): array
+    {
+        return [];
+    }
+
+    // Which fields can be used to sort the results through the query string
+    public static function getAllowedSorts(): array
+    {
+        return [];
+    }
+
+    // Which fields can be used to filter the results through the query string
+    public static function getAllowedFilters(): array
+    {
+        return [];
     }
 }

@@ -12,6 +12,7 @@
         "codeat3/blade-fluentui-system-icons": "^1.33",
         "doctrine/dbal": "^4.0",
         "filament/filament": "^3.2",
+        "google/apiclient": "^2.17",
         "grei/tanggalmerah": "^2.1",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
@@ -21,7 +22,8 @@
         "malzariey/filament-daterangepicker-filter": "^2.6",
         "revolution/laravel-google-sheets": "^7.0",
         "riskihajar/terbilang": "^2.0",
-        "rupadana/filament-api-service": "^3.3"
+        "rupadana/filament-api-service": "^3.3",
+        "spatie/laravel-query-builder": "^5.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
