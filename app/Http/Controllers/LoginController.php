@@ -6,6 +6,7 @@ use App\Models\User;
 use Google_Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -25,13 +26,19 @@ class LoginController extends Controller
 
 
     $user = User::where('email',$request->input('email'))->first();
-    if ($user) {
-        $token = $user->createToken('auth_token')->plainTextToken;
+    if (!$user) {
+        $user = User::create([
+            'name'=>$payload['name'],
+            'email'=>$payload['email'],
+            'password'=>Hash::make($payload['email'])
+        ]);
+
+    }
+    $token = $user->createToken('auth_token')->plainTextToken;
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
-    }
 
     return response()->json(['message' => 'Invalid credentials'], 401);
 }
