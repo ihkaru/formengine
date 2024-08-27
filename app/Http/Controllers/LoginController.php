@@ -23,8 +23,6 @@ class LoginController extends Controller
     // dd($payload);
 
     if($request->input('email') != $payload['email']) return response()->json(['message' => 'Invalid email'], 401);
-
-
     $user = User::where('email',$request->input('email'))->first();
     if (!$user) {
         $user = User::create([
