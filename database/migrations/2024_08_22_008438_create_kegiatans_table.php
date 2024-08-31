@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('kegiatans', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nama');
-            $table->timestamp('tgl_mulai_lapangan')->nullable()->default(null);
-            $table->timestamp('tgl_selesai_lapangan')->nullable()->default(null);
-            $table->timestamp('tgl_tutup_kegiatan')->nullable()->default(null);
+            $table->timestamp('tgl_mulai')->nullable()->default(null);
+            $table->timestamp('tgl_selesai')->nullable()->default(null);
+            $table->timestamp('tgl_tutup')->nullable()->default(null);
             $table->string('level_rekap_1');
             $table->string('level_rekap_2');
             $table->string('level_assignment');
