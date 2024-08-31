@@ -12,19 +12,10 @@ class Kegiatan extends Model
 
     protected $guarded = [];
 
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->id = static::generateHashedId($model->email);
-        });
-    }
-
     public static function generateHashedId($email)
     {
         return Str::uuid();
-        $appKey = config('app.key');
-        return hash_hmac('md5', $email, $appKey);
+        // $appKey = config('app.key');
+        // return hash_hmac('md5', $email, $appKey);
     }
 }

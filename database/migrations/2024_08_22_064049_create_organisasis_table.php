@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('organisasis', function (Blueprint $table) {
             $table->id();
-            $table->string('pencacah_id');
+            $table->uuid('pencacah_id');
             $table->foreign("pencacah_id")->references('id')->on('users');
-            $table->string('pengawas_id');
+            $table->uuid('pengawas_id');
             $table->foreign("pengawas_id")->references('id')->on('users');
-            $table->string('koseka_id');
+            $table->uuid('koseka_id');
             $table->foreign("koseka_id")->references('id')->on('users');
             $table->timestamps();
         });

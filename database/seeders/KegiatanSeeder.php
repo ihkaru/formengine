@@ -19,19 +19,21 @@ class KegiatanSeeder extends Seeder
         $tgl_selesai = Carbon::parse("2025-09-30");
         $tgl_tutup = Carbon::parse("2025-09-30");
         Kegiatan::create([
-            "nama"=>"A",
+            "id"=>"REM-2024-1-PILOT-LAPANGAN",
+            "nama"=>"Pilot Registrasi Ekonomi Masyarakat Desa Wajok Hilir",
             "tgl_mulai"=>$tgl_mulai,
             "tgl_selesai"=>$tgl_selesai,
             "tgl_tutup"=>$tgl_tutup,
             "level_rekap_1"=>Constants::LEVEL_REKAP_SLS,
             "level_rekap_2"=>Constants::LEVEL_REKAP_DESA,
             "level_assignment"=>Constants::LEVEL_ASSIGNMENT_KEPALA_KELUARGA,
-            "unit_observasi"=>"A",
-            "tahun"=>"A",
-            "frekuensi"=>"A",
-            "seri"=>"A",
-            "subkategori"=>"A",
-            "kode_subkategori"=>"A",
+            "unit_sampel"=>Constants::LEVEL_UNIT_SAMPEL_PENDUDUK,
+            "unit_observasi"=>Constants::LEVEL_UNIT_OBSERVASI_KEPALA_KELUARGA,
+            "tahun"=>2024,
+            "frekuensi"=>Constants::JENIS_FREKEUNSI_TAHUN,
+            "seri"=>1,
+            "subkategori"=>"Pilot Lapangan",
+            "kode_subkategori"=>"PILOT-LAPANGAN",
         ]);
     }
 }

@@ -7,6 +7,7 @@ namespace App\Models;
 use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,7 +22,13 @@ use Rupadana\ApiService\Contracts\HasAllowedSorts;
 class User extends Authenticatable implements FilamentUser,HasAllowedFields, HasAllowedSorts, HasAllowedFilters
 {
     use HasFactory, Notifiable, HasRoles,HasApiTokens;
+    use HasUuids;
     use HasPanelShield;
+
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    // protected $keyType = 'string';
+    // protected $casts = ['id' => 'string'];
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +58,7 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            // 'id'=>"string"
         ];
     }
 
@@ -63,11 +71,6 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
         });
     }
 
-    public static function generateHashedId($email)
-    {
-        $appKey = config('app.key');
-        return hash_hmac('md5', $email, $appKey);
-    }
 
 
     public function updatePassword($passwordLama,$passwordBaru, bool $checkRole = true){
@@ -79,9 +82,18 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
         }
         return null;
     }
+    public function updatePasswordTanpaPasswordLama($passwordBaru,bool $checkRole = true){
+        if($this->canGantiPassword($checkRole)){
+            $this->update([
+                'password'=>Hash::make($passwordBaru)
+            ]);
+            return true;
+        }
+        return null;
+    }
     public function canGantiPassword(bool $checkRole = true){
         if(!$checkRole) return true;
-        return $this->hasRole('super_admin') || $this->hasRole('kepala_satker');
+        return $this->hasRole('super_admin');
     }
 
     public function canAccessPanel(Panel $panel): bool
@@ -109,4 +121,12 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
     {
         return [];
     }
+
+    // public function getAuthIdentifierName(){
+    //     return "id";
+    // }
+    // public function getAuthPasswordName(){
+    //     return "password";
+    // }
+
 }

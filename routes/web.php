@@ -9,6 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login',function(){
+    auth()->logout();
     return redirect()->to('/admin/login');
 })->name('login');
 Route::get("/run",[ArtisanController::class,"run"]);

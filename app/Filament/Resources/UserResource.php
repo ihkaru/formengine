@@ -17,6 +17,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PDO;
 
@@ -83,45 +84,13 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Action::make('jadikan_kepala')
-                    ->label("Tambah Role Kepala")
-                    ->hidden(function(User $record){
-                        return !auth()->user()->hasRole('super_admin') || $record->hasRole('kepala_satker');
-                    })
-                    ->action(function(User $record){
-                        if($record->assignRole('kepala_satker')){
-                            return Notification::make()
-                            ->title('Sukses menambahkan role kepala satker ke '.$record->pegawai->nama)
-                            ->success();
-                        };
-                        return Notification::make()
-                        ->title('Gagal menambahkan role kepala satker ke '.$record->pegawai->nama)
-                        ->danger();
-                    }),
-                Action::make('lepas_kepala')
-                    ->label('Lepas Role Kepala')
-                    ->hidden(function(User $record){
-                        return !auth()->user()->hasRole('super_admin') || !$record->hasRole('kepala_satker');
-                    })
-                    ->action(function(User $record){
-                        if($record->assignRole('kepala_satker')){
-                            return Notification::make()
-                            ->title('Sukses melepaskan role kepala satker dari '.$record->pegawai->nama)
-                            ->success();
-                        };
-                        return Notification::make()
-                        ->title('Gagal melepaskan role kepala satker dari '.$record->pegawai->nama)
-                        ->success();
-                    }),
                 Action::make('gantiPassword')
                     ->label('Ganti Password')
                     ->hidden(function(User $record){
-                        return !(auth()->user()->email == $record->email || (auth()->user()->hasRole('operator_umum') && auth()->user()->hasRole('kepala_satker') || auth()->user()->hasRole('super_admin')));
+                        // return !(auth()->user()->email == $record->email || auth()->user()->hasRole('super_admin'));
+                        return false;
                     })
                     ->form([
-                        TextInput::make('password_lama')
-                            ->label('Password Lama')
-                            ->required(),
                         TextInput::make('password_baru')
                             ->label('Password Baru')
                             ->required(),
@@ -131,15 +100,29 @@ class UserResource extends Resource
                             ->required()
                     ])
                     ->action(function(User $record, array $data){
-
-                        if($data['password_baru'] == $data["konfirmasi_password_baru"] && $record->updatePassword($data['password_lama'],$data['password_baru'])){
-                            Notification::make()
-                            ->title('Sukses mengganti password user '.$record->pegawai->nama)
-                            ->success();
+                        $user_email = $record->email;
+                        $need_redirect = false;
+                        if($user_email == auth()->user()->email){
+                            $need_redirect = true;
+                        }
+                        if($data['password_baru'] == $data["konfirmasi_password_baru"] && $record->updatePasswordTanpaPasswordLama($data['password_baru'])){
+                            if($need_redirect){
+                                Notification::make()
+                                    ->title('Sukses mengganti password Anda. Anda akan kembali ke halaman Login')
+                                    ->success()
+                                    ->send();
+                                Auth::logout();
+                                return redirect()->to(route('login'));
+                            };
+                            return Notification::make()
+                                ->title('Sukses mengganti password user '.$record->nama)
+                                ->success()
+                                ->send();
                         };
                         Notification::make()
                         ->title('Gagal mengganti password. Silakan cek kembali password yang diinput')
-                        ->danger();
+                        ->danger()
+                        ->send();
                     }),
 
             ])

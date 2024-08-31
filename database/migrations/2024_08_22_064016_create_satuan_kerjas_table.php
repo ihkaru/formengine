@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('satuan_kerjas', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->uuid('user_id');
             $table->foreign("user_id")->references('id')->on('users');
             $table->string('level_wilayah')->nullable();
             $table->string('nama');
