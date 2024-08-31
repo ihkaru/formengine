@@ -108,7 +108,7 @@ class UserResource extends Resource
                         if($data['password_baru'] == $data["konfirmasi_password_baru"] && $record->updatePasswordTanpaPasswordLama($data['password_baru'])){
                             if($need_redirect){
                                 Notification::make()
-                                    ->title('Sukses mengganti password Anda. Anda akan kembali ke halaman Login')
+                                    ->title('Sukses mengganti password Anda. Mohon Login kembali')
                                     ->success()
                                     ->send();
                                 Auth::logout();

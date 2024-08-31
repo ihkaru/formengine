@@ -16,9 +16,13 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
+            MasterSlsSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-            KegiatanSeeder::class
+            KegiatanSeeder::class,
+            SatuanKerjaSeeder::class,
+            SatuanKerjaUserSeeder::class,
+            SatuanKerjaKegiatanSeeder::class
         ]);
     }
 }

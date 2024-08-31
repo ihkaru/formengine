@@ -30,6 +30,15 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
     // protected $keyType = 'string';
     // protected $casts = ['id' => 'string'];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = Str::uuid();
+        });
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -62,14 +71,7 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
         ];
     }
 
-    public static function boot()
-    {
-        parent::boot();
 
-        static::creating(function ($model) {
-            $model->id = Str::uuid();
-        });
-    }
 
 
 

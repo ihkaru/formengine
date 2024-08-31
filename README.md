@@ -6,11 +6,11 @@
 
 ## Tahapan Kegiatan
 ### Pra Pendataan
-- Penambahan Project Pendataan
-- Assign Project ke Wilayah Kerja
+- Penambahan Kegiatan Pendataan
+- Assign Kegiatan ke Satuan Kerja
 - Tambah Template Pertanyaan Pendataan
-- Assign Akun Subject Matter dan Petugas ke Project dan Kegiatan
-- Assign Akun Petugas ke Wilayah
+- Assign Akun Subject Matter dan Petugas ke Kegiatan
+- Assign Akun Petugas ke Satuan Kerja
 
 ### Pendataan
 - Petugas mendata dan mensubmit jawaban
