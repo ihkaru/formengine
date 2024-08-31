@@ -19,16 +19,41 @@
         .text-jingga {
             color: var(--color-jingga);
         }
-
         .border-jingga {
             border-color: var(--color-jingga);
         }
         .hover\:bg-jingga-light:hover {
             background-color: var(--color-jingga-light);
         }
+        .hover\:text-jingga:hover {
+            color: var(--color-jingga-light);
+        }
         .bg-pattern {
             background-color: #ffffff;
             background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff7400' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100vh;
+            width: 250px;
+            background-color: white;
+            transition: left 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .side-nav.open {
+            left: 0;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
         }
     </style>
 </head>
@@ -36,13 +61,39 @@
     <nav class="bg-white shadow-md">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-jingga font-bold text-xl">Desa Wajok Hilir</a>
-            <div>
+            <div class="hidden md:block">
                 <a href="#tentang" class="text-gray-600 hover:text-jingga mr-4">Tentang</a>
                 <a href="#tujuan" class="text-gray-600 hover:text-jingga mr-4">Tujuan</a>
-                <a href="#inovasi" class="text-gray-600 hover:text-jingga">Inovasi</a>
+                <a href="#inovasi" class="text-gray-600 hover:text-jingga mr-4">Inovasi</a>
+                <a href="/admin" class="hover:text-jingga hover:scale-110  hover:-translate-y-1  hover:bg-white bg-jingga border border-jingga border-jingga-500 hover:border-amber-500  duration-300 ease-in-out transform transition text-white font-bold py-2 px-6 rounded-full ">Masuk</a>
             </div>
+            <button class="md:hidden text-jingga" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
+
+    <div class="side-nav shadow-lg" id="sideNav">
+        <div class="p-4">
+            <div class="flex justify-between">
+                <div>
+                </div>
+                <div>
+                    <button class="text-jingga mb-4" id="closeBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <a href="#tentang" class="block text-gray-600 hover:text-jingga mb-2">Tentang</a>
+            <a href="#tujuan" class="block text-gray-600 hover:text-jingga mb-2">Tujuan</a>
+            <a href="#inovasi" class="block text-gray-600 hover:text-jingga">Inovasi</a>
+        </div>
+        <div class="text-center mt-5">
+            <a href="/admin" class="hover:text-jingga hover:bg-white bg-jingga border border-jingga border-jingga-500 hover:border-amber-500  duration-300 ease-in-out transform transition text-white font-bold py-2 px-6 rounded-full ">Masuk</a>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
 
     <header class="bg-jingga py-20">
         <div class="container mx-auto text-center px-4">
@@ -71,7 +122,7 @@
                     <p class="text-gray-600">Mengumpulkan data akurat tentang dinamika populasi desa untuk perencanaan yang lebih baik.</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-jingga">
-                    <i class="fas fa-chart-line text-4xl mb-4 text-jingga"></i>
+                    <i class="far fa-chart-bar text-4xl mb-4 text-jingga"></i>
                     <h3 class="text-xl font-bold mb-2 text-gray-800">Status Kemiskinan</h3>
                     <p class="text-gray-600">Mengidentifikasi area-area yang membutuhkan intervensi kebijakan untuk pengentasan kemiskinan.</p>
                 </div>
@@ -98,6 +149,31 @@
         AOS.init({
             duration: 1000,
             once: true,
+        });
+
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const sideNav = document.getElementById('sideNav');
+        const overlay = document.getElementById('overlay');
+
+        function openNav() {
+            sideNav.classList.add('open');
+            overlay.style.display = 'block';
+        }
+
+        function closeNav() {
+            sideNav.classList.remove('open');
+            overlay.style.display = 'none';
+        }
+
+        menuBtn.addEventListener('click', openNav);
+        closeBtn.addEventListener('click', closeNav);
+        overlay.addEventListener('click', closeNav);
+
+        // Close side navigation when clicking on a link
+        const navLinks = sideNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeNav);
         });
     </script>
 </body>
