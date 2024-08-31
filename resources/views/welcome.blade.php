@@ -19,6 +19,7 @@
         .text-jingga {
             color: var(--color-jingga);
         }
+
         .border-jingga {
             border-color: var(--color-jingga);
         }
