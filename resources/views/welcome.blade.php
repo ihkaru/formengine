@@ -10,7 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
         :root {
-            --color-jingga: #ff7400;
+            --color-jingga: #E98118;
             --color-jingga-light: #ff9d4d;
         }
         .bg-jingga {
@@ -60,7 +60,7 @@
 <body class="bg-pattern text-gray-800 font-sans leading-normal tracking-normal">
     <nav class="bg-white shadow-md">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-jingga font-bold text-xl">Desa Wajok Hilir</a>
+            <a href="#" class="text-jingga font-bold text-xl">Desa Cantik Wajok Hilir</a>
             <div class="hidden md:block">
                 <a href="#tentang" class="text-gray-600 hover:text-jingga mr-4">Tentang</a>
                 <a href="#tujuan" class="text-gray-600 hover:text-jingga mr-4">Tujuan</a>
@@ -97,9 +97,9 @@
 
     <header class="bg-jingga py-20">
         <div class="container mx-auto text-center px-4">
-            <h1 class="text-4xl font-bold mb-4 text-white" data-aos="fade-up">Pendataan Terfokus Desa Wajok Hilir</h1>
+            <h1 class="text-4xl font-bold mb-4 text-white" data-aos="fade-up">Desa Cantik Wajok Hilir</h1>
             <p class="text-xl mb-8 text-white" data-aos="fade-up" data-aos-delay="200">Membangun Masa Depan Desa dengan Data yang Akurat</p>
-            <a href="#" class="bg-white text-jingga font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 hover:bg-gray-100" data-aos="fade-up" data-aos-delay="400">
+            <a href="#/tentang" class="bg-white text-jingga font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 hover:bg-gray-100" data-aos="fade-up" data-aos-delay="400">
                 Pelajari Lebih Lanjut
             </a>
         </div>
@@ -109,7 +109,13 @@
         <section id="tentang" class="mb-12" data-aos="fade-up">
             <h2 class="text-3xl font-bold mb-4 text-jingga">Tentang Program</h2>
             <p class="text-lg text-gray-700">
-                Program Desa Cantik merupakan kerja sama antara Pemerintah Desa Wajok Hilir dan BPS Kabupaten Mempawah untuk melaksanakan kegiatan pendataan terfokus. Ini adalah adaptasi dari model Registrasi Sosial Ekonomi (Regsosek) yang didesain khusus untuk menjawab kebutuhan spesifik Desa Wajok Hilir.
+                Program Desa Cantik Wajok Hilir merupakan kerja sama antara Pemerintah Desa Wajok Hilir dan BPS Kabupaten Mempawah untuk melaksanakan kegiatan pendataan terfokus. Ini adalah adaptasi dari model Registrasi Sosial Ekonomi (Regsosek) yang didesain khusus untuk menjawab kebutuhan spesifik Desa Wajok Hilir.
+            </p>
+        </section>
+        <section id="rem" class="mb-12" data-aos="fade-up">
+            <h2 class="text-3xl font-bold mb-4 text-jingga">Registrasi Ekonomi Masyarakat Wajok Hilir 2024</h2>
+            <p class="text-lg text-gray-700">
+                Registrasi Ekonomi Masyarakat Wajok Hilir 2024 merupakan salah satu dari rangkaian kegiatan Program Desa Cantik berupa kegiatan pendataan ekonomi yang bertujuan untuk membuat basis data penduduk beserta kondisi perokonomian masyarakat Desa Wajok Hilir.
             </p>
         </section>
 
