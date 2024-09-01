@@ -17,7 +17,10 @@ class TemplateResource extends Resource
 {
     protected static ?string $model = Template::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = "Template";
+    protected static ?string $pluralModelLabel = "Template";
+    protected static ?string $navigationIcon = 'heroicon-o-document-duplicate';
+    protected static ?string $navigationGroup = "Manajemen Kuesioner";
 
     public static function form(Form $form): Form
     {

@@ -18,6 +18,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Rupadana\ApiService\Contracts\HasAllowedFields;
 use Rupadana\ApiService\Contracts\HasAllowedFilters;
 use Rupadana\ApiService\Contracts\HasAllowedSorts;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable implements FilamentUser,HasAllowedFields, HasAllowedSorts, HasAllowedFilters
 {
@@ -35,7 +36,7 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = Str::uuid();
+            $model->id = Str::orderedUuid();
         });
     }
 
@@ -130,5 +131,17 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
     // public function getAuthPasswordName(){
     //     return "password";
     // }
+
+    public function satuanKerjas(){
+        return $this->belongsToMany(SatuanKerja::class,"satuan_kerja_users","user_id","satuan_kerja_id");
+    }
+
+
+    protected function nameAndEmail(): Attribute
+    {
+        return Attribute::make(
+            get: fn (mixed $value, array $attributes) => $attributes["name"]." | ".$attributes["email"],
+        );
+    }
 
 }

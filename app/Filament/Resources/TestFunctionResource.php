@@ -17,7 +17,10 @@ class TestFunctionResource extends Resource
 {
     protected static ?string $model = TestFunction::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = "Test Function";
+    protected static ?string $pluralModelLabel = "Test Function";
+    protected static ?string $navigationIcon = 'heroicon-o-code-bracket';
+    protected static ?string $navigationGroup = "Manajemen Kuesioner";
 
     public static function form(Form $form): Form
     {

@@ -17,7 +17,10 @@ class RiwayatStatusResource extends Resource
 {
     protected static ?string $model = RiwayatStatus::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = "Riwayat Status Responden";
+    protected static ?string $pluralModelLabel = "Riwayat Status Responden";
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
+    protected static ?string $navigationGroup = "Manajemen Kuesioner";
 
     public static function form(Form $form): Form
     {

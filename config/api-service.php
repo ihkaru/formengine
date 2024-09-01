@@ -4,7 +4,7 @@ return [
     'navigation' => [
         'token' => [
             'cluster' => null,
-            'group' => 'User',
+            'group' => 'Pengguna',
             'sort' => -1,
             'icon' => 'heroicon-o-key',
         ],

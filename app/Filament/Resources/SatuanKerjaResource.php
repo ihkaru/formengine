@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SatuanKerjaResource\Pages;
 use App\Filament\Resources\SatuanKerjaResource\RelationManagers;
+use App\Filament\Resources\SatuanKerjaResource\RelationManagers\UsersRelationManager;
 use App\Models\SatuanKerja;
 use App\Supports\Constants;
 use Filament\Forms;
@@ -22,7 +23,11 @@ class SatuanKerjaResource extends Resource
 {
     protected static ?string $model = SatuanKerja::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $label = "Satuan Kerja";
+    protected static ?string $navigationLabel = "Satuan Kerja";
+    protected static ?string $pluralModelLabel = "Satuan Kerja";
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+    protected static ?string $navigationGroup = "Manajemen Satuan Kerja";
 
     public static function form(Form $form): Form
     {
@@ -30,11 +35,20 @@ class SatuanKerjaResource extends Resource
             ->schema([
                 TextInput::make('nama'),
                 Select::make("level_wilayah_kerja")
+                    ->label("Level Wilayah Kerja")
+                    ->helperText("Merupakan level wilayah yang menjadi tanggung jawab satuan kerja")
                     ->options(Constants::LEVEL_WILAYAH)
                     ->required()
                     ,
                 TextInput::make("wilayah_kerja_id")
-                    ->required()
+                    ->label("ID Wilayah Kerja")
+                    ->helperText("Mengacu kepada Master SLS Badan Pusat Statistik")
+                    ->required(),
+                Select::make("users")
+                    ->label("Pengguna")
+                    ->multiple()
+                    ->relationship("users","email")
+                    ->preload()
             ]);
     }
 
@@ -70,7 +84,7 @@ class SatuanKerjaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            UsersRelationManager::class
         ];
     }
 
@@ -82,4 +96,6 @@ class SatuanKerjaResource extends Resource
             'edit' => Pages\EditSatuanKerja::route('/{record}/edit'),
         ];
     }
+
+
 }

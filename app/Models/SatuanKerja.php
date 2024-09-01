@@ -22,4 +22,12 @@ class SatuanKerja extends Model
             $model->id = Str::slug($model->level_wilayah_kerja."-".$model->nama);
         });
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class,'satuan_kerja_users','satuan_kerja_id','user_id');
+    }
+
+    public function kegiatans(){
+        return $this->belongsToMany(Kegiatan::class,'satuan_kerja_kegiatans','satuan_kerja_id','kegiatan_id');
+    }
 }

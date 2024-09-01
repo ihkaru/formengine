@@ -23,10 +23,14 @@ return new class extends Migration
             $table->string('unit_observasi');
             $table->string('unit_sampel');
             $table->unsignedMediumInteger('tahun');
+            $table->string("level_pendataan");
             $table->string('frekuensi');
             $table->string('seri');
             $table->string('subkategori')->nullable();
             $table->string('kode_subkategori')->nullable();
+            $table->string("petugas_level_1");
+            $table->string("petugas_level_2")->nullable();
+            $table->string("petugas_level_3")->nullable();
             $table->timestamps();
         });
     }

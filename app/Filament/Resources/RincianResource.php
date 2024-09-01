@@ -17,7 +17,14 @@ class RincianResource extends Resource
 {
     protected static ?string $model = Rincian::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = "Rincian";
+    protected static ?string $pluralModelLabel = "Rincian";
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationGroup = "Manajemen Kuesioner";
+
+    public static function canViewAny(): bool{
+        return false;
+    }
 
     public static function form(Form $form): Form
     {

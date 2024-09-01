@@ -17,8 +17,14 @@ class OpsiResource extends Resource
 {
     protected static ?string $model = Opsi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = "Opsi";
+    protected static ?string $pluralModelLabel = "Opsi";
+    protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
+    protected static ?string $navigationGroup = "Manajemen Kuesioner";
 
+    public static function canViewAny(): bool{
+        return false;
+    }
     public static function form(Form $form): Form
     {
         return $form

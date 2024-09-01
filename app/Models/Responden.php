@@ -18,14 +18,7 @@ class Responden extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = static::generateHashedId($model->email);
+            $model->id = Str::orderedUuid();
         });
-    }
-
-    public static function generateHashedId($email)
-    {
-        return Str::uuid();
-        $appKey = config('app.key');
-        return hash_hmac('md5', $email, $appKey);
     }
 }
