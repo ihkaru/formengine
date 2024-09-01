@@ -118,7 +118,6 @@
                 Registrasi Ekonomi Masyarakat Wajok Hilir 2024 merupakan salah satu dari rangkaian kegiatan Program Desa Cantik berupa kegiatan pendataan ekonomi yang bertujuan untuk membuat basis data penduduk beserta kondisi perokonomian masyarakat Desa Wajok Hilir.
             </p>
         </section>
-
         <section id="tujuan" class="mb-12" data-aos="fade-up">
             <h2 class="text-3xl font-bold mb-4 text-jingga">Tujuan Pendataan</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
