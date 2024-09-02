@@ -23,12 +23,11 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class User extends Authenticatable implements FilamentUser,HasAllowedFields, HasAllowedSorts, HasAllowedFilters
 {
     use HasFactory, Notifiable, HasRoles,HasApiTokens;
-    use HasUuids;
     use HasPanelShield;
 
     protected $primaryKey = 'id';
     public $incrementing = false;
-    // protected $keyType = 'string';
+    protected $keyType = 'string';
     // protected $casts = ['id' => 'string'];
 
     public static function boot()

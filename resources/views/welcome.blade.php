@@ -115,7 +115,7 @@
         <section id="rem" class="mb-12" data-aos="fade-up">
             <h2 class="text-3xl font-bold mb-4 text-jingga">Registrasi Ekonomi Masyarakat Wajok Hilir 2024</h2>
             <p class="text-lg text-gray-700">
-                Registrasi Ekonomi Masyarakat Wajok Hilir 2024 merupakan salah satu dari rangkaian kegiatan Program Desa Cantik berupa kegiatan pendataan ekonomi yang bertujuan untuk membuat basis data penduduk beserta kondisi perokonomian masyarakat Desa Wajok Hilir.
+                Registrasi Ekonomi Masyarakat Wajok Hilir 2024 merupakan salah satu dari rangkaian kegiatan Program Desa Cantik berupa kegiatan pendataan ekonomi yang bertujuan untuk membuat basis data penduduk beserta kondisi perekonomian masyarakat Desa Wajok Hilir.
             </p>
         </section>
         <section id="tujuan" class="mb-12" data-aos="fade-up">
