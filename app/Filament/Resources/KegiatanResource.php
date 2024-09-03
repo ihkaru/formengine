@@ -133,7 +133,6 @@ class KegiatanResource extends Resource
                         ,
                         Select::make("petugas_level_3")
                             ->label("Petugas Level 3")
-                            ->required()
                             ->options(Constants::JABATAN_LEVEL_3)
                             ->helperText("Petugas yang memjadi ketua petugas level 2")
                         ,
