@@ -26,6 +26,9 @@ class Kegiatan extends Model
     public function satuanKerjas(){
         return $this->belongsToMany(SatuanKerja::class,"satuan_kerja_kegiatans","kegiatan_id","satuan_kerja_id");
     }
+    public function assignments(){
+        return $this->hasMany(Assignment::class,"kegiatan_id","id");
+    }
 
     protected function namaAndId(): Attribute
     {

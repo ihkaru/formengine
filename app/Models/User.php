@@ -19,6 +19,7 @@ use Rupadana\ApiService\Contracts\HasAllowedFields;
 use Rupadana\ApiService\Contracts\HasAllowedFilters;
 use Rupadana\ApiService\Contracts\HasAllowedSorts;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use PDO;
 
 class User extends Authenticatable implements FilamentUser,HasAllowedFields, HasAllowedSorts, HasAllowedFilters
 {
@@ -141,6 +142,9 @@ class User extends Authenticatable implements FilamentUser,HasAllowedFields, Has
         return Attribute::make(
             get: fn (mixed $value, array $attributes) => $attributes["name"]." | ".$attributes["email"],
         );
+    }
+    public function kegiatan(){
+        return $this->belongsTo(Kegiatan::class,"kegiatan_id","id");
     }
 
 }
