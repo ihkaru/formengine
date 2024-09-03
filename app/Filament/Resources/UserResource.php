@@ -34,6 +34,10 @@ class UserResource extends Resource
     public static function canViewAny(): bool{
         return true;
     }
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()->hasRole("super_admin");
+    }
 
     public static function form(Form $form): Form
     {
