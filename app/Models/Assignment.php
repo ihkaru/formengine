@@ -20,7 +20,7 @@ class Assignment extends Model
         });
     }
 
-    public static function generateHashedId($email)
+public static function generateHashedId($email)
     {
         return Str::uuid();
         $appKey = config('app.key');

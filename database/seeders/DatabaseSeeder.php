@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             KegiatanSeeder::class,
             SatuanKerjaSeeder::class,
             SatuanKerjaUserSeeder::class,
-            SatuanKerjaKegiatanSeeder::class
+            SatuanKerjaKegiatanSeeder::class,
+            RoleSatuanKerjaSeeder::class
         ]);
     }
 }

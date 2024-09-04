@@ -130,6 +130,14 @@ class Constants {
         "LEVEL_WILAYAH_PROVINSI"=>"Provinsi",
     ];
 
+    const ROLE_ADMIN_SATUAN_KERJA = [
+        "LEVEL_WILAYAH_DESA_KELURAHAN"=>"admin_desa",
+        "LEVEL_WILAYAH_DESA"=>"admin_desa",
+        "LEVEL_WILAYAH_KECAMATAN"=>"admin_kecamatan",
+        "LEVEL_WILAYAH_KABUPATEN_KOTA"=>"admin_kako",
+        "LEVEL_WILAYAH_PROVINSI"=>"admin_provinsi",
+    ];
+
     const JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN = "JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN";
     const JABATAN_LEVEL_1_PETUGAS_PEMERIKSA_LAPANGAN = "JABATAN_LEVEL_1_PETUGAS_PEMERIKSA_LAPANGAN";
     const JABATAN_LEVEL_1_KOSEKA = "JABATAN_LEVEL_1_KOSEKA";
@@ -155,6 +163,8 @@ class Constants {
         "LEVEL_PENDATAAN_SENSUS"=>"Sensus",
         "LEVEL_PENDATAAN_SURVEI"=>"Survei",
     ];
+
+
 
 
 

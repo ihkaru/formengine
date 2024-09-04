@@ -30,4 +30,15 @@ class SatuanKerja extends Model
     public function kegiatans(){
         return $this->belongsToMany(Kegiatan::class,'satuan_kerja_kegiatans','satuan_kerja_id','kegiatan_id');
     }
+    public static function getSatuanKerja($with_role = true){
+        $satuanKerjas = self::query();
+        if($with_role){
+            if(!auth()->user()->hasRole("super_admin")){
+                $satuanKerjas->whereHas('users',function($q){
+                    $q->where('id',auth()->user()->id);
+                });
+            };
+        }
+        return $satuanKerjas;
+    }
 }

@@ -36,5 +36,11 @@ class Kegiatan extends Model
             get: fn (mixed $value, array $attributes) => $attributes["nama"]." | ".$attributes["id"],
         );
     }
+    public static function getKegiatan($with_role = true){
+        $kegiatans = Kegiatan::query();
+        if($with_role){
+            if(!auth()->user()->hasRole("super_admin"));
+        }
+    }
 
 }
