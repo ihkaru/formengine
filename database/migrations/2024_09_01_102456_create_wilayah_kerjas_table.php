@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("kegiatan_id");
             $table->foreign("kegiatan_id")->references("id")->on("kegiatans");
             $table->string("prov_id");
+            $table->string("kabkot_id");
             $table->string("kec_id")->nullable();
             $table->string("desa_kel_id")->nullable();
             $table->string("sls_id")->nullable();

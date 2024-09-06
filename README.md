@@ -6,11 +6,14 @@
 
 ## Tahapan Kegiatan
 ### Pra Pendataan
-- Penambahan Kegiatan Pendataan
-- Assign Kegiatan ke Satuan Kerja
+- Penambahan Kegiatan Pendataan v
 - Tambah Template Pertanyaan Pendataan
-- Assign Akun Subject Matter dan Petugas ke Kegiatan
-- Assign Akun Petugas ke Satuan Kerja
+- Assign Akun Petugas ke Satuan Kerja v
+- Assign Kegiatan ke Satuan Kerja v
+- Assign Admin Satker v
+- Assign Admin Satker ke Kegiatan v
+- Admin Satker assign Akun Subject Matter dan Petugas ke Kegiatan
+
 
 ### Pendataan
 - Petugas mendata dan mensubmit jawaban

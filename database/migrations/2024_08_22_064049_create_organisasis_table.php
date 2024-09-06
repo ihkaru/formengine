@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreign("kegiatan_id")->references('id')->on('kegiatans');
             $table->uuid('pencacah_id');
             $table->foreign("pencacah_id")->references('id')->on('users');
-            $table->uuid('pengawas_id');
+            $table->uuid('pengawas_id')->nullable();
             $table->foreign("pengawas_id")->references('id')->on('users');
-            $table->uuid('koseka_id');
+            $table->uuid('koseka_id')->nullable();
             $table->foreign("koseka_id")->references('id')->on('users');
             $table->timestamps();
         });
