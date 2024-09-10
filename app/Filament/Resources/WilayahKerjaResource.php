@@ -6,9 +6,11 @@ use App\Filament\Resources\WilayahKerjaResource\Pages;
 use App\Filament\Resources\WilayahKerjaResource\RelationManagers;
 use App\Models\WilayahKerja;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -27,25 +29,27 @@ class WilayahKerjaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('petugas_level_1_id')
+                TextInput::make('petugasLevel1.name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('kegiatan_id')
+                TextInput::make('kegiatan.nama')
+                    ->label("Kegiatan")
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('prov_id')
+                TextInput::make('prov.provinsi')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('kec_id')
+                TextInput::make('kec.kecamatan')
                     ->maxLength(255)
                     ->default(null),
-                Forms\Components\TextInput::make('desa_kel_id')
+                TextInput::make('desaKel.desa_kel')
                     ->maxLength(255)
                     ->default(null),
-                Forms\Components\TextInput::make('sls_id')
+                TextInput::make('sls.nama')
                     ->maxLength(255)
                     ->default(null),
-                Forms\Components\TextInput::make('bs_id')
+                TextInput::make('bs_id')
+                    ->label("Blok Sensus")
                     ->maxLength(255)
                     ->default(null),
             ]);
@@ -54,26 +58,38 @@ class WilayahKerjaResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('sls_id')
             ->columns([
-                Tables\Columns\TextColumn::make('petugas_level_1_id')
+                TextColumn::make('petugasLevel1.name')
+                    ->label("Petugas Lapangan")
                     ->searchable(),
-                Tables\Columns\TextColumn::make('kegiatan_id')
+                TextColumn::make('kegiatan.nama')
+                    ->label("Kegiatan")
                     ->searchable(),
-                Tables\Columns\TextColumn::make('prov_id')
+                TextColumn::make('prov.provinsi')
+                    ->label("Provinsi")
                     ->searchable(),
-                Tables\Columns\TextColumn::make('kec_id')
+                TextColumn::make('kec.kecamatan')
+                    ->label("Kecamatan")
                     ->searchable(),
-                Tables\Columns\TextColumn::make('desa_kel_id')
+                TextColumn::make('desaKel.desa_kel')
+                    ->label("Desa/Kelurahan")
                     ->searchable(),
-                Tables\Columns\TextColumn::make('sls_id')
+                TextColumn::make('sls.nama')
+                    ->label("SLS")
                     ->searchable(),
-                Tables\Columns\TextColumn::make('bs_id')
+                TextColumn::make('sls_id')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('bs_id')
+                    ->label("Blok Sensus")
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->searchable(),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -81,13 +97,9 @@ class WilayahKerjaResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
+            ->actions([])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\BulkActionGroup::make([]),
             ]);
     }
 

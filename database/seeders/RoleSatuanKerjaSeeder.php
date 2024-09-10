@@ -28,7 +28,7 @@ class RoleSatuanKerjaSeeder extends Seeder
                 RoleSatuanKerja::assign([
                     "user_id" => $user->id,
                     "kegiatan_id" => $k->id,
-                    "role_name" => Constants::ROLE_ADMIN_SATUAN_KERJA[$s->level_wilayah_kerja],
+                    "role" => Constants::ROLE_ADMIN_SATUAN_KERJA[$s->level_wilayah_kerja],
                     "satuan_kerja_id" => $s->id
                 ]);
             }

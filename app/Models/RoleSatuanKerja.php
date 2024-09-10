@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Models\Role;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $user_id
@@ -47,24 +47,29 @@ class RoleSatuanKerja extends Model
         });
     }
 
-    public static function assign($data){
+    public static function assign($data)
+    {
         $user = User::find($data["user_id"]);
-        if(!$user->hasRole($data["role_name"])){
-            $user->assignRole($data["role_name"]);
+        if (!$user->hasRole($data["role"])) {
+            $user->assignRole($data["role"]);
         }
         return self::create($data);
     }
-    public function user(){
-        return $this->belongsTo(User::class,"user_id","id");
+    public function user()
+    {
+        return $this->belongsTo(User::class, "user_id", "id");
     }
 
-    public function satuanKerja(){
-        return $this->belongsTo(SatuanKerja::class,"satuan_kerja_id","id");
+    public function satuanKerja()
+    {
+        return $this->belongsTo(SatuanKerja::class, "satuan_kerja_id", "id");
     }
-    public function kegiatan(){
-        return $this->belongsTo(Kegiatan::class,"kegiatan_id","id");
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class, "kegiatan_id", "id");
     }
-    public function role(){
-        return $this->belongsTo(Role::class,"role_name","name");
+    public function role()
+    {
+        return $this->belongsTo(Role::class, "role", "name");
     }
 }

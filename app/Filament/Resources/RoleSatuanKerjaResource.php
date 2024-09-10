@@ -29,25 +29,25 @@ class RoleSatuanKerjaResource extends Resource
             ->schema([
                 Select::make('user_id')
                     ->label("Pengguna")
-                    ->relationship("user","name")
+                    ->relationship("user", "name")
                     ->searchable()
                     ->preload()
                     ->required(),
                 Select::make('kegiatan_id')
                     ->label("Kegiatan")
-                    ->relationship("kegiatan","nama")
+                    ->relationship("kegiatan", "nama")
                     ->searchable()
                     ->preload()
                     ->required(),
-                Select::make('role_name')
-                    ->relationship("role","name")
+                Select::make('role')
+                    ->relationship("role", "name")
                     ->preload()
                     ->required(),
                 Select::make('satuan_kerja_id')
                     ->label("Satuan Kerja")
                     ->preload()
                     ->searchable()
-                    ->relationship("satuanKerja","nama")
+                    ->relationship("satuanKerja", "nama")
                     ->required()
             ]);
     }
@@ -61,7 +61,7 @@ class RoleSatuanKerjaResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('kegiatan.nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('role_name')
+                Tables\Columns\TextColumn::make('role')
                     ->label("Role")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('satuanKerja.nama')

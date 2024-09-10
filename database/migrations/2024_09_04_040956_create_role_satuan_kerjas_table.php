@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string("kegiatan_id");
             $table->foreign("kegiatan_id")->references("id")->on("kegiatans");
             $table->string("role");
-            $table->string("role_label");
             $table->string('satuan_kerja_id');
             $table->foreign('satuan_kerja_id')->references("id")->on("satuan_kerjas");
             $table->timestamps();

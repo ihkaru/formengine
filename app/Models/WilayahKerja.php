@@ -52,6 +52,28 @@ class WilayahKerja extends Model
     {
         return $this->belongsTo(Kegiatan::class, "kegiatan_id", "id");
     }
+
+    public function sls()
+    {
+        return $this->belongsTo(MasterSls::class, "sls_id", "sls_id");
+    }
+    public function desaKel()
+    {
+        return $this->belongsTo(MasterSls::class, "desa_kel_id", "desa_kel_id");
+    }
+    public function kec()
+    {
+        return $this->belongsTo(MasterSls::class, "kec_id", "kec_id");
+    }
+    public function kabkot()
+    {
+        return $this->belongsTo(MasterSls::class, "kabkot_id", "kabkot_id");
+    }
+    public function prov()
+    {
+        return $this->belongsTo(MasterSls::class, "prov_id", "prov_id");
+    }
+
     public static function alokasiPetugas(array $data)
     {
         $res = 0;
@@ -64,15 +86,14 @@ class WilayahKerja extends Model
         $data["petugas_level_2"] = $data["petugas_level_2"] ?? null;
         $data["petugas_level_1"] = $data["petugas_level_1"] ?? null;
         if (Organisasi::alokasi($data)) $res++;
-        self::create([]);
-
-        dd($data);
+        $res = (self::alokasi($data)) ? $res++ : $res;
         return $res;
     }
 
     public static function alokasi($data)
     {
-        if ($data["ganti_petugas"]) {
+        $res = 0;
+        if (isset($data["ganti_petugas"])) {
             return self::where("kegiatan_id", $data["kegiatan_id"])
                 ->whereIn("prov_id", $data["prov_id"])
                 ->whereIn("kabkot_id", $data["kabkot_id"])
@@ -85,11 +106,11 @@ class WilayahKerja extends Model
             ;
         }
         $kegiatan = Kegiatan::where('id', $data["kegiatan_id"])->first();
-        self::alokasiLevelSls($data, $kegiatan);
-        self::alokasiLevelDesaKel($data, $kegiatan);
-        self::alokasiLevelKec($data, $kegiatan);
-        self::alokasiLevelKabkot($data, $kegiatan);
-        self::alokasiLevelProv($data, $kegiatan);
+        $res = (self::alokasiLevelSls($data, $kegiatan)) ? $res++ : $res;
+        $res = (self::alokasiLevelDesaKel($data, $kegiatan)) ? $res++ : $res;
+        $res = (self::alokasiLevelKec($data, $kegiatan)) ? $res++ : $res;
+        $res = (self::alokasiLevelKabkot($data, $kegiatan)) ? $res++ : $res;
+        return $res == 1;
     }
 
     public static function makeArray($value): array
@@ -101,9 +122,11 @@ class WilayahKerja extends Model
     public static function alokasiLevelSls($data, $kegiatan)
     {
         if ($kegiatan->level_rekap_1 == Constants::LEVEL_REKAP_SLS) {
+            $res = 0;
             foreach ($data["sls_id"] as $sls) {
-                self::create(
+                if (self::create(
                     [
+                        "petugas_level_1_id" => $data["petugas_level_1"],
                         "kegiatan_id" => $data["kegiatan_id"],
                         "prov_id" => $data["prov_id"][0],
                         "kabkot_id" => $data["kabkot_id"][0],
@@ -111,71 +134,79 @@ class WilayahKerja extends Model
                         "desa_kel_id" => $data["desa_kel_id"][0],
                         "sls_id" => $sls,
                     ]
-                );
+                )) $res++;
             }
-            return true;
+            return $res == count($data["sls_id"]);
         }
     }
     public static function alokasiLevelDesaKel($data, $kegiatan)
     {
         if ($kegiatan->level_rekap_1 == Constants::LEVEL_REKAP_DESA_KELURAHAN || $kegiatan->level_rekap_1 == Constants::LEVEL_REKAP_DESA) {
+            $res = 0;
             foreach ($data["desa_kel_id"] as $desa_kel) {
-                self::create(
+                if (self::create(
                     [
+                        "petugas_level_1_id" => $data["petugas_level_1"],
                         "kegiatan_id" => $data["kegiatan_id"],
                         "prov_id" => $data["prov_id"][0],
                         "kabkot_id" => $data["kabkot_id"][0],
                         "kec_id" => $data["kec_id"][0],
                         "desa_kel_id" => $desa_kel,
                     ]
-                );
+                )) $res++;
             }
-            return true;
+            return $res == count($data["desa_kel_id"]);
         }
     }
     public static function alokasiLevelKec($data, $kegiatan)
     {
         if ($kegiatan->level_rekap_1 == Constants::LEVEL_REKAP_KECAMATAN) {
+            $res = 0;
             foreach ($data["kec_id"] as $kec) {
-                self::create(
+                if (self::create(
                     [
+                        "petugas_level_1_id" => $data["petugas_level_1"],
                         "kegiatan_id" => $data["kegiatan_id"],
                         "prov_id" => $data["prov_id"][0],
                         "kabkot_id" => $data["kabkot_id"][0],
                         "kec_id" => $kec,
                     ]
-                );
+                )) $res++;
             }
-            return true;
+            return $res == count($data["kec_id"]);
         }
     }
     public static function alokasiLevelKabkot($data, $kegiatan)
     {
         if ($kegiatan->level_rekap_1 == Constants::LEVEL_REKAP_KABUPATEN) {
+            $res = 0;
             foreach ($data["kabkot_id"] as $kabkot) {
-                self::create(
+                if (self::create(
                     [
+                        "petugas_level_1_id" => $data["petugas_level_1"],
                         "kegiatan_id" => $data["kegiatan_id"],
                         "prov_id" => $data["prov_id"][0],
                         "kabkot_id" => $kabkot,
                     ]
-                );
+                )) $res++;
             }
-            return true;
+            return $res == count($data["kabkot_id"]);
         }
     }
     public static function alokasiLevelProv($data, $kegiatan)
     {
         if ($kegiatan->level_rekap_1 == Constants::LEVEL_REKAP_KABUPATEN) {
+            $res = 0;
             foreach ($data["prov_id"] as $prov) {
-                self::create(
+                if (self::create(
                     [
+                        "petugas_level_1_id" => $data["petugas_level_1"],
                         "kegiatan_id" => $data["kegiatan_id"],
                         "prov_id" => $prov,
                     ]
-                );
+                )) $res++;
             }
-            return true;
+            return $res == count($data["prov_id"]);
         }
     }
 }

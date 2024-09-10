@@ -53,6 +53,30 @@ class MasterSls extends Model
             get: fn(mixed $value, array $attributes) => "[" . $attributes['sls_id'] . "] " . $attributes['nama'],
         );
     }
+    protected function desaKelWithId(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => "[" . $attributes['desa_kel_id'] . "] " . $attributes['desa_kel'],
+        );
+    }
+    protected function kecWithId(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => "[" . $attributes['kec_id'] . "] " . $attributes['kecamatan'],
+        );
+    }
+    protected function kabkotWithId(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => "[" . $attributes['kabkot_id'] . "] " . $attributes['kabkot'],
+        );
+    }
+    protected function provWithId(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => "[" . $attributes['prov_id'] . "] " . $attributes['provinsi'],
+        );
+    }
 
     public static function getMasterSls()
     {
@@ -109,37 +133,37 @@ class MasterSls extends Model
         $res = self::getProvOptions(pluck: false);
         $wilayah_kerja_ids = $wilayah_kerja_ids->map(fn($v) => substr($v, 0, 2))->toArray();
         $res->whereIn('prov_id', $wilayah_kerja_ids);
-        return $res->pluck("provinsi", "prov_id");
+        return $res->get()->pluck("provWithId", "prov_id");
     }
     public static function getKabkotSatker($wilayah_kerja_ids)
     {
         if (strlen($wilayah_kerja_ids->first()) == 2) {
-            return self::getKabkotOptions(pluck: false)->where("prov_id", $wilayah_kerja_ids->first())->pluck("kabkot", "kabkot_id");
+            return self::getKabkotOptions(pluck: false)->where("prov_id", $wilayah_kerja_ids->first())->get()->pluck("kabkotWithId", "kabkot_id");
         }
         $res = self::getKabkotOptions(pluck: false);
         $wilayah_kerja_ids = $wilayah_kerja_ids->map(fn($v) => substr($v, 0, 4))->toArray();
         $res->whereIn('kabkot_id', $wilayah_kerja_ids);
-        return $res->pluck("kabkot", "kabkot_id");
+        return $res->get()->pluck("kabkotWithId", "kabkot_id");
     }
     public static function getKecamatanSatker($wilayah_kerja_ids)
     {
         if (strlen($wilayah_kerja_ids->first()) == 4) {
-            return self::getKecamatanOptions(pluck: false)->where("kabkot_id", $wilayah_kerja_ids->first())->pluck("kecamatan", "kec_id");
+            return self::getKecamatanOptions(pluck: false)->where("kabkot_id", $wilayah_kerja_ids->first())->get()->pluck("kecWithId", "kec_id");
         }
         $res = self::getKecamatanOptions(pluck: false);
         $wilayah_kerja_ids = $wilayah_kerja_ids->map(fn($v) => substr($v, 0, 7))->toArray();
         $res->whereIn('kec_id', $wilayah_kerja_ids);
-        return $res->pluck("kecamatan", "kec_id");
+        return $res->get()->pluck("kecWithId", "kec_id");
     }
     public static function getDesaKelSatker($wilayah_kerja_ids)
     {
         if (strlen($wilayah_kerja_ids->first()) == 7) {
-            return self::getDesaKelOptions(pluck: false)->where("kec_id", $wilayah_kerja_ids->first())->pluck("desa_kel", "desa_kel_id");
+            return self::getDesaKelOptions(pluck: false)->where("kec_id", $wilayah_kerja_ids->first())->get()->pluck("desaKelWithId", "desa_kel_id");
         }
         $res = self::getDesaKelOptions(pluck: false);
         $wilayah_kerja_ids = $wilayah_kerja_ids->map(fn($v) => substr($v, 0, 10))->toArray();
         $res->whereIn('desa_kel_id', $wilayah_kerja_ids);
-        return $res->pluck("desa_kel", "desa_kel_id");
+        return $res->get()->pluck("desaKelWithId", "desa_kel_id");
     }
     public static function getSlsSatker($wilayah_kerja_ids)
     {

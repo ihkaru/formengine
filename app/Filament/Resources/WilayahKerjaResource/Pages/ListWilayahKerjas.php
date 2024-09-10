@@ -28,7 +28,6 @@ class ListWilayahKerjas extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
             Action::make("alokasi_petugas")
                 ->label("Alokasi Petugas")
                 ->form(self::getFormAlokasi())
@@ -86,7 +85,7 @@ class ListWilayahKerjas extends ListRecords
                 ->label("Provinsi")
                 ->live()
                 ->preload()
-                ->reactive()
+                ->reactive()->searchable()
                 ->required()
                 ->options(function (Get $get) {
                     if ($get('satuanKerja') == null) return true;
@@ -98,7 +97,7 @@ class ListWilayahKerjas extends ListRecords
             Select::make("kabkot_id")
                 ->label("Kabupaten/Kota")
                 ->preload()
-                ->live()
+                ->live()->searchable()
                 ->multiple(function (Get $get) {
                     if ($get('satuanKerja') == null) return true;
                     self::$satuanKerja = SatuanKerja::where("id", $get('satuanKerja'))->first();
@@ -128,7 +127,7 @@ class ListWilayahKerjas extends ListRecords
                 })
                 ->label("Kecamatan")
                 ->preload()
-                ->live()
+                ->live()->searchable()
                 ->hidden(function (Get $get) {
                     if ($get('satuanKerja') == null) return true;
                     return !($get("kabkot_id") != null) ||
@@ -151,7 +150,7 @@ class ListWilayahKerjas extends ListRecords
                 })
                 ->label("Desa/Kelurahan")
                 ->preload()
-                ->live()
+                ->live()->searchable()
                 ->hidden(function (Get $get) {
                     if ($get('satuanKerja') == null) return true;
                     return !($get("kec_id") != null) ||
@@ -190,7 +189,8 @@ class ListWilayahKerjas extends ListRecords
                 ->required()
                 ->options(function (Get $get) {
                     return MasterSls::getSlsSatker(self::$satuanKerjas->pluck("wilayah_kerja_id"));
-                }),
+                })
+                ->searchable(),
             Select::make("petugas_level_3")
                 ->label("Penanggung Jawab")
                 ->hidden(function (Get $get) {
@@ -202,41 +202,55 @@ class ListWilayahKerjas extends ListRecords
                     return !(self::$kegiatan->petugas_level_3);
                 })
                 ->live()
+                ->searchable()
                 ->required()
                 ->options(function (Get $get) {
                     if (!self::$satuanKerjas) return [];
-                    return Organisasi::getPetugasSatker(self::$satuanKerjas)->pluck("name", "id");
+                    return Organisasi::getPenanggungJawabSatker(self::$satuanKerjas, self::$kegiatan)->pluck("name", "id");
                 }),
             Select::make("petugas_level_2")
                 ->label("Pengawas")
                 ->live()
+                ->hidden(function (Get $get) {
+                    if ($get('satuanKerja') == null) return true;
+                    if ($get('kegiatan_id') == null) return true;
+                })
                 ->required()
+                ->searchable()
                 ->options(function (Get $get) {
-                    if ($get('satuanKerja') == null) return [];
                     self::$satuanKerja = SatuanKerja::where("id", $get('satuanKerja'))->first();
+                    self::$kegiatan = Kegiatan::where('id', $get('kegiatan_id'))->first();
                     self::$satuanKerjas = SatuanKerja::where("nama", self::$satuanKerja->nama)->get();
-                    return Organisasi::getPetugasSatker(self::$satuanKerjas)
+                    return Organisasi::getPengawasSatker(self::$satuanKerjas, self::$kegiatan)
                         ->whereNot('id', $get('petugas_level_3'))
                         ->pluck("name", "id");
                 }),
             Select::make("petugas_level_1")
                 ->label("Petugas")
+                ->hidden(function (Get $get) {
+                    if ($get('satuanKerja') == null) return true;
+                    if ($get('kegiatan_id') == null) return true;
+                })
                 ->required()
                 ->live()
+                ->searchable()
                 ->disabled(function (Get $get) {
                     return $get("petugas_level_2") == null;
                 })
                 ->options(function (Get $get) {
                     if ($get('satuanKerja') == null) return [];
+                    if ($get('kegiatan_id') == null) return [];
                     if ($get("petugas_level_2") == null) return [];
                     self::$satuanKerja = SatuanKerja::where("id", $get('satuanKerja'))->first();
+                    self::$kegiatan = Kegiatan::where('id', $get('kegiatan_id'))->first();
                     self::$satuanKerjas = SatuanKerja::where("nama", self::$satuanKerja->nama)->get();
-                    return Organisasi::getPetugasSatker(self::$satuanKerjas)
+                    return Organisasi::getPencacahSatker(self::$satuanKerjas, self::$kegiatan)
                         ->whereNot('id', $get('petugas_level_2'))
                         ->pluck("name", "id");
                 }),
             Toggle::make('ganti_petugas')
                 ->hidden(function (Get $get) {
+                    if ($get('kegiatan_id') == null) return true;
                     self::$kegiatan = Kegiatan::where('id', $get('kegiatan_id'))->first();
                     return self::$kegiatan->max_petugas_di_level_1 * 1 != 1;
                 })

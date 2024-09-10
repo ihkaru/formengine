@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
  *
@@ -46,6 +47,13 @@ class SatuanKerja extends Model
         static::creating(function ($model) {
             $model->id = Str::slug($model->wilayah_kerja_id . "-" . $model->nama);
         });
+    }
+
+    protected function satuanKerjaWithId(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => "[" . $attributes['wilayah_kerja_id'] . "] " . $attributes['nama'],
+        );
     }
 
     public function users()
