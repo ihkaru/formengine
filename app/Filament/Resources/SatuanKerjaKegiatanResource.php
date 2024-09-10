@@ -35,13 +35,13 @@ class SatuanKerjaKegiatanResource extends Resource
                     ->label("Satuan Kerja")
                     ->searchable()
                     ->preload()
-                    ->relationship("satuanKerja","nama")
+                    ->relationship("satuanKerja", "nama")
                     ->required(),
                 Select::make('kegiatan_id')
                     ->label("Kegiatan")
-                    ->relationship("kegiatan","nama")
-                    ->searchable(["nama","id"])
-                    ->getOptionLabelFromRecordUsing(function(Kegiatan $record){
+                    ->relationship("kegiatan", "nama")
+                    ->searchable(["nama", "id"])
+                    ->getOptionLabelFromRecordUsing(function (Kegiatan $record) {
                         return $record->namaAndId;
                     })
                     ->required()

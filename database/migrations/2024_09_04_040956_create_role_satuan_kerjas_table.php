@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreign('user_id')->references("id")->on("users");
             $table->string("kegiatan_id");
             $table->foreign("kegiatan_id")->references("id")->on("kegiatans");
-            $table->string("role_name");
+            $table->string("role");
+            $table->string("role_label");
             $table->string('satuan_kerja_id');
             $table->foreign('satuan_kerja_id')->references("id")->on("satuan_kerjas");
             $table->timestamps();

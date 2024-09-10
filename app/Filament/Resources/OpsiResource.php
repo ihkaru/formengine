@@ -22,7 +22,8 @@ class OpsiResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
     protected static ?string $navigationGroup = "Manajemen Kuesioner";
 
-    public static function canViewAny(): bool{
+    public static function canViewAny(): bool
+    {
         return false;
     }
     public static function form(Form $form): Form

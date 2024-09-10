@@ -22,7 +22,8 @@ class RincianResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = "Manajemen Kuesioner";
 
-    public static function canViewAny(): bool{
+    public static function canViewAny(): bool
+    {
         return false;
     }
 

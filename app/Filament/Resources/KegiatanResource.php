@@ -44,9 +44,8 @@ class KegiatanResource extends Resource
                             ->label("Satuan Kerja")
                             ->multiple()
                             ->preload()
-                            ->relationship("satuanKerjas","nama")
-                    ])
-                ,
+                            ->relationship("satuanKerjas", "nama")
+                    ]),
                 Section::make("Metadata Kegiatan")
                     ->label("Metadata Kegiatan")
                     ->description("Informasi mengenai kegiatan yang dilaksanakan")
@@ -89,16 +88,13 @@ class KegiatanResource extends Resource
                             ->maxLength(255),
                         DatePicker::make('tgl_mulai')
                             ->label("Tanggal Mulai Kegiatan")
-                            ->required()
-                        ,
+                            ->required(),
                         DatePicker::make('tgl_selesai')
                             ->label("Tanggal Selesai Kegiatan")
-                            ->required()
-                        ,
+                            ->required(),
                         DatePicker::make('tgl_tutup')
                             ->label("Tanggal Tutup Kegiatan")
-                            ->required()
-                        ,
+                            ->required(),
                         Select::make('level_rekap_1')
                             ->label("Rekapitulasi Level 1")
                             ->options(Constants::LEVEL_REKAP)
@@ -123,19 +119,16 @@ class KegiatanResource extends Resource
                             ->label("Petugas Level 1")
                             ->required()
                             ->options(Constants::JABATAN_LEVEL_1)
-                            ->helperText("Petugas yang mengunjungi responden secara langsung")
-                        ,
+                            ->helperText("Petugas yang mengunjungi responden secara langsung"),
                         Select::make("petugas_level_2")
                             ->label("Petugas Level 2")
                             ->required()
                             ->options(Constants::JABATAN_LEVEL_2)
-                            ->helperText("Petugas yang memeriksa isian petugas level 1")
-                        ,
+                            ->helperText("Petugas yang memeriksa isian petugas level 1"),
                         Select::make("petugas_level_3")
                             ->label("Petugas Level 3")
                             ->options(Constants::JABATAN_LEVEL_3)
-                            ->helperText("Petugas yang memjadi ketua petugas level 2")
-                        ,
+                            ->helperText("Petugas yang memjadi ketua petugas level 2"),
 
 
                     ])
@@ -145,7 +138,7 @@ class KegiatanResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultSort('tgl_mulai',"desc")
+            ->defaultSort('tgl_mulai', "desc")
             ->columns([
                 TextColumn::make('id')
                     ->label('ID Kegiatan')
@@ -156,15 +149,14 @@ class KegiatanResource extends Resource
                 TextColumn::make('tahun')
                     ->sortable(),
                 TextColumn::make('frekuensi')
-                    ->formatStateUsing(fn($state)=>Constants::JENIS_FREKUENSI[$state])
+                    ->formatStateUsing(fn($state) => Constants::JENIS_FREKUENSI[$state])
                     ->searchable(),
                 TextColumn::make('seri')
                     ->searchable(),
                 TextColumn::make("level_pendataan")
                     ->sortable()
                     ->label("Level Pendataan")
-                    ->formatStateUsing(fn($state)=>Constants::LEVEL_PENDATAAN[$state])
-                ,
+                    ->formatStateUsing(fn($state) => Constants::LEVEL_PENDATAAN[$state]),
                 TextColumn::make('tgl_mulai')
                     ->label("Tanggal Mulai Kegiatan")
                     ->date()
@@ -178,23 +170,23 @@ class KegiatanResource extends Resource
                     ->date()
                     ->sortable(),
                 TextColumn::make('level_rekap_1')
-                    ->formatStateUsing(fn($state)=>Constants::LEVEL_REKAP[$state])
+                    ->formatStateUsing(fn($state) => Constants::LEVEL_REKAP[$state])
                     ->label("Rekapitulasi Level 1")
                     ->searchable(),
                 TextColumn::make('level_rekap_2')
-                    ->formatStateUsing(fn($state)=>Constants::LEVEL_REKAP[$state])
+                    ->formatStateUsing(fn($state) => Constants::LEVEL_REKAP[$state])
                     ->label("Rekapitulasi Level 2")
                     ->searchable(),
                 TextColumn::make('level_assignment')
-                    ->formatStateUsing(fn($state)=>Constants::LEVEL_ASSIGNMENT[$state])
+                    ->formatStateUsing(fn($state) => Constants::LEVEL_ASSIGNMENT[$state])
                     ->label("Level Assignment Terkecil")
                     ->searchable(),
                 TextColumn::make('unit_observasi')
-                    ->formatStateUsing(fn($state)=>Constants::LEVEL_UNIT_OBSERVASI[$state])
+                    ->formatStateUsing(fn($state) => Constants::LEVEL_UNIT_OBSERVASI[$state])
                     ->label("Unit Observasi")
                     ->searchable(),
                 TextColumn::make('unit_sampel')
-                    ->formatStateUsing(fn($state)=>Constants::LEVEL_UNIT_SAMPEL[$state])
+                    ->formatStateUsing(fn($state) => Constants::LEVEL_UNIT_SAMPEL[$state])
                     ->label("Unit Sampel")
                     ->searchable(),
                 TextColumn::make('subkategori')
@@ -205,16 +197,13 @@ class KegiatanResource extends Resource
                     ->searchable(),
                 TextColumn::make('petugas_level_1')
                     ->label("Petugas Level 1")
-                    ->formatStateUsing(fn($state)=>Constants::JABATAN_LEVEL_1[$state])
-                    ,
+                    ->formatStateUsing(fn($state) => Constants::JABATAN_LEVEL_1[$state]),
                 TextColumn::make('petugas_level_2')
                     ->label("Petugas Level 2")
-                    ->formatStateUsing(fn($state)=>Constants::JABATAN_LEVEL_2[$state])
-                    ,
+                    ->formatStateUsing(fn($state) => Constants::JABATAN_LEVEL_2[$state]),
                 TextColumn::make('petugas_level_3')
                     ->label("Petugas Level 3")
-                    ->formatStateUsing(fn($state)=>Constants::JABATAN_LEVEL_3[$state])
-                    ,
+                    ->formatStateUsing(fn($state) => Constants::JABATAN_LEVEL_3[$state]),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

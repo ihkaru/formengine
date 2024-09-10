@@ -46,7 +46,7 @@ class SurveyResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('value'),
                             ])
-                            ->visible(fn ($get) => in_array($get('type'), ['select', 'multiselect', 'radio', 'checkbox'])),
+                            ->visible(fn($get) => in_array($get('type'), ['select', 'multiselect', 'radio', 'checkbox'])),
                     ]),
             ]);
     }

@@ -29,8 +29,9 @@ return new class extends Migration
             $table->string('subkategori')->nullable();
             $table->string('kode_subkategori')->nullable();
             $table->string("petugas_level_1");
-            $table->string("petugas_level_2")->nullable();
+            $table->string("petugas_level_2");
             $table->string("petugas_level_3")->nullable();
+            $table->unsignedTinyInteger("max_petugas_di_level_1");
             $table->timestamps();
         });
     }

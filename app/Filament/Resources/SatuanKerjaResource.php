@@ -38,8 +38,7 @@ class SatuanKerjaResource extends Resource
                     ->label("Level Wilayah Kerja")
                     ->helperText("Merupakan level wilayah yang menjadi tanggung jawab satuan kerja")
                     ->options(Constants::LEVEL_WILAYAH)
-                    ->required()
-                    ,
+                    ->required(),
                 TextInput::make("wilayah_kerja_id")
                     ->label("ID Wilayah Kerja")
                     ->helperText("Mengacu kepada Master SLS Badan Pusat Statistik")
@@ -47,7 +46,7 @@ class SatuanKerjaResource extends Resource
                 Select::make("users")
                     ->label("Pengguna")
                     ->multiple()
-                    ->relationship("users","email")
+                    ->relationship("users", "email")
                     ->preload()
             ]);
     }
@@ -59,11 +58,10 @@ class SatuanKerjaResource extends Resource
                 TextColumn::make("nama")->searchable(),
                 TextColumn::make("level_wilayah_kerja")
                     ->label("Level Wilayah Kerja")
-                    ->formatStateUsing(function(string $state): string{
+                    ->formatStateUsing(function (string $state): string {
                         return Constants::LEVEL_WILAYAH[$state];
                     })
-                    ->searchable()
-                ,
+                    ->searchable(),
                 TextColumn::make("wilayah_kerja_id")
                     ->label('Kode Wilayah Kerja')
                     ->searchable(),
@@ -96,6 +94,4 @@ class SatuanKerjaResource extends Resource
             'edit' => Pages\EditSatuanKerja::route('/{record}/edit'),
         ];
     }
-
-
 }

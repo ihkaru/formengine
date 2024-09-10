@@ -29,6 +29,8 @@ return new class extends Migration
 
             $table->timestamp('terakhir_diisi')->nullable();
             $table->json('data');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->unsignedMediumInteger("jumlah_blank")->nullable();
             $table->unsignedMediumInteger("jumlah_error")->nullable();
             $table->unsignedMediumInteger("jumlah_warning")->nullable();

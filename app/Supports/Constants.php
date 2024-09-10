@@ -1,6 +1,9 @@
 <?php
+
 namespace App\Supports;
-class Constants {
+
+class Constants
+{
     const STATUS_OPEN = "STATUS_OPEN";
     const STATUS_SUBMIT_BY_PETUGAS = "STATUS_SUBMIT_BY_PETUGAS";
     const STATUS_REJECTED_BY_PETUGAS = "STATUS_REJECTED_BY_PETUGAS";
@@ -9,20 +12,20 @@ class Constants {
     const STATUS_APPROVED_BY_ADMIN = "STATUS_APPROVED_BY_ADMIN";
 
     const LEVEL_REKAP_SLS = "LEVEL_REKAP_SLS";
-    const LEVEL_REKAP_BS= "LEVEL_REKAP_BS";
+    const LEVEL_REKAP_BS = "LEVEL_REKAP_BS";
     const LEVEL_REKAP_DESA = "LEVEL_REKAP_DESA";
     const LEVEL_REKAP_DESA_KELURAHAN = "LEVEL_REKAP_DESA_KELURAHAN";
     const LEVEL_REKAP_KECAMATAN = "LEVEL_REKAP_KECAMATAN";
     const LEVEL_REKAP_KABUPATEN = "LEVEL_REKAP_KABUPATEN";
     const LEVEL_REKAP_PROVINSI = "LEVEL_REKAP_PROVINSI";
     const LEVEL_REKAP = [
-        "LEVEL_REKAP_SLS"=>"SLS",
-        "LEVEL_REKAP_BS"=>"Blok Sensus",
-        "LEVEL_REKAP_DESA_KELURAHAN"=>"Desa/Kelurahan",
-        "LEVEL_REKAP_DESA"=>"Desa",
-        "LEVEL_REKAP_KECAMATAN"=>"Kecamatan",
-        "LEVEL_REKAP_KABUPATEN_KOTA"=>"Kabupaten/Kota",
-        "LEVEL_REKAP_PROVINSI"=>"Provinsi",
+        "LEVEL_REKAP_SLS" => "SLS",
+        "LEVEL_REKAP_BS" => "Blok Sensus",
+        "LEVEL_REKAP_DESA_KELURAHAN" => "Desa/Kelurahan",
+        "LEVEL_REKAP_DESA" => "Desa",
+        "LEVEL_REKAP_KECAMATAN" => "Kecamatan",
+        "LEVEL_REKAP_KABUPATEN_KOTA" => "Kabupaten/Kota",
+        "LEVEL_REKAP_PROVINSI" => "Provinsi",
     ];
 
 
@@ -35,15 +38,15 @@ class Constants {
     const LEVEL_ASSIGNMENT_DESA = "LEVEL_ASSIGNMENT_DESA";
     const LEVEL_ASSIGNMENT_DESA_KELURAHAN = "LEVEL_ASSIGNMENT_DESA_KELURAHAN";
     const LEVEL_ASSIGNMENT = [
-        "LEVEL_ASSIGNMENT_PENDUDUK"=>"Penduduk",
-        "LEVEL_ASSIGNMENT_UNIT_USAHA"=>"Unit Usaha",
-        "LEVEL_ASSIGNMENT_PERUSAHAAN"=>"Perusahaan",
-        "LEVEL_ASSIGNMENT_RUMAH_TANGGA"=>"Rumah Tangga",
-        "LEVEL_ASSIGNMENT_KEPALA_KELUARGA"=>"Kepala Keluarga",
-        "LEVEL_ASSIGNMENT_SLS"=>"SLS",
-        "LEVEL_ASSIGNMENT_DESA"=>"Desa",
-        "LEVEL_ASSIGNMENT_DESA_KELURAHAN"=>"Desa/Kelurahan",
-        "LEVEL_ASSIGNMENT_KECAMATAN"=>"Kecamatan",
+        "LEVEL_ASSIGNMENT_PENDUDUK" => "Penduduk",
+        "LEVEL_ASSIGNMENT_UNIT_USAHA" => "Unit Usaha",
+        "LEVEL_ASSIGNMENT_PERUSAHAAN" => "Perusahaan",
+        "LEVEL_ASSIGNMENT_RUMAH_TANGGA" => "Rumah Tangga",
+        "LEVEL_ASSIGNMENT_KEPALA_KELUARGA" => "Kepala Keluarga",
+        "LEVEL_ASSIGNMENT_SLS" => "SLS",
+        "LEVEL_ASSIGNMENT_DESA" => "Desa",
+        "LEVEL_ASSIGNMENT_DESA_KELURAHAN" => "Desa/Kelurahan",
+        "LEVEL_ASSIGNMENT_KECAMATAN" => "Kecamatan",
     ];
 
     const LEVEL_UNIT_OBSERVASI_PENDUDUK = "LEVEL_UNIT_OBSERVASI_PENDUDUK";
@@ -55,14 +58,14 @@ class Constants {
     const LEVEL_UNIT_OBSERVASI_DESA = "LEVEL_UNIT_OBSERVASI_DESA";
     const LEVEL_UNIT_OBSERVASI_DESA_KELURAHAN = "LEVEL_UNIT_OBSERVASI_DESA_KELURAHAN";
     const LEVEL_UNIT_OBSERVASI = [
-        "LEVEL_UNIT_OBSERVASI_PENDUDUK"=>"Penduduk",
-        "LEVEL_UNIT_OBSERVASI_UNIT_USAHA"=>"Unit Usaha",
-        "LEVEL_UNIT_OBSERVASI_PERUSAHAAN"=>"Perusahaan",
-        "LEVEL_UNIT_OBSERVASI_RUMAH_TANGGA"=>"Rumah Tangga",
-        "LEVEL_UNIT_OBSERVASI_KEPALA_KELUARGA"=>"Kepala Keluarga",
-        "LEVEL_UNIT_OBSERVASI_SLS"=>"SLS",
-        "LEVEL_UNIT_OBSERVASI_DESA"=>"Desa",
-        "LEVEL_UNIT_OBSERVASI_DESA_KELURAHAN"=>"Desa/Kelurahan",
+        "LEVEL_UNIT_OBSERVASI_PENDUDUK" => "Penduduk",
+        "LEVEL_UNIT_OBSERVASI_UNIT_USAHA" => "Unit Usaha",
+        "LEVEL_UNIT_OBSERVASI_PERUSAHAAN" => "Perusahaan",
+        "LEVEL_UNIT_OBSERVASI_RUMAH_TANGGA" => "Rumah Tangga",
+        "LEVEL_UNIT_OBSERVASI_KEPALA_KELUARGA" => "Kepala Keluarga",
+        "LEVEL_UNIT_OBSERVASI_SLS" => "SLS",
+        "LEVEL_UNIT_OBSERVASI_DESA" => "Desa",
+        "LEVEL_UNIT_OBSERVASI_DESA_KELURAHAN" => "Desa/Kelurahan",
     ];
 
     const LEVEL_UNIT_SAMPEL_PENDUDUK = "LEVEL_UNIT_SAMPEL_PENDUDUK";
@@ -73,13 +76,13 @@ class Constants {
     const LEVEL_UNIT_SAMPEL_SLS = "LEVEL_UNIT_SAMPEL_SLS";
     const LEVEL_UNIT_SAMPEL_DESA = "LEVEL_UNIT_SAMPEL_DESA";
     const LEVEL_UNIT_SAMPEL = [
-        "LEVEL_UNIT_SAMPEL_PENDUDUK"=>"Penduduk",
-        "LEVEL_UNIT_SAMPEL_UNIT_USAHA"=>"Unit Usaha",
-        "LEVEL_UNIT_SAMPEL_PERUSAHAAN"=>"Perusahaan",
-        "LEVEL_UNIT_SAMPEL_KEPALA_KELUARGA"=>"Kepala Keluarga",
-        "LEVEL_UNIT_SAMPEL_RUMAH_TANGGA"=>"Rumah Tangga",
-        "LEVEL_UNIT_SAMPEL_SLS"=>"SLS",
-        "LEVEL_UNIT_SAMPEL_DESA"=>"Desa",
+        "LEVEL_UNIT_SAMPEL_PENDUDUK" => "Penduduk",
+        "LEVEL_UNIT_SAMPEL_UNIT_USAHA" => "Unit Usaha",
+        "LEVEL_UNIT_SAMPEL_PERUSAHAAN" => "Perusahaan",
+        "LEVEL_UNIT_SAMPEL_KEPALA_KELUARGA" => "Kepala Keluarga",
+        "LEVEL_UNIT_SAMPEL_RUMAH_TANGGA" => "Rumah Tangga",
+        "LEVEL_UNIT_SAMPEL_SLS" => "SLS",
+        "LEVEL_UNIT_SAMPEL_DESA" => "Desa",
     ];
 
     const JENIS_FREKEUNSI_TAHUN = "JENIS_FREKEUNSI_TAHUN";
@@ -88,11 +91,11 @@ class Constants {
     const JENIS_FREKEUNSI_BULAN = "JENIS_FREKEUNSI_BULAN";
     const JENIS_FREKEUNSI_ADHOC = "JENIS_FREKEUNSI_ADHOC";
     const JENIS_FREKUENSI = [
-        "JENIS_FREKEUNSI_TAHUN"=>"Tahunan",
-        "JENIS_FREKEUNSI_SEMESTER"=>"Semesteran",
-        "JENIS_FREKEUNSI_TRIWULAN"=>"Triwulanan",
-        "JENIS_FREKEUNSI_BULAN"=>"Bulanan",
-        "JENIS_FREKEUNSI_ADHOC"=>"Ad-Hoc"
+        "JENIS_FREKEUNSI_TAHUN" => "Tahunan",
+        "JENIS_FREKEUNSI_SEMESTER" => "Semesteran",
+        "JENIS_FREKEUNSI_TRIWULAN" => "Triwulanan",
+        "JENIS_FREKEUNSI_BULAN" => "Bulanan",
+        "JENIS_FREKEUNSI_ADHOC" => "Ad-Hoc"
     ];
 
     const JENIS_TEST_VALID_IF = "JENIS_TEST_VALID_IF";
@@ -100,42 +103,42 @@ class Constants {
     const JENIS_TEST_REQUIRED_IF = "JENIS_TEST_REQUIRED_IF";
     const JENIS_TEST_TOGGLER = "JENIS_TEST_TOGGLER";
     const JENIS_TEST = [
-        "JENIS_TEST_VALID_IF"=>"Valid If",
-        "JENIS_TEST_SHOW_IF"=>"Show If",
-        "JENIS_TEST_REQUIRED_IF"=>"Required If",
-        "JENIS_TEST_TOGGLER"=>"Toggler"
+        "JENIS_TEST_VALID_IF" => "Valid If",
+        "JENIS_TEST_SHOW_IF" => "Show If",
+        "JENIS_TEST_REQUIRED_IF" => "Required If",
+        "JENIS_TEST_TOGGLER" => "Toggler"
     ];
 
     const JENIS_USER_ORGANIK = "JENIS_USER_ORGANIK";
     const JENIS_USER_NON_ORGANIK = "JENIS_USER_NON_ORGANIK";
     const JENIS_USER = [
-        "JENIS_USER_ORGANIK"=>"Organik",
-        "JENIS_USER_NON_ORGANIK"=>"Orgamik",
+        "JENIS_USER_ORGANIK" => "Organik",
+        "JENIS_USER_NON_ORGANIK" => "Orgamik",
     ];
 
     const LEVEL_WILAYAH_SLS = "LEVEL_WILAYAH_SLS";
-    const LEVEL_WILAYAH_BS= "LEVEL_WILAYAH_BS";
+    const LEVEL_WILAYAH_BS = "LEVEL_WILAYAH_BS";
     const LEVEL_WILAYAH_DESA = "LEVEL_WILAYAH_DESA";
     const LEVEL_WILAYAH_DESA_KELURAHAN = "LEVEL_WILAYAH_DESA_KELURAHAN";
     const LEVEL_WILAYAH_KECAMATAN = "LEVEL_WILAYAH_KECAMATAN";
     const LEVEL_WILAYAH_KABUPATEN = "LEVEL_WILAYAH_KABUPATEN";
     const LEVEL_WILAYAH_PROVINSI = "LEVEL_WILAYAH_PROVINSI";
     const LEVEL_WILAYAH = [
-        "LEVEL_WILAYAH_SLS"=>"SLS",
-        "LEVEL_WILAYAH_BS"=>"Blok Sensus",
-        "LEVEL_WILAYAH_DESA_KELURAHAN"=>"Desa/Kelurahan",
-        "LEVEL_WILAYAH_DESA"=>"Desa",
-        "LEVEL_WILAYAH_KECAMATAN"=>"Kecamatan",
-        "LEVEL_WILAYAH_KABUPATEN_KOTA"=>"Kabupaten/Kota",
-        "LEVEL_WILAYAH_PROVINSI"=>"Provinsi",
+        "LEVEL_WILAYAH_SLS" => "SLS",
+        "LEVEL_WILAYAH_BS" => "Blok Sensus",
+        "LEVEL_WILAYAH_DESA_KELURAHAN" => "Desa/Kelurahan",
+        "LEVEL_WILAYAH_DESA" => "Desa",
+        "LEVEL_WILAYAH_KECAMATAN" => "Kecamatan",
+        "LEVEL_WILAYAH_KABUPATEN_KOTA" => "Kabupaten/Kota",
+        "LEVEL_WILAYAH_PROVINSI" => "Provinsi",
     ];
 
     const ROLE_ADMIN_SATUAN_KERJA = [
-        "LEVEL_WILAYAH_DESA_KELURAHAN"=>"admin_desa",
-        "LEVEL_WILAYAH_DESA"=>"admin_desa",
-        "LEVEL_WILAYAH_KECAMATAN"=>"admin_kecamatan",
-        "LEVEL_WILAYAH_KABUPATEN_KOTA"=>"admin_kako",
-        "LEVEL_WILAYAH_PROVINSI"=>"admin_provinsi",
+        "LEVEL_WILAYAH_DESA_KELURAHAN" => "admin_desa",
+        "LEVEL_WILAYAH_DESA" => "admin_desa",
+        "LEVEL_WILAYAH_KECAMATAN" => "admin_kecamatan",
+        "LEVEL_WILAYAH_KABUPATEN_KOTA" => "admin_kako",
+        "LEVEL_WILAYAH_PROVINSI" => "admin_provinsi",
     ];
 
     const JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN = "JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN";
@@ -160,14 +163,7 @@ class Constants {
     const LEVEL_PENDATAAN_SENSUS = "LEVEL_PENDATAAN_SENSUS";
     const LEVEL_PENDATAAN_SURVEI = "LEVEL_PENDATAAN_SURVEI";
     const LEVEL_PENDATAAN = [
-        "LEVEL_PENDATAAN_SENSUS"=>"Sensus",
-        "LEVEL_PENDATAAN_SURVEI"=>"Survei",
+        "LEVEL_PENDATAAN_SENSUS" => "Sensus",
+        "LEVEL_PENDATAAN_SURVEI" => "Survei",
     ];
-
-
-
-
-
-
-
 }
