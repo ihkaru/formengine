@@ -28,7 +28,7 @@ return new class extends Migration
             // $table->foreign("last_riwayat_status")->references("id")->on("riwayat_statuses");
 
             $table->timestamp('terakhir_diisi')->nullable();
-            $table->json('data');
+            $table->string('data')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->unsignedMediumInteger("jumlah_blank")->nullable();

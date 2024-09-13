@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Supports\Constants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $versi
@@ -30,4 +31,15 @@ use Illuminate\Database\Eloquent\Model;
 class Template extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class, "kegiatan_id", "id");
+    }
+    public static function getLatestTemplate($kegiatan_id)
+    {
+        return Template::where("kegiatan_id", $kegiatan_id)
+            ->where("label_versi", Constants::VERSI_TEMPLATE_LATEST)->first();
+    }
 }

@@ -166,4 +166,10 @@ class Constants
         "LEVEL_PENDATAAN_SENSUS" => "Sensus",
         "LEVEL_PENDATAAN_SURVEI" => "Survei",
     ];
+    const VERSI_TEMPLATE_LATEST = "VERSI_TEMPLATE_LATEST";
+    const VERSI_TEMPLATE_OLD = "VERSI_TEMPLATE_OLD";
+    const VERSI_TEMPLATE = [
+        "VERSI_TEMPLATE_LATEST" => "Terbaru",
+        "VERSI_TEMPLATE_OLD" => "Lama"
+    ];
 }

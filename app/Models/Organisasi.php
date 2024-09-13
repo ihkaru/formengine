@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Supports\Constants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,6 +33,8 @@ class Organisasi extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+
 
     public static function getPetugasSatker($satuanKerjas, $kegiatan)
     {
@@ -95,5 +98,20 @@ class Organisasi extends Model
         ], [
             "pencacah_id" => $data["petugas_level_1"],
         ]);
+    }
+    public static function getUserKegiatanRole($user_id)
+    {
+        $organisasi = Organisasi::where("pencacah_id", $user_id)
+            ->orWhere("pengawas_id", $user_id)
+            ->orWhere("koseka_id", $user_id)
+            ->first();
+        return self::getUserKegiatanRoleByOrganisasi($user_id, $organisasi);
+    }
+    public static function getUserKegiatanRoleByOrganisasi($user_id, Organisasi $organisasi)
+    {
+        if ($organisasi->pencacah_id == $user_id) return Constants::JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN;
+        if ($organisasi->pengawas_id == $user_id) return Constants::JABATAN_LEVEL_2_PETUGAS_PEMERIKSA_LAPANGAN;
+        if ($organisasi->koseka_id == $user_id) return Constants::JABATAN_LEVEL_3_KOSEKA;
+        return null;
     }
 }

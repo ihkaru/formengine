@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Supports\Constants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
  *
@@ -74,6 +75,22 @@ class WilayahKerja extends Model
         return $this->belongsTo(MasterSls::class, "prov_id", "prov_id");
     }
 
+    public static function getWilayahTugas($kegiatan_id, $user_id, $role)
+    {
+        if ($role == Constants::JABATAN_LEVEL_2_PETUGAS_PEMERIKSA_LAPANGAN) {
+            $petugasLevel1s = Organisasi::where("pengawas_id", $user_id)
+                ->where("kegiatan_id", $kegiatan_id)
+                ->pluck("pencacah_id");
+            return WilayahKerja::whereIn("petugas_level_1_id:", $petugasLevel1s->flatten()->toArray())
+                ->where("kegiatan_id", $kegiatan_id);
+        }
+        if ($role == Constants::JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN) {
+            return WilayahKerja::where("petugas_level_1_id", $user_id)
+                ->with("sls")
+                ->where("kegiatan_id", $kegiatan_id);
+        }
+        return null;
+    }
     public static function alokasiPetugas(array $data)
     {
         $res = 0;

@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
- * 
+ *
  *
  * @property string $id
  * @property string $nama
@@ -78,24 +78,34 @@ class Kegiatan extends Model
         //     $model->id = Str::slug($model->level_wilayah_kerja."-".$model->nama);
         // });
     }
-    public function satuanKerjas(){
-        return $this->belongsToMany(SatuanKerja::class,"satuan_kerja_kegiatans","kegiatan_id","satuan_kerja_id");
+    public function satuanKerjas()
+    {
+        return $this->belongsToMany(SatuanKerja::class, "satuan_kerja_kegiatans", "kegiatan_id", "satuan_kerja_id");
     }
-    public function assignments(){
-        return $this->hasMany(Assignment::class,"kegiatan_id","id");
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class, "kegiatan_id", "id");
     }
 
     protected function namaAndId(): Attribute
     {
         return Attribute::make(
-            get: fn (mixed $value, array $attributes) => $attributes["nama"]." | ".$attributes["id"],
+            get: fn(mixed $value, array $attributes) => $attributes["nama"] . " | " . $attributes["id"],
         );
     }
-    public static function getKegiatan($with_role = true){
+    public static function getKegiatan($with_role = true)
+    {
         $kegiatans = Kegiatan::query();
-        if($with_role){
-            if(!auth()->user()->hasRole("super_admin"));
+        if ($with_role) {
+            if (!auth()->user()->hasRole("super_admin"));
         }
     }
-
+    public function templates()
+    {
+        return $this->hasMany(Template::class, "kegiatan_id", "id");
+    }
+    public function respondens()
+    {
+        return $this->hasMany(Responden::class, "kegiatan_id", "id");
+    }
 }

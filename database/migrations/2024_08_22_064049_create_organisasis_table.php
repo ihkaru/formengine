@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('organisasis', function (Blueprint $table) {
             $table->id();
-            $table->uuid("kegiatan_id");
+            $table->string("kegiatan_id");
             $table->foreign("kegiatan_id")->references('id')->on('kegiatans');
-            $table->uuid('pencacah_id');
+            $table->string('pencacah_id');
             $table->foreign("pencacah_id")->references('id')->on('users');
-            $table->uuid('pengawas_id')->nullable();
+            $table->string('pengawas_id')->nullable();
             $table->foreign("pengawas_id")->references('id')->on('users');
-            $table->uuid('koseka_id')->nullable();
+            $table->string('koseka_id')->nullable();
             $table->foreign("koseka_id")->references('id')->on('users');
             $table->timestamps();
         });

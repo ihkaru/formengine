@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Supports\Constants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use PDO;
 
 /**
  *
@@ -43,7 +45,32 @@ class Assignment extends Model
     public static function generateHashedId($email)
     {
         return Str::uuid();
-        $appKey = config('app.key');
-        return hash_hmac('md5', $email, $appKey);
+    }
+    public static function getAssignments($kegiatan_id, $user_id, $role)
+    {
+        if ($role == Constants::JABATAN_LEVEL_2_PETUGAS_PEMERIKSA_LAPANGAN) {
+            $petugasLevel1s = Organisasi::where("pengawas_id", $user_id)
+                ->where("kegiatan_id", $kegiatan_id)
+                ->pluck("pencacah_id");
+            return Assignment::whereIn("pencacah_id", $petugasLevel1s->flatten()->toArray())
+                ->where("kegiatan_id", $kegiatan_id);
+        }
+        if ($role == Constants::JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN) {
+            return Assignment::where("pencacah_id", $user_id)
+                ->where("kegiatan_id", $kegiatan_id);
+        }
+        return null;
+    }
+    public function respondens()
+    {
+        return $this->belongsTo(Responden::class, "responden_id", "id");
+    }
+    public function petugasLevel1()
+    {
+        return $this->belongsTo(User::class, "pencacah_id", "id");
+    }
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class, "kegiatan_id", "id");
     }
 }

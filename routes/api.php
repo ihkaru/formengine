@@ -14,8 +14,8 @@ Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 Route::post('/login', [LoginController::class, 'login']);
 
-Route::middleware("auth:sanctum")->group(function(){
-    Route::get("users",[UserController::class,"index"]);
-    Route::get("kegiatans",[KegiatanController::class,"index"]);
+Route::middleware("auth:sanctum")->group(function () {
+    Route::get("users", [UserController::class, "index"]);
+    Route::get("kegiatans", [KegiatanController::class, "index"]);
+    Route::get("kegiatans/{kegiatan}", [KegiatanController::class, "loadKegiatan"]);
 });
-

@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use PDO;
 
 /**
- * 
+ *
  *
  * @property string $id
  * @property string $name
@@ -81,7 +81,7 @@ class User extends Authenticatable implements FilamentUser, HasAllowedFields, Ha
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = Str::orderedUuid();
+            $model->id = md5($model->email);
         });
     }
 
@@ -195,5 +195,9 @@ class User extends Authenticatable implements FilamentUser, HasAllowedFields, Ha
     public function kegiatan()
     {
         return $this->belongsTo(Kegiatan::class, "kegiatan_id", "id");
+    }
+    public function wilayahKerjas()
+    {
+        return $this->hasMany(WilayahKerja::class, "petugas_level_1", "id");
     }
 }

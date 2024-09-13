@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('versi');
             $table->string('label_versi');
-            $table->json('template');
+            $table->text('template');
+            $table->text('kolom_wajib');
             $table->string('kegiatan_id');
             $table->foreign("kegiatan_id")->references('id')->on('kegiatans');
             $table->timestamps();

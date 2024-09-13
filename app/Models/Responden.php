@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $kegiatan_id
@@ -54,7 +54,11 @@ class Responden extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $guarded = [];
+
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
 
     public static function boot()
@@ -64,5 +68,10 @@ class Responden extends Model
         static::creating(function ($model) {
             $model->id = Str::orderedUuid();
         });
+    }
+
+    public function user()
+    {
+        return $this->hasOne(Assignment::class, "responden_id", "id");
     }
 }
