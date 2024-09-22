@@ -34,5 +34,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('munawir'),
             'jenis' => Constants::JENIS_USER_ORGANIK
         ]);
+        User::create([
+            'name' => 'Munawir',
+            'email' => 'helmiawing@gmail.com',
+            'password' => Hash::make('munawir'),
+            'jenis' => Constants::JENIS_USER_ORGANIK
+        ]);
     }
 }
