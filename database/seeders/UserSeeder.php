@@ -28,5 +28,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('najiaaahelmiah'),
             'jenis' => Constants::JENIS_USER_ORGANIK
         ]);
+        User::create([
+            'name' => 'Munawir',
+            'email' => 'munawir@bps.go.id',
+            'password' => Hash::make('munawir'),
+            'jenis' => Constants::JENIS_USER_ORGANIK
+        ]);
     }
 }
