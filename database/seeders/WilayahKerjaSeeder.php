@@ -14,8 +14,8 @@ class WilayahKerjaSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::first();
-        $user2 = User::whereNot("id", $user->id)->first();
+        $user = User::where("email", "ihza2karunia@gmail.com")->first();
+        $user2 = User::where("email", "najiaaahelmiah@gmail.com")->first();
         $data = [
             "satuanKerja" => "6104080003-pemerintah-desa-wajok-hilir",
             "kegiatan_id" => "REM-2024-1-PILOT-LAPANGAN",
@@ -30,7 +30,7 @@ class WilayahKerjaSeeder extends Seeder
             "petugas_level_2" => $user->id,
             "petugas_level_1" => $user2->id
         ];
-        dump($data);
+        // dump($data);
         WilayahKerja::alokasiPetugas($data);
     }
 }
