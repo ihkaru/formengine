@@ -69,6 +69,7 @@ class KegiatanController extends Controller
         $role = Organisasi::getUserKegiatanRoleByOrganisasi($user->id, $organisasi);
         $assignments = Assignment::getAssignments($kegiatan->id, $user->id, $role)?->with('respondens')->get();
         $wilayahKerja = WilayahKerja::getWilayahTugas($kegiatan->id, $user->id, $role)?->get();
+
         $template = Template::getLatestTemplate($kegiatan->id);
         return response()->json([
             "kegiatan" => $kegiatan,

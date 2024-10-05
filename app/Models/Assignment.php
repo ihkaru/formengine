@@ -33,6 +33,9 @@ class Assignment extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
     public static function boot()
     {
         parent::boot();
@@ -52,8 +55,9 @@ class Assignment extends Model
             $petugasLevel1s = Organisasi::where("pengawas_id", $user_id)
                 ->where("kegiatan_id", $kegiatan_id)
                 ->pluck("pencacah_id");
-            return Assignment::whereIn("pencacah_id", $petugasLevel1s->flatten()->toArray())
+            $res = Assignment::whereIn("pencacah_id", $petugasLevel1s->flatten()->toArray())
                 ->where("kegiatan_id", $kegiatan_id);
+            return $res;
         }
         if ($role == Constants::JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN) {
             return Assignment::where("pencacah_id", $user_id)

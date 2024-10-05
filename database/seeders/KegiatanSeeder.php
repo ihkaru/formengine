@@ -16,8 +16,8 @@ class KegiatanSeeder extends Seeder
     public function run(): void
     {
         $tgl_mulai = Carbon::parse("2024-09-15");
-        $tgl_selesai = Carbon::parse("2024-09-30");
-        $tgl_tutup = Carbon::parse("2024-09-30");
+        $tgl_selesai = Carbon::parse("2024-10-30");
+        $tgl_tutup = Carbon::parse("2024-10-30");
         Kegiatan::create([
             "id" => "REM-2024-1-PILOT-LAPANGAN",
             "nama" => "Pilot Registrasi Ekonomi Masyarakat Desa Wajok Hilir",

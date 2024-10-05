@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('versi');
             $table->string('label_versi');
-            $table->text('template');
+            $table->longText('template');
             $table->text('kolom_wajib');
             $table->string('kegiatan_id');
             $table->foreign("kegiatan_id")->references('id')->on('kegiatans');

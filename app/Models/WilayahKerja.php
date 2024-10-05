@@ -82,6 +82,7 @@ class WilayahKerja extends Model
                 ->where("kegiatan_id", $kegiatan_id)
                 ->pluck("pencacah_id");
             return WilayahKerja::whereIn("petugas_level_1_id", $petugasLevel1s->flatten()->toArray())
+                ->with("sls")
                 ->where("kegiatan_id", $kegiatan_id);
         }
         if ($role == Constants::JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN) {

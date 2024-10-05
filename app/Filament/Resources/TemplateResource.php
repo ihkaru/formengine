@@ -22,11 +22,26 @@ class TemplateResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-document-duplicate';
     protected static ?string $navigationGroup = "Manajemen Kuesioner";
 
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('versi')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('label_versi')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('template')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\Textarea::make('kolom_wajib')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('kegiatan_id')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -34,7 +49,20 @@ class TemplateResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('versi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('label_versi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('kegiatan_id')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

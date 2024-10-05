@@ -12,8 +12,9 @@ class RespondenSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::first();
-        $user2 = User::whereNot("id", $user->id)->first();
+        $user = User::where('email', 'ihza2karunia@gmail.com')->first();
+        $user2 = User::where("email", 'najiaaahelmiah@gmail.com')->first();
+        $user3 = User::where("email", 'ihzathegodslayer@gmail.com')->first();
         $res = [];
         $data = [
             "satuanKerja" => "6104080003-pemerintah-desa-wajok-hilir",
@@ -63,10 +64,40 @@ class RespondenSeeder extends Seeder
             "terakhir_diisi" => now(),
             "data" => trim('{"anggotaRumahTangga":[{"namaAnggota":"Arini"},{"namaAnggota":"Maria"},{"namaAnggota":"Sarah"}],"kepalaRumahTangga":"Adwin"}'),
         ]);
+        $res2 = [];
+        $res2[] = Responden::create([
+            "kegiatan_id" => $data["kegiatan_id"],
+            "template_id" => $template->id,
+            "provinsi_id" => $data["prov_id"],
+            "kabkot_id" => $data["kabkot_id"],
+            "kecamatan_id" => $data["kec_id"],
+            "desa_id" => $data["desa_kel_id"],
+            "sls_id" => "6104080003000800",
+            "terakhir_diisi" => now(),
+            "data" => trim('{"anggotaRumahTangga":[{"namaAnggota":"Arini"},{"namaAnggota":"Maria"},{"namaAnggota":"Sarah"}],"kepalaRumahTangga":"Adwin"}'),
+        ]);
+        $res2[] = Responden::create([
+            "kegiatan_id" => $data["kegiatan_id"],
+            "template_id" => $template->id,
+            "provinsi_id" => $data["prov_id"],
+            "kabkot_id" => $data["kabkot_id"],
+            "kecamatan_id" => $data["kec_id"],
+            "desa_id" => $data["desa_kel_id"],
+            "sls_id" => "6104080003000900",
+            "terakhir_diisi" => now(),
+            "data" => trim('{"anggotaRumahTangga":[{"namaAnggota":"Arini"},{"namaAnggota":"Maria"},{"namaAnggota":"Sarah"}],"kepalaRumahTangga":"Adwin"}'),
+        ]);
 
         foreach ($res as $r) {
             Assignment::create([
                 "pencacah_id" => $user2->id,
+                "responden_id" => $r->id,
+                "kegiatan_id" => $data["kegiatan_id"],
+            ]);
+        }
+        foreach ($res2 as $r) {
+            Assignment::create([
+                "pencacah_id" => $user3->id,
                 "responden_id" => $r->id,
                 "kegiatan_id" => $data["kegiatan_id"],
             ]);
