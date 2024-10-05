@@ -10,6 +10,7 @@ use Illuminate\Database\Seeder;
 
 class TemplateSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      */
