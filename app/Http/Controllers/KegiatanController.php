@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\Kegiatan;
+use App\Models\Master;
 use App\Models\Organisasi;
 use App\Models\Responden;
 use App\Models\Template;
 use App\Models\WilayahKerja;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -62,6 +64,9 @@ class KegiatanController extends Controller
     {
         $user = auth()->user();
         $kegiatan = Kegiatan::with("templates")->find($kegiatanId);
+        $master = Master::whereHas('kegiatans', function (Builder $q) use ($kegiatanId) {
+            $q->where('kegiatan_id', $kegiatanId);
+        })->get();
         $organisasi = Organisasi::where("pencacah_id", $user->id)
             ->orWhere("pengawas_id", $user->id)
             ->orWhere("koseka_id", $user->id)
@@ -78,7 +83,21 @@ class KegiatanController extends Controller
             "wilayahKerjas" => $wilayahKerja,
             "role" => $role,
             "user" => $user,
-            "template" => $template
+            "template" => $template,
+            "master" => $master
+        ]);
+    }
+    public function wilayahKerja(string $kegiatanId)
+    {
+        $user = auth()->user();
+        $organisasi = Organisasi::where("pencacah_id", $user->id)
+            ->orWhere("pengawas_id", $user->id)
+            ->orWhere("koseka_id", $user->id)
+            ->first();
+        $role = Organisasi::getUserKegiatanRoleByOrganisasi($user->id, $organisasi);
+        $wilayahKerja = WilayahKerja::getWilayahTugas($kegiatanId, $user->id, $role)?->get();
+        return response()->json([
+            "wilayahKerjas" => $wilayahKerja
         ]);
     }
 }

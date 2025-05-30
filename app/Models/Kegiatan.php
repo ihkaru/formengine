@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  *
@@ -68,6 +69,7 @@ class Kegiatan extends Model
 
     protected $guarded = [];
     protected $primaryKey = 'id';
+    protected $keyType = 'string';
     public $incrementing = false;
 
     public static function boot()
@@ -107,5 +109,9 @@ class Kegiatan extends Model
     public function respondens()
     {
         return $this->hasMany(Responden::class, "kegiatan_id", "id");
+    }
+    public function masters(): BelongsToMany
+    {
+        return $this->belongsToMany(Master::class, 'master_kegiatan', 'kegiatan_id', 'master_id');
     }
 }

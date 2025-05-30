@@ -20,11 +20,12 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             KegiatanSeeder::class,
+            MasterSeeder::class,
             SatuanKerjaSeeder::class,
             SatuanKerjaUserSeeder::class,
             SatuanKerjaKegiatanSeeder::class,
             RoleSatuanKerjaSeeder::class,
-            TemplateSeeder::class,
+            Template2Seeder::class,
             WilayahKerjaSeeder::class,
             RespondenSeeder::class
         ]);

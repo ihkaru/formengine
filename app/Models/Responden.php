@@ -70,7 +70,7 @@ class Responden extends Model
         });
     }
 
-    public function user()
+    public function assignment()
     {
         return $this->hasOne(Assignment::class, "responden_id", "id");
     }

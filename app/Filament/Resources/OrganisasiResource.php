@@ -5,7 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrganisasiResource\Pages;
 use App\Filament\Resources\OrganisasiResource\RelationManagers;
 use App\Models\Organisasi;
+use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -30,12 +32,14 @@ class OrganisasiResource extends Resource
                 Forms\Components\TextInput::make('kegiatan_id')
                     ->required()
                     ->maxLength(36),
-                Forms\Components\TextInput::make('pencacah_id')
-                    ->required()
-                    ->maxLength(36),
-                Forms\Components\TextInput::make('pengawas_id')
-                    ->maxLength(36)
-                    ->default(null),
+                Select::make("pencacah_id")
+                    ->relationship('pencacah', 'id')
+                    ->getOptionLabelFromRecordUsing(fn(User $record) => $record->name . " (" . $record->email . ")")
+                    ->required(),
+                Select::make('pengawas_id')
+                    ->relationship('pengawas', 'id')
+                    ->getOptionLabelFromRecordUsing(fn(User $record) => $record->name . " (" . $record->email . ")")
+                    ->required(),
                 Forms\Components\TextInput::make('koseka_id')
                     ->maxLength(36)
                     ->default(null),

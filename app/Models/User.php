@@ -198,6 +198,6 @@ class User extends Authenticatable implements FilamentUser, HasAllowedFields, Ha
     }
     public function wilayahKerjas()
     {
-        return $this->hasMany(WilayahKerja::class, "petugas_level_1", "id");
+        return $this->hasMany(WilayahKerja::class, "petugas_level_1_id", "id");
     }
 }

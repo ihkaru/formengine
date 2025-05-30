@@ -18,4 +18,5 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::get("users", [UserController::class, "index"]);
     Route::get("kegiatans", [KegiatanController::class, "index"]);
     Route::get("kegiatans/{kegiatan}", [KegiatanController::class, "loadKegiatan"]);
+    Route::get("wilayah-kerja/{kegiatan}", [KegiatanController::class, "wilayahKerja"]);
 });
