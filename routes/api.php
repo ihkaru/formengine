@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WilayahKerjaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,5 +19,8 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::get("users", [UserController::class, "index"]);
     Route::get("kegiatans", [KegiatanController::class, "index"]);
     Route::get("kegiatans/{kegiatan}", [KegiatanController::class, "loadKegiatan"]);
-    Route::get("wilayah-kerja/{kegiatan}", [KegiatanController::class, "wilayahKerja"]);
+    Route::get("wilayah-kerja/{kegiatan}", [WilayahKerjaController::class, "wilayahKerja"]);
+    Route::get("assignments/jumlah", [AssignmentController::class, "jumlah"]);
+    Route::get("assignments", [AssignmentController::class, "index"]);
+    Route::get("assignments/{assignment}", [AssignmentController::class, "show"]);
 });

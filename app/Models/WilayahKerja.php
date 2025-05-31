@@ -6,6 +6,7 @@ use App\Supports\Constants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 
 /**
  *
@@ -44,6 +45,19 @@ class WilayahKerja extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    // protected $casts = ['id' => 'string'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = Str::uuid();
+        });
+    }
 
     public function petugasLevel1()
     {

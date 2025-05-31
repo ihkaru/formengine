@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $kegiatan_id
@@ -28,4 +29,17 @@ use Illuminate\Database\Eloquent\Model;
 class RiwayatStatus extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    // protected $casts = ['id' => 'string'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = Str::uuid();
+        });
+    }
 }

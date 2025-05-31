@@ -74,4 +74,8 @@ class Responden extends Model
     {
         return $this->hasOne(Assignment::class, "responden_id", "id");
     }
+    public function riwayatStatuses()
+    {
+        return $this->hasMany(RiwayatStatus::class, "responden_id", "id");
+    }
 }

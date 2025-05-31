@@ -72,7 +72,7 @@ class KegiatanController extends Controller
             ->orWhere("koseka_id", $user->id)
             ->first();
         $role = Organisasi::getUserKegiatanRoleByOrganisasi($user->id, $organisasi);
-        $assignments = Assignment::getAssignments($kegiatan->id, $user->id, $role)?->with('respondens')->get();
+        $assignments = Assignment::getAssignments($kegiatan->id, $user->id, $role)?->with('respondens.riwayatStatuses')->get();
         $wilayahKerja = WilayahKerja::getWilayahTugas($kegiatan->id, $user->id, $role)?->get();
 
         $template = Template::getLatestTemplate($kegiatan->id);
@@ -85,19 +85,6 @@ class KegiatanController extends Controller
             "user" => $user,
             "template" => $template,
             "master" => $master
-        ]);
-    }
-    public function wilayahKerja(string $kegiatanId)
-    {
-        $user = auth()->user();
-        $organisasi = Organisasi::where("pencacah_id", $user->id)
-            ->orWhere("pengawas_id", $user->id)
-            ->orWhere("koseka_id", $user->id)
-            ->first();
-        $role = Organisasi::getUserKegiatanRoleByOrganisasi($user->id, $organisasi);
-        $wilayahKerja = WilayahKerja::getWilayahTugas($kegiatanId, $user->id, $role)?->get();
-        return response()->json([
-            "wilayahKerjas" => $wilayahKerja
         ]);
     }
 }
