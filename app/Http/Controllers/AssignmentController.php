@@ -47,7 +47,6 @@ class AssignmentController extends Controller
     public function sync(Request $request, Assignment $assignment)
     {
         $user = auth()->user();
-
         $kegiatanId = $assignment->kegiatan_id;
         // Validasi data JSON 'answers' dan field lain
         $validatedJsonData = $request->validate([
