@@ -48,7 +48,6 @@ class AssignmentController extends Controller
     {
         $user = auth()->user();
         $kegiatanId = $assignment->kegiatan_id;
-
         // Validasi data JSON 'answers' dan field lain
         $validatedJsonData = $request->validate([
             'answers' => 'required|json', // Ini sekarang string JSON dari FormData
