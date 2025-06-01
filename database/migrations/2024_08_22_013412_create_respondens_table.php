@@ -24,11 +24,11 @@ return new class extends Migration
             $table->string("desa_id")->nullable();
             $table->string('sls_id')->nullable();
             $table->string('bs_id')->nullable();
-            $table->unsignedBigInteger("last_riwayat_status")->nullable();
+            $table->string("last_riwayat_status")->nullable();
             // $table->foreign("last_riwayat_status")->references("id")->on("riwayat_statuses");
 
             $table->timestamp('terakhir_diisi')->nullable();
-            $table->string('data')->nullable();
+            $table->text('data')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->unsignedMediumInteger("jumlah_blank")->nullable();

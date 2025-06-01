@@ -59,6 +59,10 @@ class Responden extends Model
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';
+    protected $casts = [
+        'data' => 'array', // Jika Anda ingin Eloquent otomatis cast ke array
+        'terakhir_diisi' => 'datetime',
+    ];
 
 
     public static function boot()
@@ -70,12 +74,30 @@ class Responden extends Model
         });
     }
 
-    public function assignment()
+    public function kegiatan()
     {
-        return $this->hasOne(Assignment::class, "responden_id", "id");
+        return $this->belongsTo(Kegiatan::class);
     }
+
+    public function template()
+    {
+        return $this->belongsTo(Template::class);
+    }
+
     public function riwayatStatuses()
     {
-        return $this->hasMany(RiwayatStatus::class, "responden_id", "id");
+        return $this->hasMany(RiwayatStatus::class, 'responden_id', 'id')->orderBy('created_at', 'desc');
     }
+
+    // Relasi untuk mendapatkan status TERBARU dengan mudah
+    public function latestRiwayatStatus()
+    {
+        return $this->hasOne(RiwayatStatus::class, 'responden_id', 'id')->latestOfMany();
+    }
+
+    // Accessor untuk mendapatkan nilai status aktual dari relasi jika Anda mau
+    // public function getCurrentStatusAttribute()
+    // {
+    //     return $this->latestRiwayatStatus->status ?? $this->last_riwayat_status ?? 'belum_dibuka';
+    // }
 }

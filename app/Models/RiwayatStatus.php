@@ -32,6 +32,15 @@ class RiwayatStatus extends Model
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';
+    protected $table = 'riwayat_statuses';
+
+    protected $fillable = [
+        'kegiatan_id',
+        'responden_id',
+        'status',
+        'user_id',
+        'keterangan',
+    ];
     // protected $casts = ['id' => 'string'];
 
     public static function boot()
@@ -41,5 +50,19 @@ class RiwayatStatus extends Model
         static::creating(function ($model) {
             $model->id = Str::uuid();
         });
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function responden()
+    {
+        return $this->belongsTo(Responden::class);
+    }
+
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class);
     }
 }

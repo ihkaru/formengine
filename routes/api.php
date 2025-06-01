@@ -23,4 +23,5 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::get("assignments/jumlah", [AssignmentController::class, "jumlah"]);
     Route::get("assignments", [AssignmentController::class, "index"]);
     Route::get("assignments/{assignment}", [AssignmentController::class, "show"]);
+    Route::post('assignments/{assignment}/sync', [AssignmentController::class, 'sync']);
 });
