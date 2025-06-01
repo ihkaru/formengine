@@ -23,6 +23,7 @@ Route::get('/storage/kegiatan_uploads/{filename}', function ($filename) {
 Route::get('/desacantik/kelurahanpulaupedalaman', [CantikController::class, "kelPulauPedalaman"])->name("cantik.pedalaman");
 Route::get('/login', function () {
     auth()->logout();
+
     return redirect()->to('/admin/login');
 })->name('login');
 Route::get("/run", [ArtisanController::class, "run"]);
