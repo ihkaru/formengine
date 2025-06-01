@@ -14,7 +14,6 @@ Route::get('/storage/kegiatan_uploads/{filename}', function ($filename) {
     if (!file_exists($path)) {
         abort(404);
     }
-
     return response()->file($path, [
         'Content-Type' => 'image/webp',
         'Access-Control-Allow-Origin' => '*', // Or your domain
