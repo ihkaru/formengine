@@ -8,17 +8,21 @@ use App\Http\Controllers\CantikController;
 Route::get('/', function () {
     return view('welcome');
 })->name("home");
-Route::get('/storage/kegiatan_uploads/{filename}', function ($filename) {
-    $path = storage_path('app/public/kegiatan_uploads/' . $filename);
+Route::get('/uploads/{path}', function ($path) {
+    $file = storage_path('app/public/' . $path);
 
-    if (!file_exists($path)) {
+
+    if (!file_exists($file)) {
         abort(404);
     }
-    return response()->file($path, [
-        'Content-Type' => 'image/webp',
-        'Access-Control-Allow-Origin' => '*', // Or your domain
+
+    $mime = mime_content_type($file);
+    return response()->file($file, [
+        'Content-Type' => $mime,
+        'Access-Control-Allow-Origin' => '*',
     ]);
-});
+})->where('path', '.*');
+
 
 Route::get('/desacantik/kelurahanpulaupedalaman', [CantikController::class, "kelPulauPedalaman"])->name("cantik.pedalaman");
 Route::get('/login', function () {
