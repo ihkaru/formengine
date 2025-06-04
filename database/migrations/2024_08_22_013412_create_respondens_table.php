@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('id')->primary();
             $table->string('kegiatan_id');
             $table->foreign("kegiatan_id")->references('id')->on('kegiatans');
-            $table->foreignIdFor(Template::class);
+            $table->foreignIdFor(Template::class)->nullable();
             $table->string("provinsi_id")->nullable();
             $table->string("kabkot_id")->nullable();
             $table->string("kecamatan_id")->nullable();
