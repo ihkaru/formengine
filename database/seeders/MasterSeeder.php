@@ -14,18 +14,33 @@ class MasterSeeder extends Seeder
      */
     public function run(): void
     {
-        Master::create([
-            "id" => "master-gender",
-            "version" => "1.0.0",
-            "name" => "Jenis Kelamin",
-            "data" => "[{\"id\":\"1\",\"label\":\"Laki-laki\",\"value\":\"1\"},{\"id\":\"2\",\"label\":\"Perempuan\",\"value\":\"2\"}]",
-        ]);
+        // Master untuk Pekerjaan (seperti contoh Anda)
         Master::create([
             "id" => "master-pekerjaan",
             "version" => "1.0.0",
             "name" => "Pekerjaan Utama",
             "data" => "[{\"id\":\"1\",\"label\":\"Petani\",\"value\":\"1\"},{\"id\":\"2\",\"label\":\"Nelayan\",\"value\":\"2\"},{\"id\":\"3\",\"label\":\"Pedagang\",\"value\":\"3\"},{\"id\":\"4\",\"label\":\"Pegawai Negeri Sipil\",\"value\":\"4\"},{\"id\":\"5\",\"label\":\"TNI/Polri\",\"value\":\"5\"},{\"id\":\"6\",\"label\":\"Pegawai Swasta\",\"value\":\"6\"},{\"id\":\"7\",\"label\":\"Wiraswasta\",\"value\":\"7\"},{\"id\":\"8\",\"label\":\"Pensiunan\",\"value\":\"8\"},{\"id\":\"9\",\"label\":\"Tidak Bekerja\",\"value\":\"9\"},{\"id\":\"10\",\"label\":\"Lainnya\",\"value\":\"10\"}]",
         ]);
+
+        // MASTER BARU untuk Pendidikan Terakhir Anak Putus Sekolah
+        Master::create([
+            "id" => "master-pendidikan-terakhir-putus-sekolah",
+            "version" => "1.0.0",
+            "name" => "Pendidikan Terakhir (Anak Putus Sekolah)",
+            "data" => "[{\"label\":\"Tidak/Belum Pernah Sekolah\",\"value\":\"0\"},{\"label\":\"Tidak Tamat SD/Sederajat\",\"value\":\"1\"},{\"label\":\"Tamat SD/Sederajat\",\"value\":\"2\"},{\"label\":\"Tamat SMP/Sederajat\",\"value\":\"3\"},{\"label\":\"Tamat SMA/Sederajat\",\"value\":\"4\"}]",
+        ]);
+        Master::create([
+            "id" => "master-gender",
+            "version" => "1.0.0",
+            "name" => "Jenis Kelamin",
+            "data" => "[{\"id\":\"1\",\"label\":\"Laki-laki\",\"value\":\"1\"},{\"id\":\"2\",\"label\":\"Perempuan\",\"value\":\"2\"}]",
+        ]);
+        // Master::create([
+        //     "id" => "master-pekerjaan",
+        //     "version" => "1.0.0",
+        //     "name" => "Pekerjaan Utama",
+        //     "data" => "[{\"id\":\"1\",\"label\":\"Petani\",\"value\":\"1\"},{\"id\":\"2\",\"label\":\"Nelayan\",\"value\":\"2\"},{\"id\":\"3\",\"label\":\"Pedagang\",\"value\":\"3\"},{\"id\":\"4\",\"label\":\"Pegawai Negeri Sipil\",\"value\":\"4\"},{\"id\":\"5\",\"label\":\"TNI/Polri\",\"value\":\"5\"},{\"id\":\"6\",\"label\":\"Pegawai Swasta\",\"value\":\"6\"},{\"id\":\"7\",\"label\":\"Wiraswasta\",\"value\":\"7\"},{\"id\":\"8\",\"label\":\"Pensiunan\",\"value\":\"8\"},{\"id\":\"9\",\"label\":\"Tidak Bekerja\",\"value\":\"9\"},{\"id\":\"10\",\"label\":\"Lainnya\",\"value\":\"10\"}]",
+        // ]);
         Master::create(
             [ // NEW MASTER DATA
                 "id" => "master-hobbies-test",
@@ -76,6 +91,16 @@ class MasterSeeder extends Seeder
             ],
             // Tambahkan master lain jika perlu
         ];
+        Master::updateOrCreate(
+            ['id' => 'master-jenis-disabilitas'],
+            [
+                "version" => "1.1.0",
+                "name" => "Jenis Kesulitan/Disabilitas",
+                // Menambahkan 'lainnya'
+                "data" => "[{\"label\":\"Kesulitan Melihat\",\"value\":\"melihat\"},{\"label\":\"Kesulitan Mendengar\",\"value\":\"mendengar\"},{\"label\":\"Kesulitan Berjalan/Naik Tangga\",\"value\":\"berjalan\"},{\"label\":\"Kesulitan Mengingat/Konsentrasi\",\"value\":\"mengingat\"},{\"label\":\"Kesulitan Mengurus Diri Sendiri\",\"value\":\"mengurus_diri\"},{\"label\":\"Kesulitan Berkomunikasi\",\"value\":\"berkomunikasi\"},{\"label\":\"Lainnya\",\"value\":\"lainnya\"}]"
+            ]
+        );
+
 
         foreach ($masters as $masterData) {
             // Asumsi Anda memiliki model Master, sesuaikan pathnya
@@ -99,6 +124,28 @@ class MasterSeeder extends Seeder
             [
                 'master_id' => 'master-pendidikan-art',
                 'kegiatan_id' => 'REM-2024-1-PILOT-LAPANGAN'
+            ]
+        ]);
+        DB::table("master_kegiatan")->insert([
+            [
+                'master_id' => 'master-pekerjaan',
+                'kegiatan_id' => 'PLEM-2025-1-PILOT-LAPANGAN'
+            ],
+            [
+                'master_id' => 'master-gender',
+                'kegiatan_id' => 'PLEM-2025-1-PILOT-LAPANGAN'
+            ],
+            [
+                'master_id' => 'master-pendidikan-terakhir-putus-sekolah',
+                'kegiatan_id' => 'PLEM-2025-1-PILOT-LAPANGAN'
+            ],
+            [
+                'master_id' => 'master-pendidikan-art',
+                'kegiatan_id' => 'PLEM-2025-1-PILOT-LAPANGAN'
+            ],
+            [
+                'master_id' => 'master-jenis-disabilitas',
+                'kegiatan_id' => 'PLEM-2025-1-PILOT-LAPANGAN'
             ]
         ]);
     }

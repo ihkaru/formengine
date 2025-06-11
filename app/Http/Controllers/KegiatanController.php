@@ -12,6 +12,12 @@ use App\Models\WilayahKerja;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
+
+use App\Services\GoogleSheetExportService;
+
+use Illuminate\Support\Facades\Log;
+
+
 class KegiatanController extends Controller
 {
     public function index()
@@ -35,6 +41,7 @@ class KegiatanController extends Controller
         if (request("per_page")) {
             if (collect(["1", "10", "30", "50"])->contains($perPage)) $perPage = request("per_page");;
         }
+        // abort(400, $kegiatans->get()->toJson());
         if ($mode == 'paginate') return $kegiatans->paginate($perPage);
         if ($mode == 'get') return $kegiatans->get();
         if ($mode == 'query') return $kegiatans;
@@ -86,5 +93,19 @@ class KegiatanController extends Controller
             "template" => $template,
             "master" => $master
         ]);
+    }
+    public function exportToSheet(Kegiatan $kegiatan, GoogleSheetExportService $exporter)
+    {
+        Log::info("Permintaan ekspor ke Google Sheet diterima untuk kegiatan: {$kegiatan->id}");
+
+        try {
+            $result = $exporter->export($kegiatan);
+            // Redirect kembali dengan pesan sukses
+            return back()->with('success', $result['message']);
+        } catch (\Exception $e) {
+            // Redirect kembali dengan pesan error
+            Log::error("Gagal ekspor dari controller untuk kegiatan {$kegiatan->id}: " . $e->getMessage());
+            return back()->with('error', 'Gagal mengekspor data: ' . $e->getMessage());
+        }
     }
 }

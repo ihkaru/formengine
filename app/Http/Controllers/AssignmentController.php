@@ -9,6 +9,7 @@ use App\Models\Responden;
 use Illuminate\Http\Request;
 use App\Models\RiwayatStatus;
 use App\Models\Template;
+use App\Services\GoogleSheetExportService;
 use App\Supports\Constants;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -57,11 +58,18 @@ class AssignmentController extends Controller
     public function sync(Request $request, $assignmentId)
     {
         $user = auth()->user();
-        // Cek apakah ini operasi pembuatan baru atau update
-        // Kita anggap jika $assignmentId bukan numerik yang valid atau bernilai 'new'/0, itu adalah pembuatan baru.
-        // Atau jika ID numerik tapi tidak ditemukan.
-        $existingAssignment = is_numeric($assignmentId) && $assignmentId > 0 ? Assignment::find($assignmentId) : null;
-        $isCreating = ($assignmentId === 'new' || $assignmentId == 0 || !$existingAssignment);
+
+        // Ambil assignment dengan relasi responden yang benar
+        $existingAssignment = ($assignmentId !== 'new' && $assignmentId != 0 && $assignmentId !== null)
+            ? Assignment::where('id', $assignmentId)->with('respondens')->first() // Gunakan 'respondens' sesuai method di model
+            : null;
+
+        $existingResponden = $existingAssignment?->respondens; // Langsung akses, karena belongsTo
+        $isCreating = ($assignmentId === 'new' || $assignmentId == 0 || !$existingResponden);
+
+        // if ($isCreating) {
+        //     abort(500, "Harusnya tidak create: " . $assignmentId . "|" . $existingAssignment?->toJson());
+        // }
 
         // Validasi dasar
         $validationRules = [
@@ -70,14 +78,13 @@ class AssignmentController extends Controller
                 'required',
                 'string',
                 Rule::in([
-                    'belum_dibuka', // Status awal mungkin 'belum_dibuka' atau 'draft'
+                    'belum_dibuka',
                     'sudah_dibuka',
                     'submitted_by_pencacah',
                     'approved_by_pengawas',
                     'rejected_by_pengawas',
                     'approved_by_admin_level_1',
                     'rejected_by_admin_level_1',
-                    // ... (status lainnya)
                 ]),
             ],
             'keterangan' => 'nullable|string|max:255',
@@ -85,13 +92,11 @@ class AssignmentController extends Controller
 
         if ($isCreating) {
             $validationRules['kegiatan_id'] = 'required|exists:kegiatans,id';
-            // Jika template_id tidak bisa didapat dari Kegiatan, maka harus dikirim:
-            // $validationRules['template_id'] = 'required|exists:templates,id';
         }
 
         $validatedBaseData = $request->validate($validationRules);
-
         $answersPlain = json_decode($validatedBaseData['answers'], true);
+
         if (json_last_error() !== JSON_ERROR_NONE) {
             return response()->json(['message' => 'Format JSON pada field answers tidak valid.'], 400);
         }
@@ -100,27 +105,27 @@ class AssignmentController extends Controller
         try {
             $assignment = null;
             $responden = null;
-            $kegiatan = null; // Objek Kegiatan
-            $kegiatanId = null; // ID Kegiatan
+            $kegiatan = null;
+            $kegiatanId = null;
 
             if ($isCreating) {
                 Log::info("Memulai pembuatan assignment baru.");
                 $kegiatanId = $validatedBaseData['kegiatan_id'];
-                $kegiatan = Kegiatan::findOrFail($kegiatanId); // Load kegiatan beserta template-nya
-                $template = Template::where('kegiatan_id', $kegiatan->id)->where('label_versi', Constants::VERSI_TEMPLATE_LATEST)->first();
-                // Prioritaskan template_id dari relasi, lalu dari field langsung di kegiatan
+                $kegiatan = Kegiatan::findOrFail($kegiatanId);
+                $template = Template::where('kegiatan_id', $kegiatan->id)
+                    ->where('label_versi', Constants::VERSI_TEMPLATE_LATEST)
+                    ->first();
                 $templateId = $template?->id;
 
+                // Ekstrak data wilayah dari answers
+                $provinsiId = $answersPlain['q_provinsi_id'] ?? request('provinsi_id') ?? null;
+                $kabkotId = $answersPlain['q_kabkot_id'] ?? request('kabkot_id') ?? null;
+                $kecamatanId = $answersPlain['q_kecamatan_id'] ?? request('kecamatan_id') ?? null;
+                $desaId = $answersPlain['q_desa_id'] ?? request('desa_id') ?? null;
+                $slsId = $answersPlain['q_sls_id'] ?? request('sls_id') ?? null;
+                $bsId = $answersPlain['q_bs_id'] ?? request('bs_id') ?? null;
 
-                // Ekstrak data dari answersPlain untuk field Responden
-                // Sesuaikan 'q_...' dengan key yang sebenarnya di JSON 'answers' Anda
-                $provinsiId = $answersPlain['q_provinsi_id'] ?? null;
-                $kabkotId = $answersPlain['q_kabkot_id'] ?? null;
-                $kecamatanId = $answersPlain['q_kecamatan_id'] ?? null;
-                $desaId = $answersPlain['q_desa_id'] ?? null;
-                $slsId = $answersPlain['q_sls_id'] ?? null;
-                $bsId = $answersPlain['q_bs_id'] ?? null;
-
+                // Proses geolocation
                 $latitude = null;
                 $longitude = null;
                 if (isset($answersPlain['q_geolocation_rumah'])) {
@@ -136,7 +141,7 @@ class AssignmentController extends Controller
 
                 // 1. Buat Responden baru
                 $respondenData = [
-                    'id' => (string) Str::uuid(), // Generate UUID untuk ID string
+                    'id' => (string) Str::uuid(),
                     'kegiatan_id' => $kegiatanId,
                     'template_id' => $templateId,
                     'provinsi_id' => $provinsiId,
@@ -147,48 +152,65 @@ class AssignmentController extends Controller
                     'bs_id' => $bsId,
                     'last_riwayat_status' => $validatedBaseData['new_status'],
                     'terakhir_diisi' => now(),
-                    'data' => json_encode([]), // Data jawaban akan diisi setelah proses file
+                    'data' => json_encode([]),
                     'latitude' => $latitude,
                     'longitude' => $longitude,
-                    'jumlah_blank' => null, // Atau 0
-                    'jumlah_error' => null, // Atau 0
-                    'jumlah_warning' => null, // Atau 0
-                    'jumlah_terisi' => null, // Atau 0
+                    'jumlah_blank' => null,
+                    'jumlah_error' => null,
+                    'jumlah_warning' => null,
+                    'jumlah_terisi' => null,
                 ];
-                $responden = Responden::create($respondenData);
-                Log::info("Responden baru dibuat: ID {$responden?->id} untuk kegiatan ID {$kegiatanId} dengan template ID {$templateId}");
 
-                // 2. Buat Assignment baru
-                // Pastikan model Assignment memiliki fillable untuk responden_id, kegiatan_id, pencacah_id
+                $responden = Responden::create($respondenData);
+
+                if (!$responden->provinsi_id) {
+                    abort(500, "Wilayah ID tidak lengkap saat create: " . $responden->toJson());
+                }
+
+                Log::info("Responden baru dibuat: ID {$responden->id}");
+
+                // 2. Buat Assignment dengan responden_id yang benar
                 $assignment = Assignment::create([
                     'kegiatan_id' => $kegiatanId,
-                    'pencacah_id' => $user?->id, // Asumsi user yang login adalah pencacah
-                    'responden_id' => $responden?->id,
-                    // Tambahkan field lain untuk Assignment jika ada (misal: status_penugasan)
+                    'pencacah_id' => $user->id,
+                    'responden_id' => $responden->id, // Pastikan ini terisi dengan benar
                 ]);
-                Log::info("Assignment baru dibuat: ID {$assignment?->id} untuk responden ID {$responden?->id}");
-            } else { // Mengupdate assignment yang sudah ada
+
+                Log::info("Assignment baru dibuat: ID {$assignment->id} untuk responden ID {$responden->id}");
+            } else {
+                // Update assignment yang sudah ada
                 Log::info("Memulai update assignment ID: {$assignmentId}");
-                $assignment = $existingAssignment; // Gunakan assignment yang sudah diambil
-                // Load relasi responden dan kegiatan responden untuk mendapatkan kegiatanId
-                $assignment->load('respondens.kegiatan');
-                $responden = $assignment->respondens;
+                $assignment = $existingAssignment;
+
+                // Pastikan menggunakan relasi yang benar - respondens adalah belongsTo jadi langsung akses
+                $responden = $assignment->respondens; // Bukan ->first() karena belongsTo
 
                 if (!$responden) {
-                    Log::error("Responden tidak ditemukan untuk assignment ID: {$assignment?->id}");
+                    Log::error("Responden tidak ditemukan untuk assignment ID: {$assignment->id}");
                     DB::rollBack();
                     return response()->json(['message' => 'Data responden terkait assignment tidak ditemukan.'], 404);
                 }
-                $kegiatan = $responden->kegiatan; // Objek Kegiatan dari relasi
+
+                // Load kegiatan melalui responden
+                $kegiatan = $responden->kegiatan;
                 if (!$kegiatan) {
-                    Log::error("Kegiatan tidak ditemukan untuk responden ID: {$responden?->id} (assignment ID: {$assignment?->id})");
+                    Log::error("Kegiatan tidak ditemukan untuk responden ID: {$responden->id}");
                     DB::rollBack();
                     return response()->json(['message' => 'Data kegiatan terkait responden tidak ditemukan.'], 404);
                 }
-                $kegiatanId = $kegiatan?->id; // ID Kegiatan
-                Log::info("Assignment ID {$assignment?->id} ditemukan, responden ID {$responden?->id}, kegiatan ID {$kegiatanId}");
 
-                // Jika ada data geolocation di 'answers', update di responden
+                $kegiatanId = $kegiatan->id;
+
+                // Validasi bahwa responden memang milik assignment ini
+                if ($responden->id !== $assignment->responden_id) {
+                    Log::error("Mismatch responden: Assignment {$assignment->id} seharusnya memiliki responden {$assignment->responden_id}, tapi mendapat {$responden->id}");
+                    DB::rollBack();
+                    return response()->json(['message' => 'Data tidak konsisten: responden tidak sesuai dengan assignment.'], 500);
+                }
+
+                Log::info("Assignment ID {$assignment->id} ditemukan, responden ID {$responden->id}, kegiatan ID {$kegiatanId}");
+
+                // Update geolocation jika ada
                 if (isset($answersPlain['q_geolocation_rumah'])) {
                     $geoData = is_string($answersPlain['q_geolocation_rumah'])
                         ? json_decode($answersPlain['q_geolocation_rumah'], true)
@@ -199,83 +221,88 @@ class AssignmentController extends Controller
                         $responden->longitude = $geoData['longitude'] ?? $responden->longitude;
                     }
                 }
-                // Anda bisa juga mengupdate field wilayah jika diperlukan saat edit
-                // $responden->provinsi_id = $answersPlain['q_provinsi_id'] ?? $responden->provinsi_id;
-                // ... dst
             }
 
             $finalAnswers = $answersPlain;
 
-            // Proses file yang diupload (jika ada)
+            // Proses file upload
             if ($request->hasFile('files')) {
-                Log::info("Memproses file untuk responden ID: {$responden?->id}, kegiatan ID: {$kegiatanId}");
+                Log::info("Memproses file untuk responden ID: {$responden->id}");
                 foreach ($request->file('files') as $questionIdWithMarker => $file) {
-                    // Bersihkan marker jika ada (misal __file dari q_camera_depan_rumah__file)
                     $questionId = str_replace('__file', '', $questionIdWithMarker);
 
                     if ($file->isValid()) {
-                        $directory = "kegiatan_uploads/{$kegiatanId}/{$responden?->id}/{$questionId}";
-                        // Menggunakan nama file asli dengan prefix unik untuk menghindari konflik dan menjaga ekstensi
+                        $directory = "kegiatan_uploads/{$kegiatanId}/{$responden->id}/{$questionId}";
                         $clientOriginalName = preg_replace('/[^A-Za-z0-9\.\-\_]/', '_', $file->getClientOriginalName());
                         $uniqueFilename = uniqid() . '_' . $clientOriginalName;
                         $path = $file->storeAs($directory, $uniqueFilename, 'public');
 
-                        // Simpan URL publik ke file
                         $finalAnswers[$questionId] = Storage::url($path);
 
-                        // Hapus placeholder dari answersPlain jika ada
-                        // Misal: q_camera_depan_rumah__file_placeholder
                         $placeholderKey = $questionId . '__file_placeholder';
                         if (array_key_exists($placeholderKey, $finalAnswers)) {
                             unset($finalAnswers[$placeholderKey]);
                         }
-                        Log::info("File untuk {$questionId} disimpan di: {$path} (URL: " . Storage::url($path) . ")");
+
+                        Log::info("File untuk {$questionId} disimpan di: {$path}");
                     } else {
-                        Log::warning("File tidak valid untuk {$questionIdWithMarker} pada responden {$responden?->id}");
+                        Log::warning("File tidak valid untuk {$questionIdWithMarker}");
                     }
                 }
             }
 
-            // Update data jawaban (sekarang berisi path ke file) di responden
+            // Update responden
             $responden->data = json_encode($finalAnswers);
             $responden->terakhir_diisi = now();
-            $responden->last_riwayat_status = $validatedBaseData['new_status']; // Update status di responden
-            // Jika ada logic untuk mengupdate jumlah_blank, error, warning, terisi, panggil di sini
-            // $this->updateRespondenCounts($responden, $finalAnswers);
-            $responden->save();
-            Log::info("Data responden ID {$responden?->id} telah diupdate.");
+            $responden->last_riwayat_status = $validatedBaseData['new_status'];
 
-            // Buat entri baru di riwayat_statuses
+            if (!$responden->provinsi_id) {
+                abort(500, "Wilayah ID tidak lengkap saat cek terakhir: " . $responden->toJson());
+            }
+
+            $responden->save();
+            Log::info("Data responden ID {$responden->id} telah diupdate.");
+
+            // Buat riwayat status
             RiwayatStatus::create([
                 'kegiatan_id' => $kegiatanId,
-                'responden_id' => $responden?->id,
+                'responden_id' => $responden->id,
                 'status' => $validatedBaseData['new_status'],
-                'user_id' => $user?->id,
+                'user_id' => $user->id,
                 'keterangan' => $validatedBaseData['keterangan'] ?? null,
             ]);
-            Log::info("RiwayatStatus baru dibuat untuk responden ID {$responden?->id} dengan status {$validatedBaseData['new_status']}");
 
             DB::commit();
-            Log::info("Sinkronisasi berhasil untuk assignment ID {$assignment?->id}, responden ID {$responden?->id}");
+            Log::info("Sinkronisasi berhasil untuk assignment ID {$assignment->id}, responden ID {$responden->id}");
 
-            // Refresh untuk mendapatkan data terbaru, termasuk updated_at dan relasi
+            // --- MULAI SINKRONISASI KE GOOGLE SHEET ---
+            try {
+                // Gunakan Service Container untuk memanggil service kita
+                $exporter = app(GoogleSheetExportService::class);
+                $exporter->syncRow($assignment);
+            } catch (\Exception $e) {
+                // JANGAN hentikan proses jika Google Sheet gagal. Cukup catat error.
+                Log::error("SINKRONISASI GOOGLE SHEET GAGAL (tapi data DB aman) untuk assignment {$assignment->id}: " . $e->getMessage());
+            }
+            // --- SELESAI SINKRONISASI KE GOOGLE SHEET ---
+
+            // Refresh dan load relasi yang benar
             $assignment->refresh();
-            // Load relasi yang dibutuhkan untuk response
             $assignment->load(['respondens' => function ($query) {
                 $query->with(['riwayatStatuses', 'kegiatan', 'template']);
             }]);
 
             return response()->json([
                 'message' => $isCreating ? 'Assignment berhasil dibuat.' : 'Assignment berhasil disinkronkan.',
-                'assignment_id' => $assignment?->id,
-                'responden_id' => $responden?->id,
+                'assignment_id' => $assignment->id,
+                'responden_id' => $responden->id,
                 'new_status' => $validatedBaseData['new_status'],
-                'assignment' => $assignment, // Kirim data assignment terbaru beserta responden dan relasinya
-                'answers_processed_paths' => $finalAnswers, // Untuk debugging atau konfirmasi frontend
+                'assignment' => $assignment,
+                'answers_processed_paths' => $finalAnswers,
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             DB::rollBack();
-            Log::error("Validasi gagal saat sinkronisasi: " . $e->getMessage(), ['errors' => $e->errors()]);
+            Log::error("Validasi gagal: " . $e->getMessage(), ['errors' => $e->errors()]);
             return response()->json(['message' => 'Validasi gagal.', 'errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             DB::rollBack();

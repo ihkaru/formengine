@@ -115,7 +115,7 @@ class RespondenSeeder extends Seeder
                 "sls_id" => $data["sls_id"],
                 "last_riwayat_status" => 'belum_dibuka', // Status awal
                 "terakhir_diisi" => now(),
-                "data" => json_encode($data["answers"]), // Simpan jawaban sebagai JSON
+                "data" => trim(json_encode($data["answers"])), // Simpan jawaban sebagai JSON
             ]);
 
             Assignment::create([

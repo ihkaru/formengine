@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  *
@@ -113,5 +114,9 @@ class Kegiatan extends Model
     public function masters(): BelongsToMany
     {
         return $this->belongsToMany(Master::class, 'master_kegiatan', 'kegiatan_id', 'master_id');
+    }
+    public function wilayahKerjas(): HasMany
+    {
+        return $this->hasMany(WilayahKerja::class, 'wilayah_kerjas', 'kegiatan_id');
     }
 }

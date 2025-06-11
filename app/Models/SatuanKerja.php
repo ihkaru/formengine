@@ -77,4 +77,13 @@ class SatuanKerja extends Model
         }
         return $satuanKerjas;
     }
+    public static function assignUserKeSatuanKerja($user, $satuanKerja)
+    {
+        SatuanKerjaUser::create(
+            [
+                "satuan_kerja_id" => $satuanKerja->id,
+                "user_id" => $user->id,
+            ]
+        );
+    }
 }

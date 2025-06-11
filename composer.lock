@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09c40c573779c6e7a073e6f6fd78d6e7",
+    "content-hash": "4a6d1ecabd7a7a6449a0f3f7b450ab18",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -6395,22 +6395,22 @@
         },
         {
             "name": "revolution/laravel-google-sheets",
-            "version": "7.0.2",
+            "version": "7.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kawax/laravel-google-sheets.git",
-                "reference": "233f7e1dfac54bc9fc68049b7e11469643a791d0"
+                "url": "https://github.com/invokable/laravel-google-sheets.git",
+                "reference": "d63c4f3b2b2385bd4bbf28e3a6b52d342536f0f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kawax/laravel-google-sheets/zipball/233f7e1dfac54bc9fc68049b7e11469643a791d0",
-                "reference": "233f7e1dfac54bc9fc68049b7e11469643a791d0",
+                "url": "https://api.github.com/repos/invokable/laravel-google-sheets/zipball/d63c4f3b2b2385bd4bbf28e3a6b52d342536f0f9",
+                "reference": "d63c4f3b2b2385bd4bbf28e3a6b52d342536f0f9",
                 "shasum": ""
             },
             "require": {
                 "google/apiclient": "^2.16",
-                "illuminate/container": "^11.0",
-                "illuminate/support": "^11.0",
+                "illuminate/container": "^11.0||^12.0",
+                "illuminate/support": "^11.0||^12.0",
                 "php": "^8.2"
             },
             "require-dev": {
@@ -6453,9 +6453,9 @@
                 "sheets"
             ],
             "support": {
-                "source": "https://github.com/kawax/laravel-google-sheets/tree/7.0.2"
+                "source": "https://github.com/invokable/laravel-google-sheets/tree/7.1.0"
             },
-            "time": "2024-07-16T06:17:05+00:00"
+            "time": "2025-02-23T03:11:06+00:00"
         },
         {
             "name": "riskihajar/terbilang",

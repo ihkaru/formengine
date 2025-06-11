@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string("petugas_level_1");
             $table->string("petugas_level_2");
             $table->string("petugas_level_3")->nullable();
+            $table->string("petugas_bisa_submit_ulang")->default(false)->nullable();
             $table->unsignedTinyInteger("max_petugas_di_level_1");
             $table->timestamps();
         });

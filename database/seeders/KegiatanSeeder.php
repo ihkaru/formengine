@@ -39,5 +39,32 @@ class KegiatanSeeder extends Seeder
             "petugas_level_2" => Constants::JABATAN_LEVEL_2_PETUGAS_PEMERIKSA_LAPANGAN,
             "max_petugas_di_level_1" => 14
         ]);
+
+        $tgl_mulai = Carbon::parse("2025-06-10");
+        $tgl_selesai = Carbon::parse("2025-06-30");
+        $tgl_tutup = Carbon::parse("2025-07-31");
+        Kegiatan::create([
+            "id" => "PLEM-2025-1-PILOT-LAPANGAN",
+            "nama" => "Pilot Pendataan Lengkap Ekonomi Masyarakat Kelurahan Pulau Pedalaman",
+            "level_pendataan" => Constants::LEVEL_PENDATAAN_SURVEI,
+            "tgl_mulai" => $tgl_mulai,
+            "tgl_selesai" => $tgl_selesai,
+            "tgl_tutup" => $tgl_tutup,
+            "level_rekap_1" => Constants::LEVEL_REKAP_SLS,
+            "level_rekap_2" => Constants::LEVEL_REKAP_DESA,
+            "level_assignment" => Constants::LEVEL_ASSIGNMENT_KEPALA_KELUARGA,
+            "unit_sampel" => Constants::LEVEL_UNIT_SAMPEL_PENDUDUK,
+            "unit_observasi" => Constants::LEVEL_UNIT_OBSERVASI_KEPALA_KELUARGA,
+            "tahun" => 2025,
+            "frekuensi" => Constants::JENIS_FREKEUNSI_TAHUN,
+            "seri" => 1,
+            "subkategori" => "Pilot Lapangan",
+            "kode_subkategori" => "PILOT-LAPANGAN",
+            "petugas_level_1" => Constants::JABATAN_LEVEL_1_PETUGAS_PENDATAAN_LAPANGAN,
+            "petugas_level_2" => Constants::JABATAN_LEVEL_2_PETUGAS_PEMERIKSA_LAPANGAN,
+            "max_petugas_di_level_1" => 14,
+            "petugas_bisa_submit_ulang" => 'true',
+            'google_sheet_id' => '1MAcOCVfJ41d3wJyA95HJ_Jell5zJvrsjksjPuGNEuP0'
+        ]);
     }
 }

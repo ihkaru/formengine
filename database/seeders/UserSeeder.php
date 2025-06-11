@@ -46,5 +46,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('munawir'),
             'jenis' => Constants::JENIS_USER_ORGANIK
         ]);
+        User::create([
+            'name' => 'Petugas Lapangan',
+            'email' => 'petugaslapangan6104@gmail.com',
+            'password' => Hash::make('Petugaslapangan6104!!'),
+            'jenis' => Constants::JENIS_USER_NON_ORGANIK
+        ]);
     }
 }

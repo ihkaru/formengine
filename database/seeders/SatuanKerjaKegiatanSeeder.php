@@ -16,11 +16,17 @@ class SatuanKerjaKegiatanSeeder extends Seeder
      */
     public function run(): void
     {
-        $satuanKerja = SatuanKerja::where('nama',"Pemerintah Desa Wajok Hilir")->first();
-        $kegiatan = Kegiatan::where('id',"REM-2024-1-PILOT-LAPANGAN")->first();
+        $satuanKerja = SatuanKerja::where('nama', "Pemerintah Desa Wajok Hilir")->first();
+        $kegiatan = Kegiatan::where('id', "REM-2024-1-PILOT-LAPANGAN")->first();
         SatuanKerjaKegiatan::create([
-            'satuan_kerja_id'=>$satuanKerja->id,
-            "kegiatan_id"=>$kegiatan->id
+            'satuan_kerja_id' => $satuanKerja->id,
+            "kegiatan_id" => $kegiatan->id
+        ]);
+        $satuanKerja = SatuanKerja::where('nama', "Pemerintah Kelurahan Pulau Pedalaman")->first();
+        $kegiatan = Kegiatan::where('id', "PLEM-2025-1-PILOT-LAPANGAN")->first();
+        SatuanKerjaKegiatan::create([
+            'satuan_kerja_id' => $satuanKerja->id,
+            "kegiatan_id" => $kegiatan->id
         ]);
     }
 }

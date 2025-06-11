@@ -15,9 +15,14 @@ class SatuanKerjaSeeder extends Seeder
     public function run(): void
     {
         SatuanKerja::create([
-            "wilayah_kerja_id"=>"6104080003",
-            "level_wilayah_kerja"=>Constants::LEVEL_WILAYAH_DESA_KELURAHAN,
-            "nama"=>"Pemerintah Desa Wajok Hilir"
+            "wilayah_kerja_id" => "6104080003",
+            "level_wilayah_kerja" => Constants::LEVEL_WILAYAH_DESA_KELURAHAN,
+            "nama" => "Pemerintah Desa Wajok Hilir"
+        ]);
+        SatuanKerja::create([
+            "wilayah_kerja_id" => "6104101005",
+            "level_wilayah_kerja" => Constants::LEVEL_WILAYAH_DESA_KELURAHAN,
+            "nama" => "Pemerintah Kelurahan Pulau Pedalaman"
         ]);
     }
 }
