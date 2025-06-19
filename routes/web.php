@@ -25,9 +25,9 @@ Route::get('/uploads/{path}', function ($path) {
 
 
 Route::get('/desacantik/kelurahanpulaupedalaman', [CantikController::class, "kelPulauPedalaman"])->name("cantik.pedalaman");
+Route::get('/desacantik/desawajokhilir', [CantikController::class, "desWajokHilir"])->name("cantik.wajokhilir");
 Route::get('/login', function () {
     auth()->logout();
-
     return redirect()->to('/admin/login');
 })->name('login');
 Route::get("/run", [ArtisanController::class, "run"]);

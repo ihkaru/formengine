@@ -10,4 +10,8 @@ class CantikController extends Controller
     {
         return view("cantik.pedalaman");
     }
+    public function desWajokHilir()
+    {
+        return view("cantik.wajokhilir");
+    }
 }

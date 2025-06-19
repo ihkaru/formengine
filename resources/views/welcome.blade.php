@@ -245,11 +245,8 @@
                             Desa/Kelurahan Cantik
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('cantik.pedalaman') }}">Kelurahan Pulau
-                                    Pedalaman</a></li>
-                            {{-- <li><a class="dropdown-item" href="/">Kelurahan Pulau
-                                    Pedalaman</a></li> --}}
-                            <!-- Tambahkan desa/kelurahan lain jika ada -->
+                            <li><a class="dropdown-item" href="{{ route('cantik.wajokhilir') }}">Desa Wajok Hilir (2024)</a></li>
+                            <li><a class="dropdown-item" href="{{ route('cantik.pedalaman') }}">Kelurahan Pulau Pedalaman (2025)</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -546,7 +543,8 @@
                 <div class="col-lg-3 col-md-4 mb-4">
                     <h5 class="footer-title">Desa Cantik</h5>
                     <ul class="footer-links">
-                        <li><a href="{{ route('cantik.pedalaman') }}">Kelurahan Pulau Pedalaman</a></li>
+                        <li><a href="{{ route('cantik.wajokhilir') }}">Desa Wajok Hilir (Desa Cantik 2024)</a></li>
+                        <li><a href="{{ route('cantik.pedalaman') }}">Kelurahan Pulau Pedalaman (Kelurahan Cantik 2024)</a></li>
                         {{-- <li><a href="/">Kelurahan Pulau Pedalaman</a></li> --}}
                         <!-- Tambahkan desa/kelurahan lain jika ada -->
                     </ul>
