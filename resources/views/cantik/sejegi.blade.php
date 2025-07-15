@@ -1,11 +1,10 @@
-<!-- resources/views/desa/pedalaman.blade.php -->
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desa Sejegi - Desa Cinta Statistik</title>
+    <title>Kolaborasi Digital Desa Cantik - Cerdas Survey Management</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome untuk icons -->
@@ -17,7 +16,7 @@
         :root {
             --primary-color: #2E5090;
             --secondary-color: #4CAF50;
-            --accent-color: #FF9800;
+            --accent-color: #FFC107;
             --text-color: #333;
             --light-bg: #f8f9fa;
         }
@@ -25,7 +24,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: var(--text-color);
-            background-color: #f8f9fa;
+            background-color: white;
         }
 
         .navbar {
@@ -44,66 +43,41 @@
             transition: all 0.3s ease;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active {
             color: white !important;
             transform: translateY(-2px);
         }
 
-        .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
-            url('{{ asset("images/pulau-pedalaman-header.jpg") }}');
-            background-size: cover;
-            background-position: center;
-            background-position: center;
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a365d 100%);
             color: white;
-            padding: 150px 0;
-            text-align: center;
+            padding: 100px 0 80px;
             position: relative;
+            overflow: hidden;
         }
 
-        .hero-overlay {
+        .page-header::before {
+            content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(46, 80, 144, 0.8) 0%, rgba(76, 175, 80, 0.6) 100%);
-            z-index: 1;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,192L1440,64L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
+        .page-header h1 {
             font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 2.8rem;
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
             opacity: 0.9;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            padding: 10px 25px;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: #e08600;
-            border-color: #e08600;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .section-title {
@@ -111,6 +85,7 @@
             margin-bottom: 50px;
             font-weight: 700;
             color: var(--primary-color);
+            text-align: center;
         }
 
         .section-title::after {
@@ -119,118 +94,61 @@
             width: 70px;
             height: 4px;
             background-color: var(--accent-color);
-            margin-top: 15px;
+            margin: 15px auto 0;
         }
 
-        .section-title.text-center::after {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .about-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card {
+        .workflow-card, .tool-card, .impact-card {
             background-color: white;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 30px;
             margin-bottom: 30px;
             transition: all 0.3s ease;
-            border: none;
+            border: 1px solid #e9ecef;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             height: 100%;
         }
 
-        .feature-card:hover {
+        .workflow-card:hover, .tool-card:hover, .impact-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .feature-icon {
-            margin-bottom: 25px;
-        }
-
-        .feature-icon i {
+        .card-icon {
             font-size: 3rem;
-            color: var(--accent-color);
-            background: rgba(255, 152, 0, 0.1);
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
             margin-bottom: 20px;
-        }
-
-        .feature-title {
-            font-weight: 700;
-            margin-bottom: 15px;
             color: var(--primary-color);
         }
 
-        .product-section {
-            background-color: #f8f9fa;
+        .pilot-case-section {
+            background-color: var(--light-bg);
             padding: 80px 0;
         }
 
-        .product-card {
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border: none;
-            height: 100%;
+        .pilot-case-section img {
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .product-title {
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .product-btn {
-            padding: 8px 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: 50px;
-        }
-
-        .year-select {
-            margin-bottom: 30px;
-        }
-
-        .year-select .btn {
-            margin-right: 10px;
-            margin-bottom: 10px;
-            border-radius: 50px;
-            font-weight: 600;
-            padding: 8px 20px;
-            background-color: white;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            transition: all 0.3s;
-        }
-
-        .year-select .btn:hover,
-        .year-select .btn.active {
+        .collaboration-section {
             background-color: var(--primary-color);
             color: white;
+            border-radius: 15px;
+            padding: 50px;
+        }
+
+        .collaboration-section h3 {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .list-group-item {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+        }
+
+        .list-group-item i {
+            color: var(--accent-color);
         }
 
         .footer {
@@ -238,77 +156,13 @@
             color: white;
             padding: 60px 0 30px;
         }
+        .footer-title { font-weight: 700; margin-bottom: 25px; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: all 0.3s; }
+        .footer-links a:hover { color: white; padding-left: 5px; }
+        .copyright { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 
-        .footer-title {
-            font-weight: 700;
-            margin-bottom: 25px;
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-
-        .social-links {
-            font-size: 1.5rem;
-        }
-
-        .social-links a {
-            color: white;
-            margin-right: 15px;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .sop-diagram {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .looker-embed-container {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            padding-top: 140%;
-            /* Aspect Ratio (height/width * 100). Sesuaikan jika perlu */
-        }
-
-        .looker-embed-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-        }
     </style>
 </head>
 
@@ -316,331 +170,198 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                <i class="fas fa-map-marked-alt me-2"></i>
-                Desa Sejegi
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i>Cerdas-SM
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#beranda">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tentang">Tentang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#produk">Produk Statistik</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">
-                            <i class="fas fa-arrow-left me-1"></i> Kembali ke Cerdas-SM
-                        </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/#beranda">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#tentang">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#fitur">Fitur</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Desa Cantik</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#kontak">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-sm btn-success ms-2 px-3" href="#">Login</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section" id="beranda">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <div class="row justify-content-center">
-                <div class="col-lg-10" data-aos="fade-up" data-aos-duration="1000">
-                    <h1 class="hero-title">Desa Sejegi</h1>
-                    <p class="hero-subtitle">Desa Cinta Statistik (Cantik) di Kecamatan Mempawah Timur</p>
-                    <a href="#produk" class="btn btn-primary btn-lg">
-                        <i class="fas fa-chart-bar me-2"></i>Lihat Produk Statistik
-                    </a>
-                </div>
+    <main>
+        <!-- Page Header -->
+        <header class="page-header text-center" data-aos="fade-in">
+            <div class="container position-relative">
+                <h1 class="mb-3">Mewujudkan Desa Sebagai Subjek Pembangunan Berbasis Data</h1>
+                <p class="lead">Melalui program Kolaborasi Digital "Desa Cinta Statistik" (Cantik), BPS Kabupaten Mempawah memberdayakan desa untuk mengelola dan memanfaatkan data demi perencanaan yang lebih presisi.</p>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- Tentang Section -->
-    <section class="py-5" id="tentang">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="about-image">
-                        <img src="{{ asset('images/pulau-pedalaman-landscape.jpg') }}" alt="Desa Sejegi"
-                            class="img-fluid">
+        <!-- The Problem Section -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right">
+                         <h2 class="section-title text-start mb-4">Mengatasi Permasalahan Klasik Data Desa</h2>
+                         <p class="text-muted">Selama ini, desa seringkali dihadapkan pada tantangan dalam pengelolaan data. Aparatur desa diminta untuk menginput data ke dalam berbagai aplikasi, namun seringkali tidak memiliki akses kembali terhadap data yang telah mereka kumpulkan. Hal ini menyebabkan data tidak terintegrasi dan tidak dapat dimanfaatkan secara optimal untuk pembangunan lokal.</p>
+                         <p class="fw-bold text-primary">Program Desa Cantik hadir bukan untuk menambah aplikasi baru, melainkan untuk memperkuat ekosistem digital yang sudah ada dengan solusi yang efektif dan mudah diimplementasikan.</p>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <img src="https://img.freepik.com/free-vector/data-points-concept-illustration_114360-2240.jpg?w=826&t=st=1721013406~exp=1721014006~hmac=2e848419f12d8a141b212f45ecb71f9743a413d9692994f31c2386e680d0d80d" alt="Ilustrasi Data" class="img-fluid rounded">
                     </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
-                    <h2 class="section-title">Tentang Desa Sejegi</h2>
-                    <p>Desa Sejegi terletak di Kecamatan Mempawah Timur, Kabupaten Mempawah, Provinsi
-                        Kalimantan Barat. Desa ini merupakan salah satu Desa/Kelurahan yang terpilih dalam program
-                        Desa/Kelurahan Cinta Statistik (Cantik).</p>
+            </div>
+        </section>
 
-                    <p>Program Desa/Kelurahan Cinta Statistik bertujuan untuk meningkatkan kesadaran masyarakat akan
-                        pentingnya data statistik dalam pengambilan keputusan dan perencanaan pembangunan di tingkat
-                        Desa/Kelurahan.</p>
-
-                    <div class="row mt-4">
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-users text-primary me-3" style="font-size: 2rem;"></i>
-                                <div>
-                                    <h5 class="mb-1">Jumlah Penduduk</h5>
-                                    <p class="text-muted mb-0">3.245 jiwa (2023)</p>
-                                </div>
-                            </div>
+        <!-- The Solution: Digital Ecosystem -->
+        <section class="py-5 bg-light">
+            <div class="container py-5">
+                <h2 class="section-title text-center">Solusi Digital untuk Kemandirian Data Desa</h2>
+                <p class="text-center text-muted mb-5 col-lg-8 mx-auto">Kolaborasi Digital Desa Cantik memanfaatkan serangkaian perangkat digital yang saling terhubung untuk memberdayakan desa dalam mengelola datanya sendiri secara mandiri dan berkelanjutan.</p>
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="0">
+                        <div class="tool-card text-center">
+                            <i class="fas fa-mobile-alt card-icon"></i>
+                            <h4>AppSheet</h4>
+                            <p class="text-muted">Memudahkan aparatur desa melakukan input data secara fleksibel melalui smartphone atau laptop, langsung dari lapangan.</p>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-home text-primary me-3" style="font-size: 2rem;"></i>
-                                <div>
-                                    <h5 class="mb-1">Jumlah Rumah Tangga</h5>
-                                    <p class="text-muted mb-0">876 rumah tangga</p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="tool-card text-center">
+                            <i class="fas fa-table card-icon"></i>
+                            <h4>Google Sheets</h4>
+                            <p class="text-muted">Berfungsi sebagai basis penyimpanan data yang terpusat dan platform pengolahan data yang kolaboratif.</p>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-map-marked-alt text-primary me-3" style="font-size: 2rem;"></i>
-                                <div>
-                                    <h5 class="mb-1">Luas Wilayah</h5>
-                                    <p class="text-muted mb-0">10,5 km<sup>2</sup></p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                        <div class="tool-card text-center">
+                            <i class="fas fa-chart-pie card-icon"></i>
+                            <h4>Looker Studio</h4>
+                            <p class="text-muted">Menyajikan data dalam bentuk dasbor visual yang interaktif, mudah dipahami untuk pengambilan keputusan.</p>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-trophy text-primary me-3" style="font-size: 2rem;"></i>
-                                <div>
-                                    <h5 class="mb-1">Status</h5>
-                                    <p class="text-muted mb-0">Desa Cinta Statistik</p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                        <div class="tool-card text-center">
+                            <i class="fas fa-globe card-icon"></i>
+                            <h4>Cerdas-SM</h4>
+                            <p class="text-muted">Mengintegrasikan seluruh data Desa Cantik agar dapat diakses oleh publik dan para pemangku kepentingan.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Produk Statistik Section -->
-    <section class="product-section" id="produk">
-
-        <div class="container">
-            <h2 class="section-title text-center">Produk Statistik</h2>
-            <p class="text-center mb-5">Berikut adalah produk statistik yang tersedia untuk Desa Sejegi
-            </p>
-            <div class="product-card h-100 mb-4">
-                <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-                    <div class="looker-embed-container card-body">
-                        <iframe
-                            src="https://lookerstudio.google.com/embed/reporting/73d56679-cac8-4dd5-9f6a-349c94e75ac8/page/yprPF"
-                            frameborder="0" style="border:0" allowfullscreen
-                            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
-                        </iframe>
-                    </div>
-                </div>
+        <!-- Pilot Case Section -->
+        <section class="pilot-case-section">
+            <div class="container">
+                 <h2 class="section-title text-center">Proyek Percontohan: Transformasi Data di Kelurahan Pulau Pedalaman</h2>
+                 <div class="row align-items-center">
+                     <div class="col-lg-6" data-aos="fade-right">
+                         <p class="text-muted">Melalui pelatihan dan pendampingan statistik, BPS Kabupaten Mempawah membina aparatur kelurahan untuk mampu mengelola dan memanfaatkan data. Hasilnya, Kelurahan Pulau Pedalaman kini memiliki dasbor interaktif yang memuat berbagai informasi krusial.</p>
+                         <ul class="list-unstyled">
+                             <li class="d-flex mb-3"><i class="fas fa-check-circle text-success me-2 mt-1"></i><div><strong>Dasbor Komprehensif:</strong> Data kependudukan, kondisi rumah, pendidikan, hingga disabilitas kini terperinci dan dapat diakses setiap saat.</div></li>
+                             <li class="d-flex mb-3"><i class="fas fa-check-circle text-success me-2 mt-1"></i><div><strong>Publikasi "Desa Dalam Angka":</strong> Menjadi fondasi dalam penyusunan publikasi statistik kelurahan yang pertama.</div></li>
+                             <li class="d-flex"><i class="fas fa-check-circle text-success me-2 mt-1"></i><div><strong>Dasar Musrenbangdes:</strong> Menjadi masukan penting berbasis bukti untuk perencanaan pembangunan desa.</div></li>
+                         </ul>
+                     </div>
+                     <div class="col-lg-6" data-aos="fade-left">
+                         <img src="https://placehold.co/600x450/4CAF50/FFFFFF?text=Dasbor+Pulau+Pedalaman" alt="Ilustrasi Dasbor" class="img-fluid">
+                     </div>
+                 </div>
             </div>
+        </section>
 
-            <div class="row">
-                <!-- Monografi Desa -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="product-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="product-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <h4 class="product-title">Monografi Desa</h4>
-                            <p class="card-text">Gambaran umum Desa yang mencakup data kependudukan, ekonomi,
-                                sosial, dan infrastruktur.</p>
-
-                            <div class="year-select">
-                                <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2023</button>
-                                <button class="btn">2022</button>
-                                <button class="btn">2021</button>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
-                                    <i class="fas fa-eye me-2"></i>Lihat Online
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh PDF
-                                </a>
-                            </div>
+        <!-- Impact Section -->
+        <section class="py-5">
+            <div class="container py-5">
+                <h2 class="section-title text-center">Dampak Positif dan Manfaat Program</h2>
+                <div class="row">
+                    <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="0">
+                        <div class="impact-card">
+                            <i class="fas fa-hand-holding-seedling card-icon"></i>
+                            <h4 class="fw-bold">Kemandirian Data</h4>
+                            <p class="text-muted">Desa/Kelurahan menjadi berdaulat atas datanya, mampu menyusun, membaca, dan menganalisis data untuk kebutuhannya sendiri.</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Infografis -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="product-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="product-icon">
-                                <i class="fas fa-chart-pie"></i>
-                            </div>
-                            <h4 class="product-title">Infografis</h4>
-                            <p class="card-text">Visualisasi data statistik dalam bentuk infografis yang menarik dan
-                                mudah dipahami.</p>
-
-                            <div class="year-select">
-                                <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2023</button>
-                                <button class="btn">2022</button>
-                                <button class="btn">2021</button>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
-                                    <i class="fas fa-eye me-2"></i>Lihat Infografis
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh Gambar
-                                </a>
-                            </div>
+                    <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="impact-card">
+                            <i class="fas fa-bullseye card-icon"></i>
+                            <h4 class="fw-bold">Perencanaan Tepat Sasaran</h4>
+                            <p class="text-muted">Data yang akurat dan terkini menjadi dasar yang kuat untuk perencanaan pembangunan yang lebih efektif dan menjawab persoalan nyata.</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Tabel Data -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                    <div class="product-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="product-icon">
-                                <i class="fas fa-table"></i>
-                            </div>
-                            <h4 class="product-title">Tabel Data</h4>
-                            <p class="card-text">Kumpulan tabel data statistik Desa yang dapat diakses dan diunduh
-                                dalam format Excel.</p>
-
-                            <div class="year-select">
-                                <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2023</button>
-                                <button class="btn">2022</button>
-                                <button class="btn">2021</button>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
-                                    <i class="fas fa-eye me-2"></i>Lihat Tabel
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh Excel
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Publikasi -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="product-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="product-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <h4 class="product-title">Publikasi</h4>
-                            <p class="card-text">Dokumen publikasi resmi yang berisi analisis komprehensif tentang
-                                berbagai aspek di Desa.</p>
-
-                            <div class="year-select">
-                                <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2023</button>
-                                <button class="btn">2022</button>
-                                <button class="btn">2021</button>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
-                                    <i class="fas fa-eye me-2"></i>Lihat Publikasi
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh PDF
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SOP Permintaan Data -->
-                <div class="col-lg-8 col-md-12 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                    <div class="product-card h-100">
-                        <div class="card-body p-4">
-                            <div class="row">
-                                <div class="col-md-4 text-center mb-4 mb-md-0">
-                                    <div class="product-icon">
-                                        <i class="fas fa-clipboard-list"></i>
-                                    </div>
-                                    <h4 class="product-title">SOP Permintaan Data</h4>
-                                    <p>Standar Operasional Prosedur untuk permintaan data statistik Desa Pulau
-                                        Pedalaman.</p>
-
-                                    <div class="year-select">
-                                        <h6 class="mb-2">Pilih Tahun:</h6>
-                                        <button class="btn active">2023</button>
-                                        <button class="btn">2022</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="sop-diagram">
-                                        <h5 class="text-center mb-4">Alur Permintaan Data</h5>
-                                        <img src="{{ asset('images/sop-diagram.svg') }}" alt="Diagram Alur SOP"
-                                            class="img-fluid">
-                                        <div class="mt-3 text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-download me-1"></i>Unduh SOP Lengkap (PDF)
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                        <div class="impact-card">
+                            <i class="fas fa-server card-icon"></i>
+                            <h4 class="fw-bold">Dukungan Satu Data</h4>
+                            <p class="text-muted">Program ini selaras dan mendukung inisiatif Satu Data Indonesia dengan menghasilkan data berkualitas dari level akar rumput.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Collaboration Section -->
+        <section class="py-5">
+             <div class="container" data-aos="zoom-in">
+                <div class="collaboration-section">
+                     <div class="row align-items-center">
+                        <div class="col-lg-7">
+                            <h3 class="mb-3">Kolaborasi untuk Masa Depan Pembangunan Daerah</h3>
+                            <p class="opacity-75">Untuk merealisasikan perluasan program ke seluruh desa, sinergi lintas sektor adalah kunci. BPS Kabupaten Mempawah mengharapkan dukungan dari Diskominfo dan OPD terkait dalam aspek berikut:</p>
+                             <ul class="list-group list-group-flush mt-4">
+                                <li class="list-group-item"><i class="fas fa-server me-3"></i>Penyediaan Server/Cloud untuk sentralisasi data.</li>
+                                <li class="list-group-item"><i class="fas fa-link me-3"></i>Integrasi data dengan portal Satu Data Daerah.</li>
+                                <li class="list-group-item"><i class="fab fa-google me-3"></i>Fasilitasi Akun Google Workspace untuk desa.</li>
+                                <li class="list-group-item"><i class="fas fa-shield-alt me-3"></i>Dukungan infrastruktur dan keamanan siber.</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-5 text-center d-none d-lg-block">
+                             <i class="fas fa-people-arrows fa-10x text-white opacity-25"></i>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 mb-4">
-                    <h5 class="footer-title">Desa Sejegi</h5>
-                    <p>Desa Cinta Statistik (Cantik) di Kecamatan Mempawah Timur, Kabupaten Mempawah, Kalimantan
-                        Barat.</p>
-                    <div class="social-links mt-4">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">Cerdas Survey Management</h5>
+                    <p>Platform tata kelola data terintegrasi untuk pengambilan keputusan yang lebih baik.</p>
                 </div>
-
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="footer-title">Tautan Cepat</h5>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5 class="footer-title">Tautan</h5>
                     <ul class="footer-links">
-                        <li><a href="#beranda">Beranda</a></li>
-                        <li><a href="#tentang">Tentang</a></li>
-                        <li><a href="#produk">Produk Statistik</a></li>
-                        <li><a href="{{ route('home') }}">Kembali ke Cerdas-SM</a></li>
+                        <li><a href="/#beranda">Beranda</a></li>
+                        <li><a href="/#tentang">Tentang</a></li>
+                        <li><a href="#">Desa Cantik</a></li>
+                        <li><a href="/#kontak">Kontak</a></li>
                     </ul>
                 </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h5 class="footer-title">Desa Cantik Terpilih</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Kelurahan Pulau Pedalaman</a></li>
+                        <li><a href="#">Desa Wajok Hilir</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
                     <h5 class="footer-title">Kontak</h5>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Desa No. 45, Pulau Pedalaman, Mempawah
-                            Timur</li>
-                        <li><i class="fas fa-phone-alt me-2"></i> +62 561 987654</li>
-                        <li><i class="fas fa-envelope me-2"></i> info@pulaupedalaman.desa.id</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> BPS Kab. Mempawah</li>
+                        <li><i class="fas fa-phone-alt me-2"></i> (0561) 691049</li>
+                        <li><i class="fas fa-envelope me-2"></i> bps6104@bps.go.id</li>
                     </ul>
                 </div>
             </div>
-
             <div class="text-center copyright">
-                <p>&copy; {{ date('Y') }} Desa Sejegi - Cerdas Survey Management. All rights reserved.</p>
+                <p>© 2025 Cerdas Survey Management & BPS Kabupaten Mempawah. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -652,48 +373,11 @@
     <script>
         // Initialize AOS
         AOS.init({
-            once: true
-        });
-
-        // Tahun selection for products
-        document.querySelectorAll('.year-select .btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from siblings
-                this.parentNode.querySelectorAll('.btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                // Here you would typically fetch data for the selected year
-                // For demo purposes, we'll just log the selected year
-                console.log('Selected year:', this.textContent);
-            });
+            once: true,
+            duration: 800,
+            offset: 100,
         });
     </script>
 </body>
-<!-- Looker Studio Modal -->
-<div class="modal fade" id="lookerStudioModal" tabindex="-1" aria-labelledby="lookerStudioModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="lookerStudioModalLabel">Dashboard Interaktif - Desa Sejegi
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-0">
-                <!-- Responsive Embed Container -->
-                {{-- <div class="looker-embed-container">
-                    <iframe
-                        src="https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF"
-                        frameborder="0" style="border:0" allowfullscreen
-                        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-                </div> --}}
-            </div>
-        </div>
-    </div>
-</div>
 
 </html>
