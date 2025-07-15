@@ -235,7 +235,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-chart-line me-2"></i>Cerdas-SM</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-chart-line me-2"></i>Deskel Cantik</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -465,27 +465,35 @@
                 <div class="collaboration-section">
                     <div class="row align-items-center">
                         <div class="col-lg-7">
-                            <h3 class="mb-3">Kolaborasi untuk Masa Depan Pembangunan Daerah</h3>
-                            <p class="opacity-75">Untuk merealisasikan perluasan program ke seluruh desa, sinergi lintas
-                                sektor adalah kunci. BPS Kabupaten Mempawah mengharapkan dukungan dari Diskominfo dan
-                                OPD terkait dalam aspek berikut:</p>
+                            <h3 class="mb-3">Sinergi Membangun Daerah Berbasis Data</h3>
+                            <p class="opacity-75">
+                                Keberhasilan dan perluasan program Kolaborasi Digital Desa Cantik sangat bergantung pada
+                                komitmen bersama. BPS Kabupaten Mempawah membuka ruang kolaborasi seluas-luasnya bagi seluruh
+                                Organisasi Perangkat Daerah (OPD) serta Pemerintah Desa dan Kelurahan untuk bersama-sama
+                                memperkuat ekosistem data daerah dari akar rumput.
+                            </p>
+                            <p class="opacity-75 mt-3">
+                                Mari wujudkan pembangunan yang lebih terarah dan tepat sasaran melalui kemitraan strategis
+                                dalam:
+                            </p>
                             <ul class="list-group list-group-flush mt-4">
-                                <li class="list-group-item"><i class="fas fa-server me-3"></i>Penyediaan Server/Cloud
-                                    untuk sentralisasi data.</li>
-                                <li class="list-group-item"><i class="fas fa-link me-3"></i>Integrasi data dengan portal
-                                    Satu Data Daerah.</li>
-                                <li class="list-group-item"><i class="fab fa-google me-3"></i>Fasilitasi Akun Google
-                                    Workspace untuk desa.</li>
-                                <li class="list-group-item"><i class="fas fa-shield-alt me-3"></i>Dukungan infrastruktur
-                                    dan keamanan siber.</li>
+                                <li class="list-group-item"><i class="fas fa-sitemap me-3"></i>Pemanfaatan data desa untuk
+                                    perencanaan lintas sektor.</li>
+                                <li class="list-group-item"><i class="fas fa-users-cog me-3"></i>Penguatan kapasitas dan
+                                    literasi data bagi aparatur.</li>
+                                <li class="list-group-item"><i class="fas fa-sync-alt me-3"></i>Penyelarasan program dan
+                                    kegiatan pemberdayaan di tingkat desa.</li>
+                                <li class="list-group-item"><i class="fas fa-file-signature me-3"></i>Integrasi hasil data dalam
+                                    Musrenbang dan dokumen perencanaan.</li>
                             </ul>
                         </div>
-                        <div class="col-lg-5 text-center d-none d-lg-block"><i
-                                class="fas fa-people-arrows fa-10x text-white opacity-25"></i></div>
+                        <div class="col-lg-5 text-center d-none d-lg-block">
+                            <i class="fas fa-handshake fa-10x text-white opacity-25"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+            </section>
     </main>
 
     <!-- Footer -->
