@@ -261,7 +261,7 @@
                          <p class="text-muted">Melalui pelatihan dan pendampingan statistik, BPS Kabupaten Mempawah membina aparatur kelurahan untuk mampu mengelola dan memanfaatkan data. Hasilnya, Kelurahan Pulau Pedalaman kini memiliki dasbor interaktif yang memuat berbagai informasi krusial.</p>
                          <ul class="list-unstyled">
                              <li class="d-flex mb-3"><i class="fas fa-check-circle text-success me-2 mt-1"></i><div><strong>Dasbor Komprehensif:</strong> Data kependudukan, kondisi rumah, pendidikan, hingga disabilitas kini terperinci dan dapat diakses setiap saat.</div></li>
-                             <li class="d-flex mb-3"><i class="fas fa-check-circle text-success me-2 mt-1"></i><div><strong>Publikasi "Desa Dalam Angka":</strong> Menjadi fondasi dalam penyusunan publikasi statistik kelurahan yang pertama.</div></li>
+                             <li class="d-flex mb-3"><i class="fas fa-check-circle text-success me-2 mt-1"></i><div><strong>Publikasi "Desa/Kelurahan dalam Angka":</strong> Menjadi fondasi dalam penyusunan publikasi statistik kelurahan yang pertama.</div></li>
                              <li class="d-flex"><i class="fas fa-check-circle text-success me-2 mt-1"></i><div><strong>Dasar Musrenbangdes:</strong> Menjadi masukan penting berbasis bukti untuk perencanaan pembangunan desa.</div></li>
                          </ul>
                      </div>

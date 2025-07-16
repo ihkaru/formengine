@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kolaborasi Digital Desa Cantik - Cerdas Survey Management</title>
+    <title>Kolaborasi Digital Desa/Kelurahan Cantik - Cerdas Survey Management</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome untuk icons -->
@@ -98,7 +98,7 @@
             margin: 15px auto 0;
         }
 
-        /* Styling untuk Card Desa */
+        /* Styling untuk Card Desa/Kelurahan */
         .desa-card-link {
             text-decoration: none;
             color: inherit;
@@ -243,7 +243,7 @@
                     <li class="nav-item"><a class="nav-link" href="/#beranda">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#tentang">Tentang</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#fitur">Fitur</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Desa Cantik</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Desa/Kelurahan Cantik</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#kontak">Kontak</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-sm btn-success ms-2 px-3" href="#">Login</a></li>
                 </ul>
@@ -255,21 +255,21 @@
         <!-- Page Header -->
         <header class="page-header text-center" data-aos="fade-in">
             <div class="container position-relative">
-                <h1 class="mb-3">Mewujudkan Desa Sebagai Subjek Pembangunan Berbasis Data</h1>
-                <p class="lead">Melalui program Kolaborasi Digital "Desa Cinta Statistik" (Cantik), BPS Kabupaten
-                    Mempawah memberdayakan desa untuk mengelola dan memanfaatkan data demi perencanaan yang lebih
+                <h1 class="mb-3">Mewujudkan Desa/Kelurahan Sebagai Subjek Pembangunan Berbasis Data</h1>
+                <p class="lead">Melalui program Kolaborasi Digital Desa/Kelurahan Canti (Cinta Statistik), BPS Kabupaten
+                    Mempawah membina Desa/Kelurahan untuk mengelola dan memanfaatkan data demi perencanaan yang lebih
                     presisi.</p>
             </div>
         </header>
 
-        <!-- ========== BAGIAN BARU: CARD PEMILIHAN DESA ========== -->
+        <!-- ========== BAGIAN BARU: CARD PEMILIHAN Desa/Kelurahan ========== -->
         <section class="py-5 bg-light" id="pilih-desa">
             <div class="container">
                 <h2 class="section-title">Desa/Kelurahan Binaan</h2>
                 <div class="row">
                     <!-- Card Kelurahan Pulau Pedalaman -->
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
-                        <a href="{{ route('cantik.pedalaman') }}" class="desa-card-link">
+                        <a href="{{ 'https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF' }}" class="desa-card-link">
                             <div class="desa-card">
                                 <img src="https://placehold.co/600x400/2E5090/FFFFFF?text=Kel.+Pulau+Pedalaman"
                                     class="card-img-top" alt="Kelurahan Pulau Pedalaman">
@@ -278,7 +278,7 @@
                                     <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
                                     <div class="mt-auto pt-3">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <span class="badge bg-success">Proyek Percontohan</span>
+                                            <span class="badge bg-success">Binaan 2025</span>
                                             <span class="text-primary fw-bold">Lihat Detail <i
                                                     class="fas fa-arrow-right ms-1"></i></span>
                                         </div>
@@ -288,41 +288,39 @@
                         </a>
                     </div>
 
-                    <!-- Card Desa Wajok Hilir -->
-                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <a href="{{ route('cantik.wajokhilir') }}" class="desa-card-link">
-                            <div class="desa-card">
-                                <img src="https://placehold.co/600x400/4CAF50/FFFFFF?text=Desa+Wajok+Hilir"
-                                    class="card-img-top" alt="Desa Wajok Hilir">
-                                <div class="desa-card-body d-flex flex-column">
-                                    <h4 class="card-title">Desa Wajok Hilir</h4>
-                                    <p class="card-text text-muted">Kecamatan Jongkat</p>
-                                    <div class="mt-auto pt-3">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="badge bg-primary">Binaan 2024</span>
-                                            <span class="text-primary fw-bold">Lihat Detail <i
-                                                    class="fas fa-arrow-right ms-1"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Card Desa Sejegi -->
+                    <!-- Card Desa/Kelurahan Sejegi -->
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <a href="{{ route('cantik.sejegi') }}" class="desa-card-link">
+                        <a href="{{ 'https://lookerstudio.google.com/embed/reporting/73d56679-cac8-4dd5-9f6a-349c94e75ac8/page/yprPF' }}" class="desa-card-link">
                             <div class="desa-card">
                                 <img src="https://placehold.co/600x400/FFC107/333333?text=Desa+Sejegi"
-                                    class="card-img-top" alt="Desa Sejegi">
+                                    class="card-img-top" alt="Desa/Kelurahan Sejegi">
                                 <div class="desa-card-body d-flex flex-column">
-                                    <h4 class="card-title">Desa Sejegi</h4>
+                                    <h4 class="card-title">Desa/Kelurahan Sejegi</h4>
                                     <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
                                     <div class="mt-auto pt-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="badge bg-warning text-dark">Binaan 2025</span>
                                             <span class="text-primary fw-bold">Lihat Detail <i
                                                     class="fas fa-arrow-right ms-1"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Card Desa/Kelurahan Wajok Hilir -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <a href="/" class="desa-card-link">
+                            <div class="desa-card">
+                                <img src="https://placehold.co/600x400/4CAF50/FFFFFF?text=Desa+Wajok+Hilir" class="card-img-top"
+                                    alt="Desa/Kelurahan Wajok Hilir">
+                                <div class="desa-card-body d-flex flex-column">
+                                    <h4 class="card-title">Desa/Kelurahan Wajok Hilir</h4>
+                                    <p class="card-text text-muted">Kecamatan Jongkat</p>
+                                    <div class="mt-auto pt-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="badge bg-primary">Binaan 2024</span>
+                                            {{-- <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -340,12 +338,12 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6" data-aos="fade-right">
                         <h2 class="section-title text-start mb-4">Mengatasi Permasalahan Klasik Data Desa</h2>
-                        <p class="text-muted">Selama ini, desa seringkali dihadapkan pada tantangan dalam pengelolaan
-                            data. Aparatur desa diminta untuk menginput data ke dalam berbagai aplikasi, namun
+                        <p class="text-muted">Selama ini, Desa/Kelurahan seringkali dihadapkan pada tantangan dalam pengelolaan
+                            data. Aparatur Desa/Kelurahan diminta untuk menginput data ke dalam berbagai aplikasi, namun
                             seringkali tidak memiliki akses kembali terhadap data yang telah mereka kumpulkan. Hal ini
                             menyebabkan data tidak terintegrasi dan tidak dapat dimanfaatkan secara optimal untuk
                             pembangunan lokal.</p>
-                        <p class="fw-bold text-primary">Program Desa Cantik hadir bukan untuk menambah aplikasi baru,
+                        <p class="fw-bold text-primary">Program Desa/Kelurahan Cantik hadir bukan untuk menambah aplikasi baru,
                             melainkan untuk memperkuat ekosistem digital yang sudah ada dengan solusi yang efektif dan
                             mudah diimplementasikan.</p>
                     </div>
@@ -361,14 +359,14 @@
         <section class="py-5 bg-light">
             <div class="container py-5">
                 <h2 class="section-title text-center">Solusi Digital untuk Kemandirian Data Desa</h2>
-                <p class="text-center text-muted mb-5 col-lg-8 mx-auto">Kolaborasi Digital Desa Cantik memanfaatkan
-                    serangkaian perangkat digital yang saling terhubung untuk memberdayakan desa dalam mengelola datanya
+                <p class="text-center text-muted mb-5 col-lg-8 mx-auto">Kolaborasi Digital Desa/Kelurahan Cantik memanfaatkan
+                    serangkaian perangkat digital yang saling terhubung untuk membina Desa/Kelurahan dalam mengelola datanya
                     sendiri secara mandiri dan berkelanjutan.</p>
                 <div class="row">
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="0">
                         <div class="tool-card text-center"><i class="fas fa-mobile-alt card-icon"></i>
                             <h4>AppSheet</h4>
-                            <p class="text-muted">Memudahkan aparatur desa melakukan input data secara fleksibel melalui
+                            <p class="text-muted">Memudahkan aparatur Desa/Kelurahan melakukan input data secara fleksibel melalui
                                 smartphone atau laptop, langsung dari lapangan.</p>
                         </div>
                     </div>
@@ -389,7 +387,7 @@
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                         <div class="tool-card text-center"><i class="fas fa-globe card-icon"></i>
                             <h4>Cerdas-SM</h4>
-                            <p class="text-muted">Mengintegrasikan seluruh data Desa Cantik agar dapat diakses oleh
+                            <p class="text-muted">Mengintegrasikan seluruh data Desa/Kelurahan Cantik agar dapat diakses oleh
                                 publik dan para pemangku kepentingan.</p>
                         </div>
                     </div>
@@ -400,7 +398,7 @@
         <!-- Pilot Case Section -->
         <section class="pilot-case-section">
             <div class="container">
-                <h2 class="section-title text-center">Proyek Percontohan: Transformasi Data di Kelurahan Pulau Pedalaman
+                <h2 class="section-title text-center">Binaan 2025: Transformasi Data di Kelurahan Pulau Pedalaman
                 </h2>
                 <div class="row align-items-center">
                     <div class="col-lg-6" data-aos="fade-right">
@@ -410,10 +408,10 @@
                         <ul class="list-unstyled">
                             <li class="d-flex mb-3"><i class="fas fa-check-circle text-success me-2 mt-1"></i>
                                 <div><strong>Dasbor Komprehensif:</strong> Data kependudukan, kondisi rumah, pendidikan,
-                                    hingga disabilitas kini terperinci dan dapat diakses setiap saat.</div>
+                                    hingga disabilitas kini agragasi dan dapat diakses setiap saat.</div>
                             </li>
                             <li class="d-flex mb-3"><i class="fas fa-check-circle text-success me-2 mt-1"></i>
-                                <div><strong>Publikasi "Desa Dalam Angka":</strong> Menjadi fondasi dalam penyusunan
+                                <div><strong>Publikasi "Desa/Kelurahan Dalam Angka":</strong> Menjadi fondasi dalam penyusunan
                                     publikasi statistik kelurahan yang pertama.</div>
                             </li>
                             <li class="d-flex"><i class="fas fa-check-circle text-success me-2 mt-1"></i>
@@ -467,9 +465,9 @@
                         <div class="col-lg-7">
                             <h3 class="mb-3">Sinergi Membangun Daerah Berbasis Data</h3>
                             <p class="opacity-75">
-                                Keberhasilan dan perluasan program Kolaborasi Digital Desa Cantik sangat bergantung pada
-                                komitmen bersama. BPS Kabupaten Mempawah membuka ruang kolaborasi seluas-luasnya bagi seluruh
-                                Organisasi Perangkat Daerah (OPD) serta Pemerintah Desa dan Kelurahan untuk bersama-sama
+                                Keberhasilan dan perluasan program Kolaborasi Digital Desa/Kelurahan Cantik sangat bergantung pada
+                                komitmen bersama. BPS Kabupaten Mempawah berkomitmen untuk mewujudkan kolaborasi seluas-luasnya bagi seluruh
+                                Organisasi Perangkat Daerah (OPD) serta Pemerintah Desa/Kelurahan untuk bersama-sama
                                 memperkuat ekosistem data daerah dari akar rumput.
                             </p>
                             <p class="opacity-75 mt-3">
@@ -477,7 +475,7 @@
                                 dalam:
                             </p>
                             <ul class="list-group list-group-flush mt-4">
-                                <li class="list-group-item"><i class="fas fa-sitemap me-3"></i>Pemanfaatan data desa untuk
+                                <li class="list-group-item"><i class="fas fa-sitemap me-3"></i>Pemanfaatan data Desa/Kelurahan untuk
                                     perencanaan lintas sektor.</li>
                                 <li class="list-group-item"><i class="fas fa-users-cog me-3"></i>Penguatan kapasitas dan
                                     literasi data bagi aparatur.</li>
@@ -509,16 +507,16 @@
                     <ul class="footer-links">
                         <li><a href="/#beranda">Beranda</a></li>
                         <li><a href="/#tentang">Tentang</a></li>
-                        <li><a href="#">Desa Cantik</a></li>
+                        <li><a href="#">Desa/Kelurahan Cantik</a></li>
                         <li><a href="/#kontak">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 mb-4">
-                    <h5 class="footer-title">Desa Cantik Terpilih</h5>
+                    <h5 class="footer-title">Kontributor Data</h5>
                     <ul class="footer-links">
                         <li><a href="{{ route('cantik.pedalaman') }}">Kel. Pulau Pedalaman</a></li>
-                        <li><a href="{{ route('cantik.wajokhilir') }}">Desa Wajok Hilir</a></li>
-                        <li><a href="{{ route('cantik.sejegi') }}">Desa Sejegi</a></li>
+                        <li><a href="{{ route('cantik.wajokhilir') }}">Desa/Kelurahan Wajok Hilir</a></li>
+                        <li><a href="{{ route('cantik.sejegi') }}">Desa/Kelurahan Sejegi</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 mb-4">

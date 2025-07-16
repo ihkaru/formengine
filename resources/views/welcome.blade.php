@@ -246,6 +246,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('cantik.wajokhilir') }}">Desa Wajok Hilir (2024)</a></li>
+                            <li><a class="dropdown-item" href="{{ route('cantik.sejegi') }}">Desa Sejegi (2025)</a></li>
                             <li><a class="dropdown-item" href="{{ route('cantik.pedalaman') }}">Kelurahan Pulau Pedalaman (2025)</a></li>
                         </ul>
                     </li>

@@ -24,7 +24,7 @@ Route::get('/uploads/{path}', function ($path) {
 })->where('path', '.*');
 
 
-Route::get('/desacantik', [CantikController::class, "index"])->name("cantik.index");
+Route::get('/desa-cantik', [CantikController::class, "index"])->name("cantik.index");
 Route::get('/desacantik/kelurahanpulaupedalaman', [CantikController::class, "kelPulauPedalaman"])->name("cantik.pedalaman");
 Route::get('/desacantik/desawajokhilir', [CantikController::class, "desWajokHilir"])->name("cantik.wajokhilir");
 Route::get('/desacantik/desasejegi', [CantikController::class, "desSejegi"])->name("cantik.sejegi");
