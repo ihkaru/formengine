@@ -271,7 +271,7 @@
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
                         <a href="{{ 'https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF' }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="https://placehold.co/600x400/2E5090/FFFFFF?text=Kel.+Pulau+Pedalaman"
+                                <img src="{{asset('image/pulaupedalaman.jpg')}}"
                                     class="card-img-top" alt="Kelurahan Pulau Pedalaman">
                                 <div class="desa-card-body d-flex flex-column">
                                     <h4 class="card-title">Kelurahan Pulau Pedalaman</h4>
@@ -292,10 +292,9 @@
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <a href="{{ 'https://lookerstudio.google.com/embed/reporting/73d56679-cac8-4dd5-9f6a-349c94e75ac8/page/yprPF' }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="https://placehold.co/600x400/FFC107/333333?text=Desa+Sejegi"
-                                    class="card-img-top" alt="Desa/Kelurahan Sejegi">
+                                <img src="{{asset('image/sejegi.jpg')}}" class="card-img-top" alt="Desa Sejegi">
                                 <div class="desa-card-body d-flex flex-column">
-                                    <h4 class="card-title">Desa/Kelurahan Sejegi</h4>
+                                    <h4 class="card-title">Desa Sejegi</h4>
                                     <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
                                     <div class="mt-auto pt-3">
                                         <div class="d-flex justify-content-between align-items-center">
@@ -312,10 +311,9 @@
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <a href="/" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="https://placehold.co/600x400/4CAF50/FFFFFF?text=Desa+Wajok+Hilir" class="card-img-top"
-                                    alt="Desa/Kelurahan Wajok Hilir">
+                                <img src="{{asset('image/wajokhilir.jpg')}}" class="card-img-top" alt="Desa Wajok Hilir">
                                 <div class="desa-card-body d-flex flex-column">
-                                    <h4 class="card-title">Desa/Kelurahan Wajok Hilir</h4>
+                                    <h4 class="card-title">Desa Wajok Hilir</h4>
                                     <p class="card-text text-muted">Kecamatan Jongkat</p>
                                     <div class="mt-auto pt-3">
                                         <div class="d-flex justify-content-between align-items-center">
@@ -401,7 +399,7 @@
                 <h2 class="section-title text-center">Binaan 2025: Transformasi Data di Kelurahan Pulau Pedalaman
                 </h2>
                 <div class="row align-items-center">
-                    <div class="col-lg-6" data-aos="fade-right">
+                    <div data-aos="fade-right">
                         <p class="text-muted">Melalui pelatihan dan pendampingan statistik, BPS Kabupaten Mempawah
                             membina aparatur kelurahan untuk mampu mengelola dan memanfaatkan data. Hasilnya, Kelurahan
                             Pulau Pedalaman kini memiliki dasbor interaktif yang memuat berbagai informasi krusial.</p>
@@ -420,9 +418,14 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-6" data-aos="fade-left"><img
-                            src="https://placehold.co/600x450/4CAF50/FFFFFF?text=Dasbor+Pulau+Pedalaman"
-                            alt="Ilustrasi Dasbor" class="img-fluid"></div>
+                </div>
+                <div class="row align-item-center">
+                    <div class="col-lg-6 w-100" style="height: 100vh" data-aos="fade-left">
+                        <iframe class="w-100 h-100" style="height: 700px" src="https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF"
+                            frameborder="0" style="border:0" allowfullscreen
+                            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </section>
