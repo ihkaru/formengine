@@ -22,8 +22,6 @@ Route::get('/uploads/{path}', function ($path) {
         'Access-Control-Allow-Origin' => '*',
     ]);
 })->where('path', '.*');
-
-
 Route::get('/desacantik', [CantikController::class, "index"])->name("cantik.index");
 Route::get('/desa-cantik/kelurahanpulaupedalaman', [CantikController::class, "kelPulauPedalaman"])->name("cantik.pedalaman");
 Route::get('/desa-cantik/desawajokhilir', [CantikController::class, "desWajokHilir"])->name("cantik.wajokhilir");
