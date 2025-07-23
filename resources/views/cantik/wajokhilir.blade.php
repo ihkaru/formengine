@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desa Wajok Hilir - Desa Cinta Statistik</title>
+    <title>Kelurahan Pulau Pedalaman - Kelurahan Cinta Statistik</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome untuk icons -->
@@ -54,244 +54,262 @@
             url('{{ asset("images/pulau-pedalaman-header.jpg") }}');
             background-size: cover;
             background-position: center;
-background-position: center;
-color: white;
-padding: 150px 0;
-text-align: center;
-position: relative;
-}
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+            position: relative;
+        }
 
-.hero-overlay {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(135deg, rgba(46, 80, 144, 0.8) 0%, rgba(76, 175, 80, 0.6) 100%);
-z-index: 1;
-}
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(46, 80, 144, 0.8) 0%, rgba(76, 175, 80, 0.6) 100%);
+            z-index: 1;
+        }
 
-.hero-content {
-position: relative;
-z-index: 2;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
 
-.hero-title {
-font-size: 3.5rem;
-font-weight: 800;
-margin-bottom: 20px;
-text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-.hero-subtitle {
-font-size: 1.5rem;
-margin-bottom: 30px;
-opacity: 0.9;
-text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
 
-.btn-primary {
-background-color: var(--accent-color);
-border-color: var(--accent-color);
-padding: 10px 25px;
-font-weight: 600;
-border-radius: 50px;
-transition: all 0.3s;
-}
+        .btn-primary {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            padding: 10px 25px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
 
-.btn-primary:hover {
-background-color: #e08600;
-border-color: #e08600;
-transform: translateY(-3px);
-box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
+        .btn-primary:hover {
+            background-color: #e08600;
+            border-color: #e08600;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
-.section-title {
-position: relative;
-margin-bottom: 50px;
-font-weight: 700;
-color: var(--primary-color);
-}
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
 
-.section-title::after {
-content: '';
-display: block;
-width: 70px;
-height: 4px;
-background-color: var(--accent-color);
-margin-top: 15px;
-}
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin-top: 15px;
+        }
 
-.section-title.text-center::after {
-margin-left: auto;
-margin-right: auto;
-}
+        .section-title.text-center::after {
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.about-image {
-border-radius: 10px;
-overflow: hidden;
-box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
 
-.feature-card {
-background-color: white;
-border-radius: 15px;
-padding: 30px;
-margin-bottom: 30px;
-transition: all 0.3s ease;
-border: none;
-box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-height: 100%;
-}
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
 
-.feature-card:hover {
-transform: translateY(-10px);
-box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
 
-.feature-icon {
-margin-bottom: 25px;
-}
+        .feature-icon {
+            margin-bottom: 25px;
+        }
 
-.feature-icon i {
-font-size: 3rem;
-color: var(--accent-color);
-background: rgba(255, 152, 0, 0.1);
-width: 80px;
-height: 80px;
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 50%;
-margin-bottom: 20px;
-}
+        .feature-icon i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            background: rgba(255, 152, 0, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
 
-.feature-title {
-font-weight: 700;
-margin-bottom: 15px;
-color: var(--primary-color);
-}
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
 
-.product-section {
-background-color: #f8f9fa;
-padding: 80px 0;
-}
+        .product-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
 
-.product-card {
-background-color: white;
-border-radius: 15px;
-overflow: hidden;
-box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-transition: all 0.3s ease;
-border: none;
-height: 100%;
-}
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: none;
+            height: 100%;
+        }
 
-.product-card:hover {
-transform: translateY(-10px);
-box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
 
-.product-icon {
-font-size: 2.5rem;
-color: var(--primary-color);
-margin-bottom: 20px;
-}
+        .product-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
 
-.product-title {
-font-weight: 700;
-margin-bottom: 15px;
-color: var(--primary-color);
-}
+        .product-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
 
-.product-btn {
-padding: 8px 20px;
-font-size: 0.9rem;
-font-weight: 600;
-border-radius: 50px;
-}
+        .product-btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 50px;
+        }
 
-.year-select {
-margin-bottom: 30px;
-}
+        .year-select {
+            margin-bottom: 30px;
+        }
 
-.year-select .btn {
-margin-right: 10px;
-margin-bottom: 10px;
-border-radius: 50px;
-font-weight: 600;
-padding: 8px 20px;
-background-color: white;
-color: var(--primary-color);
-border: 2px solid var(--primary-color);
-transition: all 0.3s;
-}
+        .year-select .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            padding: 8px 20px;
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s;
+        }
 
-.year-select .btn:hover,
-.year-select .btn.active {
-background-color: var(--primary-color);
-color: white;
-}
+        .year-select .btn:hover,
+        .year-select .btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
 
-.footer {
-background-color: var(--primary-color);
-color: white;
-padding: 60px 0 30px;
-}
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
 
-.footer-title {
-font-weight: 700;
-margin-bottom: 25px;
-}
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
 
-.footer-links {
-list-style: none;
-padding: 0;
-}
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
 
-.footer-links li {
-margin-bottom: 10px;
-}
+        .footer-links li {
+            margin-bottom: 10px;
+        }
 
-.footer-links a {
-color: rgba(255,255,255,0.8);
-text-decoration: none;
-transition: all 0.3s;
-}
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
 
-.footer-links a:hover {
-color: white;
-padding-left: 5px;
-}
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
 
-.social-links {
-font-size: 1.5rem;
-}
+        .social-links {
+            font-size: 1.5rem;
+        }
 
-.social-links a {
-color: white;
-margin-right: 15px;
-transition: all 0.3s;
-}
+        .social-links a {
+            color: white;
+            margin-right: 15px;
+            transition: all 0.3s;
+        }
 
-.social-links a:hover {
-color: var(--accent-color);
-transform: translateY(-3px);
-}
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
 
-.copyright {
-margin-top: 30px;
-padding-top: 20px;
-border-top: 1px solid rgba(255,255,255,0.1);
-}
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-.sop-diagram {
-background-color: white;
-border-radius: 15px;
-padding: 30px;
-box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-</style>
+        .sop-diagram {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .looker-embed-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 140%;
+            /* Aspect Ratio (height/width * 100). Sesuaikan jika perlu */
+        }
+
+        .looker-embed-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -300,7 +318,7 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}">
                 <i class="fas fa-map-marked-alt me-2"></i>
-                Desa Wajok Hilir
+                Kelurahan Pulau Pedalaman
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -332,8 +350,8 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         <div class="container hero-content">
             <div class="row justify-content-center">
                 <div class="col-lg-10" data-aos="fade-up" data-aos-duration="1000">
-                    <h1 class="hero-title">Desa Wajok Hilir</h1>
-                    <p class="hero-subtitle">Desa Cinta Statistik (Cantik) di Kecamatan Jongkat</p>
+                    <h1 class="hero-title">Kelurahan Pulau Pedalaman</h1>
+                    <p class="hero-subtitle">Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah Timur</p>
                     <a href="#produk" class="btn btn-primary btn-lg">
                         <i class="fas fa-chart-bar me-2"></i>Lihat Produk Statistik
                     </a>
@@ -348,17 +366,17 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="about-image">
-                        <img src="{{ asset('images/pulau-pedalaman-landscape.jpg') }}" alt="Desa Wajok Hilir"
+                        <img src="{{ asset('images/pulau-pedalaman-landscape.jpg') }}" alt="Kelurahan Pulau Pedalaman"
                             class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
-                    <h2 class="section-title">Tentang Desa Wajok Hilir</h2>
-                    <p>Desa Wajok Hilir terletak di Kecamatan Jongkat, Kabupaten Mempawah, Provinsi
+                    <h2 class="section-title">Tentang Kelurahan Pulau Pedalaman</h2>
+                    <p>Kelurahan Pulau Pedalaman terletak di Kecamatan Mempawah Timur, Kabupaten Mempawah, Provinsi
                         Kalimantan Barat. Kelurahan ini merupakan salah satu desa/kelurahan yang terpilih dalam program
-                        Desa/Desa Cinta Statistik (Cantik).</p>
+                        Desa/Kelurahan Cinta Statistik (Cantik).</p>
 
-                    <p>Program Desa/Desa Cinta Statistik bertujuan untuk meningkatkan kesadaran masyarakat akan
+                    <p>Program Desa/Kelurahan Cinta Statistik bertujuan untuk meningkatkan kesadaran masyarakat akan
                         pentingnya data statistik dalam pengambilan keputusan dan perencanaan pembangunan di tingkat
                         desa/kelurahan.</p>
 
@@ -395,7 +413,7 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.05);
                                 <i class="fas fa-trophy text-primary me-3" style="font-size: 2rem;"></i>
                                 <div>
                                     <h5 class="mb-1">Status</h5>
-                                    <p class="text-muted mb-0">Desa Cinta Statistik</p>
+                                    <p class="text-muted mb-0">Kelurahan Cinta Statistik</p>
                                 </div>
                             </div>
                         </div>
@@ -407,10 +425,22 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 
     <!-- Produk Statistik Section -->
     <section class="product-section" id="produk">
+
         <div class="container">
             <h2 class="section-title text-center">Produk Statistik</h2>
-            <p class="text-center mb-5">Berikut adalah produk statistik yang tersedia untuk Desa Wajok Hilir
+            <p class="text-center mb-5">Berikut adalah produk statistik yang tersedia untuk Kelurahan Pulau Pedalaman
             </p>
+            <div class="product-card h-100 mb-4">
+                <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                    <div class="looker-embed-container card-body">
+                        <iframe
+                            src="https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF"
+                            frameborder="0" style="border:0" allowfullscreen
+                            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <!-- Monografi Desa -->
@@ -577,8 +607,8 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 mb-4">
-                    <h5 class="footer-title">Desa Wajok Hilir</h5>
-                    <p>Desa Cinta Statistik (Cantik) di Kecamatan Jongkat, Kabupaten Mempawah, Kalimantan
+                    <h5 class="footer-title">Kelurahan Pulau Pedalaman</h5>
+                    <p>Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah Timur, Kabupaten Mempawah, Kalimantan
                         Barat.</p>
                     <div class="social-links mt-4">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -610,7 +640,7 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             </div>
 
             <div class="text-center copyright">
-                <p>&copy; {{ date('Y') }} Desa Wajok Hilir - Cerdas Survey Management. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Kelurahan Pulau Pedalaman - Cerdas Survey Management. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -643,5 +673,27 @@ box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         });
     </script>
 </body>
+<!-- Looker Studio Modal -->
+<div class="modal fade" id="lookerStudioModal" tabindex="-1" aria-labelledby="lookerStudioModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lookerStudioModalLabel">Dashboard Interaktif - Kelurahan Pulau Pedalaman
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <!-- Responsive Embed Container -->
+                {{-- <div class="looker-embed-container">
+                    <iframe
+                        src="https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF"
+                        frameborder="0" style="border:0" allowfullscreen
+                        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+</div>
 
 </html>
