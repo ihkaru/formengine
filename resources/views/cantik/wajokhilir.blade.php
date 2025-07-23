@@ -51,7 +51,7 @@
 
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
-            url('{{ asset("images/pulau-pedalaman-header.jpg") }}');
+            url('{{ asset("images/pulau-pedalaman-header.webp") }}');
             background-size: cover;
             background-position: center;
             background-position: center;
@@ -366,7 +366,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="about-image">
-                        <img src="{{ asset('images/pulau-pedalaman-landscape.jpg') }}" alt="Kelurahan Pulau Pedalaman"
+                        <img src="{{ asset('images/pulau-pedalaman-landscape.webp') }}" alt="Kelurahan Pulau Pedalaman"
                             class="img-fluid">
                     </div>
                 </div>

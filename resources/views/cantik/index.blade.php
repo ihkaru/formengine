@@ -271,7 +271,7 @@
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
                         <a href="{{ 'https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF' }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{asset('images/pulaupedalaman.jpg')}}"
+                                <img src="{{asset('images/pulaupedalaman.webp')}}"
                                     class="card-img-top" alt="Kelurahan Pulau Pedalaman">
                                 <div class="desa-card-body d-flex flex-column">
                                     <h4 class="card-title">Kelurahan Pulau Pedalaman</h4>
@@ -292,7 +292,7 @@
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                         <a href="{{ 'https://lookerstudio.google.com/embed/reporting/73d56679-cac8-4dd5-9f6a-349c94e75ac8/page/yprPF' }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{asset('images/sejegi.jpg')}}" class="card-img-top" alt="Desa Sejegi">
+                                <img src="{{asset('images/sejegi.webp')}}" class="card-img-top" alt="Desa Sejegi">
                                 <div class="desa-card-body d-flex flex-column">
                                     <h4 class="card-title">Desa Sejegi</h4>
                                     <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
@@ -311,7 +311,7 @@
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <a href="/" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{asset('images/wajokhilir.jpg')}}" class="card-img-top" alt="Desa Wajok Hilir">
+                                <img src="{{asset('images/wajokhilir.webp')}}" class="card-img-top" alt="Desa Wajok Hilir">
                                 <div class="desa-card-body d-flex flex-column">
                                     <h4 class="card-title">Desa Wajok Hilir</h4>
                                     <p class="card-text text-muted">Kecamatan Jongkat</p>
@@ -346,7 +346,7 @@
                             mudah diimplementasikan.</p>
                     </div>
                     <div class="col-lg-6" data-aos="fade-left">
-                        <img src="https://img.freepik.com/free-vector/data-points-concept-illustration_114360-2240.jpg?w=826&t=st=1721013406~exp=1721014006~hmac=2e848419f12d8a141b212f45ecb71f9743a413d9692994f31c2386e680d0d80d"
+                        <img src="https://img.freepik.com/free-vector/data-points-concept-illustration_114360-2240.webp?w=826&t=st=1721013406~exp=1721014006~hmac=2e848419f12d8a141b212f45ecb71f9743a413d9692994f31c2386e680d0d80d"
                             alt="Ilustrasi Data" class="img-fluid rounded">
                     </div>
                 </div>

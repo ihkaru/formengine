@@ -49,25 +49,21 @@
             transform: translateY(-2px);
         }
 
-        /* ============================================== */
-        /*          PERUBAHAN CSS UNTUK HERO SECTION      */
-        /* ============================================== */
         .hero-section {
-            background: url({{ asset('image/sejegi.jpg') }});
+            /* Pastikan path ini benar: public/images/sejegi.webp */
+            background-image: url({{ asset('images/sejegi.webp') }});
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            /* Kita tidak menggunakan background-attachment: fixed agar bisa dikontrol oleh JS */
             color: white;
             text-align: center;
             position: relative;
-            /* Menggunakan flexbox untuk vertical centering */
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            /* Tinggi minimal seukuran layar */
             padding: 60px 0;
-            /* Padding tambahan untuk layar kecil */
         }
 
         .hero-overlay {
@@ -99,14 +95,10 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        /* ================================================== */
-        /*          CSS BARU UNTUK ANIMASI PER KATA           */
-        /* ================================================== */
         .word-wrapper {
             display: inline-block;
             overflow: hidden;
             vertical-align: bottom;
-            /* Mencegah sedikit 'lompatan' */
         }
 
         .word {
@@ -120,8 +112,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* Akhir dari CSS Animasi */
 
         .btn-primary {
             background-color: var(--accent-color);
@@ -166,7 +156,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* Styling untuk section dokumentasi baru */
         .gallery-item {
             position: relative;
             overflow: hidden;
@@ -449,7 +438,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="about-image">
-                        <img src="{{ asset('image/sejegi.jpg') }}" alt="Desa Sejegi"
+                        <img src="{{ asset('image/sejegi.webp') }}" alt="Desa Sejegi"
                             class="img-fluid">
                     </div>
                 </div>
@@ -517,19 +506,19 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
                     <div class="gallery-item">
-                        <img src="{{ asset('images/dokumentasi/lapangan-1.jpg') }}" alt="Dokumentasi Lapangan 1">
+                        <img src="{{ asset('images/dokumentasi/lapangan-1.webp') }}" alt="Dokumentasi Lapangan 1">
                         <div class="gallery-caption">Pendataan Rumah Tangga</div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <div class="gallery-item">
-                        <img src="{{ asset('images/dokumentasi/lapangan-2.jpg') }}" alt="Dokumentasi Lapangan 2">
+                        <img src="{{ asset('images/dokumentasi/lapangan-2.webp') }}" alt="Dokumentasi Lapangan 2">
                         <div class="gallery-caption">Wawancara dengan Warga</div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                     <div class="gallery-item">
-                        <img src="{{ asset('images/dokumentasi/lapangan-3.jpg') }}" alt="Dokumentasi Lapangan 3">
+                        <img src="{{ asset('images/dokumentasi/lapangan-3.webp') }}" alt="Dokumentasi Lapangan 3">
                         <div class="gallery-caption">Koordinasi dengan Aparatur Desa</div>
                     </div>
                 </div>
@@ -790,6 +779,19 @@
                     });
 
                     textEl.innerHTML = newContent.trim();
+                });
+
+                // ============================================== //
+                //      SCRIPT BARU UNTUK EFEK PARALLAX           //
+                // ============================================== //
+                const heroSection = document.querySelector('.hero-section');
+                window.addEventListener('scroll', function() {
+                    // Ambil posisi scroll vertikal saat ini
+                    const scrollPosition = window.pageYOffset;
+
+                    // Atur posisi background.
+                    // Angka 0.5 menentukan kecepatan parallax. Anda bisa mengubahnya (misal: 0.3, 0.7, dll)
+                    heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
                 });
 
                 // Script untuk tombol tahun produk (tidak berubah)
