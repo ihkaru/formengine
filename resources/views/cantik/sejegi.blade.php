@@ -438,7 +438,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="about-image">
-                        <img src="{{ asset('image/sejegi.webp') }}" alt="Desa Sejegi"
+                        <img src="{{ asset('images/sejegi.webp') }}" alt="Desa Sejegi"
                             class="img-fluid">
                     </div>
                 </div>
