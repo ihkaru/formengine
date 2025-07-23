@@ -460,7 +460,7 @@
                                 <i class="fas fa-users text-primary me-3" style="font-size: 2rem;"></i>
                                 <div>
                                     <h5 class="mb-1">Jumlah Penduduk</h5>
-                                    <p class="text-muted mb-0">3.245 jiwa (2023)</p>
+                                    <p class="text-muted mb-0">2307 jiwa (per 24 Juli 2025)</p>
                                 </div>
                             </div>
                         </div>
@@ -468,8 +468,8 @@
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-home text-primary me-3" style="font-size: 2rem;"></i>
                                 <div>
-                                    <h5 class="mb-1">Jumlah Rumah Tangga</h5>
-                                    <p class="text-muted mb-0">876 rumah tangga</p>
+                                    <h5 class="mb-1">Jumlah Rumah Tempat Tinggal</h5>
+                                    <p class="text-muted mb-0">573 rumah (per 24 Juli 2025)</p>
                                 </div>
                             </div>
                         </div>
@@ -478,7 +478,7 @@
                                 <i class="fas fa-map-marked-alt text-primary me-3" style="font-size: 2rem;"></i>
                                 <div>
                                     <h5 class="mb-1">Luas Wilayah</h5>
-                                    <p class="text-muted mb-0">10,5 km<sup>2</sup></p>
+                                    <p class="text-muted mb-0">2992 Ha</p>
                                 </div>
                             </div>
                         </div>
