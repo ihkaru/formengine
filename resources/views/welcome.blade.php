@@ -398,46 +398,71 @@
             <p class="text-center mb-5">Program Desa/Kelurahan Cantik (Cinta Statistik) adalah inisiatif untuk
                 meningkatkan kesadaran statistik di tingkat desa/kelurahan. Berikut adalah desa yang sudah tergabung:
             </p>
-
             <div class="row">
-                <div class="col-md-6 mx-auto mb-4">
-                    <a href="{{ route('cantik.pedalaman') }}" class="text-decoration-none">
-                        <div class="desa-card" data-aos="zoom-in" data-aos-duration="1000">
-                            <img src="{{ asset('images/pulau-pedalaman.jpg') }}" class="card-img-top"
-                                alt="Kelurahan Pulau Pedalaman">
-                            <div class="desa-card-body">
+                <!-- Card Kelurahan Pulau Pedalaman -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
+                    <a href="{{ 'https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF' }}"
+                        class="desa-card-link">
+                        <div class="desa-card">
+                            <img src="{{asset('image/pulaupedalaman.jpg')}}" class="card-img-top" alt="Kelurahan Pulau Pedalaman">
+                            <div class="desa-card-body d-flex flex-column">
                                 <h4 class="card-title">Kelurahan Pulau Pedalaman</h4>
-                                <p class="card-text">Kecamatan Mempawah Timur, Kabupaten Mempawah</p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="badge bg-success">Aktif</span>
-                                    <button class="btn btn-primary btn-sm">
-                                        <i class="fas fa-arrow-right me-1"></i> Lihat Detail
-                                    </button>
+                                <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
+                                <div class="mt-auto pt-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-success">Binaan 2025</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i
+                                                class="fas fa-arrow-right ms-1"></i></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
 
-                <!-- Space untuk desa cantik lainnya -->
-                <!-- <div class="col-md-4 mb-4">
-                    <div class="desa-card" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
-                        <img src="{{ asset('images/desa-contoh.jpg') }}" class="card-img-top" alt="Desa Contoh">
-                        <div class="desa-card-body">
-                            <h4 class="card-title">Desa Contoh</h4>
-                            <p class="card-text">Kecamatan X, Kabupaten Y</p>
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <span class="badge bg-secondary">Segera Hadir</span>
-                                <button class="btn btn-outline-primary btn-sm" disabled>
-                                    <i class="fas fa-arrow-right me-1"></i> Lihat Detail
-                                </button>
+                <!-- Card Desa/Kelurahan Sejegi -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="{{ 'https://lookerstudio.google.com/embed/reporting/73d56679-cac8-4dd5-9f6a-349c94e75ac8/page/yprPF' }}"
+                        class="desa-card-link">
+                        <div class="desa-card">
+                            <img src="{{asset('image/sejegi.jpg')}}" class="card-img-top" alt="Desa Sejegi">
+                            <div class="desa-card-body d-flex flex-column">
+                                <h4 class="card-title">Desa Sejegi</h4>
+                                <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
+                                <div class="mt-auto pt-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-warning text-dark">Binaan 2025</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i
+                                                class="fas fa-arrow-right ms-1"></i></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div> -->
+                    </a>
+                </div>
+                <!-- Card Desa/Kelurahan Wajok Hilir -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <a href="/" class="desa-card-link">
+                        <div class="desa-card">
+                            <img src="{{asset('image/wajokhilir.jpg')}}" class="card-img-top" alt="Desa Wajok Hilir">
+                            <div class="desa-card-body d-flex flex-column">
+                                <h4 class="card-title">Desa Wajok Hilir</h4>
+                                <p class="card-text text-muted">Kecamatan Jongkat</p>
+                                <div class="mt-auto pt-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-primary">Binaan 2024</span>
+                                        {{-- <span class="text-primary fw-bold">Lihat Detail <i
+                                                class="fas fa-arrow-right ms-1"></i></span> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- Kontak Section -->
     <section class="py-5" id="kontak">
