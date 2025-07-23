@@ -447,10 +447,10 @@
                 <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
                     <h2 class="section-title">Tentang Desa Sejegi</h2>
                     <p>Desa Sejegi terletak di Kecamatan Mempawah Timur, Kabupaten Mempawah, Provinsi
-                        Kalimantan Barat. Desa ini merupakan salah satu desa/Desa yang terpilih dalam program
-                        Desa/Desa Cinta Statistik (Cantik).</p>
+                        Kalimantan Barat. Desa ini merupakan salah satu Desa/Kelurahan yang terpilih dalam program
+                        Desa/Kelurahan Cinta Statistik (Cantik).</p>
 
-                    <p>Program Desa/Desa Cinta Statistik bertujuan untuk meningkatkan kesadaran masyarakat akan
+                    <p>Program Desa/Kelurahan Cinta Statistik bertujuan untuk meningkatkan kesadaran masyarakat akan
                         pentingnya data statistik dalam pengambilan keputusan dan perencanaan pembangunan di tingkat
                         desa/kelurahan.</p>
 
