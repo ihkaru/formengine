@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelurahan Pulau Pedalaman - Kelurahan Cinta Statistik</title>
+    <title>Kelurahan Pedalaman - Desa Cinta Statistik</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome untuk icons -->
@@ -50,265 +50,335 @@
         }
 
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
-            url('{{ asset("images/pulau-pedalaman-header.webp") }}');
-            background-size: cover;
-            background-position: center;
-background-position: center;
-color: white;
-padding: 150px 0;
-text-align: center;
-position: relative;
-}
+            background-image: url({{ asset('images/pulaupedalaman.webp')}});
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        text-align: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 60px 0;
+        overflow: hidden;
+        /* Mencegah scrollbar horizontal karena parallax */
+        }
 
-.hero-overlay {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(135deg, rgba(46, 80, 144, 0.8) 0%, rgba(76, 175, 80, 0.6) 100%);
-z-index: 1;
-}
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(46, 80, 144, 0.8) 0%, rgba(76, 175, 80, 0.6) 100%);
+            z-index: 1;
+        }
 
-.hero-content {
-position: relative;
-z-index: 2;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
 
-.hero-title {
-font-size: 3.5rem;
-font-weight: 800;
-margin-bottom: 20px;
-text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-.hero-subtitle {
-font-size: 1.5rem;
-margin-bottom: 30px;
-opacity: 0.9;
-text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
 
-.btn-primary {
-background-color: var(--accent-color);
-border-color: var(--accent-color);
-padding: 10px 25px;
-font-weight: 600;
-border-radius: 50px;
-transition: all 0.3s;
-}
+        .word-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
 
-.btn-primary:hover {
-background-color: #e08600;
-border-color: #e08600;
-transform: translateY(-3px);
-box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
+        .word {
+            display: inline-block;
+            transform: translateY(110%);
+            animation: slide-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
 
-.section-title {
-position: relative;
-margin-bottom: 50px;
-font-weight: 700;
-color: var(--primary-color);
-}
+        @keyframes slide-up {
+            to {
+                transform: translateY(0);
+            }
+        }
 
-.section-title::after {
-content: '';
-display: block;
-width: 70px;
-height: 4px;
-background-color: var(--accent-color);
-margin-top: 15px;
-}
+        .btn-primary {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            padding: 10px 25px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
 
-.section-title.text-center::after {
-margin-left: auto;
-margin-right: auto;
-}
+        .btn-primary:hover {
+            background-color: #e08600;
+            border-color: #e08600;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
-.about-image {
-border-radius: 10px;
-overflow: hidden;
-box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
 
-.feature-card {
-background-color: white;
-border-radius: 15px;
-padding: 30px;
-margin-bottom: 30px;
-transition: all 0.3s ease;
-border: none;
-box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-height: 100%;
-}
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin-top: 15px;
+        }
 
-.feature-card:hover {
-transform: translateY(-10px);
-box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
+        .section-title.text-center::after {
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.feature-icon {
-margin-bottom: 25px;
-}
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
 
-.feature-icon i {
-font-size: 3rem;
-color: var(--accent-color);
-background: rgba(255, 152, 0, 0.1);
-width: 80px;
-height: 80px;
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 50%;
-margin-bottom: 20px;
-}
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 280px;
+            background-color: #fff;
+        }
 
-.feature-title {
-font-weight: 700;
-margin-bottom: 15px;
-color: var(--primary-color);
-}
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
 
-.product-section {
-background-color: #f8f9fa;
-padding: 80px 0;
-}
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
 
-.product-card {
-background-color: white;
-border-radius: 15px;
-overflow: hidden;
-box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-transition: all 0.3s ease;
-border: none;
-height: 100%;
-}
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
 
-.product-card:hover {
-transform: translateY(-10px);
-box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            color: white;
+            padding: 30px 15px 15px 15px;
+            font-weight: 600;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
 
-.product-icon {
-font-size: 2.5rem;
-color: var(--primary-color);
-margin-bottom: 20px;
-}
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.product-title {
-font-weight: 700;
-margin-bottom: 15px;
-color: var(--primary-color);
-}
+        /* Kartu Manfaat (menggunakan gaya yang sudah ada) */
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
 
-.product-btn {
-padding: 8px 20px;
-font-size: 0.9rem;
-font-weight: 600;
-border-radius: 50px;
-}
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
 
-.year-select {
-margin-bottom: 30px;
-}
+        .feature-icon {
+            margin-bottom: 25px;
+        }
 
-.year-select .btn {
-margin-right: 10px;
-margin-bottom: 10px;
-border-radius: 50px;
-font-weight: 600;
-padding: 8px 20px;
-background-color: white;
-color: var(--primary-color);
-border: 2px solid var(--primary-color);
-transition: all 0.3s;
-}
+        .feature-icon i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            background: rgba(255, 152, 0, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
 
-.year-select .btn:hover,
-.year-select .btn.active {
-background-color: var(--primary-color);
-color: white;
-}
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
 
-.footer {
-background-color: var(--primary-color);
-color: white;
-padding: 60px 0 30px;
-}
+        .product-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
 
-.footer-title {
-font-weight: 700;
-margin-bottom: 25px;
-}
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: none;
+            height: 100%;
+        }
 
-.footer-links {
-list-style: none;
-padding: 0;
-}
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
 
-.footer-links li {
-margin-bottom: 10px;
-}
+        .product-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
 
-.footer-links a {
-color: rgba(255,255,255,0.8);
-text-decoration: none;
-transition: all 0.3s;
-}
+        .product-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
 
-.footer-links a:hover {
-color: white;
-padding-left: 5px;
-}
+        .product-btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 50px;
+        }
 
-.social-links {
-font-size: 1.5rem;
-}
+        .year-select {
+            margin-bottom: 30px;
+        }
 
-.social-links a {
-color: white;
-margin-right: 15px;
-transition: all 0.3s;
-}
+        .year-select .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            padding: 8px 20px;
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s;
+        }
 
-.social-links a:hover {
-color: var(--accent-color);
-transform: translateY(-3px);
-}
+        .year-select .btn:hover,
+        .year-select .btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
 
-.copyright {
-margin-top: 30px;
-padding-top: 20px;
-border-top: 1px solid rgba(255,255,255,0.1);
-}
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
 
-.sop-diagram {
-background-color: white;
-border-radius: 15px;
-padding: 30px;
-box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
 
-.looker-embed-container {
-position: relative;
-overflow: hidden;
-width: 100%;
-padding-top: 140%; /* Aspect Ratio (height/width * 100). Sesuaikan jika perlu */
-}
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
 
-.looker-embed-container iframe {
-position: absolute;
-top: 0;
-left: 0;
-bottom: 0;
-right: 0;
-width: 100%;
-height: 100%;
-}
-</style>
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin-right: 15px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sop-diagram {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .looker-embed-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 140%;
+            /* Aspect Ratio (height/width * 100). Sesuaikan jika perlu */
+        }
+
+        .looker-embed-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -317,7 +387,7 @@ height: 100%;
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}">
                 <i class="fas fa-map-marked-alt me-2"></i>
-                Kelurahan Pulau Pedalaman
+                Kelurahan Pedalaman
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -325,10 +395,16 @@ height: 100%;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#beranda">Beranda</a>
+                        <a class="nav-link" href="{{route('cantik.index')}}">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tentang">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#manfaat">Manfaat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dokumentasi">Dokumentasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#produk">Produk Statistik</a>
@@ -348,10 +424,10 @@ height: 100%;
         <div class="hero-overlay"></div>
         <div class="container hero-content">
             <div class="row justify-content-center">
-                <div class="col-lg-10" data-aos="fade-up" data-aos-duration="1000">
-                    <h1 class="hero-title">Kelurahan Pulau Pedalaman</h1>
-                    <p class="hero-subtitle">Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah Timur</p>
-                    <a href="#produk" class="btn btn-primary btn-lg">
+                <div class="col-lg-10">
+                    <h1 class="hero-title" data-animate-text>Kelurahan Pedalaman</h1>
+                    <p class="hero-subtitle" data-animate-text>Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah Timur</p>
+                    <a href="#produk" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="1000">
                         <i class="fas fa-chart-bar me-2"></i>Lihat Produk Statistik
                     </a>
                 </div>
@@ -365,14 +441,13 @@ height: 100%;
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="about-image">
-                        <img src="{{ asset('images/pulau-pedalaman-landscape.webp') }}" alt="Kelurahan Pulau Pedalaman"
-                            class="img-fluid">
+                        <img src="{{ asset('images/pulaupedalaman.webp') }}" alt="Kelurahan Pedalaman" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
-                    <h2 class="section-title">Tentang Kelurahan Pulau Pedalaman</h2>
-                    <p>Kelurahan Pulau Pedalaman terletak di Kecamatan Mempawah Timur, Kabupaten Mempawah, Provinsi
-                        Kalimantan Barat. Kelurahan ini merupakan salah satu desa/kelurahan yang terpilih dalam program
+                    <h2 class="section-title">Tentang Kelurahan Pedalaman</h2>
+                    <p>Kelurahan Pedalaman terletak di Kecamatan Mempawah Timur, Kabupaten Mempawah, Provinsi
+                        Kalimantan Barat. Desa ini merupakan salah satu Desa/Kelurahan yang terpilih dalam program
                         Desa/Kelurahan Cinta Statistik (Cantik).</p>
 
                     <p>Program Desa/Kelurahan Cinta Statistik bertujuan untuk meningkatkan kesadaran masyarakat akan
@@ -385,7 +460,7 @@ height: 100%;
                                 <i class="fas fa-users text-primary me-3" style="font-size: 2rem;"></i>
                                 <div>
                                     <h5 class="mb-1">Jumlah Penduduk</h5>
-                                    <p class="text-muted mb-0">3.245 jiwa (2023)</p>
+                                    <p class="text-muted mb-0">560 jiwa (per 24 Juli 2025)</p>
                                 </div>
                             </div>
                         </div>
@@ -393,8 +468,8 @@ height: 100%;
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-home text-primary me-3" style="font-size: 2rem;"></i>
                                 <div>
-                                    <h5 class="mb-1">Jumlah Rumah Tangga</h5>
-                                    <p class="text-muted mb-0">876 rumah tangga</p>
+                                    <h5 class="mb-1">Jumlah Rumah Tempat Tinggal</h5>
+                                    <p class="text-muted mb-0">159 rumah (per 24 Juli 2025)</p>
                                 </div>
                             </div>
                         </div>
@@ -403,7 +478,7 @@ height: 100%;
                                 <i class="fas fa-map-marked-alt text-primary me-3" style="font-size: 2rem;"></i>
                                 <div>
                                     <h5 class="mb-1">Luas Wilayah</h5>
-                                    <p class="text-muted mb-0">10,5 km<sup>2</sup></p>
+                                    <p class="text-muted mb-0">80 Ha</p>
                                 </div>
                             </div>
                         </div>
@@ -412,7 +487,7 @@ height: 100%;
                                 <i class="fas fa-trophy text-primary me-3" style="font-size: 2rem;"></i>
                                 <div>
                                     <h5 class="mb-1">Status</h5>
-                                    <p class="text-muted mb-0">Kelurahan Cinta Statistik</p>
+                                    <p class="text-muted mb-0">Desa Cinta Statistik</p>
                                 </div>
                             </div>
                         </div>
@@ -422,17 +497,127 @@ height: 100%;
         </div>
     </section>
 
+    <section id="manfaat" class="py-5" style="background-color: #ffffff;">
+        <div class="container py-5">
+            <h2 class="section-title text-center">Manfaat Program Desa/Kelurahan Cantik</h2>
+            <p class="text-center text-muted mb-5" style="font-size: 1.1rem;">
+                Mengubah Data Menjadi Kesejahteraan, Dimulai dari Desa dan Kelurahan Kita.
+            </p>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h5 class="feature-title">Kebijakan Tepat Sasaran</h5>
+                        <p class="text-muted">Dengan data hingga level individu dan koordinat rumah, bantuan sosial dan
+                            program pembangunan dapat disalurkan secara akurat kepada warga yang benar-benar
+                            membutuhkan.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h5 class="feature-title">Kemandirian Data Desa/Kelurahan</h5>
+                        <p class="text-muted">Desa/Kelurahan tidak lagi hanya menjadi objek pendataan, tetapi menjadi subjek yang
+                            mampu mengelola, menganalisis, dan menyajikan datanya sendiri untuk kepentingan lokal.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5 class="feature-title">Perencanaan Berbasis Bukti</h5>
+                        <p class="text-muted">Setiap rencana pembangunan kelurahan (Musrenbangkel) didasarkan pada data
+                            faktual dan terkini, sehingga lebih efektif dalam menjawab kebutuhan nyata masyarakat.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-handshake-angle"></i>
+                        </div>
+                        <h5 class="feature-title">Transparansi & Kolaborasi</h5>
+                        <p class="text-muted">Ketersediaan data yang valid meningkatkan kepercayaan publik dan membuka
+                            peluang kerjasama dengan pihak eksternal seperti pemerintah, akademisi, dan swasta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!--          SECTION DOKUMENTASI BARU MULAI        -->
+    <!-- ============================================== -->
+    <section id="dokumentasi" class="py-5" style="background-color: var(--light-bg);">
+        <div class="container py-5">
+            <h2 class="section-title text-center">Dokumentasi Kegiatan</h2>
+            <p class="text-center mb-5">Berikut adalah beberapa foto dari proses pelatihan dan pengumpulan data di
+                lapangan oleh tim Kelurahan Cantik Pulau Pedalaman.</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="gallery-item">
+                        <img src="{{ asset('images/pedalaman-pelatihan-1.webp') }}" alt="Dokumentasi Lapangan 1">
+                        <div class="gallery-caption">Pelatihan Agen Statistik bersama BPS Kabupaten Mempawah</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="{{ asset('images/pedalaman-lapangan-1.webp') }}" alt="Dokumentasi Lapangan 2">
+                        <div class="gallery-caption">Wawancara dengan responden</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="gallery-item">
+                        <img src="{{ asset('images/pedalaman-pelatihan-2.webp') }}" alt="Dokumentasi Lapangan 3">
+                        <div class="gallery-caption">Pembinaan Kelurahan Cinta Statistik bersama Masyarakat Kelurahan</div>
+                    </div>
+                </div>
+                <!-- Anda bisa menambahkan lebih banyak foto di sini dengan format yang sama -->
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="gallery-item">
+                        <img src="{{ asset('images/pedalaman-app-1.webp') }}" alt="Dokumentasi Lapangan 3">
+                        <div class="gallery-caption">Titik Koordinat Rumah Tempat Tinggal Masyarakat</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="gallery-item">
+                        <img src="{{ asset('images/pedalaman-lapangan-3.webp') }}" alt="Dokumentasi Lapangan 3">
+                        <div class="gallery-caption">Penggunaan Aplikasi Pendataan dengan <i>Smartphone</i></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="gallery-item">
+                        <img src="{{ asset('images/pedalaman-lapangan-4.webp') }}" alt="Dokumentasi Lapangan 3">
+                        <div class="gallery-caption">Wawancara bersama Responden</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================== -->
+    <!--          SECTION DOKUMENTASI BARU SELESAI      -->
+    <!-- ============================================== -->
+
+
     <!-- Produk Statistik Section -->
     <section class="product-section" id="produk">
 
         <div class="container">
             <h2 class="section-title text-center">Produk Statistik</h2>
-            <p class="text-center mb-5">Berikut adalah produk statistik yang tersedia untuk Kelurahan Pulau Pedalaman
+            <p class="text-center mb-5">Berikut adalah produk statistik yang tersedia untuk Kelurahan Pedalaman
             </p>
             <div class="product-card h-100 mb-4">
                 <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                     <div class="looker-embed-container card-body">
-                        <iframe src="https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF"
+                        <iframe
+                            src="https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF"
                             frameborder="0" style="border:0" allowfullscreen
                             sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
                         </iframe>
@@ -440,7 +625,12 @@ height: 100%;
                 </div>
             </div>
 
+        </div>
+    </section>
+    <section class="product-section">
+        <div class="container">
             <div class="row">
+                <h2 class="section-title text-center">Produk Statistik yang akan Datang</h2>
                 <!-- Monografi Desa -->
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
                     <div class="product-card h-100">
@@ -449,7 +639,7 @@ height: 100%;
                                 <i class="fas fa-book"></i>
                             </div>
                             <h4 class="product-title">Monografi Desa</h4>
-                            <p class="card-text">Gambaran umum kelurahan yang mencakup data kependudukan, ekonomi,
+                            <p class="card-text">Gambaran umum Desa yang mencakup data kependudukan, ekonomi,
                                 sosial, dan infrastruktur.</p>
 
                             <div class="year-select">
@@ -509,7 +699,7 @@ height: 100%;
                                 <i class="fas fa-table"></i>
                             </div>
                             <h4 class="product-title">Tabel Data</h4>
-                            <p class="card-text">Kumpulan tabel data statistik kelurahan yang dapat diakses dan diunduh
+                            <p class="card-text">Kumpulan tabel data statistik Desa yang dapat diakses dan diunduh
                                 dalam format Excel.</p>
 
                             <div class="year-select">
@@ -571,7 +761,7 @@ height: 100%;
                                         <i class="fas fa-clipboard-list"></i>
                                     </div>
                                     <h4 class="product-title">SOP Permintaan Data</h4>
-                                    <p>Standar Operasional Prosedur untuk permintaan data statistik Kelurahan Pulau
+                                    <p>Standar Operasional Prosedur untuk permintaan data statistik Desa Pulau
                                         Pedalaman.</p>
 
                                     <div class="year-select">
@@ -605,8 +795,8 @@ height: 100%;
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 mb-4">
-                    <h5 class="footer-title">Kelurahan Pulau Pedalaman</h5>
-                    <p>Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah Timur, Kabupaten Mempawah, Kalimantan
+                    <h5 class="footer-title">Kelurahan Pedalaman</h5>
+                    <p>Desa Cinta Statistik (Cantik) di Kecamatan Mempawah Timur, Kabupaten Mempawah, Kalimantan
                         Barat.</p>
                     <div class="social-links mt-4">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -621,6 +811,7 @@ height: 100%;
                     <ul class="footer-links">
                         <li><a href="#beranda">Beranda</a></li>
                         <li><a href="#tentang">Tentang</a></li>
+                        <li><a href="#dokumentasi">Dokumentasi</a></li>
                         <li><a href="#produk">Produk Statistik</a></li>
                         <li><a href="{{ route('home') }}">Kembali ke Cerdas-SM</a></li>
                     </ul>
@@ -629,7 +820,7 @@ height: 100%;
                 <div class="col-lg-4 col-md-6 mb-4">
                     <h5 class="footer-title">Kontak</h5>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Kelurahan No. 45, Pulau Pedalaman, Mempawah
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Desa No. 45, Pulau Pedalaman, Mempawah
                             Timur</li>
                         <li><i class="fas fa-phone-alt me-2"></i> +62 561 987654</li>
                         <li><i class="fas fa-envelope me-2"></i> info@pulaupedalaman.desa.id</li>
@@ -638,7 +829,7 @@ height: 100%;
             </div>
 
             <div class="text-center copyright">
-                <p>&copy; {{ date('Y') }} Kelurahan Pulau Pedalaman - Cerdas Survey Management. All rights reserved.</p>
+                <p>© {{ date('Y') }} Kelurahan Pedalaman - Cerdas Survey Management. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -648,27 +839,52 @@ height: 100%;
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            once: true
-        });
-
-        // Tahun selection for products
-        document.querySelectorAll('.year-select .btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from siblings
-                this.parentNode.querySelectorAll('.btn').forEach(btn => {
-                    btn.classList.remove('active');
+        document.addEventListener("DOMContentLoaded", function() {
+                // Inisialisasi AOS
+                AOS.init({
+                    once: true,
+                    duration: 800
                 });
 
-                // Add active class to clicked button
-                this.classList.add('active');
+                // Script untuk animasi teks per kata
+                const textElements = document.querySelectorAll('[data-animate-text]');
+                textElements.forEach(textEl => {
+                    const text = textEl.textContent;
+                    const words = text.split(' ');
+                    let newContent = '';
 
-                // Here you would typically fetch data for the selected year
-                // For demo purposes, we'll just log the selected year
-                console.log('Selected year:', this.textContent);
+                    words.forEach((word, index) => {
+                        const wordHtml = `<span class="word-wrapper"><span class="word" style="animation-delay: ${index * 0.08}s">${word}</span></span>`;
+                        newContent += wordHtml + ' ';
+                    });
+
+                    textEl.innerHTML = newContent.trim();
+                });
+
+                // ============================================== //
+                //      SCRIPT BARU UNTUK EFEK PARALLAX           //
+                // ============================================== //
+                const heroSection = document.querySelector('.hero-section');
+                window.addEventListener('scroll', function() {
+                    // Ambil posisi scroll vertikal saat ini
+                    const scrollPosition = window.pageYOffset;
+
+                    // Atur posisi background.
+                    // Angka 0.5 menentukan kecepatan parallax. Anda bisa mengubahnya (misal: 0.3, 0.7, dll)
+                    heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+                });
+
+                // Script untuk tombol tahun produk (tidak berubah)
+                document.querySelectorAll('.year-select .btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        this.parentNode.querySelectorAll('.btn').forEach(btn => {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        console.log('Selected year:', this.textContent);
+                    });
+                });
             });
-        });
     </script>
 </body>
 <!-- Looker Studio Modal -->
@@ -677,7 +893,7 @@ height: 100%;
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="lookerStudioModalLabel">Dashboard Interaktif - Kelurahan Pulau Pedalaman
+                <h5 class="modal-title" id="lookerStudioModalLabel">Dashboard Interaktif - Kelurahan Pedalaman
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -693,4 +909,5 @@ height: 100%;
         </div>
     </div>
 </div>
+
 </html>
