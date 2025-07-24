@@ -425,7 +425,7 @@
                     <a href="{{ 'https://lookerstudio.google.com/embed/reporting/73d56679-cac8-4dd5-9f6a-349c94e75ac8/page/yprPF' }}"
                         class="desa-card-link">
                         <div class="desa-card">
-                            <img src="{{asset('image/sejegi.jpg')}}" class="card-img-top" alt="Desa Sejegi">
+                            <img src="{{asset('images/sejegi.webp')}}" class="card-img-top" alt="Desa Sejegi">
                             <div class="desa-card-body d-flex flex-column">
                                 <h4 class="card-title">Desa Sejegi</h4>
                                 <p class="card-text text-muted">Kecamatan Mempawah Timur</p>

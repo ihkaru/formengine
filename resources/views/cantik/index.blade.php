@@ -269,7 +269,7 @@
                 <div class="row">
                     <!-- Card Kelurahan Pulau Pedalaman -->
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
-                        <a href="{{ 'https://lookerstudio.google.com/embed/reporting/cc546ae1-d17a-428a-95e4-6940228a4c76/page/yprPF' }}" class="desa-card-link">
+                        <a href="{{ route('cantik.pedalaman') }}" class="desa-card-link">
                             <div class="desa-card">
                                 <img src="{{asset('images/pulaupedalaman.webp')}}"
                                     class="card-img-top" alt="Kelurahan Pulau Pedalaman">
@@ -290,7 +290,7 @@
 
                     <!-- Card Desa/Kelurahan Sejegi -->
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <a href="{{ 'https://lookerstudio.google.com/embed/reporting/73d56679-cac8-4dd5-9f6a-349c94e75ac8/page/yprPF' }}" class="desa-card-link">
+                        <a href="{{ route('cantik.sejegi') }}" class="desa-card-link">
                             <div class="desa-card">
                                 <img src="{{asset('images/sejegi.webp')}}" class="card-img-top" alt="Desa Sejegi">
                                 <div class="desa-card-body d-flex flex-column">
