@@ -1,111 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perbandingan Desa di Kecamatan Jongkat 2023</title>
+    <!-- Impor library Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #0056b3;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e9ecef;
+        }
+        .chart-container {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-    <table border="1" cellpadding="5" cellspacing="0">
-        <tr>
-          <th>No</th>
-          <th>Risiko</th>
-          <th>Probabilitas</th>
-          <th>Dampak</th>
-          <th>Rencana Tindakan</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Kegagalan teknologi</td>
-          <td>Sedang</td>
-          <td>Tinggi</td>
-          <td>Beralih ke pencatatan manual sementara, lakukan perbaikan cepat, dan input ulang data ke sistem setelah diperbaiki.</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Resistensi masyarakat</td>
-          <td>Sedang</td>
-          <td>Tinggi</td>
-          <td>Intensifkan pendekatan personal, libatkan tokoh masyarakat untuk mediasi, dan jelaskan kembali manfaat program.</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Kualitas data tidak konsisten</td>
-          <td>Tinggi</td>
-          <td>Tinggi</td>
-          <td>Lakukan verifikasi ulang data yang tidak konsisten, berikan pelatihan tambahan kepada petugas, dan perbaiki panduan pendataan.</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Keterlambatan penyelesaian</td>
-          <td>Sedang</td>
-          <td>Sedang</td>
-          <td>Tambah jam kerja atau hari pendataan, mobilisasi tim cadangan, dan prioritaskan area yang belum selesai.</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Kebocoran/penyalahgunaan data</td>
-          <td>Rendah</td>
-          <td>Sangat Tinggi</td>
-          <td>Lakukan audit keamanan, batasi akses data, dan siapkan tim manajemen krisis untuk menangani dampak.</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>Kelelahan petugas</td>
-          <td>Tinggi</td>
-          <td>Sedang</td>
-          <td>Berikan istirahat tambahan, rotasi tugas, dan sediakan dukungan psikologis jika diperlukan.</td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>Kesalahan input data</td>
-          <td>Tinggi</td>
-          <td>Sedang</td>
-          <td>Lakukan pengecekan ulang data, implementasikan sistem verifikasi ganda, dan perbaiki data yang salah.</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>Kurangnya partisipasi warga</td>
-          <td>Sedang</td>
-          <td>Tinggi</td>
-          <td>Lakukan kunjungan ulang di luar jam kerja, berikan opsi wawancara via telepon, dan pertimbangkan insentif untuk partisipasi.</td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td>Perubahan mendadak kebijakan</td>
-          <td>Rendah</td>
-          <td>Tinggi</td>
-          <td>Adakan pertemuan darurat dengan stakeholder, sesuaikan rencana pendataan, dan komunikasikan perubahan kepada semua pihak.</td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td>Bencana alam/wabah penyakit</td>
-          <td>Rendah</td>
-          <td>Sangat Tinggi</td>
-          <td>Aktifkan protokol keselamatan, tunda pendataan jika diperlukan, dan siapkan opsi pendataan jarak jauh.</td>
-        </tr>
-        <tr>
-          <td>11</td>
-          <td>Masalah dalam pengembangan aplikasi</td>
-          <td>Sedang</td>
-          <td>Tinggi</td>
-          <td>Perpanjang fase pengembangan, sederhanakan fitur jika diperlukan, atau pertimbangkan menggunakan aplikasi yang sudah ada sebagai alternatif.</td>
-        </tr>
-        <tr>
-          <td>12</td>
-          <td>Penolakan penggunaan aplikasi oleh petugas</td>
-          <td>Sedang</td>
-          <td>Tinggi</td>
-          <td>Berikan pelatihan tambahan, sediakan panduan tertulis yang detail, dan pertimbangkan insentif khusus untuk penggunaan aplikasi.</td>
-        </tr>
-        <tr>
-          <td>13</td>
-          <td>Masalah konektivitas internet</td>
-          <td>Tinggi</td>
-          <td>Sedang</td>
-          <td>Sediakan opsi offline pada aplikasi, gunakan modem portabel, atau kembali ke pencatatan manual sementara.</td>
-        </tr>
-      </table>
+
+    <div class="container">
+        <h1>Dashboard Perbandingan Desa di Kecamatan Jongkat</h1>
+        <p style="text-align:center; font-style:italic;">Sumber Data: Kecamatan Jongkat dalam Angka 2024 (Data Tahun 2023)</p>
+
+        <h2>Tabel Data Statistik Desa</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Desa/Kelurahan</th>
+                    <th>Luas Total (km²)</th>
+                    <th>Jumlah Penduduk (Jiwa)</th>
+                    <th>Kepadatan Penduduk (per km²)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sungai Nipah</td>
+                    <td>12.00</td>
+                    <td>5.438</td>
+                    <td>453.32</td>
+                </tr>
+                <tr>
+                    <td>Jongkat</td>
+                    <td>43.39</td>
+                    <td>16.090</td>
+                    <td>370.82</td>
+                </tr>
+                <tr style="background-color: #d1ecf1; font-weight: bold;">
+                    <td>Wajok Hilir</td>
+                    <td>72.47</td>
+                    <td>11.455</td>
+                    <td>158.07</td>
+                </tr>
+                <tr>
+                    <td>Wajok Hulu</td>
+                    <td>127.84</td>
+                    <td>14.984</td>
+                    <td>117.21</td>
+                </tr>
+                <tr>
+                    <td>Peniti Luar</td>
+                    <td>35.23</td>
+                    <td>3.787</td>
+                    <td>107.49</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="chart-container">
+            <h2>Grafik Perbandingan Luas Wilayah</h2>
+            <canvas id="luasChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h2>Grafik Perbandingan Jumlah Penduduk</h2>
+            <canvas id="pendudukChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h2>Grafik Perbandingan Kepadatan Penduduk</h2>
+            <canvas id="kepadatanChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Data dari tabel
+        const desaData = {
+            labels: ['Sungai Nipah', 'Jongkat', 'Wajok Hilir', 'Wajok Hulu', 'Peniti Luar'],
+            luas: [12.00, 43.39, 72.47, 127.84, 35.23],
+            penduduk: [5438, 16090, 11455, 14984, 3787],
+            kepadatan: [453.32, 370.82, 158.07, 117.21, 107.49]
+        };
+
+        const highlightColor = 'rgba(255, 99, 132, 0.6)';
+        const defaultColor = 'rgba(54, 162, 235, 0.6)';
+
+        // Fungsi untuk membuat warna bar Wajok Hilir berbeda
+        function getBarColors(labels) {
+            return labels.map(label => label === 'Wajok Hilir' ? highlightColor : defaultColor);
+        }
+
+        // 1. Grafik Luas Wilayah
+        const ctxLuas = document.getElementById('luasChart').getContext('2d');
+        new Chart(ctxLuas, {
+            type: 'bar',
+            data: {
+                labels: desaData.labels,
+                datasets: [{
+                    label: 'Luas Wilayah (km²)',
+                    data: desaData.luas,
+                    backgroundColor: getBarColors(desaData.labels),
+                    borderColor: getBarColors(desaData.labels).map(color => color.replace('0.6', '1')),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw} km²`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. Grafik Jumlah Penduduk
+        const ctxPenduduk = document.getElementById('pendudukChart').getContext('2d');
+        new Chart(ctxPenduduk, {
+            type: 'bar',
+            data: {
+                labels: desaData.labels,
+                datasets: [{
+                    label: 'Jumlah Penduduk (Jiwa)',
+                    data: desaData.penduduk,
+                    backgroundColor: getBarColors(desaData.labels),
+                    borderColor: getBarColors(desaData.labels).map(color => color.replace('0.6', '1')),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                 plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw.toLocaleString('id-ID')} Jiwa`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. Grafik Kepadatan Penduduk
+        const ctxKepadatan = document.getElementById('kepadatanChart').getContext('2d');
+        new Chart(ctxKepadatan, {
+            type: 'bar',
+            data: {
+                labels: desaData.labels,
+                datasets: [{
+                    label: 'Kepadatan Penduduk (Jiwa/km²)',
+                    data: desaData.kepadatan,
+                    backgroundColor: getBarColors(desaData.labels),
+                    borderColor: getBarColors(desaData.labels).map(color => color.replace('0.6', '1')),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw} jiwa/km²`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>

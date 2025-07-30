@@ -241,6 +241,56 @@
             color: var(--primary-color);
         }
 
+        /* == BAGIAN BARU: Statistik Perbandingan == */
+        .stats-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+
+        .stats-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-table th,
+        .stats-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .stats-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .stats-table tr:hover {
+            background-color: #e9ecef;
+        }
+
+        .stats-table .highlight-row {
+            background-color: rgba(46, 80, 144, 0.1);
+            font-weight: bold;
+        }
+
+        .chart-container {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* == AKHIR BAGIAN BARU == */
+
         .product-section {
             background-color: #f8f9fa;
             padding: 80px 0;
@@ -404,7 +454,7 @@
                         <a class="nav-link" href="#manfaat">Manfaat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#dokumentasi">Dokumentasi</a>
+                        <a class="nav-link" href="#perbandingan">Statistik</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#produk">Produk Statistik</a>
@@ -488,7 +538,7 @@
         </div>
     </section>
 
-    <section id="manfaat" class="py-5" style="background-color: #ffffff;">
+    <section id="manfaat" class="py-5" style="background-color: var(--light-bg);">
         <div class="container py-5">
             <h2 class="section-title text-center">Manfaat Program Desa Cantik</h2>
             <p class="text-center text-muted mb-5" style="font-size: 1.1rem;">
@@ -543,10 +593,92 @@
     </section>
 
     <!-- ============================================== -->
+    <!--      BAGIAN BARU: PERBANDINGAN STATISTIK       -->
+    <!-- ============================================== -->
+    <section id="perbandingan" class="stats-section">
+        <div class="container">
+            <h2 class="section-title text-center">Perbandingan Statistik Desa</h2>
+            <p class="text-center text-muted mb-5" style="font-size: 1.1rem;">
+                Data perbandingan Desa Wajok Hilir dengan desa/kelurahan lain di Kecamatan Jongkat Tahun 2023.
+                <br><em>(Sumber: Kecamatan Jongkat dalam Angka 2024)</em>
+            </p>
+
+            <div class="stats-table mb-5" data-aos="fade-up">
+                <h4 class="text-center mb-4" style="color: var(--primary-color);">Tabel Data Statistik</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Desa/Kelurahan</th>
+                            <th>Luas Total (km²)</th>
+                            <th>Jumlah Penduduk (Jiwa)</th>
+                            <th>Kepadatan Penduduk (per km²)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sungai Nipah</td>
+                            <td>12.00</td>
+                            <td>5.438</td>
+                            <td>453.32</td>
+                        </tr>
+                        <tr>
+                            <td>Jongkat</td>
+                            <td>43.39</td>
+                            <td>16.090</td>
+                            <td>370.82</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>Wajok Hilir</td>
+                            <td>72.47</td>
+                            <td>11.455</td>
+                            <td>158.07</td>
+                        </tr>
+                        <tr>
+                            <td>Wajok Hulu</td>
+                            <td>127.84</td>
+                            <td>14.984</td>
+                            <td>117.21</td>
+                        </tr>
+                        <tr>
+                            <td>Peniti Luar</td>
+                            <td>35.23</td>
+                            <td>3.787</td>
+                            <td>107.49</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="chart-container">
+                        <h4 class="text-center mb-4" style="color: var(--primary-color);">Grafik Perbandingan Luas
+                            Wilayah</h4>
+                        <canvas id="luasChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="chart-container">
+                        <h4 class="text-center mb-4" style="color: var(--primary-color);">Grafik Jumlah Penduduk</h4>
+                        <canvas id="pendudukChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="chart-container">
+                        <h4 class="text-center mb-4" style="color: var(--primary-color);">Grafik Kepadatan Penduduk</h4>
+                        <canvas id="kepadatanChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================== -->
+    <!--          AKHIR BAGIAN BARU                     -->
+    <!-- ============================================== -->
 
 
 
-    <section class="product-section">
+    <section class="product-section" id="produk">
         <div class="container">
             <div class="row">
                 <h2 class="section-title text-center">Produk Statistik yang akan Datang</h2>
@@ -729,7 +861,7 @@
                     <ul class="footer-links">
                         <li><a href="#beranda">Beranda</a></li>
                         <li><a href="#tentang">Tentang</a></li>
-                        <li><a href="#dokumentasi">Dokumentasi</a></li>
+                        <li><a href="#perbandingan">Statistik</a></li>
                         <li><a href="#produk">Produk Statistik</a></li>
                         <li><a href="{{ route('home') }}">Kembali ke Cerdas-SM</a></li>
                     </ul>
@@ -756,6 +888,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
                 // Inisialisasi AOS
@@ -779,28 +914,151 @@
                     textEl.innerHTML = newContent.trim();
                 });
 
-                // ============================================== //
-                //      SCRIPT BARU UNTUK EFEK PARALLAX           //
-                // ============================================== //
+                // Script untuk efek parallax
                 const heroSection = document.querySelector('.hero-section');
                 window.addEventListener('scroll', function() {
-                    // Ambil posisi scroll vertikal saat ini
                     const scrollPosition = window.pageYOffset;
-
-                    // Atur posisi background.
-                    // Angka 0.5 menentukan kecepatan parallax. Anda bisa mengubahnya (misal: 0.3, 0.7, dll)
                     heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
                 });
 
-                // Script untuk tombol tahun produk (tidak berubah)
+                // Script untuk tombol tahun produk
                 document.querySelectorAll('.year-select .btn').forEach(button => {
                     button.addEventListener('click', function() {
                         this.parentNode.querySelectorAll('.btn').forEach(btn => {
                             btn.classList.remove('active');
                         });
                         this.classList.add('active');
-                        console.log('Selected year:', this.textContent);
                     });
+                });
+
+                // ============================================== //
+                //       SCRIPT BARU UNTUK GRAFIK STATISTIK       //
+                // ============================================== //
+                const desaData = {
+                    labels: ['Sungai Nipah', 'Jongkat', 'Wajok Hilir', 'Wajok Hulu', 'Peniti Luar'],
+                    luas: [12.00, 43.39, 72.47, 127.84, 35.23],
+                    penduduk: [5438, 16090, 11455, 14984, 3787],
+                    kepadatan: [453.32, 370.82, 158.07, 117.21, 107.49]
+                };
+
+                const highlightColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
+                const defaultColor = 'rgba(46, 80, 144, 0.7)'; // Warna biru primer dengan sedikit transparansi
+
+                function getBarColors(labels) {
+                    return labels.map(label => label === 'Wajok Hilir' ? highlightColor : defaultColor);
+                }
+
+                function getBorderColors(labels) {
+                     return labels.map(label => label === 'Wajok Hilir' ? highlightColor : defaultColor);
+                }
+
+                // 1. Grafik Luas Wilayah
+                const ctxLuas = document.getElementById('luasChart').getContext('2d');
+                new Chart(ctxLuas, {
+                    type: 'bar',
+                    data: {
+                        labels: desaData.labels,
+                        datasets: [{
+                            label: 'Luas Wilayah (km²)',
+                            data: desaData.luas,
+                            backgroundColor: getBarColors(desaData.labels),
+                            borderColor: getBorderColors(desaData.labels),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y', // Membuat bar menjadi horizontal
+                        responsive: true,
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false // Sembunyikan legenda
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw} km²`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // 2. Grafik Jumlah Penduduk
+                const ctxPenduduk = document.getElementById('pendudukChart').getContext('2d');
+                new Chart(ctxPenduduk, {
+                    type: 'bar',
+                    data: {
+                        labels: desaData.labels,
+                        datasets: [{
+                            label: 'Jumlah Penduduk (Jiwa)',
+                            data: desaData.penduduk,
+                            backgroundColor: getBarColors(desaData.labels),
+                            borderColor: getBorderColors(desaData.labels),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                         plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw.toLocaleString('id-ID')} Jiwa`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // 3. Grafik Kepadatan Penduduk
+                const ctxKepadatan = document.getElementById('kepadatanChart').getContext('2d');
+                new Chart(ctxKepadatan, {
+                    type: 'bar',
+                    data: {
+                        labels: desaData.labels,
+                        datasets: [{
+                            label: 'Kepadatan Penduduk (Jiwa/km²)',
+                            data: desaData.kepadatan,
+                            backgroundColor: getBarColors(desaData.labels),
+                            borderColor: getBorderColors(desaData.labels),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                         responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw} jiwa/km²`;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 });
             });
     </script>
