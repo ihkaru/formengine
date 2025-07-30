@@ -426,8 +426,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <h1 class="hero-title" data-animate-text>Desa Wajok Hilir</h1>
-                    <p class="hero-subtitle" data-animate-text>Desa Cinta Statistik (Cantik) di Kecamatan Jongkat
-                    </p>
+                    <p class="hero-subtitle" data-animate-text>Desa Cinta Statistik (Cantik) di Kecamatan Jongkat</p>
                     <a href="#produk" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="1000">
                         <i class="fas fa-chart-bar me-2"></i>Lihat Produk Statistik
                     </a>
