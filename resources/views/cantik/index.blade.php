@@ -126,7 +126,6 @@
             .logo-container img {
             max-height: 150px;
             }
-
             .page-header h1 {
             font-size: 2.2rem;
             }
