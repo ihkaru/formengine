@@ -484,6 +484,7 @@
                                 sanitasi dan pengelolaan sampah keluarga.</li>
                         </ul>
                     </div>
+
                     <div class="col-lg-6 map-section mt-4 mt-lg-0" data-aos="fade-left">
                         <!-- GANTI DENGAN SCREENSHOT PETA DARI APLIKASI ANDA -->
                         <img src="{{asset('images/map.jpg')}}" alt="Contoh Peta Sebaran Data"
