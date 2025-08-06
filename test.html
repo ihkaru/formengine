@@ -1,238 +1,483 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perbandingan Desa di Kecamatan Jongkat 2023</title>
-    <!-- Impor library Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Infografis Desa Wajok Hilir</title>
     <style>
+        /* Mengimpor Font dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        /* Variabel Warna dan Pengaturan Dasar */
+        :root {
+            --primary-blue: #0A2647;
+            --secondary-navy: #144272;
+            --accent-orange: #FF6000;
+            --light-cream: #FFF4E0;
+            --text-dark: #333333;
+            --white: #ffffff;
+            --border-light: #eeeeee;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
         }
-        h1, h2 {
-            text-align: center;
-            color: #0056b3;
-        }
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+
+        /* Kontainer Utama berukuran A4 */
+        .page-container {
+            width: 210mm;
+            min-height: 297mm;
+            background-color: var(--white);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            /* Menyembunyikan hiasan yang keluar area */
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
+
+        /* Hiasan Latar Belakang */
+        .bg-shape-1 {
+            position: absolute;
+            top: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: var(--light-cream);
+            border-radius: 50%;
+            z-index: 0;
         }
-        th {
-            background-color: #007bff;
-            color: white;
+
+        .bg-shape-2 {
+            position: absolute;
+            bottom: -100px;
+            right: -120px;
+            width: 350px;
+            height: 350px;
+            background: var(--secondary-navy);
+            opacity: 0.1;
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            z-index: 0;
+        }
+
+        /* Konten utama di atas hiasan */
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 25mm 15mm;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            border-bottom: 3px solid var(--accent-orange);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 32pt;
+            color: var(--primary-blue);
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        header p {
+            font-size: 14pt;
+            color: var(--secondary-navy);
+            margin: 5px 0 0 0;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 18pt;
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-orange);
+            margin: 8px auto 0;
+        }
+
+        /* Kartu Data Kunci */
+        .stat-cards-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
             text-align: center;
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+
+        .stat-card {
+            background: var(--light-cream);
+            border-radius: 12px;
+            padding: 20px 15px;
+            flex-grow: 1;
+            border: 2px solid #FFE5B4;
         }
-        tr:hover {
-            background-color: #e9ecef;
+
+        .stat-card svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--accent-orange);
+            margin-bottom: 10px;
         }
-        .chart-container {
-            margin-top: 40px;
+
+        .stat-card .value {
+            font-size: 24pt;
+            font-weight: 700;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+
+        .stat-card .label {
+            font-size: 10pt;
+            color: var(--secondary-navy);
+            margin-top: 5px;
+        }
+
+        /* Grid untuk info wilayah dan potensi */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* Kartu Info Umum */
+        .info-card {
+            background: #F9F9F9;
+            border-left: 5px solid var(--secondary-navy);
+            border-radius: 0 8px 8px 0;
             padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        }
+
+        .info-card h4 {
+            font-size: 14pt;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--secondary-navy);
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h4 svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            fill: var(--secondary-navy);
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 11pt;
+            color: var(--text-dark);
+        }
+
+        .info-card ul li {
+            margin-bottom: 8px;
+            display: flex;
+        }
+
+        .info-card ul li strong {
+            width: 80px;
+            flex-shrink: 0;
+        }
+
+        /* Kartu Potensi Desa */
+        .potential-card {
+            background: var(--light-cream);
+            border-radius: 12px;
+            padding: 20px;
+            grid-column: span 2;
+            /* Kartu ini membentang 2 kolom */
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .potential-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .potential-item svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--accent-orange);
+            margin-bottom: 15px;
+        }
+
+        .potential-item h4 {
+            font-size: 14pt;
+            color: var(--primary-blue);
+            margin: 0 0 10px 0;
+        }
+
+        .potential-item p {
+            font-size: 10pt;
+            color: var(--text-dark);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .divider {
+            width: 2px;
+            background-color: #FFE5B4;
+            align-self: stretch;
+        }
+
+        /* Grafik Perbandingan */
+        .chart-container {
+            margin-top: 20px;
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 10pt;
+        }
+
+        .chart-label {
+            width: 120px;
+            text-align: right;
+            padding-right: 10px;
+            font-weight: 600;
+            color: var(--secondary-navy);
+        }
+
+        .bar-wrapper {
+            flex-grow: 1;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .bar {
+            height: 25px;
+            background-color: var(--secondary-navy);
+            border-radius: 5px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-size: 9pt;
+            font-weight: 600;
+        }
+
+        .bar.highlight {
+            background-color: var(--accent-orange);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-light);
+            font-size: 9pt;
+            color: #777;
+        }
+
+        /* Pengaturan untuk Print ke PDF */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background-color: var(--white);
+            }
+
+            .page-container {
+                box-shadow: none;
+                margin: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+
+            /* Memastikan background dan warna tetap tercetak */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
         }
     </style>
 </head>
+
 <body>
+    <div class="page-container">
+        <!-- Bentuk Hiasan di Latar Belakang -->
+        <div class="bg-shape-1"></div>
+        <div class="bg-shape-2"></div>
 
-    <div class="container">
-        <h1>Dashboard Perbandingan Desa di Kecamatan Jongkat</h1>
-        <p style="text-align:center; font-style:italic;">Sumber Data: Kecamatan Jongkat dalam Angka 2024 (Data Tahun 2023)</p>
+        <div class="content">
+            <header>
+                <h1>Desa Wajok Hilir</h1>
+                <p>Desa Mandiri di Kecamatan Jongkat, Kabupaten Mempawah</p>
+            </header>
 
-        <h2>Tabel Data Statistik Desa</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Desa/Kelurahan</th>
-                    <th>Luas Total (km²)</th>
-                    <th>Jumlah Penduduk (Jiwa)</th>
-                    <th>Kepadatan Penduduk (per km²)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Sungai Nipah</td>
-                    <td>12.00</td>
-                    <td>5.438</td>
-                    <td>453.32</td>
-                </tr>
-                <tr>
-                    <td>Jongkat</td>
-                    <td>43.39</td>
-                    <td>16.090</td>
-                    <td>370.82</td>
-                </tr>
-                <tr style="background-color: #d1ecf1; font-weight: bold;">
-                    <td>Wajok Hilir</td>
-                    <td>72.47</td>
-                    <td>11.455</td>
-                    <td>158.07</td>
-                </tr>
-                <tr>
-                    <td>Wajok Hulu</td>
-                    <td>127.84</td>
-                    <td>14.984</td>
-                    <td>117.21</td>
-                </tr>
-                <tr>
-                    <td>Peniti Luar</td>
-                    <td>35.23</td>
-                    <td>3.787</td>
-                    <td>107.49</td>
-                </tr>
-            </tbody>
-        </table>
+            <!-- KARTU DATA KUNCI -->
+            <div class="stat-cards-container">
+                <div class="stat-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M21.71,11.29l-9-9a1,1,0,0,0-1.42,0l-9,9a1,1,0,0,0,0,1.42l9,9a1,1,0,0,0,1.42,0l9-9A1,1,0,0,0,21.71,11.29ZM12,20.59L3.41,12,12,3.41,20.59,12Z" />
+                        <path d="M16,12a4,4,0,1,1-4-4A4,4,0,0,1,16,12Zm-6,0a2,2,0,1,0,2-2A2,2,0,0,0,10,12Z" />
+                    </svg>
+                    <div class="value">7.247 Ha</div>
+                    <div class="label">Luas Wilayah</div>
+                </div>
+                <div class="stat-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M12.3,12.22A4.92,4.92,0,0,0,14,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,1,19.5a1,1,0,0,0,1,1H17.5a1,1,0,0,0,1-1,7.82,7.82,0,0,0-6.2-7.28ZM9,12.5a3,3,0,1,1,3-3A3,3,0,0,1,9,12.5ZM12,18.5H3.13a6,6,0,0,1,11.74,0Z" />
+                        <path d="M20,13.5a1,1,0,0,0-1,1V16a1,1,0,0,0,2,0V14.5A1,1,0,0,0,20,13.5Z" />
+                        <path d="M22.5,10H21a1,1,0,0,0,0,2h1.5a1,1,0,0,0,0-2Z" />
+                        <path d="M17,10.5a1,1,0,0,0-1-1H14.5a1,1,0,0,0,0,2H16A1,1,0,0,0,17,10.5Z" />
+                        <path d="M20,7.5a1,1,0,0,0-1-1V5a1,1,0,0,0-2,0V6.5a1,1,0,0,0,1,1A1,1,0,0,0,20,7.5Z" />
+                    </svg>
+                    <div class="value">11.455</div>
+                    <div class="label">Jiwa (Tahun 2023)</div>
+                </div>
+                <div class="stat-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M21,2H3A1,1,0,0,0,2,3V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V3A1,1,0,0,0,21,2ZM20,20H4V4H20ZM7,18H9V14H7Zm4,0h2V11H11Zm4,0h2V8H15Z" />
+                    </svg>
+                    <div class="value">Mandiri</div>
+                    <div class="label">Status IDM 2023</div>
+                </div>
+            </div>
 
-        <div class="chart-container">
-            <h2>Grafik Perbandingan Luas Wilayah</h2>
-            <canvas id="luasChart"></canvas>
-        </div>
+            <div class="section-title">Wilayah & Pemerintahan</div>
 
-        <div class="chart-container">
-            <h2>Grafik Perbandingan Jumlah Penduduk</h2>
-            <canvas id="pendudukChart"></canvas>
-        </div>
+            <div class="grid-container">
+                <div class="info-card">
+                    <h4>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M12,2a8,8,0,0,0-8,8c0,5.4,7,11.5,7.35,11.86a1,1,0,0,0,1.3,0C13,21.5,20,15.4,20,10A8,8,0,0,0,12,2Zm0,11a3,3,0,1,1,3-3A3,3,0,0,1,12,13Z" />
+                        </svg>
+                        Administrasi
+                    </h4>
+                    <ul>
+                        <li><strong>Kepala Desa</strong>: Abdul Majid (2024)</li>
+                        <li><strong>Jumlah Dusun</strong>: 7 Dusun</li>
+                        <li><strong>Jumlah RW</strong>: 13 Rukun Warga</li>
+                        <li><strong>Jumlah RT</strong>: 41 Rukun Tetangga</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h4>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12,12.5a2,2,0,1,0-2-2A2,2,0,0,0,12,12.5Z" />
+                            <path
+                                d="M12,2A10,10,0,0,0,2,12a9.89,9.89,0,0,0,2.22,6.32L12,22l7.78-3.68A9.89,9.89,0,0,0,22,12,10,10,0,0,0,12,2Zm0,17.43L6.08,17A7.91,7.91,0,0,1,4,12a8,8,0,0,1,16,0,7.91,7.91,0,0,1-2.08,5Z" />
+                        </svg>
+                        Batas Wilayah
+                    </h4>
+                    <ul>
+                        <li><strong>Utara</strong>: Desa Wajok Hulu</li>
+                        <li><strong>Timur</strong>: Kab. Kubu Raya</li>
+                        <li><strong>Selatan</strong>: Sungai Kapuas</li>
+                        <li><strong>Barat</strong>: Desa Jungkat</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="chart-container">
-            <h2>Grafik Perbandingan Kepadatan Penduduk</h2>
-            <canvas id="kepadatanChart"></canvas>
+            <div class="section-title">Potensi Unggulan Desa</div>
+
+            <div class="potential-card">
+                <div class="potential-item">
+                    <!-- IKON PERTANIAN BARU (SEEDLING/TUNAS) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M21,22H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
+                        <path
+                            d="M12,11.37A4,4,0,0,0,9,15a4.08,4.08,0,0,0,2,3.46V20a1,1,0,0,0,2,0V18.46a4.08,4.08,0,0,0,2-3.46A4,4,0,0,0,12,11.37Z" />
+                        <path d="M12,2a5,5,0,0,0-5,5,1,1,0,0,0,2,0,3,3,0,0,1,6,0,1,1,0,0,0,2,0A5,5,0,0,0,12,2Z" />
+                    </svg>
+                    <h4>Pertanian</h4>
+                    <p>Menjadi sentra penghasil komoditas <strong>Kelapa</strong> dan <strong>Pisang</strong>. Terdapat
+                        upaya pengolahan produk turunan oleh kelompok tani dan PKK untuk meningkatkan nilai ekonomi.</p>
+                </div>
+                <div class="divider"></div>
+                <div class="potential-item">
+                    <!-- IKON EKONOMI KREATIF BARU (LIGHTBULB/IDE) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M12,2A7,7,0,0,0,8.44,14.85c-.24.33-.18.78.15,1L9,16.18V18a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1v-1.82l.41-.33c.33-.22.39-.67.15-1A7,7,0,0,0,12,2Zm2,12.82V15H10v-2.18a5,5,0,1,1,4,0Z" />
+                        <path d="M9,20h6a1,1,0,0,0,0-2H9a1,1,0,0,0,0,2Z" />
+                    </svg>
+                    <h4>Ekonomi Kreatif</h4>
+                    <p>Didorong oleh <strong>BUMDes</strong>, desa mengembangkan usaha kreatif seperti <strong>"Kafe
+                            Teras Desa"</strong> dan memiliki visi membangun layanan internet desa melalui kolaborasi
+                        dengan <strong>BAKTI</strong>.</p>
+                </div>
+            </div>
+
+            <div class="section-title">Perbandingan Kepadatan Penduduk (Jiwa/km²)</div>
+
+            <div class="chart-container">
+                <div class="chart-bar">
+                    <div class="chart-label">Peniti Luar</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="width: 23%;">(107.49)</div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Wajok Hulu</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="width: 25%;">(117.21)</div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Wajok Hilir</div>
+                    <div class="bar-wrapper">
+                        <div class="bar highlight" style="width: 34%;">(158.07)</div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Jongkat</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="width: 81%;">(370.82)</div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-label">Sungai Nipah</div>
+                    <div class="bar-wrapper">
+                        <div class="bar" style="width: 100%;">(453.32)</div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                Sumber Data: Publikasi Kecamatan Jongkat dalam Angka 2024 (Data Tahun 2023).
+                <br>
+                Infografis ini dibuat sebagai bagian dari program Pembinaan Desa Cinta Statistik (Cantik).
+            </footer>
+
         </div>
     </div>
-
-    <script>
-        // Data dari tabel
-        const desaData = {
-            labels: ['Sungai Nipah', 'Jongkat', 'Wajok Hilir', 'Wajok Hulu', 'Peniti Luar'],
-            luas: [12.00, 43.39, 72.47, 127.84, 35.23],
-            penduduk: [5438, 16090, 11455, 14984, 3787],
-            kepadatan: [453.32, 370.82, 158.07, 117.21, 107.49]
-        };
-
-        const highlightColor = 'rgba(255, 99, 132, 0.6)';
-        const defaultColor = 'rgba(54, 162, 235, 0.6)';
-
-        // Fungsi untuk membuat warna bar Wajok Hilir berbeda
-        function getBarColors(labels) {
-            return labels.map(label => label === 'Wajok Hilir' ? highlightColor : defaultColor);
-        }
-
-        // 1. Grafik Luas Wilayah
-        const ctxLuas = document.getElementById('luasChart').getContext('2d');
-        new Chart(ctxLuas, {
-            type: 'bar',
-            data: {
-                labels: desaData.labels,
-                datasets: [{
-                    label: 'Luas Wilayah (km²)',
-                    data: desaData.luas,
-                    backgroundColor: getBarColors(desaData.labels),
-                    borderColor: getBarColors(desaData.labels).map(color => color.replace('0.6', '1')),
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `${context.dataset.label}: ${context.raw} km²`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // 2. Grafik Jumlah Penduduk
-        const ctxPenduduk = document.getElementById('pendudukChart').getContext('2d');
-        new Chart(ctxPenduduk, {
-            type: 'bar',
-            data: {
-                labels: desaData.labels,
-                datasets: [{
-                    label: 'Jumlah Penduduk (Jiwa)',
-                    data: desaData.penduduk,
-                    backgroundColor: getBarColors(desaData.labels),
-                    borderColor: getBarColors(desaData.labels).map(color => color.replace('0.6', '1')),
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                 plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `${context.dataset.label}: ${context.raw.toLocaleString('id-ID')} Jiwa`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // 3. Grafik Kepadatan Penduduk
-        const ctxKepadatan = document.getElementById('kepadatanChart').getContext('2d');
-        new Chart(ctxKepadatan, {
-            type: 'bar',
-            data: {
-                labels: desaData.labels,
-                datasets: [{
-                    label: 'Kepadatan Penduduk (Jiwa/km²)',
-                    data: desaData.kepadatan,
-                    backgroundColor: getBarColors(desaData.labels),
-                    borderColor: getBarColors(desaData.labels).map(color => color.replace('0.6', '1')),
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `${context.dataset.label}: ${context.raw} jiwa/km²`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    </script>
-
 </body>
+
 </html>

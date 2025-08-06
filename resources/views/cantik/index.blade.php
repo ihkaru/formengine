@@ -14,219 +14,308 @@
     <!-- Custom CSS -->
     <style>
         :root {
-            --primary-color: #2E5090;
-            --secondary-color: #4CAF50;
-            --accent-color: #FFC107;
-            --text-color: #333;
-            --light-bg: #f8f9fa;
+        --primary-color: #2E5090;
+        --secondary-color: #4CAF50;
+        --accent-color: #FFC107;
+        --text-color: #333;
+        --light-bg: #f8f9fa;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-color);
-            background-color: white;
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-color);
+        background-color: white;
         }
 
         .navbar {
-            background-color: var(--primary-color);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: var(--primary-color);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand {
-            font-weight: 700;
-            color: white !important;
+        font-weight: 700;
+        color: white !important;
         }
 
-        .nav-link {
-            color: rgba(255, 255, 255, 0.85) !important;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: white !important;
-            transform: translateY(-2px);
-        }
-
+        /* === PERUBAHAN: Efek Parallax Header === */
         .page-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1a365d 100%);
-            color: white;
-            padding: 100px 0 120px;
-            position: relative;
-            overflow: hidden;
+        color: white;
+        padding: 100px 0 140px;
+        position: relative;
+        overflow: hidden;
+        /* Layer gradien di atas gambar untuk keterbacaan teks */
+        background: linear-gradient(135deg, rgba(46, 80, 144, 0.85) 0%, rgba(26, 54, 93, 0.9) 100%),
+        url('https://images.unsplash.com/photo-1557687799-9426a4a4f8a8?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* Kunci efek parallax */
         }
 
         .page-header::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f8f9fa' fill-opacity='1' d='M0,192L1440,64L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        /* background: teal; */
+        background-size: cover;
+        background-position: bottom;
+        }
+
+        .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 30px;
+        }
+
+        .logo-container img {
+        max-height: 200px; /* Ukuran logo yang lebih proporsional */
+        width: auto;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        padding: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .page-header h1 {
-            font-weight: 800;
-            font-size: 2.8rem;
+        font-weight: 800;
+        font-size: 2.8rem;
         }
 
         .page-header p {
-            font-size: 1.2rem;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
+        font-size: 1.2rem;
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.9;
+        }
+
+        /* === PERUBAHAN: Animasi Slide-Up Kustom === */
+        @keyframes slideUp {
+        from {
+        transform: translateY(80%);
+        opacity: 0;
+        }
+        to {
+        transform: translateY(0);
+        opacity: 1;
+        }
+        }
+
+        /* Elemen disembunyikan awalnya */
+        .animate-on-scroll {
+        opacity: 0;
+        will-change: transform, opacity; /* Optimasi performa */
+        }
+
+        /* Kelas yg ditambahkan JS saat elemen terlihat */
+        .animate-on-scroll.is-visible {
+        animation: slideUp 0.8s ease-out forwards;
+        }
+        /* === AKHIR PERUBAHAN ANIMASI === */
+
+
+        @media (max-width: 768px) {
+            .page-header {
+            padding: 80px 0 100px;
+            background-attachment: scroll; /* Menonaktifkan parallax di mobile untuk performa */
+            }
+
+            .logo-container img {
+            max-height: 70px;
+            }
+
+            .page-header h1 {
+            font-size: 2.2rem;
+            }
         }
 
         .section-title {
-            position: relative;
-            margin-bottom: 50px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-align: center;
+        position: relative;
+        margin-bottom: 50px;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-align: center;
         }
 
         .section-title::after {
-            content: '';
-            display: block;
-            width: 70px;
-            height: 4px;
-            background-color: var(--accent-color);
-            margin: 15px auto 0;
+        content: '';
+        display: block;
+        width: 70px;
+        height: 4px;
+        background-color: var(--accent-color);
+        margin: 15px auto 0;
         }
 
-        /* Styling untuk Card Desa/Kelurahan */
+        /* === SECTION BARU: Intervensi Data Mikro === */
+        .microdata-section {
+        position: relative;
+        padding: 100px 0;
+        color: white;
+        background: linear-gradient(rgba(46, 80, 144, 0.9), rgba(46, 80, 144, 0.9)),
+        url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* Efek Parallax */
+        }
+
+        .microdata-section h2 {
+        color: var(--accent-color);
+        font-weight: 700;
+        }
+
+        .microdata-section p, .microdata-section li {
+        opacity: 0.9;
+        }
+
+        .microdata-section .icon-box {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-right: 20px;
+        }
+
+        /* === SECTION BARU: Peta Koordinat === */
+        .map-section img {
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        border: 5px solid white;
+        }
+
+        .map-section .list-group-item {
+        background-color: transparent;
+        border: none;
+        padding-left: 0;
+        }
+
+        .map-section .list-group-item i {
+            color: var(--primary-color);
+            width: 25px;
+        }
+
         .desa-card-link {
-            text-decoration: none;
-            color: inherit;
+        text-decoration: none;
+        color: inherit
         }
 
         .desa-card {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: none;
-            height: 100%;
-            background-color: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+        transition: all .3s ease;
+        border: none;
+        height: 100%;
+        background-color: white
         }
 
         .desa-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(46, 80, 144, 0.15);
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(46, 80, 144, .15)
         }
 
         .desa-card img {
-            height: 220px;
-            object-fit: cover;
-            width: 100%;
+        height: 220px;
+        object-fit: cover;
+        width: 100%
         }
 
         .desa-card-body {
-            padding: 25px;
+        padding: 25px
         }
 
         .card-title {
-            font-weight: 700;
-            color: var(--primary-color);
+        font-weight: 700;
+        color: var(--primary-color)
         }
 
-        .workflow-card,
         .tool-card,
         .impact-card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid #e9ecef;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            height: 100%;
+        background-color: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        transition: all .3s ease;
+        border: 1px solid #e9ecef;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
+        height: 100%
         }
 
-        .workflow-card:hover,
         .tool-card:hover,
         .impact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .1)
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: var(--primary-color)
         }
 
         .pilot-case-section {
-            background-color: var(--light-bg);
-            padding: 80px 0;
-        }
-
-        .pilot-case-section img {
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background-color: var(--light-bg);
+        padding: 80px 0
         }
 
         .collaboration-section {
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 15px;
-            padding: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 15px;
+        padding: 50px
         }
 
         .collaboration-section h3 {
-            color: var(--accent-color);
-            font-weight: 700;
+        color: var(--accent-color);
+        font-weight: 700
         }
 
-        .list-group-item {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
+        .collaboration-section .list-group-item {
+        background: rgba(255, 255, 255, .1);
+        border: none;
+        color: white
         }
 
-        .list-group-item i {
-            color: var(--accent-color);
+        .collaboration-section .list-group-item i {
+        color: var(--accent-color)
         }
 
         .footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 60px 0 30px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 60px 0 30px
         }
 
         .footer-title {
-            font-weight: 700;
-            margin-bottom: 25px;
+        font-weight: 700;
+        margin-bottom: 25px
         }
 
         .footer-links {
-            list-style: none;
-            padding: 0;
+        list-style: none;
+        padding: 0
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+        margin-bottom: 10px
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s;
+        color: rgba(255, 255, 255, .8);
+        text-decoration: none;
+        transition: all .3s
         }
 
         .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
+        color: white;
+        padding-left: 5px
         }
 
         .copyright {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, .1)
         }
     </style>
 </head>
@@ -253,12 +342,20 @@
 
     <main>
         <!-- Page Header -->
-        <header class="page-header text-center" data-aos="fade-in">
+        <header class="page-header text-center">
             <div class="container position-relative">
-                <h1 class="mb-3">Mewujudkan Desa/Kelurahan Sebagai Subjek Pembangunan Berbasis Data</h1>
-                <p class="lead">Melalui program Kolaborasi Digital Desa/Kelurahan Canti (Cinta Statistik), BPS Kabupaten
-                    Mempawah membina Desa/Kelurahan untuk mengelola dan memanfaatkan data demi perencanaan yang lebih
-                    presisi.</p>
+                <div class="logo-container">
+                    <!-- PERUBAHAN: Ditambahkan class dan style untuk animasi -->
+                    <img src="{{asset('images/MPW.png')}}" alt="Logo Pemerintah Kabupaten Mempawah" class="animate-on-scroll">
+                    <img src="{{asset('images/BPS.png')}}" alt="Logo BPS" class="animate-on-scroll"
+                        style="animation-delay: 0.1s;">
+                </div>
+
+                <h1 class="mb-3 animate-on-scroll" style="animation-delay: 0.2s;">Mewujudkan Desa/Kelurahan Sebagai Subjek
+                    Pembangunan Berbasis Data</h1>
+                <p class="lead animate-on-scroll" style="animation-delay: 0.4s;">Melalui program Kolaborasi Digital
+                    Desa/Kelurahan Cantik (Cinta Statistik), BPS Kabupaten Mempawah membina Desa/Kelurahan untuk mengelola dan
+                    memanfaatkan data demi perencanaan yang lebih presisi.</p>
             </div>
         </header>
 
@@ -271,8 +368,8 @@
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
                         <a href="{{ route('cantik.pedalaman') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{asset('images/pulaupedalaman.webp')}}"
-                                    class="card-img-top" alt="Kelurahan Pulau Pedalaman">
+                                <img src="{{asset('images/pulaupedalaman.webp')}}" class="card-img-top"
+                                    alt="Kelurahan Pulau Pedalaman">
                                 <div class="desa-card-body d-flex flex-column">
                                     <h4 class="card-title">Kelurahan Pulau Pedalaman</h4>
                                     <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
@@ -311,14 +408,16 @@
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <a href="/" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{asset('images/wajokhilir.webp')}}" class="card-img-top" alt="Desa Wajok Hilir">
+                                <img src="{{asset('images/wajokhilir.webp')}}" class="card-img-top"
+                                    alt="Desa Wajok Hilir">
                                 <div class="desa-card-body d-flex flex-column">
                                     <h4 class="card-title">Desa Wajok Hilir</h4>
                                     <p class="card-text text-muted">Kecamatan Jongkat</p>
                                     <div class="mt-auto pt-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="badge bg-primary">Binaan 2024</span>
-                                            {{-- <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span> --}}
+                                            {{-- <span class="text-primary fw-bold">Lihat Detail <i
+                                                    class="fas fa-arrow-right ms-1"></i></span> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -329,6 +428,70 @@
             </div>
         </section>
         <!-- ========== AKHIR BAGIAN BARU ========== -->
+
+        <section class="microdata-section" id="microdata">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h2 class="mb-4">Intervensi Tepat Sasaran Berbasis Data Mikro</h2>
+                        <p>Kebijakan yang efektif tidak lahir dari data agregat (rata-rata), tetapi dari pemahaman mendalam
+                            terhadap data mikro—informasi pada level individu dan rumah tangga. Dengan data mikro, pemerintah
+                            dapat:</p>
+                        <ul class="list-unstyled mt-4">
+                            <li class="d-flex align-items-start mb-3">
+                                <i class="fas fa-user-check icon-box"></i>
+                                <div>
+                                    <h5>Mengidentifikasi Penerima Manfaat</h5>
+                                    <p class="mb-0">Mengetahui secara pasti (by name by address) siapa yang berhak menerima
+                                        bantuan sosial, beasiswa, atau intervensi stunting, sehingga mengurangi salah sasaran.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-start mb-3">
+                                <i class="fas fa-tasks icon-box"></i>
+                                <div>
+                                    <h5>Merancang Program yang Relevan</h5>
+                                    <p class="mb-0">Memahami karakteristik unik setiap rumah tangga untuk merancang program
+                                        pemberdayaan ekonomi atau pelatihan yang sesuai dengan kebutuhan nyata mereka.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 text-center d-none d-lg-block" data-aos="zoom-in">
+                        <i class="fas fa-magnifying-glass-chart fa-10x text-white opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === SECTION BARU: DATA BERBASIS KOORDINAT === -->
+        <section class="py-5 bg-light" id="koordinat">
+            <div class="container py-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h2 class="section-title text-start mb-4">Pemetaan Spasial untuk Perencanaan Presisi</h2>
+                        <p class="text-muted">Aplikasi pendataan tidak hanya mencatat 'apa' dan 'siapa', tetapi juga 'di mana'.
+                            Setiap data yang dikumpulkan dilengkapi dengan informasi koordinat geografis (GPS).</p>
+                        <p class="text-muted">Hal ini memungkinkan visualisasi data dalam bentuk peta interaktif untuk:</p>
+                        <ul class="list-group list-group-flush mt-3">
+                            <li class="list-group-item d-flex align-items-center"><i class="fas fa-user-friends me-3"></i>Mengetahui profil
+                                keluarga dan komposisi anggota rumah tangga.</li>
+                            <li class="list-group-item d-flex align-items-center"><i class="fas fa-child me-3"></i>Memetakan anak putus sekolah
+                                dan kelompok disabilitas.</li>
+                            <li class="list-group-item d-flex align-items-center"><i class="fas fa-home me-3"></i>Menilai kondisi fisik rumah
+                                berdasarkan foto dan bahan bangunan utama.</li>
+                            <li class="list-group-item d-flex align-items-center"><i class="fas fa-toilet me-3"></i>Mengidentifikasi akses
+                                sanitasi dan pengelolaan sampah keluarga.</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 map-section mt-4 mt-lg-0" data-aos="fade-left">
+                        <!-- GANTI DENGAN SCREENSHOT PETA DARI APLIKASI ANDA -->
+                        <img src="{{asset('images/map.jpg')}}" alt="Contoh Peta Sebaran Data"
+                            class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- The Problem Section -->
         <section class="py-5">
@@ -345,8 +508,8 @@
                             melainkan untuk memperkuat ekosistem digital yang sudah ada dengan solusi yang efektif dan
                             mudah diimplementasikan.</p>
                     </div>
-                    <div class="col-lg-6" data-aos="fade-left">
-                        <img src="https://img.freepik.com/free-vector/data-points-concept-illustration_114360-2240.webp?w=826&t=st=1721013406~exp=1721014006~hmac=2e848419f12d8a141b212f45ecb71f9743a413d9692994f31c2386e680d0d80d"
+                    <div class="col-lg-6 map-section mt-4 mt-lg-0" data-aos="fade-left">
+                        <img src="{{asset('images/sejegi-app-2.webp')}}"
                             alt="Ilustrasi Data" class="img-fluid rounded">
                     </div>
                 </div>
@@ -542,7 +705,42 @@
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, duration: 800, offset: 100 });
+        // Inisialisasi AOS untuk animasi scroll di section selain header
+            AOS.init({
+                once: false, // Animasi hanya berjalan sekali
+                duration: 800,
+                offset: 100
+            });
+
+            // === PERUBAHAN: JavaScript untuk Animasi Slide-Up Kustom ===
+            document.addEventListener("DOMContentLoaded", () => {
+                const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+                // Cek jika browser mendukung IntersectionObserver
+                if ("IntersectionObserver" in window) {
+                    const observer = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            // Jika elemen masuk ke viewport
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('is-visible');
+                                // Hentikan pengamatan setelah animasi berjalan
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        threshold: 0.1 // Picu saat 10% elemen terlihat
+                    });
+
+                    animatedElements.forEach(el => {
+                        observer.observe(el);
+                    });
+                } else {
+                    // Fallback untuk browser lama: langsung tampilkan semua
+                    animatedElements.forEach(el => {
+                        el.classList.add('is-visible');
+                    });
+                }
+            });
     </script>
 </body>
 
