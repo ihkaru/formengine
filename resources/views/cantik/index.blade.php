@@ -404,7 +404,7 @@
                     </div>
                     <!-- Card Desa/Kelurahan Wajok Hilir -->
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <a href="/" class="desa-card-link">
+                        <a href="{{route('cantik.sejegi')}}" class="desa-card-link">
                             <div class="desa-card">
                                 <img src="{{asset('images/wajokhilir.webp')}}" class="card-img-top"
                                     alt="Desa Wajok Hilir">
@@ -414,8 +414,8 @@
                                     <div class="mt-auto pt-3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="badge bg-primary">Binaan 2024</span>
-                                            {{-- <span class="text-primary fw-bold">Lihat Detail <i
-                                                    class="fas fa-arrow-right ms-1"></i></span> --}}
+                                            <span class="text-primary fw-bold">Lihat Detail <i
+                                                    class="fas fa-arrow-right ms-1"></i></span>
                                         </div>
                                     </div>
                                 </div>
