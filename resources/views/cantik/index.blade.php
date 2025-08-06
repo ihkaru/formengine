@@ -123,7 +123,6 @@
             padding: 80px 0 100px;
             background-attachment: scroll; /* Menonaktifkan parallax di mobile untuk performa */
             }
-
             .logo-container img {
             max-height: 150px;
             }
