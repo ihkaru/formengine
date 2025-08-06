@@ -125,7 +125,7 @@
             }
 
             .logo-container img {
-            max-height: 70px;
+            max-height: 150px;
             }
 
             .page-header h1 {
