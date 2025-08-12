@@ -760,12 +760,12 @@
                 </div>
 
                 <!-- SOP Permintaan Data -->
-                <div class="col-lg-8 col-md-12 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
                     data-aos-delay="400">
                     <div class="product-card h-100">
                         <div class="card-body p-4">
                             <div class="row">
-                                <div class="col-md-4 text-center mb-4 mb-md-0">
+                                <div class="col-md-12 text-center mb-4 mb-md-0">
                                     <div class="product-icon">
                                         <i class="fas fa-clipboard-list"></i>
                                     </div>
@@ -776,6 +776,14 @@
                                     <div class="year-select">
                                         <h6 class="mb-2">Pilih Tahun:</h6>
                                         <button class="btn active">2025</button>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <a href="#" class="btn btn-primary product-btn">
+                                            <i class="fas fa-eye me-2"></i>Lihat SOP
+                                        </a>
+                                        <a href="#" class="btn btn-outline-primary product-btn">
+                                            <i class="fas fa-download me-2"></i>Unduh PDF
+                                        </a>
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-8">
