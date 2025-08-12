@@ -4,480 +4,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografis Desa Wajok Hilir</title>
+    <title>SOP Pelayanan Permintaan Data Statistik - Desa Sejegi</title>
     <style>
-        /* Mengimpor Font dari Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-        /* Variabel Warna dan Pengaturan Dasar */
-        :root {
-            --primary-blue: #0A2647;
-            --secondary-navy: #144272;
-            --accent-orange: #FF6000;
-            --light-cream: #FFF4E0;
-            --text-dark: #333333;
-            --white: #ffffff;
-            --border-light: #eeeeee;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-
-        /* Kontainer Utama berukuran A4 */
-        .page-container {
-            width: 210mm;
-            min-height: 297mm;
-            background-color: var(--white);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-            /* Menyembunyikan hiasan yang keluar area */
-        }
-
-        /* Hiasan Latar Belakang */
-        .bg-shape-1 {
-            position: absolute;
-            top: -150px;
-            left: -150px;
-            width: 400px;
-            height: 400px;
-            background: var(--light-cream);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        .bg-shape-2 {
-            position: absolute;
-            bottom: -100px;
-            right: -120px;
-            width: 350px;
-            height: 350px;
-            background: var(--secondary-navy);
-            opacity: 0.1;
-            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
-            z-index: 0;
-        }
-
-        /* Konten utama di atas hiasan */
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 25mm 15mm;
-        }
-
-        /* Header */
-        header {
-            text-align: center;
-            border-bottom: 3px solid var(--accent-orange);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 32pt;
-            color: var(--primary-blue);
-            margin: 0;
-            line-height: 1.1;
-        }
-
-        header p {
-            font-size: 14pt;
-            color: var(--secondary-navy);
-            margin: 5px 0 0 0;
-        }
-
-        /* Section Title */
-        .section-title {
-            font-size: 18pt;
-            color: var(--primary-blue);
-            font-weight: 700;
-            margin-bottom: 15px;
-            margin-top: 30px;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent-orange);
-            margin: 8px auto 0;
-        }
-
-        /* Kartu Data Kunci */
-        .stat-cards-container {
-            display: flex;
-            justify-content: space-around;
-            gap: 15px;
-            text-align: center;
-        }
-
-        .stat-card {
-            background: var(--light-cream);
-            border-radius: 12px;
-            padding: 20px 15px;
-            flex-grow: 1;
-            border: 2px solid #FFE5B4;
-        }
-
-        .stat-card svg {
-            width: 40px;
-            height: 40px;
-            fill: var(--accent-orange);
-            margin-bottom: 10px;
-        }
-
-        .stat-card .value {
-            font-size: 24pt;
-            font-weight: 700;
-            color: var(--primary-blue);
-            line-height: 1;
-        }
-
-        .stat-card .label {
-            font-size: 10pt;
-            color: var(--secondary-navy);
-            margin-top: 5px;
-        }
-
-        /* Grid untuk info wilayah dan potensi */
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        /* Kartu Info Umum */
-        .info-card {
-            background: #F9F9F9;
-            border-left: 5px solid var(--secondary-navy);
-            border-radius: 0 8px 8px 0;
-            padding: 20px;
-        }
-
-        .info-card h4 {
-            font-size: 14pt;
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: var(--secondary-navy);
-            display: flex;
-            align-items: center;
-        }
-
-        .info-card h4 svg {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            fill: var(--secondary-navy);
-        }
-
-        .info-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 11pt;
-            color: var(--text-dark);
-        }
-
-        .info-card ul li {
-            margin-bottom: 8px;
-            display: flex;
-        }
-
-        .info-card ul li strong {
-            width: 80px;
-            flex-shrink: 0;
-        }
-
-        /* Kartu Potensi Desa */
-        .potential-card {
-            background: var(--light-cream);
-            border-radius: 12px;
-            padding: 20px;
-            grid-column: span 2;
-            /* Kartu ini membentang 2 kolom */
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .potential-item {
-            flex: 1;
-            text-align: center;
-        }
-
-        .potential-item svg {
-            width: 60px;
-            height: 60px;
-            fill: var(--accent-orange);
-            margin-bottom: 15px;
-        }
-
-        .potential-item h4 {
-            font-size: 14pt;
-            color: var(--primary-blue);
-            margin: 0 0 10px 0;
-        }
-
-        .potential-item p {
-            font-size: 10pt;
-            color: var(--text-dark);
-            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
             line-height: 1.5;
+            margin: 0;
+            padding: 2.5cm;
         }
 
-        .divider {
-            width: 2px;
-            background-color: #FFE5B4;
-            align-self: stretch;
+        .header,
+        .footer {
+            text-align: center;
         }
 
-        /* Grafik Perbandingan */
-        .chart-container {
+        .title {
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 16pt;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 14pt;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 12pt;
+            margin: 5px 0;
+        }
+
+        hr {
+            border: 1px solid black;
+            margin: 20px 0;
+        }
+
+        .content-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sub-section {
+            margin-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .flowchart {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            line-height: 1.2;
+            margin: 20px 0;
+        }
+
+        .signature-section {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .signature-block {
+            display: inline-block;
+            width: 300px;
             margin-top: 20px;
         }
 
-        .chart-bar {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 10pt;
-        }
-
-        .chart-label {
-            width: 120px;
-            text-align: right;
-            padding-right: 10px;
-            font-weight: 600;
-            color: var(--secondary-navy);
-        }
-
-        .bar-wrapper {
-            flex-grow: 1;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-        }
-
-        .bar {
-            height: 25px;
-            background-color: var(--secondary-navy);
-            border-radius: 5px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 10px;
-            font-size: 9pt;
-            font-weight: 600;
-        }
-
-        .bar.highlight {
-            background-color: var(--accent-orange);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-light);
-            font-size: 9pt;
-            color: #777;
-        }
-
-        /* Pengaturan untuk Print ke PDF */
-        @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-
-            body {
-                background-color: var(--white);
-            }
-
-            .page-container {
-                box-shadow: none;
-                margin: 0;
-                width: 210mm;
-                height: 297mm;
-            }
-
-            /* Memastikan background dan warna tetap tercetak */
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
+        .signature-name {
+            margin-top: 80px;
+            text-decoration: underline;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
-    <div class="page-container">
-        <!-- Bentuk Hiasan di Latar Belakang -->
-        <div class="bg-shape-1"></div>
-        <div class="bg-shape-2"></div>
 
-        <div class="content">
-            <header>
-                <h1>Desa Wajok Hilir</h1>
-                <p>Desa Mandiri di Kecamatan Jongkat, Kabupaten Mempawah</p>
-            </header>
+    <div class="header">
+        <h1 class="title">STANDAR OPERASIONAL PROSEDUR (SOP)</h1>
+        <h2 class="title">PELAYANAN PERMINTAAN DATA STATISTIK</h2>
+        <h2 class="title">DESA SEJEGI</h2>
+    </div>
 
-            <!-- KARTU DATA KUNCI -->
-            <div class="stat-cards-container">
-                <div class="stat-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M21.71,11.29l-9-9a1,1,0,0,0-1.42,0l-9,9a1,1,0,0,0,0,1.42l9,9a1,1,0,0,0,1.42,0l9-9A1,1,0,0,0,21.71,11.29ZM12,20.59L3.41,12,12,3.41,20.59,12Z" />
-                        <path d="M16,12a4,4,0,1,1-4-4A4,4,0,0,1,16,12Zm-6,0a2,2,0,1,0,2-2A2,2,0,0,0,10,12Z" />
-                    </svg>
-                    <div class="value">7.247 Ha</div>
-                    <div class="label">Luas Wilayah</div>
-                </div>
-                <div class="stat-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M12.3,12.22A4.92,4.92,0,0,0,14,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,1,19.5a1,1,0,0,0,1,1H17.5a1,1,0,0,0,1-1,7.82,7.82,0,0,0-6.2-7.28ZM9,12.5a3,3,0,1,1,3-3A3,3,0,0,1,9,12.5ZM12,18.5H3.13a6,6,0,0,1,11.74,0Z" />
-                        <path d="M20,13.5a1,1,0,0,0-1,1V16a1,1,0,0,0,2,0V14.5A1,1,0,0,0,20,13.5Z" />
-                        <path d="M22.5,10H21a1,1,0,0,0,0,2h1.5a1,1,0,0,0,0-2Z" />
-                        <path d="M17,10.5a1,1,0,0,0-1-1H14.5a1,1,0,0,0,0,2H16A1,1,0,0,0,17,10.5Z" />
-                        <path d="M20,7.5a1,1,0,0,0-1-1V5a1,1,0,0,0-2,0V6.5a1,1,0,0,0,1,1A1,1,0,0,0,20,7.5Z" />
-                    </svg>
-                    <div class="value">11.455</div>
-                    <div class="label">Jiwa (Tahun 2023)</div>
-                </div>
-                <div class="stat-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M21,2H3A1,1,0,0,0,2,3V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V3A1,1,0,0,0,21,2ZM20,20H4V4H20ZM7,18H9V14H7Zm4,0h2V11H11Zm4,0h2V8H15Z" />
-                    </svg>
-                    <div class="value">Mandiri</div>
-                    <div class="label">Status IDM 2023</div>
-                </div>
-            </div>
+    <hr>
 
-            <div class="section-title">Wilayah & Pemerintahan</div>
+    <div class="content-section">
+        <div class="section-title">1. INFORMASI UMUM</div>
+        <table style="width: 70%;">
+            <tr>
+                <td style="width: 30%;"><strong>Nomor SOP</strong></td>
+                <td>: SOP/DESA-SJG/001/2025</td>
+            </tr>
+            <tr>
+                <td><strong>Tanggal Berlaku</strong></td>
+                <td>: 1 Agustus 2025</td>
+            </tr>
+            <tr>
+                <td><strong>Disahkan oleh</strong></td>
+                <td>: Kepala Desa Sejegi</td>
+            </tr>
+            <tr>
+                <td><strong>Ruang Lingkup</strong></td>
+                <td>: Seluruh permintaan data statistik dari masyarakat dan OPD</td>
+            </tr>
+        </table>
+    </div>
 
-            <div class="grid-container">
-                <div class="info-card">
-                    <h4>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path
-                                d="M12,2a8,8,0,0,0-8,8c0,5.4,7,11.5,7.35,11.86a1,1,0,0,0,1.3,0C13,21.5,20,15.4,20,10A8,8,0,0,0,12,2Zm0,11a3,3,0,1,1,3-3A3,3,0,0,1,12,13Z" />
-                        </svg>
-                        Administrasi
-                    </h4>
-                    <ul>
-                        <li><strong>Kepala Desa</strong>: Abdul Majid (2024)</li>
-                        <li><strong>Jumlah Dusun</strong>: 7 Dusun</li>
-                        <li><strong>Jumlah RW</strong>: 13 Rukun Warga</li>
-                        <li><strong>Jumlah RT</strong>: 41 Rukun Tetangga</li>
-                    </ul>
-                </div>
-                <div class="info-card">
-                    <h4>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12,12.5a2,2,0,1,0-2-2A2,2,0,0,0,12,12.5Z" />
-                            <path
-                                d="M12,2A10,10,0,0,0,2,12a9.89,9.89,0,0,0,2.22,6.32L12,22l7.78-3.68A9.89,9.89,0,0,0,22,12,10,10,0,0,0,12,2Zm0,17.43L6.08,17A7.91,7.91,0,0,1,4,12a8,8,0,0,1,16,0,7.91,7.91,0,0,1-2.08,5Z" />
-                        </svg>
-                        Batas Wilayah
-                    </h4>
-                    <ul>
-                        <li><strong>Utara</strong>: Desa Wajok Hulu</li>
-                        <li><strong>Timur</strong>: Kab. Kubu Raya</li>
-                        <li><strong>Selatan</strong>: Sungai Kapuas</li>
-                        <li><strong>Barat</strong>: Desa Jungkat</li>
-                    </ul>
-                </div>
-            </div>
+    <div class="content-section">
+        <div class="section-title">2. TUJUAN</div>
+        <ul>
+            <li>Memberikan pelayanan data yang cepat dan efisien.</li>
+            <li>Melindungi kerahasiaan data pribadi penduduk.</li>
+            <li>Mengoptimalkan penggunaan SDM dan waktu dengan proses minimal.</li>
+            <li>Memberikan data yang sudah siap pakai dalam bentuk digital.</li>
+        </ul>
+    </div>
 
-            <div class="section-title">Potensi Unggulan Desa</div>
+    <div class="content-section">
+        <div class="section-title">3. LANDASAN HUKUM</div>
+        <ol>
+            <li>Undang-Undang Nomor 16 Tahun 1997 tentang Statistik.</li>
+            <li>Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik.</li>
+            <li>Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi.</li>
+            <li>Peraturan Pemerintah Nomor 51 Tahun 1999 tentang Penyelenggaraan Statistik.</li>
+            <li>Peraturan Presiden Nomor 39 Tahun 2019 tentang Satu Data Indonesia.</li>
+            <li>Surat Edaran Kepala Badan Pusat Statistik Nomor B-061/BPS/2300/02/2021 tanggal 8 Februari 2021 tentang
+                Program Desa Cinta Statistik (Desa Cantik).</li>
+        </ol>
+    </div>
 
-            <div class="potential-card">
-                <div class="potential-item">
-                    <!-- IKON PERTANIAN BARU (SEEDLING/TUNAS) -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M21,22H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
-                        <path
-                            d="M12,11.37A4,4,0,0,0,9,15a4.08,4.08,0,0,0,2,3.46V20a1,1,0,0,0,2,0V18.46a4.08,4.08,0,0,0,2-3.46A4,4,0,0,0,12,11.37Z" />
-                        <path d="M12,2a5,5,0,0,0-5,5,1,1,0,0,0,2,0,3,3,0,0,1,6,0,1,1,0,0,0,2,0A5,5,0,0,0,12,2Z" />
-                    </svg>
-                    <h4>Pertanian</h4>
-                    <p>Menjadi sentra penghasil komoditas <strong>Kelapa</strong> dan <strong>Pisang</strong>. Terdapat
-                        upaya pengolahan produk turunan oleh kelompok tani dan PKK untuk meningkatkan nilai ekonomi.</p>
-                </div>
-                <div class="divider"></div>
-                <div class="potential-item">
-                    <!-- IKON EKONOMI KREATIF BARU (LIGHTBULB/IDE) -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M12,2A7,7,0,0,0,8.44,14.85c-.24.33-.18.78.15,1L9,16.18V18a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1v-1.82l.41-.33c.33-.22.39-.67.15-1A7,7,0,0,0,12,2Zm2,12.82V15H10v-2.18a5,5,0,1,1,4,0Z" />
-                        <path d="M9,20h6a1,1,0,0,0,0-2H9a1,1,0,0,0,0,2Z" />
-                    </svg>
-                    <h4>Ekonomi Kreatif</h4>
-                    <p>Didorong oleh <strong>BUMDes</strong>, desa mengembangkan usaha kreatif seperti <strong>"Kafe
-                            Teras Desa"</strong> dan memiliki visi membangun layanan internet desa melalui kolaborasi
-                        dengan <strong>BAKTI</strong>.</p>
-                </div>
-            </div>
+    <div class="content-section">
+        <div class="section-title">4. DEFINISI DAN ISTILAH</div>
+        <ul>
+            <li><strong>Data Publikasi:</strong> Data dalam publikasi "Desa Sejegi Dalam Angka 2025".</li>
+            <li><strong>Data Tabulasi:</strong> Data yang sudah dalam bentuk tabulasi tanpa identitas personal dari
+                Google Sheet atau sumber lain.</li>
+            <li><strong>Pemohon Internal:</strong> OPD, instansi pemerintah.</li>
+            <li><strong>Pemohon Eksternal:</strong> Masyarakat umum, peneliti, mahasiswa, lembaga swasta.</li>
+        </ul>
+    </div>
 
-            <div class="section-title">Perbandingan Kepadatan Penduduk (Jiwa/km²)</div>
-
-            <div class="chart-container">
-                <div class="chart-bar">
-                    <div class="chart-label">Peniti Luar</div>
-                    <div class="bar-wrapper">
-                        <div class="bar" style="width: 23%;">(107.49)</div>
-                    </div>
-                </div>
-                <div class="chart-bar">
-                    <div class="chart-label">Wajok Hulu</div>
-                    <div class="bar-wrapper">
-                        <div class="bar" style="width: 25%;">(117.21)</div>
-                    </div>
-                </div>
-                <div class="chart-bar">
-                    <div class="chart-label">Wajok Hilir</div>
-                    <div class="bar-wrapper">
-                        <div class="bar highlight" style="width: 34%;">(158.07)</div>
-                    </div>
-                </div>
-                <div class="chart-bar">
-                    <div class="chart-label">Jongkat</div>
-                    <div class="bar-wrapper">
-                        <div class="bar" style="width: 81%;">(370.82)</div>
-                    </div>
-                </div>
-                <div class="chart-bar">
-                    <div class="chart-label">Sungai Nipah</div>
-                    <div class="bar-wrapper">
-                        <div class="bar" style="width: 100%;">(453.32)</div>
-                    </div>
-                </div>
-            </div>
-
-            <footer>
-                Sumber Data: Publikasi Kecamatan Jongkat dalam Angka 2024 (Data Tahun 2023).
-                <br>
-                Infografis ini dibuat sebagai bagian dari program Pembinaan Desa Cinta Statistik (Cantik).
-            </footer>
-
+    <div class="content-section">
+        <div class="section-title">5. DATA YANG TERSEDIA</div>
+        <div class="sub-section">
+            <h3>A. DATA PUBLIKASI (DESA SEJEGI DALAM ANGKA 2025)</h3>
+            <p><strong>Tabel yang Tersedia:</strong></p>
+            <ol>
+                <li>Tabel 1: Batas Wilayah Administrasi Desa Sejegi</li>
+                <li>Tabel 2: Jumlah Penduduk Desa Sejegi Menurut Jenis Kelamin</li>
+                <li>Tabel 3: Jumlah Kartu Keluarga Desa Sejegi</li>
+                <li>Tabel 4: Jumlah Rumah di Desa Sejegi</li>
+                <li>Tabel 5: Jumlah Orang Disabilitas Desa Sejegi</li>
+                <li>Tabel 6: Jumlah Anak Putus Sekolah Desa Sejegi</li>
+                <li>Tabel 7: Jumlah Bahan Utama Dinding Rumah Desa Sejegi</li>
+                <li>Tabel 8: Jumlah Bahan Utama Lantai Terluas Rumah Desa Sejegi</li>
+                <li>Tabel 9: Jumlah Bahan Utama Atap Terluas Rumah Desa Sejegi</li>
+                <li>Tabel 10: Kepemilikan Fasilitas Buang Air Besar Sendiri Desa Sejegi</li>
+                <li>Tabel 11: Cara Keluarga Membuang Sampah Rumah Tangga Desa Sejegi</li>
+            </ol>
+            <h3>B. DATA TABULASI LAIN YANG SIAP PAKAI</h3>
+            <ul>
+                <li>Data dari Google Sheet yang sudah ditabulasi tanpa identitas personal.</li>
+                <li>Data prodeskel yang sudah dalam bentuk agregat.</li>
+            </ul>
+            <h3>C. DATA YANG TIDAK DAPAT DIBERIKAN</h3>
+            <ul>
+                <li>Raw data dengan identitas personal.</li>
+                <li>Data yang mengandung nama dan alamat lengkap.</li>
+                <li>Data sensitif sesuai peraturan perundang-undangan.</li>
+            </ul>
         </div>
     </div>
+
+    <div class="content-section">
+        <div class="section-title">6. PROSEDUR PELAYANAN</div>
+        <div class="sub-section">
+            <h3>A. PENERIMAAN PERMINTAAN</h3>
+            <ul>
+                <li><strong>Petugas:</strong> Perangkat Desa yang bertugas</li>
+                <li><strong>Waktu:</strong> 2 menit</li>
+                <li><strong>Kegiatan:</strong>
+                    <ol>
+                        <li>Mendengarkan/membaca permintaan data.</li>
+                        <li>Mengidentifikasi jenis data yang diminta.</li>
+                        <li>Menentukan ketersediaan data.</li>
+                    </ol>
+                </li>
+            </ul>
+            <h3>B. PENGECEKAN DATA</h3>
+            <ul>
+                <li><strong>Petugas:</strong> Perangkat Desa</li>
+                <li><strong>Waktu:</strong> 2 menit</li>
+                <li><strong>Kegiatan:</strong>
+                    <p><strong>Jika diminta data dari publikasi:</strong></p>
+                    <ul>
+                        <li>Cek nomor tabel yang diminta (Tabel 1-11).</li>
+                        <li>Konfirmasi data tersedia.</li>
+                    </ul>
+                    <p><strong>Jika diminta data tabulasi lain:</strong></p>
+                    <ul>
+                        <li>Cek ketersediaan di Google Sheet/data tabulasi siap pakai.</li>
+                        <li>Pastikan tidak mengandung data pribadi.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>C. PEMBERIAN DATA</h3>
+            <p><strong>Data TERSEDIA (5 menit)</strong></p>
+            <ul>
+                <li><strong>Kegiatan:</strong>
+                    <ol>
+                        <li>Ambil data yang diminta.</li>
+                        <li>Berikan dalam format digital (Email, WhatsApp, Flashdisk/Cloud).</li>
+                        <li>Selesai.</li>
+                    </ol>
+                </li>
+            </ul>
+            <p><strong>Data TIDAK TERSEDIA (1 menit)</strong></p>
+            <ul>
+                <li><strong>Kegiatan:</strong>
+                    <ol>
+                        <li>Jelaskan bahwa data tidak tersedia.</li>
+                        <li>Berikan alternatif data terdekat jika ada.</li>
+                        <li>Selesai.</li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">7. PERSYARATAN MINIMAL</div>
+        <div class="sub-section">
+            <h3>A. UNTUK SEMUA PEMOHON</h3>
+            <ul>
+                <li><strong>Menyebutkan identitas</strong> (nama).</li>
+                <li><strong>Menjelaskan data yang dibutuhkan</strong> (nomor tabel atau jenis data).</li>
+                <li><strong>Menyebutkan keperluan</strong> (opsional, untuk membantu memberikan data yang tepat).</li>
+            </ul>
+        </div>
+    </div>
+
+    <p style="page-break-before: always;"></p>
+
+    <div class="content-section">
+        <div class="section-title">8. WAKTU PELAYANAN</div>
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Kondisi Data</th>
+                    <th>Waktu Pelayanan</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data Publikasi (Tabel 1-11)</td>
+                    <td style="text-align:center;"><strong>3 menit</strong></td>
+                    <td>Langsung kirim</td>
+                </tr>
+                <tr>
+                    <td>Data Tabulasi Lain</td>
+                    <td style="text-align:center;"><strong>5 menit</strong></td>
+                    <td>Cek dan kirim</td>
+                </tr>
+                <tr>
+                    <td>Data Tidak Tersedia</td>
+                    <td style="text-align:center;"><strong>1 menit</strong></td>
+                    <td>Informasikan</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center;"><strong>Total maksimal pelayanan: 5 menit per
+                            permintaan</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">9. BIAYA PELAYANAN</div>
+        <p style="text-align: center; font-weight: bold;">SEMUA DATA GRATIS - Seluruhnya dalam bentuk soft file digital.
+        </p>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">10. CARA PEMBERIAN DATA</div>
+        <div class="sub-section">
+            <h3>A. VIA EMAIL</h3>
+            <p>Kirim file PDF publikasi atau Excel tabulasi dengan Subjek: "Data [Nama Tabel/Jenis Data] - Desa Sejegi".
+            </p>
+            <h3>B. VIA WHATSAPP</h3>
+            <p>Kirim foto tabel untuk data sederhana atau file untuk data lengkap.</p>
+            <h3>C. VIA FLASHDISK/CLOUD STORAGE</h3>
+            <p>Salin file ke media yang dibawa pemohon atau unggah ke Google Drive/cloud.</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">11. LANGKAH PROTEKSI DATA</div>
+        <div class="sub-section">
+            <h3>A. CHECKLIST CEPAT (30 detik)</h3>
+            <ul>
+                <li>✅ <strong>Tidak ada kolom nama</strong></li>
+                <li>✅ <strong>Tidak ada kolom alamat lengkap</strong></li>
+                <li>✅ <strong>Tidak ada kolom NIK</strong></li>
+                <li>✅ <strong>Data dalam bentuk agregat/total</strong></li>
+            </ul>
+            <h3>B. DISCLAIMER SEDERHANA</h3>
+            <p>Cantumkan di email atau sampaikan lisan: <em>"Data ini untuk keperluan yang telah disebutkan dan tidak
+                    boleh disalahgunakan."</em></p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">12. FLOWCHART PELAYANAN SUPER CEPAT</div>
+        <div class="flowchart">
+            <pre>
+PERMINTAAN DATA MASUK
+         ↓
+IDENTIFIKASI DATA (1 menit)
+         ↓
+    DATA TERSEDIA?
+    ┌─────┴─────┐
+   YES          NO
+    ↓            ↓
+KIRIM DATA     INFORMASIKAN
+(3-5 menit)    TIDAK TERSEDIA
+               (1 menit)
+    ↓            ↓
+SELESAI ←────────┘
+            </pre>
+        </div>
+    </div>
+
+    <p style="page-break-before: always;"></p>
+
+    <div class="content-section">
+        <div class="section-title">13. PANDUAN CEPAT UNTUK PETUGAS</div>
+        <div class="sub-section">
+            <h3>A. DAFTAR DATA YANG SERING DIMINTA</h3>
+            <p><strong>Data Publikasi Populer:</strong> Tabel 2 (Jumlah Penduduk), Tabel 3 (Jumlah KK), Tabel 4 (Jumlah
+                Rumah), Tabel 1 (Batas Wilayah).</p>
+            <p><strong>Data Tabulasi Lain:</strong> Data penduduk per RT, data mata pencaharian, data usia penduduk
+                (dari Google Sheet).</p>
+            <h3>B. KALIMAT STANDAR PELAYANAN</h3>
+            <ul>
+                <li><strong>Pembuka:</strong> <em>"Data apa yang Bapak/Ibu butuhkan? Untuk keperluan apa?"</em></li>
+                <li><strong>Konfirmasi:</strong> <em>"Data ini tersedia, mau saya kirim via email atau WhatsApp? Ini
+                        data dari publikasi Desa Sejegi Dalam Angka 2025."</em></li>
+                <li><strong>Jika tidak tersedia:</strong> <em>"Maaf, data tersebut tidak tersedia. Yang ada adalah data
+                        [sebutkan alternatif]."</em></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">14. TIPS EFISIENSI MAKSIMAL</div>
+        <div class="sub-section">
+            <h3>A. PERSIAPAN HARIAN (5 menit)</h3>
+            <ul>
+                <li>Pastikan file publikasi mudah diakses.</li>
+                <li>Cek koneksi internet untuk kirim email/WhatsApp.</li>
+                <li>Siapkan template email standar.</li>
+            </ul>
+            <h3>B. TEMPLATE EMAIL STANDAR</h3>
+            <div style="border: 1px dashed #ccc; padding: 10px; background-color: #f9f9f9;">
+                <strong>Subject:</strong> Data Statistik - Desa Sejegi<br><br>
+                Yth. [Nama Pemohon]<br><br>
+                Terlampir data yang diminta:<br>
+                - [Nama tabel/data]<br>
+                - Sumber: [Publikasi/Tabulasi Desa]<br><br>
+                Data ini untuk keperluan yang telah disebutkan dan tidak boleh disalahgunakan.<br><br>
+                Terima kasih.<br><br>
+                Perangkat Desa Sejegi
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">15. MONITORING SEDERHANA</div>
+        <div class="sub-section">
+            <h3>A. INDIKATOR SUKSES</h3>
+            <ul>
+                <li>Waktu pelayanan: Maksimal 5 menit per permintaan.</li>
+                <li>Tidak ada komplain terkait data salah atau data pribadi bocor.</li>
+                <li>Pemohon puas mendapatkan data yang dibutuhkan.</li>
+            </ul>
+            <h3>B. EVALUASI INFORMAL</h3>
+            <ul>
+                <li>Catat data apa yang paling sering diminta.</li>
+                <li>Identifikasi kendala yang sering muncul.</li>
+                <li>Pastikan file selalu update dan mudah diakses.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="section-title">16. PENUTUP</div>
+        <p>SOP ini dirancang untuk memberikan pelayanan data statistik yang sangat cepat dan efisien. Dengan fokus pada
+            data yang sudah tersedia dan proses minimal, pelayanan dapat diselesaikan dalam maksimal 5 menit per
+            permintaan.</p>
+        <p style="text-align: center; font-style: italic; font-weight: bold;">Prinsip Utama: Cepat, Aman, dan Mudah</p>
+    </div>
+
+    <div class="signature-section">
+        <div class="signature-block">
+            <p>Ditetapkan di: Desa Sejegi</p>
+            <p>Pada tanggal: 1 Agustus 2025</p>
+            <p><strong>KEPALA DESA SEJEGI</strong></p>
+            <div class="signature-name">[NAMA KEPALA DESA]</div>
+            <p>_________________________</p>
+        </div>
+    </div>
+
 </body>
 
 </html>

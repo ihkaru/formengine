@@ -50,20 +50,20 @@
         }
 
         .hero-section {
-            background-image: url({{ asset('images/pulaupedalaman.webp')}});
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        color: white;
-        text-align: center;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 60px 0;
-        overflow: hidden;
-        /* Mencegah scrollbar horizontal karena parallax */
+            background-image: url({{ asset('images/pulaupedalaman.webp') }});
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 60px 0;
+            overflow: hidden;
+            /* Mencegah scrollbar horizontal karena parallax */
         }
 
         .hero-overlay {
@@ -395,7 +395,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('cantik.index')}}">Beranda</a>
+                        <a class="nav-link" href="{{ route('cantik.index') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tentang">Tentang</a>
@@ -426,9 +426,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <h1 class="hero-title" data-animate-text>Kelurahan Pedalaman</h1>
-                    <p class="hero-subtitle" data-animate-text>Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah Timur</p>
+                    <p class="hero-subtitle" data-animate-text>Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah
+                        Timur</p>
                     <a href="#produk" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="1000">
                         <i class="fas fa-chart-bar me-2"></i>Lihat Produk Statistik
+                    </a>
+                    <a href="https://s.bps.go.id/KontakPermintaanDataPulauPedalaman" class="btn btn-primary btn-lg"
+                        data-aos="fade-up" data-aos-delay="1000" aria-label="Ajukan Permintaan Data">
+                        <i class="fas fa-envelope me-2"></i> Ajukan Permintaan Data
                     </a>
                 </div>
             </div>
@@ -441,7 +446,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="about-image">
-                        <img src="{{ asset('images/pulaupedalaman.webp') }}" alt="Kelurahan Pedalaman" class="img-fluid">
+                        <img src="{{ asset('images/pulaupedalaman.webp') }}" alt="Kelurahan Pedalaman"
+                            class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
@@ -522,7 +528,8 @@
                             <i class="fas fa-sitemap"></i>
                         </div>
                         <h5 class="feature-title">Kemandirian Data Desa/Kelurahan</h5>
-                        <p class="text-muted">Desa/Kelurahan tidak lagi hanya menjadi objek pendataan, tetapi menjadi subjek yang
+                        <p class="text-muted">Desa/Kelurahan tidak lagi hanya menjadi objek pendataan, tetapi menjadi
+                            subjek yang
                             mampu mengelola, menganalisis, dan menyajikan datanya sendiri untuk kepentingan lokal.</p>
                     </div>
                 </div>
@@ -565,34 +572,40 @@
                         <div class="gallery-caption">Pelatihan Agen Statistik bersama BPS Kabupaten Mempawah</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="200">
                     <div class="gallery-item">
                         <img src="{{ asset('images/pedalaman-lapangan-1.webp') }}" alt="Dokumentasi Lapangan 2">
                         <div class="gallery-caption">Wawancara dengan responden</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="gallery-item">
                         <img src="{{ asset('images/pedalaman-pelatihan-2.webp') }}" alt="Dokumentasi Lapangan 3">
-                        <div class="gallery-caption">Pembinaan Kelurahan Cinta Statistik bersama Masyarakat Kelurahan</div>
+                        <div class="gallery-caption">Pembinaan Kelurahan Cinta Statistik bersama Masyarakat Kelurahan
+                        </div>
                     </div>
                 </div>
                 <!-- Anda bisa menambahkan lebih banyak foto di sini dengan format yang sama -->
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="gallery-item">
                         <img src="{{ asset('images/pedalaman-app-1.webp') }}" alt="Dokumentasi Lapangan 3">
                         <div class="gallery-caption">Titik Koordinat Rumah Tempat Tinggal Masyarakat</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="gallery-item">
                         <img src="{{ asset('images/pedalaman-lapangan-3.webp') }}" alt="Dokumentasi Lapangan 3">
                         <div class="gallery-caption">Penggunaan Aplikasi Pendataan dengan <i>Smartphone</i></div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="gallery-item">
                         <img src="{{ asset('images/pedalaman-lapangan-4.webp') }}" alt="Dokumentasi Lapangan 3">
                         <div class="gallery-caption">Wawancara bersama Responden</div>
@@ -662,7 +675,8 @@
                 </div>
 
                 <!-- Infografis -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="200">
                     <div class="product-card h-100">
                         <div class="card-body text-center p-4">
                             <div class="product-icon">
@@ -692,7 +706,8 @@
                 </div>
 
                 <!-- Tabel Data -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="product-card h-100">
                         <div class="card-body text-center p-4">
                             <div class="product-icon">
@@ -722,7 +737,8 @@
                 </div>
 
                 <!-- Publikasi -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="200">
                     <div class="product-card h-100">
                         <div class="card-body text-center p-4">
                             <div class="product-icon">
@@ -752,7 +768,8 @@
                 </div>
 
                 <!-- SOP Permintaan Data -->
-                <div class="col-lg-8 col-md-12 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-8 col-md-12 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="product-card h-100">
                         <div class="card-body p-4">
                             <div class="row">
@@ -840,51 +857,52 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-                // Inisialisasi AOS
-                AOS.init({
-                    once: true,
-                    duration: 800
+            // Inisialisasi AOS
+            AOS.init({
+                once: true,
+                duration: 800
+            });
+
+            // Script untuk animasi teks per kata
+            const textElements = document.querySelectorAll('[data-animate-text]');
+            textElements.forEach(textEl => {
+                const text = textEl.textContent;
+                const words = text.split(' ');
+                let newContent = '';
+
+                words.forEach((word, index) => {
+                    const wordHtml =
+                        `<span class="word-wrapper"><span class="word" style="animation-delay: ${index * 0.08}s">${word}</span></span>`;
+                    newContent += wordHtml + ' ';
                 });
 
-                // Script untuk animasi teks per kata
-                const textElements = document.querySelectorAll('[data-animate-text]');
-                textElements.forEach(textEl => {
-                    const text = textEl.textContent;
-                    const words = text.split(' ');
-                    let newContent = '';
+                textEl.innerHTML = newContent.trim();
+            });
 
-                    words.forEach((word, index) => {
-                        const wordHtml = `<span class="word-wrapper"><span class="word" style="animation-delay: ${index * 0.08}s">${word}</span></span>`;
-                        newContent += wordHtml + ' ';
+            // ============================================== //
+            //      SCRIPT BARU UNTUK EFEK PARALLAX           //
+            // ============================================== //
+            const heroSection = document.querySelector('.hero-section');
+            window.addEventListener('scroll', function() {
+                // Ambil posisi scroll vertikal saat ini
+                const scrollPosition = window.pageYOffset;
+
+                // Atur posisi background.
+                // Angka 0.5 menentukan kecepatan parallax. Anda bisa mengubahnya (misal: 0.3, 0.7, dll)
+                heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+            });
+
+            // Script untuk tombol tahun produk (tidak berubah)
+            document.querySelectorAll('.year-select .btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.parentNode.querySelectorAll('.btn').forEach(btn => {
+                        btn.classList.remove('active');
                     });
-
-                    textEl.innerHTML = newContent.trim();
-                });
-
-                // ============================================== //
-                //      SCRIPT BARU UNTUK EFEK PARALLAX           //
-                // ============================================== //
-                const heroSection = document.querySelector('.hero-section');
-                window.addEventListener('scroll', function() {
-                    // Ambil posisi scroll vertikal saat ini
-                    const scrollPosition = window.pageYOffset;
-
-                    // Atur posisi background.
-                    // Angka 0.5 menentukan kecepatan parallax. Anda bisa mengubahnya (misal: 0.3, 0.7, dll)
-                    heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
-                });
-
-                // Script untuk tombol tahun produk (tidak berubah)
-                document.querySelectorAll('.year-select .btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        this.parentNode.querySelectorAll('.btn').forEach(btn => {
-                            btn.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                        console.log('Selected year:', this.textContent);
-                    });
+                    this.classList.add('active');
+                    console.log('Selected year:', this.textContent);
                 });
             });
+        });
     </script>
 </body>
 <!-- Looker Studio Modal -->

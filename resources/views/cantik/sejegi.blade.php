@@ -15,234 +15,235 @@
     <!-- Custom CSS -->
     <style>
         :root {
-        --primary-color: #2E5090;
-        --secondary-color: #4CAF50;
-        --accent-color: #FF9800;
-        --text-color: #333;
-        --light-bg: #f8f9fa;
+            --primary-color: #2E5090;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF9800;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
         }
 
         body {
-        font-family: 'Poppins', sans-serif;
-        color: var(--text-color);
-        background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: #f8f9fa;
         }
 
         .navbar {
-        background-color: var(--primary-color);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand {
-        font-weight: 700;
-        color: white !important;
+            font-weight: 700;
+            color: white !important;
         }
 
         .nav-link {
-        color: rgba(255, 255, 255, 0.85) !important;
-        font-weight: 500;
-        transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
-        color: white !important;
-        transform: translateY(-2px);
+            color: white !important;
+            transform: translateY(-2px);
         }
 
         .hero-section {
-        background-image: url({{ asset('images/sejegi.webp') }});
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        color: white;
-        text-align: center;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 60px 0;
-        overflow: hidden; /* Mencegah scrollbar horizontal karena parallax */
+            background-image: url({{ asset('images/sejegi.webp') }});
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 60px 0;
+            overflow: hidden;
+            /* Mencegah scrollbar horizontal karena parallax */
         }
 
         .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(46, 80, 144, 0.8) 0%, rgba(76, 175, 80, 0.6) 100%);
-        z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(46, 80, 144, 0.8) 0%, rgba(76, 175, 80, 0.6) 100%);
+            z-index: 1;
         }
 
         .hero-content {
-        position: relative;
-        z-index: 2;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-title {
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-subtitle {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
-        opacity: 0.9;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .word-wrapper {
-        display: inline-block;
-        overflow: hidden;
-        vertical-align: bottom;
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
         }
 
         .word {
-        display: inline-block;
-        transform: translateY(110%);
-        animation: slide-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            display: inline-block;
+            transform: translateY(110%);
+            animation: slide-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
         @keyframes slide-up {
-        to {
-        transform: translateY(0);
-        }
+            to {
+                transform: translateY(0);
+            }
         }
 
         .btn-primary {
-        background-color: var(--accent-color);
-        border-color: var(--accent-color);
-        padding: 10px 25px;
-        font-weight: 600;
-        border-radius: 50px;
-        transition: all 0.3s;
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            padding: 10px 25px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
         }
 
         .btn-primary:hover {
-        background-color: #e08600;
-        border-color: #e08600;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #e08600;
+            border-color: #e08600;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .section-title {
-        position: relative;
-        margin-bottom: 50px;
-        font-weight: 700;
-        color: var(--primary-color);
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
         .section-title::after {
-        content: '';
-        display: block;
-        width: 70px;
-        height: 4px;
-        background-color: var(--accent-color);
-        margin-top: 15px;
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin-top: 15px;
         }
 
         .section-title.text-center::after {
-        margin-left: auto;
-        margin-right: auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .about-image {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .gallery-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-        height: 280px;
-        background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 280px;
+            background-color: #fff;
         }
 
         .gallery-item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
         .gallery-item:hover img {
-        transform: scale(1.05);
+            transform: scale(1.05);
         }
 
         .gallery-caption {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-        color: white;
-        padding: 30px 15px 15px 15px;
-        font-weight: 600;
-        text-align: center;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            color: white;
+            padding: 30px 15px 15px 15px;
+            font-weight: 600;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
         }
 
         .gallery-item:hover .gallery-caption {
-        opacity: 1;
-        transform: translateY(0);
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Kartu Manfaat (menggunakan gaya yang sudah ada) */
         .feature-card {
-        background-color: white;
-        border-radius: 15px;
-        padding: 30px;
-        margin-bottom: 30px;
-        transition: all 0.3s ease;
-        border: none;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        height: 100%;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
         }
 
         .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
-        margin-bottom: 25px;
+            margin-bottom: 25px;
         }
 
         .feature-icon i {
-        font-size: 3rem;
-        color: var(--accent-color);
-        background: rgba(255, 152, 0, 0.1);
-        width: 80px;
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
+            font-size: 3rem;
+            color: var(--accent-color);
+            background: rgba(255, 152, 0, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         .feature-title {
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
 
         .product-section {
-        background-color: #f8f9fa;
-        padding: 80px 0;
+            background-color: #f8f9fa;
+            padding: 80px 0;
         }
 
         .product-card {
@@ -394,7 +395,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('cantik.index')}}">Beranda</a>
+                        <a class="nav-link" href="{{ route('cantik.index') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tentang">Tentang</a>
@@ -425,9 +426,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <h1 class="hero-title" data-animate-text>Desa Sejegi</h1>
-                    <p class="hero-subtitle" data-animate-text>Desa Cinta Statistik (Cantik) di Kecamatan Mempawah Timur</p>
+                    <p class="hero-subtitle" data-animate-text>Desa Cinta Statistik (Cantik) di Kecamatan Mempawah Timur
+                    </p>
                     <a href="#produk" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="1000">
                         <i class="fas fa-chart-bar me-2"></i>Lihat Produk Statistik
+                    </a>
+                    <a href="http://s.bps.go.id/KontakPermintaanDataSejegi" class="btn btn-primary btn-lg"
+                        data-aos="fade-up" data-aos-delay="1000" aria-label="Ajukan Permintaan Data">
+                        <i class="fas fa-envelope me-2"></i> Ajukan Permintaan Data
                     </a>
                 </div>
             </div>
@@ -440,8 +446,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                     <div class="about-image">
-                        <img src="{{ asset('images/sejegi.webp') }}" alt="Desa Sejegi"
-                            class="img-fluid">
+                        <img src="{{ asset('images/sejegi.webp') }}" alt="Desa Sejegi" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
@@ -511,7 +516,8 @@
                         </div>
                         <h5 class="feature-title">Kebijakan Tepat Sasaran</h5>
                         <p class="text-muted">Dengan data hingga level individu dan koordinat rumah, bantuan sosial dan
-                            program pembangunan dapat disalurkan secara akurat kepada warga yang benar-benar membutuhkan.
+                            program pembangunan dapat disalurkan secara akurat kepada warga yang benar-benar
+                            membutuhkan.
                         </p>
                     </div>
                 </div>
@@ -531,7 +537,8 @@
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <h5 class="feature-title">Perencanaan Berbasis Bukti</h5>
-                        <p class="text-muted">Setiap rencana pembangunan desa (Musrenbangdes) didasarkan pada data faktual
+                        <p class="text-muted">Setiap rencana pembangunan desa (Musrenbangdes) didasarkan pada data
+                            faktual
                             dan terkini, sehingga lebih efektif dalam menjawab kebutuhan nyata masyarakat.</p>
                     </div>
                 </div>
@@ -555,7 +562,8 @@
     <section id="dokumentasi" class="py-5" style="background-color: var(--light-bg);">
         <div class="container py-5">
             <h2 class="section-title text-center">Dokumentasi Kegiatan</h2>
-            <p class="text-center mb-5">Berikut adalah beberapa foto dari proses pelatihan dan pengumpulan data di lapangan oleh tim
+            <p class="text-center mb-5">Berikut adalah beberapa foto dari proses pelatihan dan pengumpulan data di
+                lapangan oleh tim
                 Desa Cantik Sejegi.</p>
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
@@ -564,13 +572,15 @@
                         <div class="gallery-caption">Pelatihan Agen Statistik bersama BPS Kabupaten Mempawah</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="200">
                     <div class="gallery-item">
                         <img src="{{ asset('images/sejegi-lapangan.webp') }}" alt="Dokumentasi Lapangan 2">
                         <div class="gallery-caption">Wawancara dengan Warga</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="gallery-item">
                         <img src="{{ asset('images/sejegi-lapangan-2.webp') }}" alt="Dokumentasi Lapangan 3">
                         <div class="gallery-caption">Foto Bangunan Rumah Warga</div>
@@ -579,19 +589,22 @@
                 <!-- Anda bisa menambahkan lebih banyak foto di sini dengan format yang sama -->
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="gallery-item">
                         <img src="{{ asset('images/sejegi-lapangan-3.webp') }}" alt="Dokumentasi Lapangan 3">
                         <div class="gallery-caption">Foto Bangunan Rumah Warga</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="gallery-item">
                         <img src="{{ asset('images/sejegi-app-1.webp') }}" alt="Dokumentasi Lapangan 3">
                         <div class="gallery-caption">Koordinat Bangunan Rumah Warga yang Telah Dikunjungi</div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="gallery-item">
                         <img src="{{ asset('images/sejegi-app-2.webp') }}" alt="Dokumentasi Lapangan 3">
                         <div class="gallery-caption">Foto Fasilitas yang Ada di Desa</div>
@@ -629,7 +642,7 @@
     <section class="product-section">
         <div class="container">
             <div class="row">
-            <h2 class="section-title text-center">Produk Statistik yang akan Datang</h2>
+                <h2 class="section-title text-center">Produk Statistik yang akan Datang</h2>
                 <!-- Monografi Desa -->
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
                     <div class="product-card h-100">
@@ -661,7 +674,8 @@
                 </div>
 
                 <!-- Infografis -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="200">
                     <div class="product-card h-100">
                         <div class="card-body text-center p-4">
                             <div class="product-icon">
@@ -691,7 +705,8 @@
                 </div>
 
                 <!-- Tabel Data -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="product-card h-100">
                         <div class="card-body text-center p-4">
                             <div class="product-icon">
@@ -721,7 +736,8 @@
                 </div>
 
                 <!-- Publikasi -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="200">
                     <div class="product-card h-100">
                         <div class="card-body text-center p-4">
                             <div class="product-icon">
@@ -751,7 +767,8 @@
                 </div>
 
                 <!-- SOP Permintaan Data -->
-                <div class="col-lg-8 col-md-12 mb-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="col-lg-8 col-md-12 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="400">
                     <div class="product-card h-100">
                         <div class="card-body p-4">
                             <div class="row">
@@ -772,7 +789,8 @@
                                 <div class="col-md-8">
                                     <div class="sop-diagram">
                                         <h5 class="text-center mb-4">Alur Permintaan Data</h5>
-                                        <img src="{{ asset('images/sop-diagram.svg') }}" alt="Diagram Alur SOP" class="img-fluid">
+                                        <img src="{{ asset('images/sop-diagram.svg') }}" alt="Diagram Alur SOP"
+                                            class="img-fluid">
                                         <div class="mt-3 text-center">
                                             <a href="#" class="btn btn-sm btn-outline-primary">
                                                 <i class="fas fa-download me-1"></i>Unduh SOP Lengkap (PDF)
@@ -838,51 +856,52 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-                // Inisialisasi AOS
-                AOS.init({
-                    once: true,
-                    duration: 800
+            // Inisialisasi AOS
+            AOS.init({
+                once: true,
+                duration: 800
+            });
+
+            // Script untuk animasi teks per kata
+            const textElements = document.querySelectorAll('[data-animate-text]');
+            textElements.forEach(textEl => {
+                const text = textEl.textContent;
+                const words = text.split(' ');
+                let newContent = '';
+
+                words.forEach((word, index) => {
+                    const wordHtml =
+                        `<span class="word-wrapper"><span class="word" style="animation-delay: ${index * 0.08}s">${word}</span></span>`;
+                    newContent += wordHtml + ' ';
                 });
 
-                // Script untuk animasi teks per kata
-                const textElements = document.querySelectorAll('[data-animate-text]');
-                textElements.forEach(textEl => {
-                    const text = textEl.textContent;
-                    const words = text.split(' ');
-                    let newContent = '';
+                textEl.innerHTML = newContent.trim();
+            });
 
-                    words.forEach((word, index) => {
-                        const wordHtml = `<span class="word-wrapper"><span class="word" style="animation-delay: ${index * 0.08}s">${word}</span></span>`;
-                        newContent += wordHtml + ' ';
+            // ============================================== //
+            //      SCRIPT BARU UNTUK EFEK PARALLAX           //
+            // ============================================== //
+            const heroSection = document.querySelector('.hero-section');
+            window.addEventListener('scroll', function() {
+                // Ambil posisi scroll vertikal saat ini
+                const scrollPosition = window.pageYOffset;
+
+                // Atur posisi background.
+                // Angka 0.5 menentukan kecepatan parallax. Anda bisa mengubahnya (misal: 0.3, 0.7, dll)
+                heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+            });
+
+            // Script untuk tombol tahun produk (tidak berubah)
+            document.querySelectorAll('.year-select .btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.parentNode.querySelectorAll('.btn').forEach(btn => {
+                        btn.classList.remove('active');
                     });
-
-                    textEl.innerHTML = newContent.trim();
-                });
-
-                // ============================================== //
-                //      SCRIPT BARU UNTUK EFEK PARALLAX           //
-                // ============================================== //
-                const heroSection = document.querySelector('.hero-section');
-                window.addEventListener('scroll', function() {
-                    // Ambil posisi scroll vertikal saat ini
-                    const scrollPosition = window.pageYOffset;
-
-                    // Atur posisi background.
-                    // Angka 0.5 menentukan kecepatan parallax. Anda bisa mengubahnya (misal: 0.3, 0.7, dll)
-                    heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
-                });
-
-                // Script untuk tombol tahun produk (tidak berubah)
-                document.querySelectorAll('.year-select .btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        this.parentNode.querySelectorAll('.btn').forEach(btn => {
-                            btn.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                        console.log('Selected year:', this.textContent);
-                    });
+                    this.classList.add('active');
+                    console.log('Selected year:', this.textContent);
                 });
             });
+        });
     </script>
 </body>
 <!-- Looker Studio Modal -->
