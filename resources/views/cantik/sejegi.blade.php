@@ -656,9 +656,7 @@
 
                             <div class="year-select">
                                 <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2023</button>
-                                <button class="btn">2022</button>
-                                <button class="btn">2021</button>
+                                <button class="btn active">2025</button>
                             </div>
 
                             <div class="d-grid gap-2">
@@ -687,9 +685,7 @@
 
                             <div class="year-select">
                                 <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2023</button>
-                                <button class="btn">2022</button>
-                                <button class="btn">2021</button>
+                                <button class="btn active">2025</button>
                             </div>
 
                             <div class="d-grid gap-2">
@@ -718,9 +714,7 @@
 
                             <div class="year-select">
                                 <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2023</button>
-                                <button class="btn">2022</button>
-                                <button class="btn">2021</button>
+                                <button class="btn active">2025</button>
                             </div>
 
                             <div class="d-grid gap-2">
@@ -749,9 +743,7 @@
 
                             <div class="year-select">
                                 <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2023</button>
-                                <button class="btn">2022</button>
-                                <button class="btn">2021</button>
+                                <button class="btn active">2025</button>
                             </div>
 
                             <div class="d-grid gap-2">
@@ -782,11 +774,10 @@
 
                                     <div class="year-select">
                                         <h6 class="mb-2">Pilih Tahun:</h6>
-                                        <button class="btn active">2023</button>
-                                        <button class="btn">2022</button>
+                                        <button class="btn active">2025</button>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                {{-- <div class="col-md-8">
                                     <div class="sop-diagram">
                                         <h5 class="text-center mb-4">Alur Permintaan Data</h5>
                                         <img src="{{ asset('images/sop-diagram.svg') }}" alt="Diagram Alur SOP"
@@ -797,7 +788,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
