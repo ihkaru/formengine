@@ -378,6 +378,73 @@
             width: 100%;
             height: 100%;
         }
+
+        /* ============================================== */
+        /*          CSS BARU UNTUK PUBLIKASI              */
+        /* ============================================== */
+        .publication-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+
+        .publication-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            color: var(--text-color);
+            border: 1px solid #eee;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .publication-thumbnail {
+            position: relative;
+            width: 100%;
+            /* A4 Aspect Ratio: 297 / 210 = 1.414. padding-top = 141.4% */
+            padding-top: 141.4%;
+            overflow: hidden;
+            background-color: #e9ecef;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .publication-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .publication-card:hover .publication-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .publication-content {
+            padding: 20px 25px;
+        }
+
+        .publication-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            line-height: 1.4;
+        }
+
+        .publication-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 
@@ -408,6 +475,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#produk">Produk Statistik</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#publikasi">Publikasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">
@@ -716,78 +786,10 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="https://drive.google.com/file/d/1ETSdYgH-Q9xzlrfYh4zVhoy9VjeUmfFF/view?usp=sharing"
+                                <a href="https://docs.google.com/spreadsheets/d/1wgEXrqatq0iMrLga9EyfQHgGwiIwYRaWb8nhr1mxi88/edit?gid=0#gid=0"
                                     class="btn btn-primary product-btn">
-                                    <i class="fas fa-eye me-2"></i>Lihat Tabel
+                                    <i class="fas fa-eye me-2"></i>Lihat Tabel dan Unduh
                                 </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Publikasi -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
-                    data-aos-delay="200">
-                    <div class="product-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="product-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <h4 class="product-title">Publikasi</h4>
-                            <p class="card-text">Dokumen publikasi resmi yang berisi analisis komprehensif tentang
-                                berbagai aspek di kelurahan.</p>
-
-                            <div class="year-select">
-                                <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2025</button>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <a href="https://drive.google.com/file/d/1ETSdYgH-Q9xzlrfYh4zVhoy9VjeUmfFF/view?usp=sharing"
-                                    class="btn btn-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh PDF
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SOP Permintaan Data -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
-                    data-aos-delay="400">
-                    <div class="product-card h-100">
-                        <div class="card-body p-4">
-                            <div class="row">
-                                <div class="col-md-12 text-center mb-4 mb-md-0">
-                                    <div class="product-icon">
-                                        <i class="fas fa-clipboard-list"></i>
-                                    </div>
-                                    <h4 class="product-title">SOP Permintaan Data</h4>
-                                    <p>Standar Operasional Prosedur untuk permintaan data statistik Desa Sejegi.</p>
-
-                                    <div class="year-select">
-                                        <h6 class="mb-2">Pilih Tahun:</h6>
-                                        <button class="btn active">2025</button>
-                                    </div>
-                                    <div class="d-grid gap-2">
-                                        <a href="https://drive.google.com/file/d/11vvGZNjqpGUVYD3bE3qh-IV-_5odjWXj/view?usp=sharing"
-                                            class="btn btn btn-primary product-btn">
-                                            <i class="fas fa-download me-2"></i>Unduh PDF
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- <div class="col-md-8">
-                                    <div class="sop-diagram">
-                                        <h5 class="text-center mb-4">Alur Permintaan Data</h5>
-                                        <img src="{{ asset('images/sop-diagram.svg') }}" alt="Diagram Alur SOP"
-                                            class="img-fluid">
-                                        <div class="mt-3 text-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-download me-1"></i>Unduh SOP Lengkap (PDF)
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -795,6 +797,80 @@
             </div>
         </div>
     </section>
+
+    <!-- ============================================== -->
+    <!--          SECTION PUBLIKASI BARU MULAI          -->
+    <!-- ============================================== -->
+    <section id="publikasi" class="publication-section">
+        <div class="container py-5">
+            <h2 class="section-title text-center">Publikasi Resmi</h2>
+            <p class="text-center text-muted mb-5" style="font-size: 1.1rem;">
+                Temukan laporan dan analisis mendalam mengenai Desa Sejegi dalam publikasi resmi kami.
+            </p>
+            <div class="row">
+                <!-- Contoh Publikasi 1 -->
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <a href="#" class="publication-card">
+                        <div class="publication-thumbnail">
+                            <!-- Ganti src dengan path ke gambar cover. Ukuran ideal 210x297 atau kelipatannya -->
+                            <img src="https://via.placeholder.com/420x594/2E5090/FFFFFF?text=Publikasi+2025"
+                                alt="Cover Publikasi Desa Sejegi 2025">
+                        </div>
+                        <div class="publication-content text-center">
+                            <h5 class="publication-title">Desa Sejegi Dalam Angka 2025</h5>
+                            <p class="publication-meta">Dirilis: Juli 2025</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Contoh Publikasi 2 -->
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#" class="publication-card">
+                        <div class="publication-thumbnail">
+                            <img src="https://via.placeholder.com/420x594/4CAF50/FFFFFF?text=Analisis+UMKM"
+                                alt="Cover Analisis Potensi UMKM">
+                        </div>
+                        <div class="publication-content text-center">
+                            <h5 class="publication-title">Analisis Potensi UMKM Desa Sejegi</h5>
+                            <p class="publication-meta">Dirilis: Juni 2025</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Contoh Publikasi 3 -->
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#" class="publication-card">
+                        <div class="publication-thumbnail">
+                            <img src="https://via.placeholder.com/420x594/FF9800/FFFFFF?text=Profil+Kemiskinan"
+                                alt="Cover Profil Kemiskinan">
+                        </div>
+                        <div class="publication-content text-center">
+                            <h5 class="publication-title">Profil Kemiskinan dan Ketimpangan</h5>
+                            <p class="publication-meta">Dirilis: Mei 2025</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Contoh Publikasi 4 -->
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#" class="publication-card">
+                        <div class="publication-thumbnail">
+                            <img src="https://via.placeholder.com/420x594/607D8B/FFFFFF?text=Indikator+Sosial"
+                                alt="Cover Indikator Kesejahteraan Sosial">
+                        </div>
+                        <div class="publication-content text-center">
+                            <h5 class="publication-title">Indikator Kesejahteraan Sosial 2025</h5>
+                            <p class="publication-meta">Dirilis: April 2025</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================== -->
+    <!--          SECTION PUBLIKASI BARU SELESAI        -->
+    <!-- ============================================== -->
+
 
     <!-- Footer -->
     <footer class="footer">

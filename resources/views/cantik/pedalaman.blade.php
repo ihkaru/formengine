@@ -718,9 +718,9 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="https://drive.google.com/file/d/1HHu1yypDclbapislW-YCEzQ0bTiHbQi4/view?usp=drive_link"
+                                <a href="https://docs.google.com/spreadsheets/d/1wgEXrqatq0iMrLga9EyfQHgGwiIwYRaWb8nhr1mxi88/edit?gid=0#gid=0"
                                     class="btn btn-primary product-btn">
-                                    <i class="fas fa-eye me-2"></i>Lihat Tabel
+                                    <i class="fas fa-eye me-2"></i>Lihat dan Unduh Tabel
                                 </a>
                             </div>
                         </div>
