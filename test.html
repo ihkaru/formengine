@@ -1,21 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
-    <title>Metadata Variabel Statistik - Desa Sejegi 2025</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Pencacahan Lengkap Sosial Ekonomi Keluarga Kelurahan Pulau Pedalaman 2025</title>
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #0056b3;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            font-family: sans-serif;
+            margin-top: 20px;
         }
 
         th,
         td {
-            border: 1px solid #dddddd;
+            border: 1px solid #ddd;
+            padding: 10px;
             text-align: left;
-            padding: 8px;
-            vertical-align: top;
         }
 
         th {
@@ -23,443 +59,263 @@
             font-weight: bold;
         }
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+        ul,
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background-color: #fffbe6;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        strong {
+            color: #333;
         }
     </style>
 </head>
 
 <body>
 
-    <h2>Metadata Variabel Statistik - Pencacahan Lengkap Sosial Ekonomi Keluarga Desa Sejegi 2025</h2>
-    <p>Dokumen ini menyajikan metadata untuk setiap variabel dalam kuesioner "Pencacahan Lengkap Sosial Ekonomi Keluarga
-        Desa Sejegi 2025" sesuai dengan kaidah Satu Data Indonesia.</p>
+    <div class="container">
 
-    <table>
-        <thead>
+        <h1>Standar Operasional Prosedur (SOP)<br>Pencacahan Lapangan Sensus Sosial Ekonomi Keluarga<br>Kelurahan Pulau
+            Pedalaman Tahun 2025</h1>
+
+        <table>
             <tr>
-                <th>Nama Variabel</th>
-                <th>Alias</th>
-                <th>Konsep</th>
-                <th>Definisi</th>
-                <th>Referensi Pemilihan</th>
-                <th>Referensi Waktu</th>
-                <th>Tipe Data</th>
-                <th>Klasifikasi Isian</th>
-                <th>Aturan Validasi</th>
-                <th>Kalimat Pertanyaan</th>
-                <th>Apakah Dapat Diakses Umum?</th>
+                <th>Tanggal Berlaku</th>
+                <td>1 Juni 2025</td>
+                <th>Disusun Oleh</th>
+                <td>Tim Pembina Kelurahan Cantik BPS</td>
             </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Nama RT</td>
-                <td>RT/RW</td>
-                <td>Lokasi</td>
-                <td>Nama Rukun Tetangga (RT) dan Rukun Warga (RW) lokasi pendataan.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Teks, contoh: RT 004 RW 003</td>
-                <td>Harus terisi</td>
-                <td>(Untuk Petugas) Catat RT dan RW lokasi pendataan.</td>
-                <td>Tidak</td>
-            </tr>
-            <tr>
-                <td>Koordinat</td>
-                <td>Koordinat</td>
-                <td>Lokasi</td>
-                <td>Koordinat geografis (lintang dan bujur) dari lokasi.</td>
-                <td>Pengambilan titik oleh petugas</td>
-                <td>2025</td>
-                <td>Koordinat</td>
-                <td>Format: Latitude, Longitude. Contoh: 0.370861, 108.970332</td>
-                <td>Format harus sesuai (angka, koma, angka)</td>
-                <td>(Untuk Petugas) Ambil titik koordinat geografis rumah.</td>
-                <td>Tidak</td>
-            </tr>
-            <tr>
-                <td>Nama desa</td>
-                <td>Desa</td>
-                <td>Lokasi</td>
-                <td>Nama desa lokasi pendataan.</td>
-                <td>Isian tetap (pre-filled)</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Sejegi</td>
-                <td>Harus 'Sejegi'</td>
-                <td>(Untuk Petugas) Verifikasi nama desa lokasi pendataan.</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Nama kecamatan</td>
-                <td>Kecamatan</td>
-                <td>Lokasi</td>
-                <td>Nama kecamatan lokasi pendataan.</td>
-                <td>Isian tetap (pre-filled)</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Mempawah Timur</td>
-                <td>Harus 'Mempawah Timur'</td>
-                <td>(Untuk Petugas) Verifikasi nama kecamatan lokasi pendataan.</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Nama kepala keluarga</td>
-                <td>Nama KRT</td>
-                <td>Identitas Responden</td>
-                <td>Nama kepala keluarga yang didata.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Teks nama</td>
-                <td>Harus terisi, tidak boleh mengandung angka/simbol</td>
-                <td>Siapakah nama Kepala Keluarga di rumah ini?</td>
-                <td>Tidak</td>
-            </tr>
-            <tr>
-                <td>Jumlah kartu keluarga</td>
-                <td>Jml KK</td>
-                <td>Administrasi Kependudukan</td>
-                <td>Jumlah Kartu Keluarga (KK) dalam satu rumah.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan bulat positif</td>
-                <td>Harus berupa angka, >= 1</td>
-                <td>Ada berapa Kartu Keluarga (KK) yang tinggal di rumah ini?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Jumlah orang laki-laki di rumah</td>
-                <td>Jml Laki-laki</td>
-                <td>Kependudukan</td>
-                <td>Total anggota keluarga berjenis kelamin laki-laki.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan bulat</td>
-                <td>Harus berupa angka, >= 0</td>
-                <td>Berapa jumlah anggota keluarga di rumah ini yang berjenis kelamin laki-laki?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Jumlah orang perempuan di rumah</td>
-                <td>Jml Perempuan</td>
-                <td>Kependudukan</td>
-                <td>Total anggota keluarga berjenis kelamin perempuan.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan bulat</td>
-                <td>Harus berupa angka, >= 0</td>
-                <td>Berapa jumlah anggota keluarga di rumah ini yang berjenis kelamin perempuan?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Jumlah orang yang meninggal</td>
-                <td>Jml Meninggal di KK</td>
-                <td>Kependudukan</td>
-                <td>Jumlah anggota keluarga yang sudah meninggal tetapi masih tercatat di KK.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan bulat</td>
-                <td>Harus berupa angka, >= 0</td>
-                <td>Apakah ada anggota keluarga yang sudah meninggal tetapi namanya masih tercatat di KK? Jika ya,
-                    berapa jumlahnya?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Nama orang yang meninggal</td>
-                <td>Nama Meninggal</td>
-                <td>Identitas Responden</td>
-                <td>Nama anggota keluarga yang sudah meninggal tetapi masih tercatat di KK.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Teks nama, dipisah koma jika lebih dari satu</td>
-                <td>Terisi jika 'Jumlah orang yang meninggal' > 0</td>
-                <td>Siapakah nama anggota keluarga yang telah meninggal tersebut?</td>
-                <td>Tidak</td>
-            </tr>
-            <tr>
-                <td>Jumlah anggota keluarga putus sekolah</td>
-                <td>Jml Putus Sekolah</td>
-                <td>Pendidikan</td>
-                <td>Jumlah anak usia sekolah (7-18 tahun) yang tidak bersekolah.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan bulat</td>
-                <td>Harus berupa angka, >= 0</td>
-                <td>Berapa jumlah anak usia sekolah (7-18 tahun) di keluarga ini yang tidak bersekolah (putus sekolah)?
-                </td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Nama anggota keluarga putus sekolah</td>
-                <td>Nama Putus Sekolah</td>
-                <td>Identitas Responden</td>
-                <td>Nama anak yang putus sekolah.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Teks nama, dipisah koma jika lebih dari satu</td>
-                <td>Terisi jika 'Jumlah anggota keluarga putus sekolah' > 0</td>
-                <td>Siapakah nama anak yang putus sekolah tersebut?</td>
-                <td>Tidak</td>
-            </tr>
-            <tr>
-                <td>Jumlah orang dengan disabilitas</td>
-                <td>Jml Disabilitas</td>
-                <td>Sosial</td>
-                <td>Jumlah anggota keluarga yang memiliki disabilitas.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan bulat</td>
-                <td>Harus berupa angka, >= 0</td>
-                <td>Berapa jumlah anggota keluarga yang memiliki disabilitas?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Nama orang dengan disabilitas</td>
-                <td>Nama Disabilitas</td>
-                <td>Identitas Responden</td>
-                <td>Nama anggota keluarga yang memiliki disabilitas.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Teks nama, dipisah koma jika lebih dari satu</td>
-                <td>Terisi jika 'Jumlah orang dengan disabilitas' > 0</td>
-                <td>Siapakah nama anggota keluarga yang memiliki disabilitas tersebut?</td>
-                <td>Tidak</td>
-            </tr>
-            <tr>
-                <td>Gambar_rumah</td>
-                <td>Foto Rumah</td>
-                <td>Dokumentasi</td>
-                <td>Nama file atau path ke gambar rumah yang didata (sistem).</td>
-                <td>Pengambilan foto oleh petugas</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Teks path file</td>
-                <td>Harus terisi</td>
-                <td>(Untuk Petugas) Ambil foto tampak depan rumah.</td>
-                <td>Tidak</td>
-            </tr>
-            <tr>
-                <td>Pekerjaan anggota rumah tangga</td>
-                <td>Pekerjaan Utama</td>
-                <td>Ekonomi</td>
-                <td>Pekerjaan utama yang menjadi sumber penghasilan keluarga.</td>
-                <td>Pilihan dari daftar / Isian</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Contoh: Buruh Harian Lepas, Petani, PNS, dll.</td>
-                <td>Harus terisi</td>
-                <td>Apa pekerjaan utama dari kepala keluarga atau pencari nafkah utama?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Apa bahan utama dinding rumah?</td>
-                <td>Dinding Utama</td>
-                <td>Perumahan</td>
-                <td>Material utama dinding rumah.</td>
-                <td>Pilihan dari daftar (Enum)</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Tembok, Kayu, Bambu, Seng, Anyaman, Lainnya</td>
-                <td>Harus memilih salah satu dari klasifikasi</td>
-                <td>Apa bahan utama dinding terluas rumah Bapak/Ibu?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Apa bahan utama lantai terluas rumah?</td>
-                <td>Lantai Utama</td>
-                <td>Perumahan</td>
-                <td>Material utama lantai rumah.</td>
-                <td>Pilihan dari daftar (Enum)</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Keramik, Semen, Tanah, Ubin, Kayu, Lainnya</td>
-                <td>Harus memilih salah satu dari klasifikasi</td>
-                <td>Apa bahan utama lantai terluas rumah Bapak/Ibu?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Apa bahan atap terluas rumah?</td>
-                <td>Atap Utama</td>
-                <td>Perumahan</td>
-                <td>Material utama atap rumah.</td>
-                <td>Pilihan dari daftar (Enum)</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Genteng, Seng, Asbes, Daun / Rumbia, Plastik / Terpal, Lainnya</td>
-                <td>Harus memilih salah satu dari klasifikasi</td>
-                <td>Apa bahan utama atap terluas rumah Bapak/Ibu?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Apakah rumah ini memiliki fasilitas bab milik sendiri?</td>
-                <td>Kepemilikan Jamban</td>
-                <td>Sanitasi</td>
-                <td>Ketersediaan fasilitas buang air besar (jamban) pribadi.</td>
-                <td>Pilihan dari daftar</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Ya, Tidak</td>
-                <td>Harus 'Ya' atau 'Tidak'</td>
-                <td>Apakah rumah ini memiliki fasilitas buang air besar (jamban) milik sendiri?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Bagaimana cara membuang sampah rumah tangga?</td>
-                <td>Cara Buang Sampah</td>
-                <td>Kesehatan Lingkungan</td>
-                <td>Metode pengelolaan sampah rumah tangga.</td>
-                <td>Pilihan dari daftar (Enum)</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Dibakar, Diangkut petugas, Dibuang ke sungai, Ditimbun, Dibuang sembarangan, Lainnya</td>
-                <td>Harus memilih salah satu dari klasifikasi</td>
-                <td>Biasanya, bagaimana cara keluarga Bapak/Ibu membuang sampah rumah tangga?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Jumlah anggota keluarga buta huruf</td>
-                <td>Jml Buta Huruf</td>
-                <td>Pendidikan</td>
-                <td>Jumlah anggota keluarga usia 20+ yang tidak bisa membaca.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan bulat</td>
-                <td>Harus berupa angka, >= 0</td>
-                <td>Berapa jumlah anggota keluarga berusia 20 tahun ke atas yang tidak bisa membaca?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Nama anggota keluarga yang buta huruf</td>
-                <td>Nama Buta Huruf</td>
-                <td>Identitas Responden</td>
-                <td>Nama anggota keluarga usia 20+ yang tidak bisa membaca.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Teks nama, dipisah koma jika lebih dari satu</td>
-                <td>Terisi jika 'Jumlah anggota keluarga buta huruf' > 0</td>
-                <td>Siapakah nama anggota keluarga yang buta huruf tersebut?</td>
-                <td>Tidak</td>
-            </tr>
-            <tr>
-                <td>Apakah keluarga memiliki usaha perikanan</td>
-                <td>Punya Usaha Ikan</td>
-                <td>Ekonomi</td>
-                <td>Kepemilikan usaha budidaya perikanan.</td>
-                <td>Pilihan dari daftar</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Ya, Tidak</td>
-                <td>Harus 'Ya' atau 'Tidak'</td>
-                <td>Apakah keluarga Bapak/Ibu memiliki usaha budidaya perikanan?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Berapa kali panen pada tahun 2024</td>
-                <td>Panen Ikan 2024</td>
-                <td>Ekonomi</td>
-                <td>Jumlah panen perikanan di tahun 2024.</td>
-                <td>Isian langsung</td>
-                <td>2024</td>
-                <td>Angka</td>
-                <td>Bilangan bulat</td>
-                <td>Terisi jika 'Apakah keluarga memiliki usaha perikanan' = Ya</td>
-                <td>Berapa kali keluarga Bapak/Ibu melakukan panen perikanan sepanjang tahun 2024?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Berapa rata - rata kg hasil perikanan pada selama tahun 2024</td>
-                <td>Rerata Hasil Ikan 2024</td>
-                <td>Ekonomi</td>
-                <td>Rata-rata hasil panen (dalam kg) perikanan di tahun 2024.</td>
-                <td>Isian langsung</td>
-                <td>2024</td>
-                <td>Angka</td>
-                <td>Bilangan desimal/bulat</td>
-                <td>Terisi jika 'Apakah keluarga memiliki usaha perikanan' = Ya</td>
-                <td>Berapa kilogram rata-rata hasil sekali panen perikanan pada tahun 2024?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Berapa kali panen pada tahun 2025</td>
-                <td>Panen Ikan 2025</td>
-                <td>Ekonomi</td>
-                <td>Jumlah panen perikanan di tahun 2025 hingga saat pencacahan.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan bulat</td>
-                <td>Terisi jika 'Apakah keluarga memiliki usaha perikanan' = Ya</td>
-                <td>Hingga saat ini, berapa kali keluarga Bapak/Ibu melakukan panen perikanan di tahun 2025?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Berapa rata - rata dalam kg sekali panen perikanan pada tahun 2025</td>
-                <td>Rerata Hasil Ikan 2025</td>
-                <td>Ekonomi</td>
-                <td>Rata-rata hasil panen (dalam kg) sekali panen perikanan di tahun 2025.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Angka</td>
-                <td>Bilangan desimal/bulat</td>
-                <td>Terisi jika 'Apakah keluarga memiliki usaha perikanan' = Ya</td>
-                <td>Berapa kilogram rata-rata hasil sekali panen perikanan pada tahun 2025?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Apakah domisili rt sesuai ktp</td>
-                <td>Domisili Sesuai KTP</td>
-                <td>Administrasi Kependudukan</td>
-                <td>Kesesuaian domisili saat ini dengan alamat di KTP.</td>
-                <td>Pilihan dari daftar</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Ya, Tidak</td>
-                <td>Harus 'Ya' atau 'Tidak'</td>
-                <td>Apakah alamat domisili Bapak/Ibu saat ini sesuai dengan alamat yang tertera di KTP?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Kalau tidak, ktp nya tercatat dimana</td>
-                <td>Alamat KTP</td>
-                <td>Administrasi Kependudukan</td>
-                <td>Alamat yang tertera di KTP jika tidak sesuai domisili.</td>
-                <td>Pilihan dari daftar (Enum)</td>
-                <td>2025</td>
-                <td>Teks</td>
-                <td>Tidak Diketahui, Provinsi Lain, Kabupaten/Kota Lain, Kecamatan Lain, Desa/Kelurahan Lain, RT Lain
-                </td>
-                <td>Terisi jika 'Apakah domisili rt sesuai ktp' = Tidak</td>
-                <td>Jika tidak sesuai, di manakah alamat yang tertera pada KTP Bapak/Ibu?</td>
-                <td>Ya</td>
-            </tr>
-            <tr>
-                <td>Nomor whatsapp</td>
-                <td>No. WA</td>
-                <td>Kontak Responden</td>
-                <td>Nomor kontak WhatsApp responden atau kepala keluarga.</td>
-                <td>Isian langsung</td>
-                <td>2025</td>
-                <td>Teks/Angka</td>
-                <td>Nomor telepon</td>
-                <td>Harus berupa format nomor telepon yang valid</td>
-                <td>Bolehkah kami meminta nomor WhatsApp yang bisa dihubungi untuk keperluan verifikasi data?</td>
-                <td>Tidak</td>
-            </tr>
-        </tbody>
-    </table>
+        </table>
+
+        <h2>1. Tujuan</h2>
+        <p>Menetapkan langkah-langkah standar dan baku bagi Petugas Pencacah Lapangan (PPL) dalam melaksanakan kegiatan
+            <strong>Pencacahan Lengkap Sosial Ekonomi Keluarga Tahun 2025 di Kelurahan Pulau Pedalaman</strong> untuk
+            memastikan data yang terkumpul lengkap, akurat, konsisten, dan dapat dipertanggungjawabkan sesuai dengan
+            buku pedoman.</p>
+
+        <h2>2. Ruang Lingkup</h2>
+        <ul>
+            <li><strong>Cakupan Wilayah:</strong> Seluruh wilayah administrasi Kelurahan Pulau Pedalaman, Kecamatan
+                Mempawah Timur, yang mencakup semua Rukun Warga (RW) dan Rukun Tetangga (RT).</li>
+            <li><strong>Cakupan Responden:</strong> Seluruh keluarga yang bertempat tinggal di bangunan fisik di wilayah
+                Kelurahan Pulau Pedalaman pada saat pencacahan, baik yang terdaftar maupun yang belum terdaftar di Kartu
+                Keluarga (KK) Kelurahan Pulau Pedalaman.</li>
+            <li><strong>Jadwal Pelaksanaan:</strong> Kegiatan pencacahan di lapangan dilaksanakan selama <strong>2 (dua)
+                    minggu</strong>.</li>
+        </ul>
+
+        <h2>3. Definisi dan Istilah</h2>
+        <ul>
+            <li><strong>PPL (Petugas Pencacah Lapangan):</strong> Agen Statistik yang terdiri dari staf kelurahan dan
+                masyarakat yang ditunjuk untuk melakukan pengumpulan data dari rumah ke rumah.</li>
+            <li><strong>Bangunan Tempat Tinggal:</strong> Suatu bangunan yang digunakan untuk tempat tinggal, baik
+                permanen maupun sementara, yang memiliki dinding dan atap.</li>
+            <li><strong>Keluarga:</strong> Seseorang atau sekelompok orang yang tinggal dalam satu bangunan dan mengurus
+                kebutuhan sehari-hari bersama-sama (misal: makan dari satu dapur).</li>
+            <li><strong>CAPI (Computer-Assisted Personal Interviewing):</strong> Metode wawancara menggunakan perangkat
+                elektronik (smartphone/tablet) dengan aplikasi Appsheet untuk merekam jawaban responden.</li>
+            <li><strong>Referensi Waktu:</strong> Kondisi <strong>pada saat pencacahan</strong>, kecuali untuk variabel
+                dengan periode referensi waktu khusus (misal: data panen perikanan tahun 2024).</li>
+        </ul>
+
+        <h2>4. Pihak yang Terlibat dan Tanggung Jawab</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pihak Terlibat</th>
+                    <th>Tugas dan Tanggung Jawab Utama</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tim Pembina Kelurahan Cantik (BPS)</strong></td>
+                    <td>
+                        <ul>
+                            <li>Memberikan pelatihan konsep, definisi, dan teknis penggunaan aplikasi CAPI kepada PPL.
+                            </li>
+                            <li>Melakukan supervisi dan pendampingan selama periode pendataan.</li>
+                            <li>Melakukan pemeriksaan dan pengendalian mutu data yang masuk.</li>
+                            <li>Menjadi tempat konsultasi bagi PPL jika ada kendala.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Koordinator Kelurahan (Pemerintah Kelurahan)</strong></td>
+                    <td>
+                        <ul>
+                            <li>Membantu proses sosialisasi kegiatan kepada masyarakat.</li>
+                            <li>Memastikan kelancaran dan keamanan pelaksanaan kegiatan di lapangan.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Agen Statistik / PPL</strong></td>
+                    <td>
+                        <ul>
+                            <li>Mengikuti seluruh sesi pelatihan dengan saksama.</li>
+                            <li>Mendatangi setiap bangunan di wilayah tugasnya (2 hingga 4 RT per PPL).</li>
+                            <li>Melakukan wawancara dengan responden menggunakan aplikasi CAPI (Appsheet).</li>
+                            <li>Menjaga kelengkapan, keakuratan, dan konsistensi isian data.</li>
+                            <li>Menjamin kerahasiaan seluruh data responden.</li>
+                            <li><strong>Wajib melakukan sinkronisasi data setiap hari kerja.</strong></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>5. Prosedur Kerja Pencacahan Lapangan</h2>
+
+        <h3>5.1. Tahap Persiapan Harian</h3>
+        <ol>
+            <li><strong>Periksa Perangkat:</strong> Pastikan smartphone/tablet dalam kondisi daya baterai penuh. Bawa
+                pengisi daya portabel (power bank).</li>
+            <li><strong>Periksa Aplikasi:</strong> Buka aplikasi Appsheet, pastikan aplikasi berfungsi normal dan Anda
+                sudah dalam kondisi login.</li>
+            <li><strong>Periksa Logistik:</strong> Siapkan dan bawa surat tugas/tanda pengenal PPL yang valid.</li>
+            <li><strong>Pahami Wilayah:</strong> Tinjau kembali peta dan batas wilayah kerja Anda (RT yang menjadi
+                tanggung jawab) untuk hari itu.</li>
+            <li><strong>Penampilan:</strong> Kenakan pakaian yang rapi, sopan, dan bersih untuk membangun citra
+                profesional.</li>
+        </ol>
+
+        <h3>5.2. Tahap Pelaksanaan Wawancara</h3>
+        <ol>
+            <li><strong>Pendekatan ke Responden:</strong>
+                <ul>
+                    <li>Ucapkan salam dengan sopan (Contoh: "Selamat pagi/siang Bapak/Ibu").</li>
+                    <li>Perkenalkan diri Anda sebagai Petugas Pencacah dari Pemerintah Kelurahan Pulau Pedalaman dan
+                        BPS.</li>
+                    <li>Tunjukkan surat tugas/tanda pengenal Anda.</li>
+                    <li>Jelaskan tujuan kedatangan secara singkat dan jelas: "Kami sedang melakukan pendataan sosial
+                        ekonomi untuk seluruh keluarga di Kelurahan Pulau Pedalaman. Data ini akan sangat membantu
+                        perencanaan pembangunan kelurahan agar lebih tepat sasaran."</li>
+                    <li>Tekankan kerahasiaan data: "Semua informasi yang Bapak/Ibu berikan akan kami rahasiakan sesuai
+                        undang-undang."</li>
+                    <li>Minta kesediaan waktu responden. Jika responden sedang sibuk, buat janji temu di lain waktu yang
+                        disepakati.</li>
+                </ul>
+            </li>
+            <li><strong>Proses Wawancara dengan CAPI (Appsheet):</strong>
+                <ul>
+                    <li>Buka aplikasi Appsheet. Pilih opsi <strong>"Tambah Data Baru"</strong>.</li>
+                    <li>Bacakan setiap pertanyaan <strong>persis seperti</strong> yang tertulis di aplikasi. Jangan
+                        mengubah redaksi pertanyaan.</li>
+                    <li>Dengarkan jawaban responden dengan saksama. Isikan jawaban sesuai pilihan atau isian yang
+                        tersedia. <strong>Dilarang keras mengarahkan atau menginterpretasikan jawaban
+                            responden.</strong></li>
+                    <li>Untuk pertanyaan bersifat observasi (misal: bahan bangunan), lakukan pengamatan langsung, lalu
+                        konfirmasikan kepada responden.</li>
+                </ul>
+            </li>
+            <li><strong>Pengambilan Koordinat dan Foto Bangunan:</strong>
+                <ul>
+                    <li><strong>Koordinat (GPS):</strong> Posisikan diri Anda di depan rumah pada area terbuka. Tekan
+                        tombol pengambilan koordinat pada aplikasi. Pastikan aplikasi berhasil merekam koordinat (bukan
+                        0,0).</li>
+                    <li><strong>Foto Bangunan:</strong> Ambil foto tampak depan bangunan secara utuh dan jelas
+                        menggunakan fitur kamera di aplikasi. Pastikan foto tidak buram atau terhalang objek lain.</li>
+                </ul>
+            </li>
+            <li><strong>Peninjauan dan Konfirmasi:</strong>
+                <ul>
+                    <li>Setelah semua pertanyaan terisi, tinjau ulang secara cepat seluruh isian bersama responden.</li>
+                    <li>Konfirmasi kebenaran data yang telah diinput untuk menghindari kesalahan.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>5.3. Tahap Pasca-Wawancara</h3>
+        <ol>
+            <li><strong>Ucapkan Terima Kasih:</strong> Sampaikan terima kasih kepada responden atas waktu dan kerja
+                samanya.</li>
+            <li><strong>Lakukan Sinkronisasi Data:</strong>
+                <ul>
+                    <li>Segera setelah wawancara selesai dan Anda mendapatkan sinyal internet yang stabil, tekan tombol
+                        <strong>Sync</strong> atau <strong>Refresh</strong> pada aplikasi Appsheet.</li>
+                    <li>Lakukan sinkronisasi secara berkala setelah beberapa rumah selesai.</li>
+                    <li><strong>SINKRONISASI DI AKHIR HARI KERJA BERSIFAT WAJIB</strong> untuk memastikan data terkirim
+                        ke server pusat.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>6. Panduan Pengisian Kuesioner (Ringkasan)</h2>
+        <div class="note">
+            <strong>PENTING:</strong> Panduan ini adalah ringkasan. PPL wajib merujuk pada penjelasan rinci di Bab V
+            Buku Pedoman untuk setiap variabel. Isian harus sesuai konsep, definisi, dan cara pengisian yang telah
+            ditetapkan.
+        </div>
+
+        <h4>BLOK I: PENGENALAN TEMPAT</h4>
+        <ul>
+            <li><strong>Nama RT:</strong> Isi nomor RT dan RW sesuai lokasi (Format: RT 001 RW 001).</li>
+            <li><strong>Nama Kelurahan/Kecamatan:</strong> Terisi otomatis ("Pulau Pedalaman" & "Mempawah Timur"). Cukup
+                verifikasi.</li>
+            <li><strong>Koordinat:</strong> Ambil titik GPS di depan bangunan pada area terbuka.</li>
+        </ul>
+
+        <h4>BLOK II: KETERANGAN DEMOGRAFI DAN SOSIAL</h4>
+        <ul>
+            <li><strong>Nama Kepala Keluarga:</strong> Tulis nama lengkap tanpa gelar.</li>
+            <li><strong>Jumlah Kartu Keluarga:</strong> Isi dengan angka jumlah KK yang tinggal di bangunan tersebut.
+                Minimal 1.</li>
+            <li><strong>Jumlah Orang Laki-laki & Perempuan:</strong> Isi dengan angka jumlah semua penghuni berdasarkan
+                jenis kelamin.</li>
+            <li><strong>Jumlah & Nama Orang Meninggal (di KK):</strong> Jika ada anggota di KK yang sudah meninggal, isi
+                jumlahnya lalu tulis namanya. Jika tidak, isi jumlah dengan 0.</li>
+            <li><strong>Jumlah & Nama Anak Putus Sekolah (7-18 th):</strong> Jika ada anak usia 7-18 tahun yang tidak
+                bersekolah lagi, isi jumlahnya lalu tulis namanya. Jika tidak, isi jumlah dengan 0.</li>
+            <li><strong>Jumlah & Nama Orang dengan Disabilitas:</strong> Tanyakan dengan empati. Jika ada, isi jumlahnya
+                lalu tulis namanya. Jika tidak, isi jumlah dengan 0.</li>
+            <li><strong>Jumlah & Nama Anggota Buta Huruf (20+ th):</strong> Jika ada anggota usia 20+ yang tidak bisa
+                baca tulis, isi jumlahnya lalu tulis namanya. Jika tidak, isi jumlah dengan 0.</li>
+        </ul>
+
+        <h4>BLOK III: KETERANGAN PERUMAHAN DAN LINGKUNGAN</h4>
+        <ul>
+            <li><strong>Gambar Rumah:</strong> Ambil foto tampak depan bangunan secara utuh dan jelas.</li>
+            <li><strong>Bahan Utama Dinding, Lantai, Atap:</strong> Observasi dan pilih jenis material terluas yang
+                digunakan.</li>
+            <li><strong>Kepemilikan Fasilitas BAB Sendiri:</strong> Pilih "Ya" jika memiliki jamban pribadi yang tidak
+                digunakan bersama keluarga lain. "Tidak" jika menumpang atau menggunakan jamban umum.</li>
+            <li><strong>Cara Membuang Sampah:</strong> Tanyakan kebiasaan utama dalam membuang sampah rumah tangga.</li>
+        </ul>
+
+
+        <h2>7. Pengendalian Mutu dan Pelaporan Kendala</h2>
+        <ul>
+            <li><strong>Pemeriksaan Mandiri:</strong> PPL bertanggung jawab atas kebenaran dan kelengkapan data yang
+                diinput. Lakukan pengecekan ulang sebelum sinkronisasi.</li>
+            <li><strong>Supervisi:</strong> Tim Pembina BPS akan melakukan supervisi acak ke lapangan dan pemeriksaan
+                data yang masuk melalui server.</li>
+            <li><strong>Verifikasi Data (Back-Checking):</strong> Tim BPS dapat menghubungi responden melalui Nomor
+                WhatsApp yang diberikan untuk melakukan klarifikasi jika ditemukan isian yang tidak konsisten atau
+                meragukan.</li>
+            <li><strong>Pelaporan Kendala:</strong> Jika terdapat kendala teknis (aplikasi error), kendala lapangan
+                (penolakan responden), atau pertanyaan mengenai konsep definisi yang tidak tercakup dalam pedoman, PPL
+                <strong>wajib segera berkomunikasi</strong> dengan <strong>Tim Pembina Kelurahan Cantik dari BPS
+                    Kabupaten Mempawah</strong>.</li>
+        </ul>
+
+        <h2>8. Penutup</h2>
+        <p>SOP ini wajib dipahami dan dipatuhi oleh seluruh PPL demi keberhasilan dan kualitas data Pencacahan Lengkap
+            Sosial Ekonomi Keluarga Kelurahan Pulau Pedalaman 2025. Integritas, kecermatan, dan tanggung jawab adalah
+            kunci utama pelaksanaan tugas.</p>
+        <p style="text-align:center; font-style:italic; margin-top:30px;"><strong>Data Akurat, Perencanaan Tepat,
+                Kelurahan Maju.</strong></p>
+
+    </div>
 
 </body>
 

@@ -642,7 +642,7 @@
     <section class="product-section">
         <div class="container">
             <div class="row">
-                <h2 class="section-title text-center">Produk Statistik yang akan Datang</h2>
+                <h2 class="section-title text-center">Produk Statistik lainnya</h2>
                 <!-- Monografi Desa -->
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
                     <div class="product-card h-100">
@@ -660,10 +660,11 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
+                                <a href="#produk" class="btn btn-primary product-btn">
                                     <i class="fas fa-eye me-2"></i>Lihat Online
                                 </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
+                                <a href="https://drive.google.com/file/d/1SOD7aey43Lndz1J3fUbfEQJawwTdeX2c/view?usp=drive_link"
+                                    class="btn btn-outline-primary product-btn">
                                     <i class="fas fa-download me-2"></i>Unduh PDF
                                 </a>
                             </div>
@@ -689,11 +690,9 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
+                                <a href="https://drive.google.com/file/d/1DqnoQEqyfPnMf8dTlSa_oNEHyaYh9aJV/view?usp=sharing"
+                                    class="btn btn-primary product-btn">
                                     <i class="fas fa-eye me-2"></i>Lihat Infografis
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh Gambar
                                 </a>
                             </div>
                         </div>
@@ -709,8 +708,7 @@
                                 <i class="fas fa-table"></i>
                             </div>
                             <h4 class="product-title">Tabel Data</h4>
-                            <p class="card-text">Kumpulan tabel data statistik Desa yang dapat diakses dan diunduh
-                                dalam format Excel.</p>
+                            <p class="card-text">Kumpulan tabel data statistik Desa yang dapat diakses dan diunduh.</p>
 
                             <div class="year-select">
                                 <h6 class="mb-2">Pilih Tahun:</h6>
@@ -718,11 +716,9 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
+                                <a href="https://drive.google.com/file/d/1ETSdYgH-Q9xzlrfYh4zVhoy9VjeUmfFF/view?usp=sharing"
+                                    class="btn btn-primary product-btn">
                                     <i class="fas fa-eye me-2"></i>Lihat Tabel
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh Excel
                                 </a>
                             </div>
                         </div>
@@ -747,10 +743,8 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
-                                    <i class="fas fa-eye me-2"></i>Lihat Publikasi
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
+                                <a href="https://drive.google.com/file/d/1ETSdYgH-Q9xzlrfYh4zVhoy9VjeUmfFF/view?usp=sharing"
+                                    class="btn btn-primary product-btn">
                                     <i class="fas fa-download me-2"></i>Unduh PDF
                                 </a>
                             </div>
@@ -769,18 +763,15 @@
                                         <i class="fas fa-clipboard-list"></i>
                                     </div>
                                     <h4 class="product-title">SOP Permintaan Data</h4>
-                                    <p>Standar Operasional Prosedur untuk permintaan data statistik Desa Pulau
-                                        Pedalaman.</p>
+                                    <p>Standar Operasional Prosedur untuk permintaan data statistik Desa Sejegi.</p>
 
                                     <div class="year-select">
                                         <h6 class="mb-2">Pilih Tahun:</h6>
                                         <button class="btn active">2025</button>
                                     </div>
                                     <div class="d-grid gap-2">
-                                        <a href="#" class="btn btn-primary product-btn">
-                                            <i class="fas fa-eye me-2"></i>Lihat SOP
-                                        </a>
-                                        <a href="#" class="btn btn-outline-primary product-btn">
+                                        <a href="https://drive.google.com/file/d/11vvGZNjqpGUVYD3bE3qh-IV-_5odjWXj/view?usp=sharing"
+                                            class="btn btn btn-primary product-btn">
                                             <i class="fas fa-download me-2"></i>Unduh PDF
                                         </a>
                                     </div>
@@ -835,7 +826,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <h5 class="footer-title">Kontak</h5>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Desa No. 45, Pulau Pedalaman, Mempawah
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Desa Sejegi, Mempawah
                             Timur</li>
                         <li><i class="fas fa-phone-alt me-2"></i> +62 561 987654</li>
                         <li><i class="fas fa-envelope me-2"></i> info@pulaupedalaman.desa.id</li>

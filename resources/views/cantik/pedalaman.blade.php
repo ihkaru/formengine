@@ -643,7 +643,7 @@
     <section class="product-section">
         <div class="container">
             <div class="row">
-                <h2 class="section-title text-center">Produk Statistik yang akan Datang</h2>
+                <h2 class="section-title text-center">Produk Statistik lainnya</h2>
                 <!-- Monografi Desa -->
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000">
                     <div class="product-card h-100">
@@ -661,10 +661,11 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
+                                <a href="#produk" class="btn btn-primary product-btn">
                                     <i class="fas fa-eye me-2"></i>Lihat Online
                                 </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
+                                <a href="https://drive.google.com/file/d/1AXFAHULMwhgyYWQrdHd5jwVxIBoiqUuQ/view?usp=drive_link"
+                                    class="btn btn-outline-primary product-btn">
                                     <i class="fas fa-download me-2"></i>Unduh PDF
                                 </a>
                             </div>
@@ -690,11 +691,9 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
+                                <a href="https://drive.google.com/file/d/17DkQ483682WG4ZUtkExmJ2Rwd0KDoXau/view?usp=sharing"
+                                    class="btn btn-primary product-btn">
                                     <i class="fas fa-eye me-2"></i>Lihat Infografis
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh Gambar
                                 </a>
                             </div>
                         </div>
@@ -719,11 +718,9 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
+                                <a href="https://drive.google.com/file/d/1HHu1yypDclbapislW-YCEzQ0bTiHbQi4/view?usp=drive_link"
+                                    class="btn btn-primary product-btn">
                                     <i class="fas fa-eye me-2"></i>Lihat Tabel
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh Excel
                                 </a>
                             </div>
                         </div>
@@ -748,10 +745,8 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-primary product-btn">
-                                    <i class="fas fa-eye me-2"></i>Lihat Publikasi
-                                </a>
-                                <a href="#" class="btn btn-outline-primary product-btn">
+                                <a href="https://drive.google.com/file/d/1bQws864ZY6-11SmEzmJYAa6eEJh5A_Kh/view?usp=drive_link"
+                                    class="btn btn-outline-primary product-btn">
                                     <i class="fas fa-download me-2"></i>Unduh PDF
                                 </a>
                             </div>
@@ -778,10 +773,8 @@
                                         <button class="btn active">2025</button>
                                     </div>
                                     <div class="d-grid gap-2">
-                                        <a href="#" class="btn btn-primary product-btn">
-                                            <i class="fas fa-eye me-2"></i>Lihat SOP
-                                        </a>
-                                        <a href="#" class="btn btn-outline-primary product-btn">
+                                        <a href="https://drive.google.com/file/d/1l5XV2LAuN-JakQSR1styEet_PlScTJbp/view?usp=drive_link"
+                                            class="btn btn-outline-primary product-btn">
                                             <i class="fas fa-download me-2"></i>Unduh PDF
                                         </a>
                                     </div>
