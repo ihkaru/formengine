@@ -378,6 +378,70 @@
             width: 100%;
             height: 100%;
         }
+
+        .publication-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+
+        .publication-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            color: var(--text-color);
+            border: 1px solid #eee;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .publication-thumbnail {
+            position: relative;
+            width: 100%;
+            /* A4 Aspect Ratio: 297 / 210 = 1.414. padding-top = 141.4% */
+            padding-top: 141.4%;
+            overflow: hidden;
+            background-color: #e9ecef;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .publication-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .publication-card:hover .publication-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .publication-content {
+            padding: 20px 25px;
+        }
+
+        .publication-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            line-height: 1.4;
+        }
+
+        .publication-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 
@@ -426,8 +490,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <h1 class="hero-title" data-animate-text>Kelurahan Pedalaman</h1>
-                    <p class="hero-subtitle" data-animate-text>Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah
-                        Timur</p>
+                    <p class="hero-subtitle" data-animate-text>Kelurahan Cinta Statistik (Cantik) di Kecamatan Mempawah Timur</p>
                     <a href="#produk" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="1000">
                         <i class="fas fa-chart-bar me-2"></i>Lihat Produk Statistik
                     </a>
@@ -498,6 +561,67 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dukungan-pemkab" class="py-5" style="background-color: var(--light-bg);">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="about-image">
+                        <!-- Ganti 'images/dukungan-pemkab.webp' dengan path foto yang sesuai -->
+                        <img src="{{ asset('images/dukungan-pemda.jpg') }}"
+                            alt="Sekda Mempawah, Ismail, dalam acara Evaluasi Pembinaan Statistik Sektoral"
+                            class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                    <h2 class="section-title">Dukungan Penuh Pemerintah Kabupaten Mempawah</h2>
+                    <p>
+                        Pemerintah Kabupaten Mempawah, melalui Sekretaris Daerah Ismail, menegaskan komitmen dan
+                        dukungan
+                        penuhnya terhadap keberhasilan Program Desa Cinta Statistik (Cantik) di Desa Sejegi dan
+                        Kelurahan
+                        Pulau Pedalaman.
+                    </p>
+                    <p>
+                        Dukungan ini disampaikan secara resmi dalam acara "Evaluasi Pembinaan Statistik Sektoral dan
+                        Program Desa/Kelurahan Cinta Statistik" pada
+                        24
+                        Juli 2025, yang menyoroti peran strategis data berkualitas untuk pembangunan daerah yang tepat
+                        sasaran.
+                    </p>
+                    <blockquote class="blockquote mt-4 border-start border-4 border-primary ps-3">
+                        <p class="mb-2 fst-italic">"Kedepan kiranya program Desa Cantik ini dapat lebih dimasifkan
+                            untuk seluruh desa dan kelurahan, serta dikolaborasikan dengan kebutuhan data di tingkat
+                            daerah yang dikelola perangkat daerah."</p>
+                        <br>
+                        <footer class="blockquote-footer">Ismail, <cite title="Source Title">Sekretaris Daerah
+                                Kabupaten
+                                Mempawah</cite></footer>
+                    </blockquote>
+                    <p class="mt-4">
+                        Kolaborasi antara Pemkab Mempawah—dengan Dinas Kominfo sebagai walidata—dan BPS sebagai pembina
+                        data, menjadi kunci untuk mewujudkan kebijakan berbasis data yang akurat, valid, dan dapat
+                        dipertanggungjawabkan.
+                    </p>
+
+                    <!-- ============================================== -->
+                    <!--          TOMBOL BARU MULAI SINI                -->
+                    <!-- ============================================== -->
+                    <div class="mt-4">
+                        <!-- Ganti '#' dengan URL post Instagram yang sebenarnya -->
+                        <a href="https://www.instagram.com/p/DMfN8FsPXv0/?img_index=1" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fab fa-instagram me-2"></i> Lihat Selengkapnya
+                        </a>
+                    </div>
+                    <!-- ============================================== -->
+                    <!--           TOMBOL BARU SELESAI SINI             -->
+                    <!-- ============================================== -->
+
                 </div>
             </div>
         </div>
@@ -621,7 +745,6 @@
 
     <!-- Produk Statistik Section -->
     <section class="product-section" id="produk">
-
         <div class="container">
             <h2 class="section-title text-center">Produk Statistik</h2>
             <p class="text-center mb-5">Berikut adalah produk statistik yang tersedia untuk Kelurahan Pedalaman
@@ -638,6 +761,46 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+    <section id="publikasi" class="publication-section">
+        <div class="container py-5">
+            <h2 class="section-title text-center">Publikasi Resmi</h2>
+            <p class="text-center text-muted mb-5" style="font-size: 1.1rem;">
+                Temukan laporan dan analisis mendalam mengenai Desa Sejegi dalam publikasi resmi kami.
+            </p>
+            <div class="row justify-content-center">
+                <!-- Contoh Publikasi 1 -->
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://drive.google.com/file/d/1ETSdYgH-Q9xzlrfYh4zVhoy9VjeUmfFF/view?usp=sharing"
+                        class="publication-card">
+                        <div class="publication-thumbnail">
+                            <!-- Ganti src dengan path ke gambar cover. Ukuran ideal 210x297 atau kelipatannya -->
+                            <img src="{{ asset('images/Desa Sejegi Dalam Angka 2025.jpg') }}"
+                                alt="Cover Publikasi Desa Sejegi Dalam Angka 2025">
+                        </div>
+                        <div class="publication-content text-center">
+                            <h5 class="publication-title">Desa Sejegi Dalam Angka 2025</h5>
+                            <p class="publication-meta">Dirilis: 14 Agustus 2025</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Contoh Publikasi 2 -->
+                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://drive.google.com/file/d/1Y6tmi7rYYR-NJBr8LnV7pc7pHl7FTavO/view?usp=drive_link"
+                        class="publication-card">
+                        <div class="publication-thumbnail">
+                            <img src="{{ asset('images/Potensi Desa Sejegi 2025.jpg') }}"
+                                alt="Cover Analisis Potensi UMKM">
+                        </div>
+                        <div class="publication-content text-center">
+                            <h5 class="publication-title">Potensi Desa Sejegi 2025</h5>
+                            <p class="publication-meta">Dirilis: 14 Agustus 2025</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
     <section class="product-section">
@@ -727,32 +890,6 @@
                     </div>
                 </div>
 
-                <!-- Publikasi -->
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
-                    data-aos-delay="200">
-                    <div class="product-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="product-icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <h4 class="product-title">Publikasi</h4>
-                            <p class="card-text">Dokumen publikasi resmi yang berisi analisis komprehensif tentang
-                                berbagai aspek di kelurahan.</p>
-
-                            <div class="year-select">
-                                <h6 class="mb-2">Pilih Tahun:</h6>
-                                <button class="btn active">2025</button>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <a href="https://drive.google.com/file/d/1bQws864ZY6-11SmEzmJYAa6eEJh5A_Kh/view?usp=drive_link"
-                                    class="btn btn-outline-primary product-btn">
-                                    <i class="fas fa-download me-2"></i>Unduh PDF
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- SOP Permintaan Data -->
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
@@ -791,6 +928,35 @@
                                         </div>
                                     </div>
                                 </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="600">
+                    <div class="product-card h-100">
+                        <div class="card-body text-center p-4 d-flex flex-column">
+                            <div class="product-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h4 class="product-title">Metadata Statistik</h4>
+                            <p class="card-text">Informasi detail mengenai kegiatan, variabel, dan indikator statistik
+                                yang digunakan.</p>
+
+                            <!-- Wrapper untuk tombol agar tetap di bawah -->
+                            <div class="d-grid gap-2 mt-auto">
+                                <a href="https://drive.google.com/file/d/1Xpn9u2XZHCxJR2f3tL1Ioa4hh5C5J9nB/view?usp=drive_link"
+                                    class="btn btn-outline-primary product-btn">
+                                    <i class="fas fa-tasks me-2"></i>Metadata Kegiatan
+                                </a>
+                                <a href="https://drive.google.com/file/d/1_uUMbGna4iWHkntYIj8u1i19F5wtbEpY/view?usp=drive_link"
+                                    class="btn btn-outline-primary product-btn">
+                                    <i class="fas fa-tags me-2"></i>Metadata Variabel
+                                </a>
+                                <a href="https://drive.google.com/file/d/1yoh47ktNmtHYu06NhfKoCbDBnEd9vzUM/view?usp=drive_link"
+                                    class="btn btn-outline-primary product-btn">
+                                    <i class="fas fa-chart-bar me-2"></i>Metadata Indikator
+                                </a>
                             </div>
                         </div>
                     </div>

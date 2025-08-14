@@ -176,7 +176,8 @@
         }
 
         /* === SECTION BARU: Peta Koordinat === */
-        .map-section img {
+        .map-section img,
+        .about-image img { /* Menambahkan .about-image img agar konsisten */
         border-radius: 12px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         border: 5px solid white;
@@ -341,26 +342,34 @@
     <main>
         <!-- Page Header -->
         <header class="page-header text-center">
-            <div class="container position-relative">
-                <div class="logo-container">
-                    <!-- PERUBAHAN: Ditambahkan class dan style untuk animasi -->
-                    <img src="{{asset('images/MPW.png')}}" alt="Logo Pemerintah Kabupaten Mempawah" class="animate-on-scroll">
-                    <img src="{{asset('images/BPS.png')}}" alt="Logo BPS" class="animate-on-scroll"
-                        style="animation-delay: 0.1s;">
-                </div>
+    <div class="container position-relative">
+        <div class="logo-container">
+            <img src="{{asset('images/MPW.png')}}" alt="Logo Pemerintah Kabupaten Mempawah" class="animate-on-scroll">
+            <img src="{{asset('images/BPS.png')}}" alt="Logo BPS" class="animate-on-scroll"
+                style="animation-delay: 0.1s;">
+        </div>
 
-                <h1 class="mb-3 animate-on-scroll" style="animation-delay: 0.2s;">Mewujudkan Desa/Kelurahan Sebagai Subjek
-                    Pembangunan Berbasis Data</h1>
-                <p class="lead animate-on-scroll" style="animation-delay: 0.4s;">Melalui program Kolaborasi Digital
-                    Desa/Kelurahan Cantik (Cinta Statistik), BPS Kabupaten Mempawah membina Desa/Kelurahan untuk mengelola dan
-                    memanfaatkan data demi perencanaan yang lebih presisi.</p>
-            </div>
-        </header>
+        <div class="mb-4">
+            <span class="badge bg-white text-primary rounded-pill px-4 py-2 fs-4 fw-semibold animate-on-scroll"
+                style="animation-delay: 0.2s;">
+                Program Desa/Kelurahan Cinta Statistik Kabupaten Mempawah
+            </span>
+        </div>
+
+
+        <h1 class="mb-3 animate-on-scroll" style="animation-delay: 0.3s;">Mewujudkan Desa/Kelurahan Sebagai Subjek
+            Pembangunan Berbasis Data</h1>
+
+        <p class="lead animate-on-scroll" style="animation-delay: 0.4s;">Melalui program Kolaborasi Digital
+            Desa/Kelurahan Cantik (Cinta Statistik), BPS Kabupaten Mempawah membina Desa/Kelurahan untuk mengelola dan
+            memanfaatkan data demi perencanaan yang lebih presisi.</p>
+    </div>
+</header>
 
         <!-- ========== BAGIAN BARU: CARD PEMILIHAN Desa/Kelurahan ========== -->
         <section class="py-5 bg-light" id="pilih-desa">
             <div class="container">
-                <h2 class="section-title">Desa/Kelurahan Binaan</h2>
+                <h2 class="section-title">Desa/Kelurahan Cinta Statistik Binaan</h2>
                 <div class="row">
                     <!-- Card Kelurahan Pulau Pedalaman -->
                     <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
@@ -425,7 +434,59 @@
                 </div>
             </div>
         </section>
-        <!-- ========== AKHIR BAGIAN BARU ========== -->
+        <!-- ========== AKHIR BAGIAN PEMILIHAN ========== -->
+
+        <!-- ============================================== -->
+        <!--        SECTION DUKUNGAN PEMKAB BARU MULAI      -->
+        <!-- ============================================== -->
+        <section id="dukungan-pemkab" class="py-5" style="background-color: white;">
+            <div class="container py-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
+                        <div class="about-image">
+                            <img src="{{ asset('images/dukungan-pemda.jpg') }}"
+                                alt="Sekda Mempawah, Ismail, dalam acara Evaluasi Pembinaan Statistik Sektoral"
+                                class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                        <h2 class="section-title text-start">Dukungan Penuh Pemerintah Kabupaten Mempawah untuk Program Desa Cantik</h2>
+                        <p class="text-muted">
+                            Pemerintah Kabupaten Mempawah, melalui Sekretaris Daerah Ismail, menegaskan komitmen dan
+                            dukungan
+                            penuhnya terhadap keberhasilan Program Desa Cinta Statistik (Cantik) di Desa Sejegi dan
+                            Kelurahan
+                            Pulau Pedalaman.
+                        </p>
+                        <p class="text-muted">
+                            Dukungan ini disampaikan secara resmi dalam acara "Evaluasi Pembinaan Statistik Sektoral dan
+                            Program Desa/Kelurahan Cinta Statistik" pada
+                            24
+                            Juli 2025, yang menyoroti peran strategis data berkualitas untuk pembangunan daerah yang tepat
+                            sasaran.
+                        </p>
+                        <blockquote class="blockquote mt-4 border-start border-4 border-primary ps-3">
+                            <p class="mb-2 fst-italic">"Kedepan kiranya program Desa Cantik ini dapat lebih dimasifkan
+                                untuk seluruh desa dan kelurahan, serta dikolaborasikan dengan kebutuhan data di tingkat
+                                daerah yang dikelola perangkat daerah."</p>
+                                <br>
+                            <footer class="blockquote-footer">Ismail, <cite title="Source Title">Sekretaris Daerah
+                                    Kabupaten
+                                    Mempawah</cite></footer>
+                        </blockquote>
+                        <div class="mt-4">
+                            <a href="https://www.instagram.com/p/DMfN8FsPXv0/?img_index=1" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-primary" style="background-color: var(--primary-color); border-color: var(--primary-color);">
+                                <i class="fab fa-instagram me-2"></i> Lihat Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================== -->
+        <!--         SECTION DUKUNGAN PEMKAB BARU SELESAI     -->
+        <!-- ============================================== -->
 
         <section class="microdata-section" id="microdata">
             <div class="container">
