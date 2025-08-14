@@ -341,7 +341,7 @@
 
     <main>
         <!-- Page Header -->
-        <header class="page-header text-center">
+    <header class="page-header text-center">
     <div class="container position-relative">
         <div class="logo-container">
             <img src="{{asset('images/MPW.png')}}" alt="Logo Pemerintah Kabupaten Mempawah" class="animate-on-scroll">
@@ -349,13 +349,27 @@
                 style="animation-delay: 0.1s;">
         </div>
 
-        <div class="mb-4">
-            <span class="badge bg-white text-primary rounded-pill px-4 py-2 fs-4 fw-semibold animate-on-scroll"
-                style="animation-delay: 0.2s;">
-                Program Desa/Kelurahan Cinta Statistik Kabupaten Mempawah
-            </span>
+        <!-- ============================================== -->
+        <!--        HIGHLIGHT RESPONSIF DIPERBARUI          -->
+        <!-- ============================================== -->
+        <div class="mb-4 animate-on-scroll" style="animation-delay: 0.2s;">
+            <!--
+              PENJELASAN CLASS BARU:
+              - rounded-3: Bentuk default untuk mobile (persegi panjang dengan sudut membulat).
+              - rounded-lg-pill: Berubah menjadi pil di layar besar (large) dan di atasnya.
+              - fs-6 & fs-lg-5: Ukuran font kecil di mobile, dan lebih besar di desktop.
+              - px-3 & px-lg-4: Padding horizontal lebih kecil di mobile, lebih besar di desktop.
+            -->
+            <div class="bg-white text-primary fw-semibold d-inline-block rounded-3 rounded-lg-pill px-3 px-lg-4 py-2"
+                style="max-width: 90%; line-height: 1.5;">
+                <span class="fs-6 fs-lg-5">
+                    Program Desa/Kelurahan Cinta Statistik Kabupaten Mempawah
+                </span>
+            </div>
         </div>
-
+        <!-- ============================================== -->
+        <!--                AKHIR HIGHLIGHT                 -->
+        <!-- ============================================== -->
 
         <h1 class="mb-3 animate-on-scroll" style="animation-delay: 0.3s;">Mewujudkan Desa/Kelurahan Sebagai Subjek
             Pembangunan Berbasis Data</h1>
@@ -363,8 +377,8 @@
         <p class="lead animate-on-scroll" style="animation-delay: 0.4s;">Melalui program Kolaborasi Digital
             Desa/Kelurahan Cantik (Cinta Statistik), BPS Kabupaten Mempawah membina Desa/Kelurahan untuk mengelola dan
             memanfaatkan data demi perencanaan yang lebih presisi.</p>
-    </div>
-</header>
+        </div>
+    </header>
 
         <!-- ========== BAGIAN BARU: CARD PEMILIHAN Desa/Kelurahan ========== -->
         <section class="py-5 bg-light" id="pilih-desa">
