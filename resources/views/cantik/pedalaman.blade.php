@@ -772,15 +772,15 @@
             <div class="row justify-content-center">
                 <!-- Contoh Publikasi 1 -->
                 <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <a href="https://drive.google.com/file/d/1ETSdYgH-Q9xzlrfYh4zVhoy9VjeUmfFF/view?usp=sharing"
+                    <a href="https://drive.google.com/file/d/1Alwo6MPeGe36R0Vzb36sucRZI6qLfdXt/view?usp=drive_link"
                         class="publication-card">
                         <div class="publication-thumbnail">
                             <!-- Ganti src dengan path ke gambar cover. Ukuran ideal 210x297 atau kelipatannya -->
-                            <img src="{{ asset('images/Desa Sejegi Dalam Angka 2025.jpg') }}"
-                                alt="Cover Publikasi Desa Sejegi Dalam Angka 2025">
+                            <img src="{{ asset('images/Kelurahan Pedalaman Dalam Angka 2025.jpg') }}"
+                                alt="Cover Publikasi Kelurahan Pedalaman Dalam Angka 2025">
                         </div>
                         <div class="publication-content text-center">
-                            <h5 class="publication-title">Desa Sejegi Dalam Angka 2025</h5>
+                            <h5 class="publication-title">Kelurahan Pedalaman Dalam Angka 2025</h5>
                             <p class="publication-meta">Dirilis: 14 Agustus 2025</p>
                         </div>
                     </a>
@@ -788,14 +788,14 @@
 
                 <!-- Contoh Publikasi 2 -->
                 <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <a href="https://drive.google.com/file/d/1Y6tmi7rYYR-NJBr8LnV7pc7pHl7FTavO/view?usp=drive_link"
+                    <a href="https://drive.google.com/file/d/1bQws864ZY6-11SmEzmJYAa6eEJh5A_Kh/view?usp=drive_link"
                         class="publication-card">
                         <div class="publication-thumbnail">
-                            <img src="{{ asset('images/Potensi Desa Sejegi 2025.jpg') }}"
-                                alt="Cover Analisis Potensi UMKM">
+                            <img src="{{ asset('images/Potensi Kelurahan Pulau Pedalaman 2025.jpg') }}"
+                                alt="Cover Potensi Kelurahan Pulau Pedalaman 2025">
                         </div>
                         <div class="publication-content text-center">
-                            <h5 class="publication-title">Potensi Desa Sejegi 2025</h5>
+                            <h5 class="publication-title">Potensi Kelurahan Pulau Pedalaman 2025</h5>
                             <p class="publication-meta">Dirilis: 14 Agustus 2025</p>
                         </div>
                     </a>
