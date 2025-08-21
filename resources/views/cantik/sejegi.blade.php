@@ -1,4 +1,4 @@
-<!-- resources/views/desa/pedalaman.blade.php -->
+
 <!DOCTYPE html>
 <html lang="id">
 

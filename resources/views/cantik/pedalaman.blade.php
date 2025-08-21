@@ -767,7 +767,7 @@
         <div class="container py-5">
             <h2 class="section-title text-center">Publikasi Resmi</h2>
             <p class="text-center text-muted mb-5" style="font-size: 1.1rem;">
-                Temukan laporan dan analisis mendalam mengenai Desa Sejegi dalam publikasi resmi kami.
+                Temukan laporan dan analisis mendalam mengenai Kelurahan Pulau Pedalaman dalam publikasi resmi kami.
             </p>
             <div class="row justify-content-center">
                 <!-- Contoh Publikasi 1 -->
