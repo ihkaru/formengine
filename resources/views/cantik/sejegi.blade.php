@@ -886,7 +886,7 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <a href="https://docs.google.com/spreadsheets/d/1wgEXrqatq0iMrLga9EyfQHgGwiIwYRaWb8nhr1mxi88/edit?gid=0#gid=0"
+                                <a href="https://docs.google.com/spreadsheets/d/1Qsir_7O1s_Fs3wxc75Xo0_1xm1olte-11JAI5GqiKFA/edit?gid=0#gid=0"
                                     class="btn btn-primary product-btn" target="_blank">
                                     <i class="fas fa-eye me-2"></i>Lihat Tabel dan Unduh
                                 </a>
