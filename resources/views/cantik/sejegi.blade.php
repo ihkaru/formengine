@@ -450,44 +450,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                <i class="fas fa-map-marked-alt me-2"></i>
-                Desa Sejegi
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cantik.index') }}">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tentang">Tentang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#manfaat">Manfaat</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#dokumentasi">Dokumentasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#produk">Produk Statistik</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#publikasi">Publikasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">
-                            <i class="fas fa-arrow-left me-1"></i> Kembali ke Cerdas-SM
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    @include('partials.navbar')
 
     <!-- Hero Section -->
     <section class="hero-section" id="beranda">

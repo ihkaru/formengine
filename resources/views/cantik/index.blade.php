@@ -321,23 +321,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-chart-line me-2"></i>Deskel Cantik</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
-                    class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/#beranda">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#tentang">Tentang</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#fitur">Fitur</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Desa/Kelurahan Cantik</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#kontak">Kontak</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-sm btn-success ms-2 px-3" href="#">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    @include('partials.navbar')
 
     <main>
         <!-- Page Header -->
@@ -383,63 +367,155 @@
         <!-- ========== BAGIAN BARU: CARD PEMILIHAN Desa/Kelurahan ========== -->
         <section class="py-5 bg-light" id="pilih-desa">
             <div class="container">
-                <h2 class="section-title">Desa/Kelurahan Cinta Statistik Binaan</h2>
-                <div class="row">
-                    <!-- Card Kelurahan Pulau Pedalaman -->
-                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
-                        <a href="{{ route('cantik.pedalaman') }}" class="desa-card-link">
-                            <div class="desa-card">
-                                <img src="{{asset('images/pulaupedalaman.webp')}}" class="card-img-top"
-                                    alt="Kelurahan Pulau Pedalaman">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">Desa Cinta Statistik (Desa Cantik)</span>
+                    <h2 class="section-title text-center">Daftar Desa Binaan & Pra-Desa</h2>
+                    <p class="text-muted col-lg-8 mx-auto">
+                        Pilih desa atau kelurahan untuk melihat dasbor indikator data statistik, hasil pencacahan AppSheet, dan showcase uji lapangan CERDAS Survey Engine.
+                    </p>
+                </div>
+                <div class="row g-4">
+                    <!-- Card 1: Pra Desa Cantik Sambora 2026 (Featured CERDAS Engine) -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <a href="{{ route('cantik.sambora') }}" class="desa-card-link">
+                            <div class="desa-card border border-warning border-2">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Desa Sambora">
                                 <div class="desa-card-body d-flex flex-column">
-                                    <h4 class="card-title">Kelurahan Pulau Pedalaman</h4>
-                                    <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
-                                    <div class="mt-auto pt-3">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="badge bg-success">Binaan 2025</span>
-                                            <span class="text-primary fw-bold">Lihat Detail <i
-                                                    class="fas fa-arrow-right ms-1"></i></span>
-                                        </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-warning text-dark font-weight-bold"><i class="fas fa-microchip me-1"></i>Pra-Desa 2026</span>
+                                        <small class="text-primary fw-bold">Uji CERDAS</small>
+                                    </div>
+                                    <h4 class="card-title text-dark fw-bold">Desa Sambora</h4>
+                                    <p class="card-text text-muted small">Kecamatan Toho — Lokasi Uji Lapangan CERDAS Survey Engine (Offline-First & Geotagging)</p>
+                                    <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-success">Uji Lapangan</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <!-- Card Desa/Kelurahan Sejegi -->
-                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <a href="{{ route('cantik.sejegi') }}" class="desa-card-link">
+                    <!-- Card 2: Kel. Pasir Wan Salim (2026) -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <a href="{{ route('cantik.pasirwansalim') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{asset('images/sejegi.webp')}}" class="card-img-top" alt="Desa Sejegi">
+                                <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Kelurahan Pasir Wan Salim">
                                 <div class="desa-card-body d-flex flex-column">
-                                    <h4 class="card-title">Desa Sejegi</h4>
-                                    <p class="card-text text-muted">Kecamatan Mempawah Timur</p>
-                                    <div class="mt-auto pt-3">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="badge bg-warning text-dark">Binaan 2025</span>
-                                            <span class="text-primary fw-bold">Lihat Detail <i
-                                                    class="fas fa-arrow-right ms-1"></i></span>
-                                        </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-success">Binaan 2026</span>
+                                        <small class="text-muted">AppSheet</small>
+                                    </div>
+                                    <h4 class="card-title fw-bold">Kel. Pasir Wan Salim</h4>
+                                    <p class="card-text text-muted small">Kecamatan Mempawah Timur</p>
+                                    <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-light text-dark">Data Mikro</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <!-- Card Desa/Kelurahan Wajok Hilir -->
-                    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <a href="{{route('cantik.sejegi')}}" class="desa-card-link">
+
+                    <!-- Card 3: Desa Pasir Palembang (2026) -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <a href="{{ route('cantik.pasirpalembang') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{asset('images/wajokhilir.webp')}}" class="card-img-top"
-                                    alt="Desa Wajok Hilir">
+                                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Desa Pasir Palembang">
                                 <div class="desa-card-body d-flex flex-column">
-                                    <h4 class="card-title">Desa Wajok Hilir</h4>
-                                    <p class="card-text text-muted">Kecamatan Jongkat</p>
-                                    <div class="mt-auto pt-3">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="badge bg-primary">Binaan 2024</span>
-                                            <span class="text-primary fw-bold">Lihat Detail <i
-                                                    class="fas fa-arrow-right ms-1"></i></span>
-                                        </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-success">Binaan 2026</span>
+                                        <small class="text-muted">AppSheet</small>
+                                    </div>
+                                    <h4 class="card-title fw-bold">Desa Pasir Palembang</h4>
+                                    <p class="card-text text-muted small">Kecamatan Mempawah Timur</p>
+                                    <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-light text-dark">Data Mikro</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 4: Desa Sungai Bakau Kecil (2026) -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <a href="{{ route('cantik.sungaibakaukecil') }}" class="desa-card-link">
+                            <div class="desa-card">
+                                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Desa Sungai Bakau Kecil">
+                                <div class="desa-card-body d-flex flex-column">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-success">Binaan 2026</span>
+                                        <small class="text-muted">AppSheet</small>
+                                    </div>
+                                    <h4 class="card-title fw-bold">Desa Sungai Bakau Kecil</h4>
+                                    <p class="card-text text-muted small">Kecamatan Mempawah Hilir</p>
+                                    <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-light text-dark">Data Mikro</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 5: Kelurahan Pulau Pedalaman (2025) -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <a href="{{ route('cantik.pedalaman') }}" class="desa-card-link">
+                            <div class="desa-card">
+                                <img src="{{ asset('images/pulaupedalaman.webp') }}" class="card-img-top" alt="Kelurahan Pulau Pedalaman" onerror="this.src='https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop'">
+                                <div class="desa-card-body d-flex flex-column">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-info text-dark">Binaan 2025</span>
+                                        <small class="text-muted">AppSheet</small>
+                                    </div>
+                                    <h4 class="card-title fw-bold">Kel. Pulau Pedalaman</h4>
+                                    <p class="card-text text-muted small">Kecamatan Mempawah Timur</p>
+                                    <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-light text-dark">Dasbor Looker</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 6: Desa Sejegi (2025) -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <a href="{{ route('cantik.sejegi') }}" class="desa-card-link">
+                            <div class="desa-card">
+                                <img src="{{ asset('images/sejegi.webp') }}" class="card-img-top" alt="Desa Sejegi" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop'">
+                                <div class="desa-card-body d-flex flex-column">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-info text-dark">Binaan 2025</span>
+                                        <small class="text-muted">AppSheet</small>
+                                    </div>
+                                    <h4 class="card-title fw-bold">Desa Sejegi</h4>
+                                    <p class="card-text text-muted small">Kecamatan Mempawah Timur</p>
+                                    <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-light text-dark">Dasbor Looker</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 7: Desa Wajok Hilir (2024) -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <a href="{{ route('cantik.wajokhilir') }}" class="desa-card-link">
+                            <div class="desa-card">
+                                <img src="{{ asset('images/wajokhilir.webp') }}" class="card-img-top" alt="Desa Wajok Hilir" onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop'">
+                                <div class="desa-card-body d-flex flex-column">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-secondary">Binaan 2024</span>
+                                        <small class="text-muted">Early Pilot</small>
+                                    </div>
+                                    <h4 class="card-title fw-bold">Desa Wajok Hilir</h4>
+                                    <p class="card-text text-muted small">Kecamatan Siantan / Jongkat</p>
+                                    <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-light text-dark">Pilot Project</span>
+                                        <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -752,11 +828,15 @@
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 mb-4">
-                    <h5 class="footer-title">Kontributor Data</h5>
+                    <h5 class="footer-title">Desa Binaan & Pra-Desa</h5>
                     <ul class="footer-links">
-                        <li><a href="{{ route('cantik.pedalaman') }}">Kel. Pulau Pedalaman</a></li>
-                        <li><a href="{{ route('cantik.wajokhilir') }}">Desa/Kelurahan Wajok Hilir</a></li>
-                        <li><a href="{{ route('cantik.sejegi') }}">Desa/Kelurahan Sejegi</a></li>
+                        <li><a href="{{ route('cantik.pasirwansalim') }}">Kel. Pasir Wan Salim (2026)</a></li>
+                        <li><a href="{{ route('cantik.pasirpalembang') }}">Desa Pasir Palembang (2026)</a></li>
+                        <li><a href="{{ route('cantik.sungaibakaukecil') }}">Desa Sungai Bakau Kecil (2026)</a></li>
+                        <li><a href="{{ route('cantik.sambora') }}" class="fw-bold text-warning"><i class="fas fa-microchip me-1"></i>Pra Desa Cantik Sambora (2026)</a></li>
+                        <li><a href="{{ route('cantik.pedalaman') }}">Kel. Pulau Pedalaman (2025)</a></li>
+                        <li><a href="{{ route('cantik.sejegi') }}">Desa Sejegi (2025)</a></li>
+                        <li><a href="{{ route('cantik.wajokhilir') }}">Desa Wajok Hilir (2024)</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 mb-4">
