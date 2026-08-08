@@ -23,8 +23,8 @@
         body { font-family: 'Poppins', sans-serif; background-color: #F8FAFC; color: #1E293B; }
         .navbar { background-color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
         .page-header {
-            background: linear-gradient(135deg, rgba(6,78,59,0.92) 0%, rgba(13,148,136,0.95) 100%),
-                url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop');
+            background: linear-gradient(135deg, rgba(6,78,59,0.88) 0%, rgba(13,148,136,0.90) 100%),
+                url("{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}");
             background-size: cover; background-position: center;
             color: white; padding: 80px 0 60px;
         }

@@ -442,7 +442,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <a href="{{ route('cantik.sungaibakaukecil') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Desa Sungai Bakau Kecil">
+                                <img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" class="card-img-top" alt="Desa Sungai Bakau Kecil" style="height: 220px; object-fit: cover;">
                                 <div class="desa-card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="badge bg-success">Binaan 2026</span>
