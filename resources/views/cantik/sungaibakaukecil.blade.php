@@ -503,7 +503,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 mb-4 mb-lg-0">
                     <div class="rounded-4 overflow-hidden shadow-sm border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/dukungan-pemda.webp') }}', 'Dukungan Pemkab Mempawah &amp; BPS', 'Dokumentasi Komitmen Pemkab Mempawah &amp; BPS Kabupaten Mempawah dalam Pembinaan Sektoral Desa Cantik 2026')">
-                        <img src="{{ asset('images/dukungan-pemda.webp') }}" alt="Dukungan Pemkab Mempawah &amp; BPS" class="img-fluid w-100" style="height: 320px; object-fit: cover;" onerror="this.onerror=null;this.src='{{ asset('images/dukungan-pemda.jpg') }}';">
+                        <img src="{{ asset('images/dukungan-pemda.webp') }}" alt="Dukungan Pemkab Mempawah &amp; BPS" class="img-fluid w-100" style="height: auto; width: 100%; max-height: 460px; object-fit: contain;" onerror="this.onerror=null;this.src='{{ asset('images/dukungan-pemda.jpg') }}';">
                         <div class="zoom-overlay">
                             <i class="fas fa-search-plus"></i> Klik untuk Tampilan Besar
                         </div>
