@@ -463,7 +463,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 mb-4 mb-lg-0">
                     <div class="rounded-4 overflow-hidden shadow-sm border">
-                        <img src="{{ asset('images/dukungan-pemda.jpg') }}" alt="Dukungan Pemkab Mempawah" class="img-fluid w-100" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1577495508048-b635879837f1?w=600&auto=format&fit=crop';">
+                        <img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" alt="Kantor Desa Sungai Bakau Kecil" class="img-fluid w-100" style="height: 320px; object-fit: cover;" onerror="this.onerror=null;this.src='{{ asset('images/dukungan-pemda.jpg') }}';">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -551,7 +551,9 @@
                 <!-- Monografi -->
                 <div class="col-lg-3 col-md-6">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-primary"><i class="fas fa-book fa-2x"></i></div>
+                        <div class="mb-3 overflow-hidden rounded-3 border" style="height: 120px;">
+                            <img src="{{ asset('images/sungaibakaukecil/monografi.webp') }}" alt="Monografi Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                        </div>
                         <h6 class="fw-bold text-dark mb-1">Monografi Desa 2026</h6>
                         <p class="extra-small text-muted mb-3">Gambaran umum kependudukan, batas wilayah, dan infrastruktur desa.</p>
                         <div class="mt-auto d-grid gap-2">
@@ -562,7 +564,9 @@
                 <!-- Infografis -->
                 <div class="col-lg-3 col-md-6">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-success"><i class="fas fa-chart-pie fa-2x"></i></div>
+                        <div class="mb-3 text-success d-flex align-items-center justify-content-center" style="height: 120px;">
+                            <i class="fas fa-chart-pie fa-3x"></i>
+                        </div>
                         <h6 class="fw-bold text-dark mb-1">Infografis Demografi</h6>
                         <p class="extra-small text-muted mb-3">Visualisasi data statistik dalam bentuk poster ringkas dan komunikatif.</p>
                         <div class="mt-auto d-grid gap-2">
@@ -573,7 +577,9 @@
                 <!-- Tabel Excel Raw Data -->
                 <div class="col-lg-3 col-md-6">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-info"><i class="fas fa-file-excel fa-2x"></i></div>
+                        <div class="mb-3 text-info d-flex align-items-center justify-content-center" style="height: 120px;">
+                            <i class="fas fa-file-excel fa-3x"></i>
+                        </div>
                         <h6 class="fw-bold text-dark mb-1">Tabel Data Excel (SDI)</h6>
                         <p class="extra-small text-muted mb-3">Kumpulan dataset RT &amp; Fasilitas dalam format spreadsheet terbuka.</p>
                         <div class="mt-auto d-grid gap-2">
@@ -584,7 +590,9 @@
                 <!-- SOP Permintaan Data -->
                 <div class="col-lg-3 col-md-6">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-danger"><i class="fas fa-clipboard-list fa-2x"></i></div>
+                        <div class="mb-3 text-danger d-flex align-items-center justify-content-center" style="height: 120px;">
+                            <i class="fas fa-clipboard-list fa-3x"></i>
+                        </div>
                         <h6 class="fw-bold text-dark mb-1">SOP Permintaan Data</h6>
                         <p class="extra-small text-muted mb-3">Standar Operasional Prosedur pengajuan layanan permintaan data desa.</p>
                         <div class="mt-auto d-grid gap-2">
@@ -598,39 +606,66 @@
 
         <!-- Galeri Dokumentasi Kegiatan Lapangan (Bukti Proses Pembinaan & Pencacahan Agen Statistik) -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dokumentasi">
-            <h4 class="fw-bold text-dark mb-2"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan Lapangan</h4>
-            <p class="text-muted small mb-4">Proses kapasitas building, pelatihan CAPI, dan pendataan lapangan oleh Agen Statistik Desa Sungai Bakau Kecil.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan Lapangan</h4>
+                    <p class="text-muted small mb-0">Proses kapasitas building, pelatihan CAPI, dan pendataan lapangan oleh Agen Statistik Desa Sungai Bakau Kecil.</p>
+                </div>
+                <span class="badge bg-success rounded-pill px-3 py-2">5 Foto Dokumentasi WebP</span>
+            </div>
             <div class="row g-3">
-                <div class="col-md-4">
+                <div class="col-md-4 col-lg-4">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light">
-                        <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-chalkboard-teacher fa-3x opacity-50"></i>
+                        <div class="overflow-hidden border-bottom" style="height: 200px;">
+                            <img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" alt="Pemerintah Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Pemerintah Desa Sungai Bakau Kecil</h6>
+                            <p class="extra-small text-muted mb-0">Pusat koordinasi &amp; kesiapan posko pelayanan data Desa Cantik 2026.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light">
+                        <div class="overflow-hidden border-bottom" style="height: 200px;">
+                            <img src="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" alt="Pembekalan & Pelatihan Agen Statistik" class="img-fluid w-100 h-100" style="object-fit: cover;">
                         </div>
                         <div class="p-3">
                             <h6 class="fw-bold mb-1">Pelatihan Agen Statistik RT</h6>
-                            <p class="extra-small text-muted mb-0">Pembekalan metodologi CAPI AppSheet oleh BPS Kabupaten Mempawah.</p>
+                            <p class="extra-small text-muted mb-0">Pembekalan metodologi CAPI AppSheet &amp; verifikasi indikator SDI oleh BPS Mempawah.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-lg-4">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light">
-                        <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-comments fa-3x opacity-50"></i>
+                        <div class="overflow-hidden border-bottom" style="height: 200px;">
+                            <img src="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" alt="Wawancara CAPI dengan Ketua RT" class="img-fluid w-100 h-100" style="object-fit: cover;">
                         </div>
                         <div class="p-3">
                             <h6 class="fw-bold mb-1">Wawancara CAPI dengan Ketua RT</h6>
-                            <p class="extra-small text-muted mb-0">Pengumpulan variabel potensi kewilayahan RT langsung di lokasi.</p>
+                            <p class="extra-small text-muted mb-0">Pengumpulan 26 variabel potensi kewilayahan RT secara komprehensif di lapangan.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-6">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light">
-                        <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-map-marker-alt fa-3x opacity-50"></i>
+                        <div class="overflow-hidden border-bottom" style="height: 220px;">
+                            <img src="{{ asset('images/sungaibakaukecil/dokum-3.webp') }}" alt="Tagging GPS Sarana & Fasilitas" class="img-fluid w-100 h-100" style="object-fit: cover;">
                         </div>
                         <div class="p-3">
-                            <h6 class="fw-bold mb-1">Tagging GPS Sarana &amp; Fasilitas</h6>
-                            <p class="extra-small text-muted mb-0">Inventarisasi geospasial titik koordinat tempat ibadah &amp; sekolah.</p>
+                            <h6 class="fw-bold mb-1">Tagging GPS Sarana &amp; Fasilitas Umum</h6>
+                            <p class="extra-small text-muted mb-0">Inventarisasi geospasial titik koordinat tempat ibadah, sekolah, dan posyandu desa.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light">
+                        <div class="overflow-hidden border-bottom" style="height: 220px;">
+                            <img src="{{ asset('images/sungaibakaukecil/dokum-4.webp') }}" alt="Ground Check & Quality Control Data" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Quality Control &amp; Ground Check Data</h6>
+                            <p class="extra-small text-muted mb-0">Pemeriksaan ulang akurasi data hasil pendataan bersama aparatur desa dan BPS.</p>
                         </div>
                     </div>
                 </div>
