@@ -406,8 +406,18 @@
         <div class="row g-4 mb-5">
             <div class="col-lg-8">
                 <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
-                    <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-bar me-2 text-primary"></i>Jumlah Penduduk &amp; KK Per RT</h5>
-                    <canvas id="chartDemografi" style="max-height:380px;"></canvas>
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <div>
+                            <h5 class="fw-bold text-dark mb-1"><i class="fas fa-chart-bar me-2 text-primary"></i>Jumlah Penduduk &amp; KK Per RT</h5>
+                            <p class="text-muted extra-small mb-0"><i class="fas fa-arrows-left-right me-1 text-primary"></i>Geser ke kanan untuk melihat seluruh RT desa</p>
+                        </div>
+                        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill" id="rt-chart-count-badge">37 RT Terdata</span>
+                    </div>
+                    <div style="overflow-x: auto; overflow-y: hidden; width: 100%; -webkit-overflow-scrolling: touch;" class="pb-2">
+                        <div id="chartDemografiContainer" style="width: 1800px; height: 350px; position: relative;">
+                            <canvas id="chartDemografi"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -1061,7 +1071,7 @@
             sortTableFas('Nama_Fasilitas', true);
         }
 
-        // Render Bar Chart: Sorted from Largest to Smallest total population
+        // Render Bar Chart: Sorted from Largest to Smallest total population for ALL RTs
         function renderDemografiChart(rt) {
             var sorted = rt.slice().sort(function(a, b) {
                 var popA = parseInt(a.Jumlah_Penduduk_Laki_Laki || 0) + parseInt(a.Jumlah_Penduduk_Perempuan || 0);
@@ -1069,15 +1079,27 @@
                 return popB - popA; // Descending order
             });
 
+            var count = sorted.length;
+            var container = document.getElementById('chartDemografiContainer');
+            if (container) {
+                // Dynamically set container width based on total RT count (at least 48px per RT bar)
+                var minWidth = Math.max(800, count * 48);
+                container.style.width = minWidth + 'px';
+            }
+
+            if (document.getElementById('rt-chart-count-badge')) {
+                document.getElementById('rt-chart-count-badge').innerText = count + ' RT Terdata';
+            }
+
             var ctx = document.getElementById('chartDemografi').getContext('2d');
             if (chartDemografiInstance) chartDemografiInstance.destroy();
             chartDemografiInstance = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: sorted.slice(0,15).map(function(d) { return d.Nama_RT ? d.Nama_RT.replace('DUSUN ', '').replace('RW ', '') : 'RT'; }),
+                    labels: sorted.map(function(d) { return d.Nama_RT ? d.Nama_RT.replace('DUSUN ', '').replace('RW ', '') : 'RT'; }),
                     datasets: [
-                        { label: 'Penduduk', data: sorted.slice(0,15).map(function(d) { return parseInt(d.Jumlah_Penduduk_Laki_Laki||0)+parseInt(d.Jumlah_Penduduk_Perempuan||0); }), backgroundColor: '#0D9488' },
-                        { label: 'Jumlah KK', data: sorted.slice(0,15).map(function(d) { return parseInt(d.Jumlah_KK||0); }), backgroundColor: '#F59E0B' }
+                        { label: 'Penduduk (Jiwa)', data: sorted.map(function(d) { return parseInt(d.Jumlah_Penduduk_Laki_Laki||0)+parseInt(d.Jumlah_Penduduk_Perempuan||0); }), backgroundColor: '#0D9488', borderRadius: 4 },
+                        { label: 'Jumlah KK', data: sorted.map(function(d) { return parseInt(d.Jumlah_KK||0); }), backgroundColor: '#F59E0B', borderRadius: 4 }
                     ]
                 },
                 options: {
@@ -1085,7 +1107,20 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: { position: 'top' },
-                        title: { display: true, text: 'Top 15 RT Berdasarkan Total Penduduk (Terbesar → Terkecil)' }
+                        title: { display: true, text: 'Demografi Seluruh Wilayah RT (Terurut dari Penduduk Terbesar → Terkecil)' }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                autoSkip: false,
+                                maxRotation: 45,
+                                minRotation: 45,
+                                font: { size: 10 }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
             });
