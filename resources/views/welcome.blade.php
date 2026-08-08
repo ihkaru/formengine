@@ -250,7 +250,7 @@
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
-                    <img src="{{ asset('images/dukungan-pemda.jpg') }}" alt="Dukungan Pemda" class="img-fluid rounded-4 shadow border" onerror="this.src='https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop'">
+                    <img src="{{ asset('images/dukungan-pemda.webp') }}" alt="Dukungan Pemda" class="img-fluid rounded-4 shadow border" onerror="this.src='{{ asset('images/dukungan-pemda.jpg') }}'">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
                     <h2 class="section-title">Tentang Cerdas-SM</h2>

@@ -534,9 +534,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
                         <div class="about-image">
-                            <img src="{{ asset('images/dukungan-pemda.jpg') }}"
+                            <img src="{{ asset('images/dukungan-pemda.webp') }}"
                                 alt="Sekda Mempawah, Ismail, dalam acara Evaluasi Pembinaan Statistik Sektoral"
-                                class="img-fluid">
+                                class="img-fluid" onerror="this.src='{{ asset('images/dukungan-pemda.jpg') }}'">
                         </div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
