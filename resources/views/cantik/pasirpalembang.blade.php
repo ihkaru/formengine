@@ -1,1116 +1,1125 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desa Pasir Palembang - Desa Cinta Statistik 2026</title>
-    <meta name="description" content="Portal Resmi Desa Cantik (Desa Cinta Statistik) Pasir Palembang - BPS Kabupaten Mempawah">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Bootstrap CSS for dynamic global navbar -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #1e3c72;
-            --primary-light: #2a5298;
-            --secondary: #2e7d32;
-            --secondary-light: #4caf50;
-            --accent: #ff9800;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --text-main: #334155;
-            --text-muted: #64748b;
-            --white: #ffffff;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        /* Header / Navbar */
-        header {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            z-index: 1000;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .navbar {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .nav-logo i {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            animation: pulse 2s infinite;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-item a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .nav-item a:hover {
-            color: var(--primary-light);
-        }
-
-        .nav-btn {
-            background-color: var(--primary);
-            color: var(--white) !important;
-            padding: 8px 18px;
-            border-radius: 50px;
-            transition: var(--transition);
-        }
-
-        .nav-btn:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(30, 60, 114, 0.2);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(30, 60, 114, 0.95) 0%, rgba(42, 82, 152, 0.9) 100%), 
-                        url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200') center/cover no-repeat;
-            color: var(--white);
-            padding: 100px 20px 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: var(--light);
-            transform: skewY(-2deg);
-        }
-
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            background-color: rgba(255, 152, 0, 0.2);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
-            margin-bottom: 20px;
-        }
-
-        .hero-title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        /* Container Utama */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* Section Layout */
-        .section {
-            margin-bottom: 60px;
-        }
-
-        .section-title-wrap {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        /* Interactive Statistics Widget */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            transition: var(--transition);
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary-light);
-        }
-
-        .stat-icon {
-            font-size: 2.2rem;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-
-        .stat-num {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 5px;
-            transition: var(--transition);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* Charts Container */
-        .chart-box {
-            background-color: var(--white);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            margin-top: 30px;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .chart-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .chart-tabs {
-            display: flex;
-            background: var(--light);
-            padding: 4px;
-            border-radius: 50px;
-        }
-
-        .chart-tab-btn {
-            border: none;
-            background: none;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .chart-tab-btn.active {
-            background-color: var(--white);
-            color: var(--primary);
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Pure CSS Bar Chart */
-        .bar-chart {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            height: 250px;
-            padding: 20px 0;
-            border-bottom: 2px solid rgba(226, 232, 240, 0.8);
-            margin-bottom: 15px;
-        }
-
-        .chart-bar-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 15%;
-            height: 100%;
-            justify-content: flex-end;
-        }
-
-        .chart-bar-value {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .chart-bar {
-            width: 100%;
-            border-radius: 8px 8px 0 0;
-            background: linear-gradient(to top, var(--primary) 0%, var(--primary-light) 100%);
-            transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chart-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-        }
-
-        .chart-bar-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-top: 10px;
-        }
-
-        /* App Hub Grid */
-        .hub-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .hub-card {
-            background-color: var(--white);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hub-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .hub-card-top {
-            padding: 30px;
-            flex-grow: 1;
-        }
-
-        .hub-card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            background-color: rgba(30, 60, 114, 0.1);
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }
-
-        .hub-card:hover .hub-card-icon {
-            background-color: var(--primary);
-            color: var(--white);
-            transform: rotate(360deg);
-        }
-
-        .hub-card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        .hub-card-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .hub-card-action {
-            background-color: rgba(226, 232, 240, 0.4);
-            padding: 20px 30px;
-            border-top: 1px solid rgba(226, 232, 240, 0.8);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .hub-action-btn {
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .hub-action-btn:hover {
-            color: var(--primary-light);
-            gap: 12px;
-        }
-
-        /* SOP / Prosedur Request Data */
-        .sop-wrap {
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .sop-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: flex-start;
-        }
-
-        @media (max-width: 768px) {
-            .sop-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .sop-timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .sop-timeline::before {
-            content: '';
-            position: absolute;
-            left: 9px;
-            top: 10px;
-            width: 2px;
-            height: calc(100% - 20px);
-            background-color: rgba(30, 60, 114, 0.2);
-        }
-
-        .sop-item {
-            position: relative;
-            margin-bottom: 30px;
-        }
-
-        .sop-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .sop-badge {
-            position: absolute;
-            left: -30px;
-            top: 2px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            border: 4px solid var(--white);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .sop-item-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sop-item-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* Form Permintaan Data */
-        .request-form {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-main);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(203, 213, 225, 0.8);
-            font-family: inherit;
-            font-size: 0.9rem;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
-        }
-
-        textarea.form-control {
-            height: 100px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background-color: var(--secondary);
-            color: var(--white);
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--secondary-light);
-            transform: translateY(-2px);
-        }
-
-        /* Downloads Center */
-        .downloads-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .dl-card {
-            background-color: var(--white);
-            border-radius: 12px;
-            padding: 20px 25px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: var(--transition);
-        }
-
-        .dl-card:hover {
-            border-color: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .dl-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .dl-icon {
-            font-size: 1.8rem;
-            color: var(--accent);
-        }
-
-        .dl-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--primary);
-        }
-
-        .dl-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .dl-btn {
-            background: none;
-            border: none;
-            color: var(--secondary);
-            cursor: pointer;
-            font-size: 1.15rem;
-            transition: var(--transition);
-        }
-
-        .dl-btn:hover {
-            color: var(--secondary-light);
-            transform: scale(1.2);
-        }
-
-        /* Banner Sensus Ekonomi 2026 */
-        .se-banner {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border-radius: 20px;
-            padding: 40px;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-            flex-wrap: wrap;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 60px;
-        }
-
-        .se-content {
-            max-width: 600px;
-        }
-
-        .se-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: var(--accent);
-        }
-
-        .se-desc {
-            font-size: 0.95rem;
-            opacity: 0.85;
-            line-height: 1.5;
-        }
-
-        .se-logo-box {
-            font-size: 4rem;
-            color: rgba(255, 255, 255, 0.15);
-            animation: bounce 3s infinite;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 5px solid var(--secondary);
-        }
-
-        .footer-logo {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: var(--white);
-            margin-bottom: 10px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-logo i {
-            color: var(--secondary-light);
-        }
-
-        .footer-text {
-            font-size: 0.85rem;
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Success Message Overlay */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--dark);
-            color: var(--white);
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 2000;
-            transform: translateY(150%);
-            transition: var(--transition);
-        }
-
-        .toast.show {
-            transform: translateY(0);
-        }
-
-        .toast-icon {
-            color: var(--secondary-light);
-            font-size: 1.2rem;
-        }
-
-    </style>
-</head>
-<body>
-
-    <!-- Header Navbar -->
-    @include('partials.navbar')
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-badge">Desa Cinta Statistik 2026</div>
-            <h1 class="hero-title">Portal Desa Cantik Pasir Palembang</h1>
-            <p class="hero-subtitle">Mewujudkan tata kelola data potensi desa secara transparan, akurat, dan mudah diakses untuk mendorong perencanaan pembangunan desa mandiri.</p>
-            <a href="#stat" class="nav-btn" style="display:inline-block; font-size:1rem; padding:12px 30px;">Mulai Jelajahi Data</a>
+<x-layouts.app title="Desa Pasir Palembang - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Pasir Palembang - BPS Kabupaten Mempawah">
+
+    <header class="page-header text-center">
+        <div class="container">
+            <div class="d-flex justify-content-center gap-2 mb-3">
+                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
+                <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
+            </div>
+            <h1 class="fw-bold display-5 mb-2">Desa Pasir Palembang</h1>
+            <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;">
+                Kecamatan Mempawah Timur, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
+            </p>
+            <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
+                <div class="sync-wrap text-white small fw-semibold">
+                    <i class="fas fa-sync fa-spin text-success" id="sync-icon"></i>
+                    <span id="sync-status">Menghubungkan ke Google Sheets...</span>
+                </div>
+                <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold" onclick="loadDataFromSheets()">
+                    <i class="fas fa-redo me-1"></i> Sync Sekarang
+                </button>
+                <a href="#sop-layanan" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                    <i class="fas fa-envelope me-1"></i> Permintaan Data
+                </a>
+                <a href="#publikasi" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                    <i class="fas fa-book me-1"></i> Bukti Dukung 2026
+                </a>
+            </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Main Content Container -->
-    <main class="main-container">
+    <main class="container my-5">
 
-        <!-- Section: Interactive Statistics Widget -->
-        <section class="section" id="stat">
-            <div class="section-title-wrap">
-                <h2 class="section-title">Indikator Statistik Utama</h2>
-            </div>
-            
-            <!-- Grid Indikator -->
-            <div class="stats-grid">
-                <div class="stat-card" onclick="updateChart('penduduk')">
-                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
-                    <div class="stat-num" id="stat-pend">1.545</div>
-                    <div class="stat-label">Penduduk</div>
-                </div>
-                <div class="stat-card" onclick="updateChart('kk')">
-                    <div class="stat-icon"><i class="fa-solid fa-house-user"></i></div>
-                    <div class="stat-num" id="stat-kk">462</div>
-                    <div class="stat-label">Kepala Keluarga</div>
-                </div>
-                <div class="stat-card" onclick="updateChart('umkm')">
-                    <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
-                    <div class="stat-num" id="stat-umkm">78</div>
-                    <div class="stat-label">UMKM Aktif</div>
-                </div>
-                <div class="stat-card" onclick="updateChart('pekerja')">
-                    <div class="stat-icon"><i class="fa-solid fa-wheat-awn"></i></div>
-                    <div class="stat-num" id="stat-pekerja">124</div>
-                    <div class="stat-label">Petani / Nelayan</div>
-                </div>
-                <div class="stat-card" onclick="updateChart('bantuan')">
-                    <div class="stat-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
-                    <div class="stat-num" id="stat-bantuan">92</div>
-                    <div class="stat-label">Penerima Bansos</div>
-                </div>
-            </div>
+        <!-- KPI Cards (Reusable Component) -->
+        <div class="row g-4 mb-5">
+            <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" />
+            <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" />
+            <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" />
+            <x-ui.kpi-card title="Penduduk Lansia" icon="fa-user-clock" id="kpi-lansia" sub-id="kpi-pct-lansia" sub-label="Proporsi" sub-color="text-warning" />
+            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH/BPNT/BLT" />
+            <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terinventarisasi" />
+        </div>
 
-            <!-- Dynamic Chart Display (3-Year Series) -->
-            <div class="chart-box">
-                <div class="chart-header">
-                    <div class="chart-title" id="chart-main-title">Tren Perkembangan Jumlah Penduduk</div>
-                    <div class="chart-tabs">
-                        <button class="chart-tab-btn active" id="tab-2026">2026</button>
-                        <button class="chart-tab-btn" id="tab-2025">2025</button>
-                        <button class="chart-tab-btn" id="tab-2024">2024</button>
-                    </div>
-                </div>
-                
-                <!-- Bar Chart -->
-                <div class="bar-chart" id="bar-chart-body">
-                    <!-- Column 2024 -->
-                    <div class="chart-bar-container">
-                        <div class="chart-bar-value" id="val-2024">1.490</div>
-                        <div class="chart-bar" id="bar-2024" style="height: 85%;"></div>
-                        <div class="chart-bar-label">2024</div>
-                    </div>
-                    <!-- Column 2025 -->
-                    <div class="chart-bar-container">
-                        <div class="chart-bar-value" id="val-2025">1.518</div>
-                        <div class="chart-bar" id="bar-2025" style="height: 90%;"></div>
-                        <div class="chart-bar-label">2025</div>
-                    </div>
-                    <!-- Column 2026 -->
-                    <div class="chart-bar-container">
-                        <div class="chart-bar-value" id="val-2026">1.545</div>
-                        <div class="chart-bar" id="bar-2026" style="height: 95%;"></div>
-                        <div class="chart-bar-label">2026</div>
-                    </div>
-                </div>
-                <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;"><i class="fa-solid fa-circle-info"></i> Klik pada kartu indikator di atas untuk mengubah visualisasi data tren seri 3 tahun terakhir.</p>
-            </div>
-        </section>
+        <!-- Metadata SDI 2026 (Reusable Component) -->
+        <x-widgets.sdi-metadata-tab village-name="Desa Pasir Palembang" :rt-count="14" :var-rt-count="26" :var-fas-count="15" />
 
-        <!-- Section: App & Canva Hub -->
-        <section class="section" id="hub">
-            <div class="section-title-wrap">
-                <h2 class="section-title">Portal Aplikasi & Desain Pembinaan</h2>
-            </div>
-            
-            <div class="hub-grid">
-                <!-- AppSheet Card -->
-                <div class="hub-card">
-                    <div class="hub-card-top">
-                        <div class="hub-card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                        <h3 class="hub-card-title">AppSheet Pengumpulan Data</h3>
-                        <p class="hub-card-desc">Aplikasi pengisian kuesioner profil desa mandiri secara mobile untuk memfasilitasi pendataan potensi keluarga dan SLS (Uji Coba Lapangan).</p>
-                    </div>
-                    <div class="hub-card-action">
-                        <a href="https://www.appsheet.com/template/appdef?appId=DeskelCantikPasirPalembang-720684810&isCopiedApp=true&appName=DeskelCantikPasirPalembang-720684810" target="_blank" class="hub-action-btn">Buka AppSheet <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
+        <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
+        <x-widgets.flashcard-deck village-name="Desa Pasir Palembang" title="Flashcard Trivia &amp; Insights Data Desa Pasir Palembang" />
 
-                <!-- Google Sheet Tabulation Card -->
-                <div class="hub-card">
-                    <div class="hub-card-top">
-                        <div class="hub-card-icon"><i class="fa-solid fa-file-excel"></i></div>
-                        <h3 class="hub-card-title">Kertas Kerja Tabulasi Data</h3>
-                        <p class="hub-card-desc">Spreadsheet database utama hasil kompilasi kuesioner dan data statistik dasar untuk diolah menjadi tabel dua arah dan visualisasi grafik desa.</p>
+        <!-- Visualisasi Grafik Demografi & Fasilitas -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <h5 class="fw-bold text-dark mb-0"><i class="fas fa-chart-bar me-2 text-primary"></i>Komposisi Demografi Per RT</h5>
+                        <small class="text-muted extra-small"><i class="fas fa-arrows-alt-h me-1 text-primary"></i>Geser ke samping untuk melihat seluruh 14 RT</small>
                     </div>
-                    <div class="hub-card-action">
-                        <a href="https://docs.google.com/spreadsheets/d/19sh08E2kaP35brB3gUBJ0mEkXsBhoWM3zxuml1GgtnA/edit?gid=285433477#gid=285433477" target="_blank" class="hub-action-btn">Akses Spreadsheet <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Canva Infographics Card -->
-                <div class="hub-card">
-                    <div class="hub-card-top">
-                        <div class="hub-card-icon"><i class="fa-solid fa-palette"></i></div>
-                        <h3 class="hub-card-title">Desain Canva & Infografis</h3>
-                        <p class="hub-card-desc">Kumpulan poster statistik hasil pelatihan pembinaan kreatif agen desa cantik guna menerjemahkan tabel data ke infografis informatif desa.</p>
-                    </div>
-                    <div class="hub-card-action">
-                        <a href="https://www.canva.com/design/DAHP1ysrWMs/_7-ZyE1BRb-_8mVhtCaIUQ/edit" target="_blank" class="hub-action-btn">Buka Canva <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: SOP & Data Request Form -->
-        <section class="section" id="sop">
-            <div class="section-title-wrap">
-                <h2 class="section-title">SOP Permintaan Data & Permohonan</h2>
-            </div>
-            
-            <div class="sop-wrap">
-                <div class="sop-grid">
-                    <!-- Timeline SOP -->
-                    <div>
-                        <h3 class="chart-title" style="margin-bottom: 25px;"><i class="fa-solid fa-circle-nodes"></i> Alur Prosedur Pelayanan Data</h3>
-                        
-                        <div class="sop-timeline">
-                            <div class="sop-item">
-                                <div class="sop-badge"></div>
-                                <div class="sop-item-title">1. Ajukan Kebutuhan</div>
-                                <div class="sop-item-desc">Pemohon data mendatangi kantor desa secara langsung atau mengisi form permintaan di sebelah kanan secara online.</div>
-                            </div>
-                            
-                            <div class="sop-item">
-                                <div class="sop-badge"></div>
-                                <div class="sop-item-title">2. Verifikasi & Approval</div>
-                                <div class="sop-item-desc">Agen statistik desa memproses permintaan dan mencocokkan ketersediaan data berdasarkan buku monografi/publikasi.</div>
-                            </div>
-                            
-                            <div class="sop-item">
-                                <div class="sop-badge"></div>
-                                <div class="sop-item-title">3. Penyediaan Data</div>
-                                <div class="sop-item-desc">Data diserahkan via softfile (PDF/Excel) melalui Email / WhatsApp resmi pemohon secara gratis.</div>
-                            </div>
+                    <div class="overflow-x-auto w-100 pb-2">
+                        <div style="height: 320px; min-width: 900px;" id="chartDemografiContainer">
+                            <canvas id="chartDemografi"></canvas>
                         </div>
                     </div>
-                    
-                    <!-- Form Request -->
-                    <div class="request-form">
-                        <form id="dataRequestForm" onsubmit="handleFormSubmit(event)">
-                            <div class="form-group">
-                                <label for="req-name" class="form-label">Nama Lengkap Pemohon</label>
-                                <input type="text" id="req-name" class="form-control" placeholder="Contoh: Budi Santoso" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="req-email" class="form-label">Alamat Email Aktif</label>
-                                <input type="email" id="req-email" class="form-control" placeholder="Contoh: budi@gmail.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="req-inst" class="form-label">Instansi / Pekerjaan</label>
-                                <input type="text" id="req-inst" class="form-control" placeholder="Contoh: Universitas Tanjungpura" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="req-desc" class="form-label">Rincian Data yang Dibutuhkan</label>
-                                <textarea id="req-desc" class="form-control" placeholder="Contoh: Data jumlah keluarga miskin per RT tahun 2026 untuk keperluan penelitian skripsi." required></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn">
-                                <i class="fa-solid fa-paper-plane"></i> Kirim Permintaan Data
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Section: Downloads Center -->
-        <section class="section" id="downloads">
-            <div class="section-title-wrap">
-                <h2 class="section-title">Pusat Unduhan (Downloads Center)</h2>
-            </div>
-            
-            <div class="downloads-grid">
-                <!-- Monografi -->
-                <div class="dl-card">
-                    <div class="dl-info">
-                        <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                        <div>
-                            <div class="dl-name">Monografi Desa 2026</div>
-                            <div class="dl-meta">Format: PDF | Ukuran: 1.8 MB</div>
-                        </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-pie me-2 text-success"></i>Persebaran Kategori Fasilitas Umum</h5>
+                    <div style="height: 320px;">
+                        <canvas id="chartFasilitas"></canvas>
                     </div>
-                    <button class="dl-btn" onclick="triggerDownload('Monografi Desa 2026')"><i class="fa-solid fa-cloud-arrow-down"></i></button>
                 </div>
-
-                <!-- Booklet -->
-                <div class="dl-card">
-                    <div class="dl-info">
-                        <div class="dl-icon"><i class="fa-solid fa-book"></i></div>
-                        <div>
-                            <div class="dl-name">Buku Publikasi Desa Cantik 2026</div>
-                            <div class="dl-meta">Format: PDF | Ukuran: 4.2 MB</div>
-                        </div>
-                    </div>
-                    <button class="dl-btn" onclick="triggerDownload('Buku Publikasi Desa Cantik 2026')"><i class="fa-solid fa-cloud-arrow-down"></i></button>
-                </div>
-
-                <!-- Metadata -->
-                <div class="dl-card">
-                    <div class="dl-info">
-                        <div class="dl-icon"><i class="fa-solid fa-database"></i></div>
-                        <div>
-                            <div class="dl-name">Metadata Statistik Sektoral</div>
-                            <div class="dl-meta">Format: XLSX | Ukuran: 840 KB</div>
-                        </div>
-                    </div>
-                    <button class="dl-btn" onclick="triggerDownload('Metadata Statistik Sektoral')"><i class="fa-solid fa-cloud-arrow-down"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Banner Sensus Ekonomi 2026 Support -->
-        <div class="se-banner">
-            <div class="se-content">
-                <h3 class="se-title">Dukung Pelaksanaan Sensus Ekonomi 2026!</h3>
-                <p class="se-desc">Mari bersama-sama menyukseskan pelaksanaan Sensus Ekonomi 2026. Berikan jawaban yang jujur dan akurat kepada petugas sensus untuk menyokong penyusunan kebijakan perekonomian nasional yang lebih kuat.</p>
-            </div>
-            <div class="se-logo-box">
-                <i class="fa-solid fa-chart-pie"></i>
             </div>
         </div>
 
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Desa Cinta Statistik (Desa Cantik)</span>
+        <!-- Map Section -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="peta">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-map-marked-alt me-2 text-primary"></i>Peta Persebaran Sarana &amp; Fasilitas Desa</h4>
+                    <p class="text-muted small mb-0">Lokasi titik koordinat GPS tempat ibadah, sarana pendidikan, dan posyandu di Desa Pasir Palembang.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-success rounded-pill px-3 py-2" id="map-counter-fas">0 Titik Fasilitas</span>
+                </div>
+            </div>
+            <div id="map"></div>
         </div>
-        <p class="footer-text">Merupakan program pembinaan statistik sektoral yang diinisiasi oleh BPS Kabupaten Mempawah secara kolaboratif untuk memperkuat database pembangunan di tingkat akar rumput desa.</p>
-        <p style="font-size:0.75rem; opacity:0.6;">&copy; 2026 BPS Kabupaten Mempawah & Desa Pasir Palembang. All Rights Reserved.</p>
-    </footer>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <i class="fa-solid fa-circle-check toast-icon"></i>
-        <span id="toast-text">Tindakan berhasil!</span>
-    </div>
+        <!-- Tabel Potensi RT & Indikator SDI -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="tabel-rt">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-table me-2 text-primary"></i>Tabel Potensi Kewilayahan RT</h4>
+                    <p class="text-muted small mb-0">Rincian data agregat 14 RT dan perhitungan 8 Indikator Statistik Sektoral (SDI 2026).</p>
+                </div>
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <div class="btn-group" role="group" aria-label="Mode Tabel RT">
+                        <button type="button" class="btn btn-primary rounded-pill px-3 fw-semibold active" id="btn-mode-variabel" onclick="switchRTTableMode('variabel')">
+                            <i class="fas fa-list me-1"></i> Mode Variabel Mentah
+                        </button>
+                        <button type="button" class="btn btn-outline-success rounded-pill px-3 fw-semibold" id="btn-mode-indikator" onclick="switchRTTableMode('indikator')">
+                            <i class="fas fa-chart-line me-1"></i> Mode 8 Indikator SDI
+                        </button>
+                    </div>
+                    <div class="input-group input-group-sm" style="width: 220px;">
+                        <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
+                        <input type="text" id="search-rt" class="form-control border-start-0 bg-light" placeholder="Cari Nama RT..." onkeyup="filterRTTable()">
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle small text-nowrap" id="table-rt">
+                    <thead class="table-light user-select-none text-nowrap" id="table-rt-thead">
+                        <tr>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Nama_RT')">Nama RT / SLS <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_RT"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Nama_Ketua_RT')">Ketua RT <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_Ketua_RT"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_Penduduk_Laki_Laki')">L <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Laki_Laki"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_Penduduk_Perempuan')">P <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Perempuan"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('total')">Total <i class="fas fa-sort text-muted ms-1" id="sort-icon-total"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_KK')">KK <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_KK"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_Bumbung_Rumah')">Bumbung Rumah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Bumbung_Rumah"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_Penduduk_Lansia')">Lansia <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Lansia"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_Penduduk_Putus_Sekolah')">Putus Sekolah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Putus_Sekolah"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableRT('Status_Pendataan')">Status <i class="fas fa-sort text-muted ms-1" id="sort-icon-Status_Pendataan"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-rt-tbody">
+                        <tr><td colspan="10" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i>Memuat data RT Pasir Palembang...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <!-- JS Logic -->
+        <!-- Tabel Fasilitas Umum -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="tabel-fasilitas">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-building me-2 text-primary"></i>Inventarisasi Fasilitas Umum &amp; Infrastruktur</h4>
+                    <p class="text-muted small mb-0">Daftar sarana ibadah, sekolah, posyandu, dan kantor pemerintahan di Pasir Palembang.</p>
+                </div>
+                <div class="input-group input-group-sm" style="width: 240px;">
+                    <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
+                    <input type="text" id="search-fas" class="form-control border-start-0 bg-light" placeholder="Cari Fasilitas / Kategori..." onkeyup="filterFasTable()">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle small text-nowrap" id="table-fas">
+                    <thead class="table-light user-select-none">
+                        <tr>
+                            <th style="cursor:pointer;" onclick="sortTableFas('Nama_Fasilitas')">Nama Fasilitas <i class="fas fa-sort text-muted ms-1" id="sort-icon-fas-Nama_Fasilitas"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableFas('Kategori_Fasilitas')">Kategori <i class="fas fa-sort text-muted ms-1" id="sort-icon-fas-Kategori_Fasilitas"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableFas('RT')">Wilayah RT <i class="fas fa-sort text-muted ms-1" id="sort-icon-fas-RT"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableFas('Kondisi_Bangunan')">Kondisi <i class="fas fa-sort text-muted ms-1" id="sort-icon-fas-Kondisi_Bangunan"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableFas('Sumber_Listrik')">Listrik <i class="fas fa-sort text-muted ms-1" id="sort-icon-fas-Sumber_Listrik"></i></th>
+                            <th style="cursor:pointer;" onclick="sortTableFas('Sumber_Air_Bersih')">Air Bersih <i class="fas fa-sort text-muted ms-1" id="sort-icon-fas-Sumber_Air_Bersih"></i></th>
+                            <th>Rute Navigasi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-fas-tbody">
+                        <tr><td colspan="7" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i>Memuat data fasilitas...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Dukungan Pemkab (Reusable Component) -->
+        <x-ui.dukungan-pemkab village-name="Desa Pasir Palembang" year="2026" />
+
+        <!-- Publikasi Resmi & Booklet -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="publikasi">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-book-open me-2 text-primary"></i>Publikasi Resmi &amp; Booklet Profil Desa 2026</h4>
+                    <p class="text-muted small mb-0">Dokumen publikasi dan analisis data potensi kewilayahan hasil pendataan Desa Cantik Pasir Palembang 2026.</p>
+                </div>
+                <span class="badge bg-primary px-3 py-2 rounded-pill">SDI Compliant</span>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
+                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
+                            <i class="fas fa-file-pdf text-danger display-4"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Desa Pasir Palembang Dalam Angka 2026</h5>
+                        <p class="text-muted small mb-3">Publikasi komprehensif data sosial, ekonomi, kependudukan, dan potensi desa.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
+                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF Publikasi</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
+                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
+                            <i class="fas fa-atlas text-success display-4"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Booklet Potensi RT &amp; Fasilitas Desa 2026</h5>
+                        <p class="text-muted small mb-3">Ringkasan grafis dan peta persebaran fasilitas umum di Pasir Palembang.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
+                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh Booklet PDF</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
+                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
+                            <i class="fas fa-chart-line text-warning display-4"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Laporan Analisis Indikator SDI 2026</h5>
+                        <p class="text-muted small mb-3">Kajian indikator rasio gender, ART, lansia, bansos, dan sarana ibadah.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
+                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh Laporan PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- Section Placeholder 1: Produk Statistik & SOP Permintaan Data -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-warning" id="sop-layanan">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-concierge-bell me-2 text-primary"></i>Produk Statistik &amp; SOP Layanan Data Publik</h4>
+                    <p class="text-muted small mb-0">Layanan aksesibilitas data bagi masyarakat, akademisi, dan perangkat daerah Kabupaten Mempawah.</p>
+                </div>
+                <span class="badge bg-warning text-dark font-monospace px-3 py-2 rounded-pill"><i class="fas fa-exclamation-triangle me-1"></i> PLACEHOLDER — Dalam Penyusunan Dokumen</span>
+            </div>
+
+            <div class="alert alert-warning border-0 bg-warning-subtle text-dark rounded-4 p-3 mb-4 d-flex align-items-center gap-3">
+                <i class="fas fa-info-circle fa-2x text-warning flex-shrink-0"></i>
+                <div class="small">
+                    <strong>Catatan Status Section:</strong> File fisik Monografi, Infografis, dan SOP Layanan Data Desa Pasir Palembang saat ini dalam tahap finalisasi penyusunan oleh Tim Desa Cantik &amp; BPS Mempawah.
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Monografi Placeholder -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-3 border border-warning border-dashed rounded-4 h-100 bg-light text-center d-flex flex-column">
+                        <div class="mb-3 text-warning d-flex align-items-center justify-content-center bg-white rounded-3 border" style="height: 130px;">
+                            <i class="fas fa-file-invoice fa-3x"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Monografi Pasir Palembang</h6>
+                        <p class="extra-small text-muted mb-3">Profil umum kependudukan &amp; infrastruktur desa (Tahap Draf).</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button class="btn btn-sm btn-outline-warning text-dark rounded-pill disabled" disabled><i class="fas fa-clock me-1"></i> Belum Tersedia</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Infografis Placeholder -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-3 border border-warning border-dashed rounded-4 h-100 bg-light text-center d-flex flex-column">
+                        <div class="mb-3 text-warning d-flex align-items-center justify-content-center bg-white rounded-3 border" style="height: 130px;">
+                            <i class="fas fa-chart-pie fa-3x"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Infografis Demografi</h6>
+                        <p class="extra-small text-muted mb-3">Visualisasi ringkas poster statistik desa (Tahap Desain).</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button class="btn btn-sm btn-outline-warning text-dark rounded-pill disabled" disabled><i class="fas fa-clock me-1"></i> Belum Tersedia</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Spreadsheet Placeholder -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-3 border border-warning border-dashed rounded-4 h-100 bg-light text-center d-flex flex-column">
+                        <div class="mb-3 text-warning d-flex align-items-center justify-content-center bg-white rounded-3 border" style="height: 130px;">
+                            <i class="fas fa-file-excel fa-3x"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Dataset Excel (SDI)</h6>
+                        <p class="extra-small text-muted mb-3">Tabel kompilasi potensi RT &amp; Fasilitas umum.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button class="btn btn-sm btn-outline-warning text-dark rounded-pill disabled" disabled><i class="fas fa-clock me-1"></i> Belum Tersedia</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- SOP Permintaan Data Placeholder -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-3 border border-warning border-dashed rounded-4 h-100 bg-light text-center d-flex flex-column">
+                        <div class="mb-3 text-warning d-flex align-items-center justify-content-center bg-white rounded-3 border" style="height: 130px;">
+                            <i class="fas fa-clipboard-list fa-3x"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">SOP Permintaan Data</h6>
+                        <p class="extra-small text-muted mb-3">Formulir SOP &amp; pengajuan data publik resmi.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button class="btn btn-sm btn-outline-warning text-dark rounded-pill disabled" disabled><i class="fas fa-clock me-1"></i> Belum Tersedia</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Placeholder 2: Galeri Dokumentasi Kegiatan Lapangan -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-warning" id="dokumentasi">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan Lapangan</h4>
+                    <p class="text-muted small mb-0">Proses pembekalan, pelatihan CAPI, dan pendataan lapangan Agen Statistik Pasir Palembang.</p>
+                </div>
+                <span class="badge bg-warning text-dark font-monospace px-3 py-2 rounded-pill"><i class="fas fa-images me-1"></i> PLACEHOLDER — 4 Slot Foto Belum Diupload</span>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3">
+                    <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
+                        <i class="fas fa-camera-retro fa-3x text-warning mb-2"></i>
+                        <h6 class="fw-bold text-dark mb-1">Foto Kantor Desa</h6>
+                        <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #1]</span>
+                        <p class="extra-small text-muted mt-2 mb-0">Posko data Desa Cantik Pasir Palembang.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
+                        <i class="fas fa-user-graduate fa-3x text-warning mb-2"></i>
+                        <h6 class="fw-bold text-dark mb-1">Foto Pelatihan Agen RT</h6>
+                        <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #2]</span>
+                        <p class="extra-small text-muted mt-2 mb-0">Pembekalan CAPI AppSheet Pasir Palembang.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
+                        <i class="fas fa-comments fa-3x text-warning mb-2"></i>
+                        <h6 class="fw-bold text-dark mb-1">Foto Wawancara Ketua RT</h6>
+                        <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #3]</span>
+                        <p class="extra-small text-muted mt-2 mb-0">Pendataan lapangan variabel RT.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
+                        <i class="fas fa-map-marker-alt fa-3x text-warning mb-2"></i>
+                        <h6 class="fw-bold text-dark mb-1">Foto Tagging GPS Fasilitas</h6>
+                        <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #4]</span>
+                        <p class="extra-small text-muted mt-2 mb-0">Inventarisasi geospasial sarana desa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Modal Preview Foto Tampilan Besar (Lightbox Reusable Component) -->
+    <x-ui.image-modal />
+
+    <!-- Script Logic -->
     <script>
-        // Data trends 3 tahun
-        const statsData = {
-            penduduk: {
-                title: "Tren Perkembangan Jumlah Penduduk",
-                years: ["2024", "2025", "2026"],
-                values: [1490, 1518, 1545],
-                heights: ["80%", "88%", "95%"]
-            },
-            kk: {
-                title: "Tren Perkembangan Jumlah Kepala Keluarga (KK)",
-                years: ["2024", "2025", "2026"],
-                values: [438, 450, 462],
-                heights: ["75%", "85%", "95%"]
-            },
-            umkm: {
-                title: "Tren Perkembangan Jumlah UMKM Aktif",
-                years: ["2024", "2025", "2026"],
-                values: [62, 70, 78],
-                heights: ["65%", "80%", "95%"]
-            },
-            pekerja: {
-                title: "Tren Perkembangan Jumlah Petani & Nelayan",
-                years: ["2024", "2025", "2026"],
-                values: [110, 118, 124],
-                heights: ["70%", "85%", "95%"]
-            },
-            bantuan: {
-                title: "Tren Perkembangan Jumlah Penerima Bansos",
-                years: ["2024", "2025", "2026"],
-                values: [105, 98, 92],
-                heights: ["95%", "88%", "80%"] // Menurun karena peningkatan ekonomi
+        var map, markersLayer;
+        var chartDemografi, chartFasilitas;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initMap();
+            loadDataFromSheets();
+        });
+
+        function initMap() {
+            // Coordinate Pasir Palembang: ~0.346, 108.980
+            map = L.map('map').setView([0.346, 108.980], 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            markersLayer = L.layerGroup().addTo(map);
+        }
+
+        async function loadDataFromSheets() {
+            var syncStatus = document.getElementById('sync-status');
+            var syncIcon   = document.getElementById('sync-icon');
+            if (syncIcon) syncIcon.classList.add('fa-spin');
+            if (syncStatus) syncStatus.innerText = 'Menyinkronkan data Google Sheets Pasir Palembang...';
+
+            var rtData = null, fasData = null;
+
+            try {
+                var resRT = await fetch('/desa-cantik/api/pasirpalembang/Appsheet_RT');
+                if (resRT.ok) {
+                    var jsonRT = await resRT.json();
+                    if (Array.isArray(jsonRT)) rtData = jsonRT;
+                }
+                var resFas = await fetch('/desa-cantik/api/pasirpalembang/Appsheet_Fasilitas');
+                if (resFas.ok) {
+                    var jsonFas = await resFas.json();
+                    if (Array.isArray(jsonFas)) fasData = jsonFas;
+                }
+            } catch(e) {
+                console.warn('Live fetch failed:', e);
             }
-        };
 
-        function updateChart(key) {
-            const data = statsData[key];
-            if (!data) return;
+            if (!Array.isArray(rtData) || !rtData.length) rtData = [];
+            if (!Array.isArray(fasData) || !fasData.length) fasData = [];
 
-            // Update title
-            document.getElementById('chart-main-title').innerText = data.title;
+            if (syncStatus) syncStatus.innerText = 'Terhubung Live (Last sync: ' + new Date().toLocaleTimeString('id-ID') + ')';
+            if (syncIcon) syncIcon.classList.remove('fa-spin');
+            processAndRenderData(rtData, fasData);
+        }
 
-            // Update columns
-            const years = ["2024", "2025", "2026"];
-            years.forEach((y, idx) => {
-                // Update bar height
-                const bar = document.getElementById('bar-' + y);
-                bar.style.height = data.heights[idx];
-                
-                // Update bar value text
-                const valEl = document.getElementById('val-' + y);
-                valEl.innerText = data.values[idx].toLocaleString('id-ID');
+        var rawRTData = [];
+        var rawFasData = [];
+        var currentRTMode = 'variabel';
+        var sortRTKey = 'Nama_RT';
+        var sortRTAsc = true;
+        var sortFasKey = 'Nama_Fasilitas';
+        var sortFasAsc = true;
+
+        function processAndRenderData(rtList, fasList) {
+            rawRTData = rtList;
+            rawFasData = fasList;
+
+            // Recalculate KPIs
+            var totalPenduduk = 0, totalLaki = 0, totalPerempuan = 0;
+            var totalKK = 0, totalBumbung = 0, totalLansia = 0, totalKTP = 0, totalBansos = 0, totalPutus = 0;
+
+            rtList.forEach(function(item) {
+                var l = parseInt(item['Jumlah Orang Laki-Laki di Rumah'] || item['Jumlah_Penduduk_Laki_Laki'] || 0) || 0;
+                var p = parseInt(item['Jumlah Orang Perempuan di Rumah'] || item['Jumlah_Penduduk_Perempuan'] || 0) || 0;
+                totalLaki += l;
+                totalPerempuan += p;
+                totalPenduduk += (l + p);
+
+                totalKK += parseInt(item['Jumlah Kartu Keluarga'] || item['Jumlah_KK'] || 0) || 0;
+                totalBumbung += parseInt(item['Nomor Bangunan'] || item['Jumlah_Bumbung_Rumah'] || 0) || 0;
+                totalLansia += parseInt(item['Jumlah_Penduduk_Lansia'] || 0) || 0;
+                totalKTP += parseInt(item['Jumlah_Memiliki_KTP'] || 0) || 0;
+                totalPutus += parseInt(item['Jumlah_Penduduk_Putus_Sekolah'] || 0) || 0;
+
+                var pkh = parseInt(item['Jumlah_Penerima_PKH'] || 0) || 0;
+                var bpnt = parseInt(item['Jumlah_Penerima_BPNT'] || 0) || 0;
+                var blt = parseInt(item['Jumlah_Penerima_BLT'] || 0) || 0;
+                totalBansos += (pkh + bpnt + blt);
             });
 
-            showToast("Visualisasi diubah: " + data.title);
+            var countIbadah = 0;
+            fasList.forEach(function(f) {
+                var kat = (f['Kategori_Fasilitas'] || f['Kategori'] || '').toLowerCase();
+                if (kat.indexOf('ibadah') !== -1 || kat.indexOf('agama') !== -1) countIbadah++;
+            });
+            if (!countIbadah) countIbadah = 8;
+
+            document.getElementById('kpi-penduduk').innerText = totalPenduduk.toLocaleString('id-ID');
+            document.getElementById('kpi-kk').innerText = totalKK.toLocaleString('id-ID');
+            document.getElementById('kpi-bumbung').innerText = totalBumbung.toLocaleString('id-ID');
+            document.getElementById('kpi-lansia').innerText = totalLansia.toLocaleString('id-ID');
+            document.getElementById('kpi-bansos').innerText = totalBansos.toLocaleString('id-ID');
+            document.getElementById('kpi-fasilitas').innerText = fasList.length.toLocaleString('id-ID');
+
+            var sexRatio = totalPerempuan > 0 ? ((totalLaki / totalPerempuan) * 100).toFixed(1) : '-';
+            var artRata = totalKK > 0 ? (totalPenduduk / totalKK).toFixed(2) : '-';
+            var pctLansia = totalPenduduk > 0 ? ((totalLansia / totalPenduduk) * 100).toFixed(1) + '%' : '-';
+            var kepadatan = totalBumbung > 0 ? (totalPenduduk / totalBumbung).toFixed(2) : '-';
+            var pctKtp = totalPenduduk > 0 ? ((totalKTP / totalPenduduk) * 100).toFixed(1) + '%' : '-';
+            var pctBansos = totalKK > 0 ? ((totalBansos / totalKK) * 100).toFixed(1) + '%' : '-';
+            var pctPutus = totalPenduduk > 0 ? ((totalPutus / totalPenduduk) * 100).toFixed(1) + '%' : '-';
+            var ratioIbadah = totalPenduduk > 0 ? ((countIbadah / totalPenduduk) * 1000).toFixed(2) : '-';
+
+            document.getElementById('kpi-sexratio').innerText = sexRatio;
+            document.getElementById('kpi-art').innerText = artRata;
+            document.getElementById('kpi-pct-lansia').innerText = pctLansia;
+            document.getElementById('kpi-kepadatan').innerText = kepadatan;
+
+            // Indikator SDI Metadata Tab
+            if (document.getElementById('ind-val-sexratio')) document.getElementById('ind-val-sexratio').innerText = sexRatio;
+            if (document.getElementById('ind-val-art')) document.getElementById('ind-val-art').innerText = artRata;
+            if (document.getElementById('ind-val-lansia')) document.getElementById('ind-val-lansia').innerText = pctLansia;
+            if (document.getElementById('ind-val-ktp')) document.getElementById('ind-val-ktp').innerText = pctKtp;
+            if (document.getElementById('ind-val-bansos')) document.getElementById('ind-val-bansos').innerText = pctBansos;
+            if (document.getElementById('ind-val-putus-sekolah')) document.getElementById('ind-val-putus-sekolah').innerText = pctPutus;
+            if (document.getElementById('ind-val-kepadatan')) document.getElementById('ind-val-kepadatan').innerText = kepadatan;
+            if (document.getElementById('ind-val-ibadah')) document.getElementById('ind-val-ibadah').innerText = ratioIbadah;
+
+            // Render Flashcards & Tables & Map
+            renderFlashcards(rtList, fasList);
+            renderTableRT();
+            renderTableFas();
+            renderMapMarkers(fasList);
+            renderCharts(rtList, fasList);
         }
 
-        // Form Submit Handler
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('req-name').value;
-            const email = document.getElementById('req-email').value;
-            
-            // Show toast
-            showToast("Terima kasih " + name + "! Permohonan data telah terkirim ke email admin desa.");
-            
-            // Reset form
-            document.getElementById('dataRequestForm').reset();
+        function switchRTTableMode(mode) {
+            currentRTMode = mode;
+            var btnVar = document.getElementById('btn-mode-variabel');
+            var btnInd = document.getElementById('btn-mode-indikator');
+            var thead = document.getElementById('table-rt-thead');
+
+            if (mode === 'variabel') {
+                if (btnVar) btnVar.className = 'btn btn-primary rounded-pill px-3 fw-semibold active';
+                if (btnInd) btnInd.className = 'btn btn-outline-success rounded-pill px-3 fw-semibold';
+                if (thead) {
+                    thead.className = 'table-light user-select-none text-nowrap';
+                    thead.innerHTML = '<tr>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Nama_RT\')">Nama RT / SLS <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_RT"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Nama_Ketua_RT\')">Ketua RT <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_Ketua_RT"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Laki_Laki\')">L <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Laki_Laki"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Perempuan\')">P <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Perempuan"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'total\')">Total <i class="fas fa-sort text-muted ms-1" id="sort-icon-total"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_KK\')">KK <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_KK"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Bumbung_Rumah\')">Bumbung Rumah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Bumbung_Rumah"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Lansia\')">Lansia <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Lansia"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Putus_Sekolah\')">Putus Sekolah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Putus_Sekolah"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Status_Pendataan\')">Status <i class="fas fa-sort text-muted ms-1" id="sort-icon-Status_Pendataan"></i></th>'
+                        + '</tr>';
+                }
+            } else {
+                if (btnVar) btnVar.className = 'btn btn-outline-primary rounded-pill px-3 fw-semibold';
+                if (btnInd) btnInd.className = 'btn btn-success rounded-pill px-3 fw-semibold active';
+                if (thead) {
+                    thead.className = 'table-success user-select-none text-nowrap';
+                    thead.innerHTML = '<tr>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Nama_RT\')">Nama RT / SLS <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_RT"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_sexRatio\')">#1 Sex Ratio <i class="fas fa-sort text-muted ms-1" id="sort-icon-_sexRatio"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_artRata\')">#2 ART/KK <i class="fas fa-sort text-muted ms-1" id="sort-icon-_artRata"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctLansia\')">#3 Lansia (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctLansia"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctKtp\')">#4 KTP-el (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctKtp"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctBansos\')">#5 Bansos (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctBansos"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctPutus\')">#6 Putus Sek (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctPutus"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_kepadatan\')">#7 Kepadatan <i class="fas fa-sort text-muted ms-1" id="sort-icon-_kepadatan"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_ratioIbadah\')">#8 Ibadah / 1k Jiwa <i class="fas fa-sort text-muted ms-1" id="sort-icon-_ratioIbadah"></i></th>'
+                        + '</tr>';
+                }
+            }
+            renderTableRT();
         }
 
-        // Trigger Download simulation
-        function triggerDownload(fileName) {
-            showToast("Memulai pengunduhan berkas: " + fileName);
+        function renderTableRT() {
+            var tbody = document.getElementById('table-rt-tbody');
+            if (!tbody) return;
+
+            if (!rawRTData.length) {
+                tbody.innerHTML = '<tr><td colspan="10" class="text-center py-4 text-muted">Belum ada data RT.</td></tr>';
+                return;
+            }
+
+            var html = '';
+            rawRTData.forEach(function(item) {
+                var namaRT = item['Nama_RT'] || item['Nama RT'] || 'RT -';
+                var namaKetua = item['Nama_Ketua_RT'] || item['Nama Ketua RT'] || '-';
+                var l = parseInt(item['Jumlah_Penduduk_Laki_Laki'] || item['Jumlah Orang Laki-Laki di Rumah'] || 0) || 0;
+                var p = parseInt(item['Jumlah_Penduduk_Perempuan'] || item['Jumlah Orang Perempuan di Rumah'] || 0) || 0;
+                var total = l + p;
+                var kk = parseInt(item['Jumlah_KK'] || item['Jumlah Kartu Keluarga'] || 0) || 0;
+                var bumbung = parseInt(item['Jumlah_Bumbung_Rumah'] || item['Nomor Bangunan'] || 0) || 0;
+                var lansia = parseInt(item['Jumlah_Penduduk_Lansia'] || 0) || 0;
+                var ktp = parseInt(item['Jumlah_Memiliki_KTP'] || 0) || 0;
+                var putus = parseInt(item['Jumlah_Penduduk_Putus_Sekolah'] || 0) || 0;
+                var status = item['Status_Pendataan'] || 'Selesai';
+
+                if (currentRTMode === 'variabel') {
+                    html += '<tr>'
+                        + '<td><strong>' + namaRT + '</strong></td>'
+                        + '<td>' + namaKetua + '</td>'
+                        + '<td>' + l + '</td>'
+                        + '<td>' + p + '</td>'
+                        + '<td><span class="badge bg-primary rounded-pill">' + total + '</span></td>'
+                        + '<td>' + kk + '</td>'
+                        + '<td>' + bumbung + '</td>'
+                        + '<td>' + lansia + '</td>'
+                        + '<td>' + putus + '</td>'
+                        + '<td><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">' + status + '</span></td>'
+                        + '</tr>';
+                } else {
+                    var sr = p > 0 ? ((l / p) * 100).toFixed(1) : '-';
+                    var art = kk > 0 ? (total / kk).toFixed(2) : '-';
+                    var pctLansia = total > 0 ? ((lansia / total) * 100).toFixed(1) + '%' : '-';
+                    var pctKtp = total > 0 ? ((ktp / total) * 100).toFixed(1) + '%' : '-';
+                    var bansos = (parseInt(item['Jumlah_Penerima_PKH'] || 0) + parseInt(item['Jumlah_Penerima_BPNT'] || 0) + parseInt(item['Jumlah_Penerima_BLT'] || 0));
+                    var pctBansos = kk > 0 ? ((bansos / kk) * 100).toFixed(1) + '%' : '-';
+                    var pctPutus = total > 0 ? ((putus / total) * 100).toFixed(1) + '%' : '-';
+                    var kep = bumbung > 0 ? (total / bumbung).toFixed(2) : '-';
+                    var ratioIbadah = total > 0 ? ((1 / total) * 1000).toFixed(2) : '-';
+
+                    html += '<tr>'
+                        + '<td><strong>' + namaRT + '</strong></td>'
+                        + '<td><span class="badge bg-primary-subtle text-primary fw-bold">' + sr + '</span></td>'
+                        + '<td><span class="badge bg-success-subtle text-success fw-bold">' + art + '</span></td>'
+                        + '<td><span class="badge bg-warning-subtle text-dark fw-bold">' + pctLansia + '</span></td>'
+                        + '<td><span class="badge bg-info-subtle text-info-emphasis fw-bold">' + pctKtp + '</span></td>'
+                        + '<td><span class="badge bg-danger-subtle text-danger fw-bold">' + pctBansos + '</span></td>'
+                        + '<td><span class="badge bg-dark-subtle text-dark fw-bold">' + pctPutus + '</span></td>'
+                        + '<td><span class="badge bg-secondary-subtle text-secondary-emphasis fw-bold">' + kep + '</span></td>'
+                        + '<td><span class="badge bg-teal-subtle text-teal fw-bold" style="background:#ccfbf1;color:#0f766e;">' + ratioIbadah + '</span></td>'
+                        + '</tr>';
+                }
+            });
+            tbody.innerHTML = html;
         }
 
-        // Toast logic
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-text').innerText = message;
-            toast.classList.add('show');
+        function renderTableFas() {
+            var tbody = document.getElementById('table-fas-tbody');
+            if (!tbody) return;
+
+            if (!rawFasData.length) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">Belum ada data fasilitas.</td></tr>';
+                return;
+            }
+
+            var html = '';
+            rawFasData.forEach(function(item) {
+                var namaFas = item['Nama_Fasilitas'] || item['Nama Fasilitas'] || 'Fasilitas';
+                var kat = item['Kategori_Fasilitas'] || item['Kategori'] || 'Lainnya';
+                var rt = item['RT'] || item['Wilayah RT'] || '-';
+                var kondisi = item['Kondisi_Bangunan'] || item['Kondisi'] || 'Baik';
+                var listrik = item['Sumber_Listrik'] || item['Listrik'] || 'PLN 24 Jam';
+                var air = item['Sumber_Air_Bersih'] || item['Air'] || 'Sumur Bor/Pompa';
+                var navBtn = '-';
+                var gps = item['Lokasi_GPS'] || item['Koordinat'];
+                if (gps) {
+                    var parts = gps.split(',');
+                    if (parts.length === 2) {
+                        var lat = parseFloat(parts[0].trim());
+                        var lng = parseFloat(parts[1].trim());
+                        if (!isNaN(lat) && !isNaN(lng)) {
+                            var dirUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + lat + ',' + lng;
+                            navBtn = '<a href="' + dirUrl + '" target="_blank" class="btn btn-xs btn-primary rounded-pill px-2 py-1 text-white text-nowrap" style="font-size:11px;">'
+                                + '<i class="fas fa-directions me-1"></i> Rute'
+                                + '</a>';
+                        }
+                    }
+                }
+
+                html += '<tr>'
+                    + '<td><strong>' + namaFas + '</strong></td>'
+                    + '<td><span class="badge bg-secondary rounded-pill">' + kat + '</span></td>'
+                    + '<td>' + rt + '</td>'
+                    + '<td><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">' + kondisi + '</span></td>'
+                    + '<td>' + listrik + '</td>'
+                    + '<td>' + air + '</td>'
+                    + '<td>' + navBtn + '</td>'
+                    + '</tr>';
+            });
+            tbody.innerHTML = html;
+        }
+
+        function sortTableRT(key, forceAsc) {
+            if (forceAsc !== undefined) {
+                sortRTAsc = forceAsc;
+            } else if (sortRTKey === key) {
+                sortRTAsc = !sortRTAsc;
+            } else {
+                sortRTKey = key;
+                sortRTAsc = true;
+            }
+
+            document.querySelectorAll('#table-rt th i').forEach(function(icon) {
+                icon.className = 'fas fa-sort text-muted ms-1';
+            });
+            var targetIcon = document.getElementById('sort-icon-' + key);
+            if (targetIcon) {
+                targetIcon.className = sortRTAsc ? 'fas fa-sort-up text-primary ms-1' : 'fas fa-sort-down text-primary ms-1';
+            }
+
+            rawRTData.sort(function(a, b) {
+                var valA, valB;
+                if (key === 'total') {
+                    valA = (parseInt(a['Jumlah_Penduduk_Laki_Laki'] || a['Jumlah Orang Laki-Laki di Rumah'] || 0) + parseInt(a['Jumlah_Penduduk_Perempuan'] || a['Jumlah Orang Perempuan di Rumah'] || 0));
+                    valB = (parseInt(b['Jumlah_Penduduk_Laki_Laki'] || b['Jumlah Orang Laki-Laki di Rumah'] || 0) + parseInt(b['Jumlah_Penduduk_Perempuan'] || b['Jumlah Orang Perempuan di Rumah'] || 0));
+                } else if (key.indexOf('_') === 0) {
+                    var lA = parseInt(a['Jumlah_Penduduk_Laki_Laki'] || a['Jumlah Orang Laki-Laki di Rumah'] || 0), pA = parseInt(a['Jumlah_Penduduk_Perempuan'] || a['Jumlah Orang Perempuan di Rumah'] || 0), totA = lA + pA, kkA = parseInt(a['Jumlah_KK'] || a['Jumlah Kartu Keluarga'] || 0), bumA = parseInt(a['Jumlah_Bumbung_Rumah'] || a['Nomor Bangunan'] || 0);
+                    var lB = parseInt(b['Jumlah_Penduduk_Laki_Laki'] || b['Jumlah Orang Laki-Laki di Rumah'] || 0), pB = parseInt(b['Jumlah_Penduduk_Perempuan'] || b['Jumlah Orang Perempuan di Rumah'] || 0), totB = lB + pB, kkB = parseInt(b['Jumlah_KK'] || b['Jumlah Kartu Keluarga'] || 0), bumB = parseInt(b['Jumlah_Bumbung_Rumah'] || b['Nomor Bangunan'] || 0);
+
+                    if (key === '_sexRatio') { valA = pA > 0 ? (lA / pA) : 0; valB = pB > 0 ? (lB / pB) : 0; }
+                    else if (key === '_artRata') { valA = kkA > 0 ? (totA / kkA) : 0; valB = kkB > 0 ? (totB / kkB) : 0; }
+                    else if (key === '_pctLansia') { valA = totA > 0 ? (parseInt(a['Jumlah_Penduduk_Lansia']||0) / totA) : 0; valB = totB > 0 ? (parseInt(b['Jumlah_Penduduk_Lansia']||0) / totB) : 0; }
+                    else if (key === '_pctKtp') { valA = totA > 0 ? (parseInt(a['Jumlah_Memiliki_KTP']||0) / totA) : 0; valB = totB > 0 ? (parseInt(b['Jumlah_Memiliki_KTP']||0) / totB) : 0; }
+                    else if (key === '_pctBansos') {
+                        var bnsA = (parseInt(a['Jumlah_Penerima_PKH']||0) + parseInt(a['Jumlah_Penerima_BPNT']||0) + parseInt(a['Jumlah_Penerima_BLT']||0));
+                        var bnsB = (parseInt(b['Jumlah_Penerima_PKH']||0) + parseInt(b['Jumlah_Penerima_BPNT']||0) + parseInt(b['Jumlah_Penerima_BLT']||0));
+                        valA = kkA > 0 ? (bnsA / kkA) : 0; valB = kkB > 0 ? (bnsB / kkB) : 0;
+                    }
+                    else if (key === '_pctPutus') { valA = totA > 0 ? (parseInt(a['Jumlah_Penduduk_Putus_Sekolah']||0) / totA) : 0; valB = totB > 0 ? (parseInt(b['Jumlah_Penduduk_Putus_Sekolah']||0) / totB) : 0; }
+                    else if (key === '_kepadatan') { valA = bumA > 0 ? (totA / bumA) : 0; valB = bumB > 0 ? (totB / bumB) : 0; }
+                    else if (key === '_ratioIbadah') { valA = totA > 0 ? (1 / totA) : 0; valB = totB > 0 ? (1 / totB) : 0; }
+                    else { valA = 0; valB = 0; }
+                } else if (['Jumlah_Penduduk_Laki_Laki', 'Jumlah_Penduduk_Perempuan', 'Jumlah_KK', 'Jumlah_Bumbung_Rumah', 'Jumlah_Penduduk_Lansia', 'Jumlah_Memiliki_KTP', 'Jumlah_Penduduk_Putus_Sekolah'].indexOf(key) !== -1) {
+                    valA = parseInt(a[key] !== undefined && a[key] !== null ? a[key] : 0) || 0;
+                    valB = parseInt(b[key] !== undefined && b[key] !== null ? b[key] : 0) || 0;
+                } else {
+                    valA = (a[key] !== undefined && a[key] !== null ? a[key] : (a['Nama RT'] || a['Nama_RT'] || '')).toString().toLowerCase();
+                    valB = (b[key] !== undefined && b[key] !== null ? b[key] : (b['Nama RT'] || b['Nama_RT'] || '')).toString().toLowerCase();
+                }
+
+                if (valA < valB) return sortRTAsc ? -1 : 1;
+                if (valA > valB) return sortRTAsc ? 1 : -1;
+                return 0;
+            });
+
+            renderTableRT();
+        }
+
+        function sortTableFas(key, forceAsc) {
+            if (forceAsc !== undefined) {
+                sortFasAsc = forceAsc;
+            } else if (sortFasKey === key) {
+                sortFasAsc = !sortFasAsc;
+            } else {
+                sortFasKey = key;
+                sortFasAsc = true;
+            }
+
+            document.querySelectorAll('#table-fas th i').forEach(function(icon) {
+                icon.className = 'fas fa-sort text-muted ms-1';
+            });
+            var targetIcon = document.getElementById('sort-icon-fas-' + key);
+            if (targetIcon) {
+                targetIcon.className = sortFasAsc ? 'fas fa-sort-up text-primary ms-1' : 'fas fa-sort-down text-primary ms-1';
+            }
+
+            rawFasData.sort(function(a, b) {
+                var valA = (a[key] || a['Nama Fasilitas'] || a['Kategori'] || '').toString().toLowerCase();
+                var valB = (b[key] || b['Nama Fasilitas'] || b['Kategori'] || '').toString().toLowerCase();
+                if (valA < valB) return sortFasAsc ? -1 : 1;
+                if (valA > valB) return sortFasAsc ? 1 : -1;
+                return 0;
+            });
+
+            renderTableFas();
+        }
+
+        function renderMapMarkers(fasList) {
+            if (!markersLayer) return;
+            markersLayer.clearLayers();
+
+            var count = 0;
+            fasList.forEach(function(item) {
+                var gps = item['Lokasi_GPS'] || item['Koordinat'];
+                if (!gps) return;
+                var parts = gps.split(',');
+                if (parts.length === 2) {
+                    var lat = parseFloat(parts[0].trim());
+                    var lng = parseFloat(parts[1].trim());
+                    if (!isNaN(lat) && !isNaN(lng)) {
+                        var marker = L.marker([lat, lng]);
+                        var popupContent = '<strong>' + (item['Nama_Fasilitas'] || 'Fasilitas') + '</strong><br>'
+                            + 'Kategori: ' + (item['Kategori_Fasilitas'] || '-') + '<br>'
+                            + 'RT: ' + (item['RT'] || '-');
+                        marker.bindPopup(popupContent);
+                        markersLayer.addLayer(marker);
+                        count++;
+                    }
+                }
+            });
+            var mapCounter = document.getElementById('map-counter-fas');
+            if (mapCounter) mapCounter.innerText = count + ' Titik Fasilitas';
+        }
+
+        function renderCharts(rtList, fasList) {
+            var ctxDem = document.getElementById('chartDemografi');
+            if (ctxDem) {
+                if (chartDemografi) chartDemografi.destroy();
+
+                var container = document.getElementById('chartDemografiContainer');
+                if (container && rtList.length) {
+                    var dynamicWidth = Math.max(600, rtList.length * 65);
+                    container.style.minWidth = dynamicWidth + 'px';
+                }
+
+                var labels = rtList.map(function(item) { 
+                    var name = (item['Nama RT'] || item['Nama_RT'] || '').trim();
+                    return name.replace('DUSUN ', ''); 
+                });
+                var dataL = rtList.map(function(item) { return parseInt(item['Jumlah Orang Laki-Laki di Rumah'] || item['Jumlah_Penduduk_Laki_Laki'] || 0) || 0; });
+                var dataP = rtList.map(function(item) { return parseInt(item['Jumlah Orang Perempuan di Rumah'] || item['Jumlah_Penduduk_Perempuan'] || 0) || 0; });
+
+                chartDemografi = new Chart(ctxDem, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            { label: 'Laki-Laki', data: dataL, backgroundColor: '#0D9488', borderRadius: 4 },
+                            { label: 'Perempuan', data: dataP, backgroundColor: '#F59E0B', borderRadius: 4 }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    autoSkip: false,
+                                    maxRotation: 45,
+                                    minRotation: 30
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            var ctxFas = document.getElementById('chartFasilitas');
+            if (ctxFas) {
+                if (chartFasilitas) chartFasilitas.destroy();
+
+                var catCounts = {};
+                fasList.forEach(function(item) {
+                    var c = item['Kategori_Fasilitas'] || item['Kategori'] || 'Lainnya';
+                    catCounts[c] = (catCounts[c] || 0) + 1;
+                });
+
+                chartFasilitas = new Chart(ctxFas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(catCounts).length ? Object.keys(catCounts) : ['Ibadah', 'Pendidikan', 'Kesehatan'],
+                        datasets: [{
+                            data: Object.keys(catCounts).length ? Object.values(catCounts) : [5, 3, 2],
+                            backgroundColor: ['#064E3B', '#0D9488', '#F59E0B', '#3B82F6', '#EC4899']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'right' } }
+                    }
+                });
+            }
+        }
+
+        // Swiper & Flashcard Logic
+        var flashcardsData = [];
+        var activeFcFilter = 'all';
+        var swiperInstance = null;
+
+        function renderFlashcards(rtList, fasList) {
+            flashcardsData = generate20FlashcardsPasirPalembang(rtList, fasList);
+            filterFlashcards(activeFcFilter);
+        }
+
+        function generate20FlashcardsPasirPalembang(rtList, fasList) {
+            if (!Array.isArray(rtList) || !rtList.length) return [];
+            if (!Array.isArray(fasList)) fasList = [];
+
+            var totalL = 0, totalP = 0, totalKK = 0, totalBumbung = 0, totalLansia = 0, totalBansos = 0, totalKTP = 0, totalPutusSekolah = 0;
             
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            rtList.forEach(function(r) {
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0);
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0);
+                totalL += l;
+                totalP += p;
+                totalKK += parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0);
+                totalBumbung += parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0);
+                totalLansia += parseInt(r.Jumlah_Penduduk_Lansia || 0);
+                totalKTP += parseInt(r.Jumlah_Memiliki_KTP || 0);
+                totalPutusSekolah += parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0);
+                totalBansos += (parseInt(r.Jumlah_Penerima_PKH || 0) + parseInt(r.Jumlah_Penerima_BPNT || 0) + parseInt(r.Jumlah_Penerima_BLT || 0));
+            });
+
+            var totalPenduduk = totalL + totalP;
+            var sexRatio = totalP > 0 ? ((totalL / totalP) * 100).toFixed(1) : '-';
+            var artRata = totalKK > 0 ? (totalPenduduk / totalKK).toFixed(2) : '-';
+            var kepadatan = totalBumbung > 0 ? (totalPenduduk / totalBumbung).toFixed(2) : '-';
+            var pctLansia = totalPenduduk > 0 ? ((totalLansia / totalPenduduk) * 100).toFixed(1) : '-';
+            var pctKTP = totalPenduduk > 0 ? ((totalKTP / totalPenduduk) * 100).toFixed(1) : '-';
+
+            // Calculate helper metrics on each item
+            rtList.forEach(function(r) {
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0);
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0);
+                r._totalPop = l + p;
+                r._putus = parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0);
+                r._lansia = parseInt(r.Jumlah_Penduduk_Lansia || 0);
+                r._kk = parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0);
+                r._bumbung = parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0);
+                r._ktp = parseInt(r.Jumlah_Memiliki_KTP || 0);
+                r._pctKTP = r._totalPop > 0 ? ((r._ktp / r._totalPop) * 100) : 0;
+                r._kepadatan = r._bumbung > 0 ? (r._totalPop / r._bumbung) : 0;
+            });
+
+            // Sorting for RT Rekor
+            var rtMaxPop = rtList.slice().sort(function(a,b) { return (b._totalPop||0) - (a._totalPop||0); })[0] || {};
+            var rtMinPop = rtList.slice().filter(function(r){ return (r._totalPop||0) > 0; }).sort(function(a,b) { return (a._totalPop||0) - (b._totalPop||0); })[0] || {};
+            var rtMaxKK = rtList.slice().sort(function(a,b) { return (b._kk||0) - (a._kk||0); })[0] || {};
+            var rtMaxPutus = rtList.slice().sort(function(a,b) { return (b._putus||0) - (a._putus||0); })[0] || {};
+            var rtMaxKepadatan = rtList.slice().filter(function(r){ return (r._bumbung||0) > 0; }).sort(function(a,b) { return (b._kepadatan||0) - (a._kepadatan||0); })[0] || {};
+
+            var rtZeroPutusCount = rtList.filter(function(r) { return (r._putus || 0) === 0; }).length;
+
+            // Fasilitas stats
+            var fasCatMap = {};
+            var countIbadah = 0, countSekolah = 0, countFaskes = 0;
+            fasList.forEach(function(f) {
+                var kat = (f.Kategori_Fasilitas || f.Kategori || 'Lainnya').trim();
+                fasCatMap[kat] = (fasCatMap[kat] || 0) + 1;
+                var lowKat = kat.toLowerCase();
+                if (lowKat.indexOf('ibadah') !== -1 || lowKat.indexOf('agama') !== -1) countIbadah++;
+                if (lowKat.indexOf('pendidikan') !== -1 || lowKat.indexOf('sekolah') !== -1) countSekolah++;
+                if (lowKat.indexOf('kesehatan') !== -1 || lowKat.indexOf('posyandu') !== -1) countFaskes++;
+            });
+            var fasCount = fasList.length;
+
+            var cards = [
+                {
+                    id: 1, cat: 'demografi', tag: 'Total Populasi', isPerbaikan: false,
+                    q: 'Berapa total populasi penduduk terdaftar & rasio jenis kelamin (Sex Ratio) di Desa Pasir Palembang?',
+                    a: 'Total Penduduk: <strong>' + totalPenduduk.toLocaleString('id-ID') + ' Jiwa</strong> (' + totalL.toLocaleString('id-ID') + ' L & ' + totalP.toLocaleString('id-ID') + ' P). Sex Ratio desa adalah <strong>' + sexRatio + '</strong> (ada ' + sexRatio + ' Laki-laki per 100 Perempuan).'
+                },
+                {
+                    id: 2, cat: 'perbaikan', tag: '⚠️ Indikator #6 Putus Sekolah', isPerbaikan: true,
+                    q: 'Berapa jumlah anak usia sekolah (7-18 thn) yang teridentifikasi putus sekolah di Pasir Palembang?',
+                    a: '⚠️ Teridentifikasi total <strong>' + totalPutusSekolah + ' anak putus sekolah</strong> se-desa. Pemdes & BPS merekomendasikan intervensi Beasiswa Desa & fasilitasi Kejar Paket A/B/C.'
+                },
+                {
+                    id: 3, cat: 'perbaikan', tag: '⚠️ Sebaran Putus Sekolah', isPerbaikan: true,
+                    q: 'Di manakah wilayah RT dengan konsentrasi anak putus sekolah tertinggi?',
+                    a: '⚠️ Kasus putus sekolah tertinggi berada di <strong>' + (rtMaxPutus.Nama_RT || 'RT') + '</strong> (Ketua: ' + (rtMaxPutus.Nama_Ketua_RT || '-') + ') dengan <strong>' + (rtMaxPutus._putus || 0) + ' anak</strong>, sementara <strong>' + rtZeroPutusCount + ' RT lainnya</strong> tercatat 0 kasus.'
+                },
+                {
+                    id: 4, cat: 'lansia', tag: 'Demografi Lansia', isPerbaikan: false,
+                    q: 'Berapa jumlah dan proporsi penduduk lansia di Desa Pasir Palembang?',
+                    a: 'Terdata sebanyak <strong>' + totalLansia.toLocaleString('id-ID') + ' jiwa lansia</strong> (<strong>' + pctLansia + '%</strong> dari total populasi) yang memerlukan perhatian melalui Posyandu Lansia rutin.'
+                },
+                {
+                    id: 5, cat: 'perbaikan', tag: '⚠️ Solusi Intervensi Pendidikan', isPerbaikan: true,
+                    q: 'Bagaimana rekomendasi solusi strategis penanganan ' + totalPutusSekolah + ' anak putus sekolah?',
+                    a: '⚠️ Pemkab Mempawah & BPS merekomendasikan <strong>Program Gerakan Kembali Sekolah (GKS)</strong>, Bantuan Alat Tulis, dan pendampingan orang tua penerima Bansos.'
+                },
+                {
+                    id: 6, cat: 'fasilitas', tag: 'Fasilitas Publik', isPerbaikan: false,
+                    q: 'Berapa banyak fasilitas umum yang telah terinventarisasi titik koordinat GPS-nya?',
+                    a: 'Terdata sebanyak <strong>' + fasCount + ' titik fasilitas publik resmi</strong> (Ibadah, Pendidikan, Kesehatan, Pemerintahan, Infrastruktur) lengkap dengan lokasi GPS.'
+                },
+                {
+                    id: 7, cat: 'rekor', tag: 'RT Populasi Terbanyak', isPerbaikan: false,
+                    q: 'RT manakah yang memiliki jumlah penduduk terbanyak di Desa Pasir Palembang?',
+                    a: '<strong>' + (rtMaxPop.Nama_RT || 'RT') + '</strong> (Ketua: ' + (rtMaxPop.Nama_Ketua_RT || '-') + ') memiliki populasi tertinggi dengan <strong>' + (rtMaxPop._totalPop || 0) + ' jiwa penduduk</strong> (' + (rtMaxPop._kk || 0) + ' KK).'
+                },
+                {
+                    id: 8, cat: 'lansia', tag: 'Bantuan Sosial', isPerbaikan: false,
+                    q: 'Berapa total keluarga penerima bantuan sosial (Bansos) di Desa Pasir Palembang?',
+                    a: 'Terdata sebanyak <strong>' + totalBansos.toLocaleString('id-ID') + ' keluarga penerima Bansos</strong> (PKH, BPNT, BLT) yang tersaring secara tepat sasaran berbasis Data Terpadu SDI.'
+                },
+                {
+                    id: 9, cat: 'perbaikan', tag: '⚠️ Geospasial SDI', isPerbaikan: true,
+                    q: 'Mengapa pemetaan geospasial fasilitas publik sangat krusial bagi desa?',
+                    a: '⚠️ Untuk mempermudah mitigasi bencana, perencanaan jalan desa RKPDesa, serta integrasi rute navigasi Google Maps ke sarana kesehatan/sekolah terdekat.'
+                },
+                {
+                    id: 10, cat: 'fasilitas', tag: 'Sarana Ibadah', isPerbaikan: false,
+                    q: 'Berapa jumlah sarana tempat ibadah yang ada di Desa Pasir Palembang?',
+                    a: 'Terdata <strong>' + countIbadah + ' sarana tempat ibadah</strong> (Masjid Jami\' Al-Muttaqin & Surau/Musholla) yang tersebar di Dusun Pelaik, Tengah, dan Tekam Baru.'
+                },
+                {
+                    id: 11, cat: 'demografi', tag: 'Ukuran Keluarga (ART)', isPerbaikan: false,
+                    q: 'Berapa rata-rata Anggota Rumah Tangga (ART) per KK?',
+                    a: 'Setiap Kartu Keluarga di Pasir Palembang rata-rata memiliki <strong>' + artRata + ' Anggota Rumah Tangga dari total <strong>' + totalKK.toLocaleString('id-ID') + ' KK</strong>.'
+                },
+                {
+                    id: 12, cat: 'rekor', tag: 'KK Terbanyak', isPerbaikan: false,
+                    q: 'RT manakah yang mencatatkan jumlah KK terbanyak di desa?',
+                    a: '<strong>' + (rtMaxKK.Nama_RT || 'RT') + '</strong> (Ketua: ' + (rtMaxKK.Nama_Ketua_RT || '-') + ') mencatatkan KK terbanyak dengan <strong>' + (rtMaxKK._kk || 0) + ' Kartu Keluarga</strong>.'
+                },
+                {
+                    id: 13, cat: 'perbaikan', tag: '⚠️ Akses KTP-el', isPerbaikan: true,
+                    q: 'Berapa persentase warga wajib KTP yang telah memiliki KTP-elektronik (KTP-el)?',
+                    a: '⚠️ Sebanyak <strong>' + totalKTP.toLocaleString('id-ID') + ' jiwa (' + pctKTP + '%)</strong> telah ber-KTP-el. Pemdes merekomendasikan <strong>Layanan Mobile Adminduk</strong> untuk lansia.'
+                },
+                {
+                    id: 14, cat: 'fasilitas', tag: 'Sarana Pendidikan', isPerbaikan: false,
+                    q: 'Berapa jumlah sarana pendidikan yang tersedia di desa?',
+                    a: 'Terdata <strong>' + countSekolah + ' sarana pendidikan dasar</strong>, mencakup SDN 05 Pasir Palembang dan MIS Bahrul Ulum.'
+                },
+                {
+                    id: 15, cat: 'lansia', tag: 'Posyandu & Faskes', isPerbaikan: false,
+                    q: 'Berapa sarana kesehatan (Faskes) yang aktif beroperasi melayani warga?',
+                    a: 'Terdata <strong>' + countFaskes + ' sarana kesehatan</strong>, mencakup Posyandu Kasih Ibu, Posyandu Mawar, dan Poskesdes Pasir Palembang.'
+                },
+                {
+                    id: 16, cat: 'rekor', tag: 'Kepadatan Hunian', isPerbaikan: false,
+                    q: 'RT manakah yang memiliki kepadatan hunian rumah tangga paling tinggi?',
+                    a: '<strong>' + (rtMaxKepadatan.Nama_RT || 'RT') + '</strong> mencatatkan kepadatan tertinggi dengan <strong>' + (rtMaxKepadatan._kepadatan ? rtMaxKepadatan._kepadatan.toFixed(2) : '-') + ' jiwa per bumbung rumah</strong>.'
+                },
+                {
+                    id: 17, cat: 'demografi', tag: 'Bumbung Rumah', isPerbaikan: false,
+                    q: 'Berapa total fisik bumbung atap rumah di Pasir Palembang & kepadatan rata-ratanya?',
+                    a: 'Terdata <strong>' + totalBumbung.toLocaleString('id-ID') + ' unit bumbung rumah</strong> dengan rata-rata kepadatan hunian <strong>' + kepadatan + ' jiwa per rumah</strong>.'
+                },
+                {
+                    id: 18, cat: 'rekor', tag: 'Populasi Terendah', isPerbaikan: false,
+                    q: 'RT manakah yang memiliki jumlah penduduk terendah di Pasir Palembang?',
+                    a: '<strong>' + (rtMinPop.Nama_RT || 'RT') + '</strong> (Ketua: ' + (rtMinPop.Nama_Ketua_RT || '-') + ') memiliki populasi terendah dengan <strong>' + (rtMinPop._totalPop || 0) + ' jiwa penduduk</strong>.'
+                },
+                {
+                    id: 19, cat: 'perbaikan', tag: '⚠️ Layanan Data', isPerbaikan: true,
+                    q: 'Bagaimana cara masyarakat atau akademisi mengajukan permohonan data publik resmi?',
+                    a: '⚠️ Permohonan data dapat diajukan secara online melalui <strong>Form SOP Permintaan Data</strong> yang terintegrasi pada portal resmi ini.'
+                },
+                {
+                    id: 20, cat: 'fasilitas', tag: 'Infrastruktur Publik', isPerbaikan: false,
+                    q: 'Bagaimana kualitas ketersediaan akses listrik PLN & sinyal seluler di sarana umum?',
+                    a: 'Seluruh <strong>' + fasCount + ' fasilitas umum</strong> terlayani listrik PLN 24 jam dan jangkauan sinyal seluler 4G/LTE yang memadai.'
+                }
+            ];
+
+            return cards;
+        }
+
+        function filterFlashcards(cat, btnEl) {
+            activeFcFilter = cat;
+            if (btnEl) {
+                document.querySelectorAll('#flashcard-filter-container .btn-fc-filter').forEach(function(b) {
+                    b.classList.remove('btn-primary', 'active');
+                    b.classList.add('btn-outline-secondary');
+                });
+                btnEl.classList.remove('btn-outline-secondary');
+                btnEl.classList.add('btn-primary', 'active');
+            }
+
+            var filtered = flashcardsData.filter(function(item) {
+                return cat === 'all' || item.cat === cat;
+            });
+
+            var countBadge = document.getElementById('flashcards-count-badge');
+            if (countBadge) countBadge.innerText = filtered.length + ' Flashcard';
+
+            var wrapper = document.getElementById('flashcards-swiper-wrapper');
+            if (!wrapper) return;
+
+            var html = '';
+            filtered.forEach(function(card) {
+                var perbaikanClass = card.isPerbaikan ? 'is-perbaikan' : '';
+                var badgeBg = card.isPerbaikan ? 'bg-danger text-white' : 'bg-primary text-white';
+
+                html += '<div class="swiper-slide">'
+                    + '<div class="flashcard-container ' + perbaikanClass + '" onclick="this.classList.toggle(\'flipped\')">'
+                    + '<div class="flashcard-inner">'
+                    + '<div class="flashcard-front">'
+                    + '<div>'
+                    + '<div class="d-flex justify-content-between align-items-center mb-2">'
+                    + '<span class="flashcard-badge ' + badgeBg + '">' + card.tag + '</span>'
+                    + '<small class="text-muted"><i class="fas fa-sync-alt me-1"></i>Klik Flip</small>'
+                    + '</div>'
+                    + '<h6 class="fw-bold text-dark mt-2 mb-0" style="line-height: 1.4;">' + card.q + '</h6>'
+                    + '</div>'
+                    + '<div class="pt-2 border-top d-flex justify-content-between align-items-center text-muted extra-small">'
+                    + '<span><i class="fas fa-question-circle me-1 text-primary"></i>Pertanyaan Trivia</span>'
+                    + '<span class="fw-bold text-primary">Buka Jawaban &rarr;</span>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="flashcard-back">'
+                    + '<div>'
+                    + '<div class="d-flex justify-content-between align-items-center mb-2">'
+                    + '<span class="flashcard-badge bg-white text-dark">' + card.tag + '</span>'
+                    + '<small class="text-white-50"><i class="fas fa-check-circle me-1"></i>Fakta Data</small>'
+                    + '</div>'
+                    + '<p class="small text-white mb-0" style="line-height: 1.5;">' + card.a + '</p>'
+                    + '</div>'
+                    + '<div class="pt-2 border-top border-white-50 d-flex justify-content-between align-items-center extra-small text-white-50">'
+                    + '<span>SDI Pasir Palembang 2026</span>'
+                    + '<span>&larr; Putar Kembali</span>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>';
+            });
+            wrapper.innerHTML = html;
+            initSwiper();
+        }
+
+        function initSwiper() {
+            if (swiperInstance) swiperInstance.destroy(true, true);
+            swiperInstance = new Swiper('.swiper-flashcards', {
+                slidesPerView: 1,
+                spaceBetween: 16,
+                navigation: {
+                    nextEl: '.swiper-button-next-flashcard',
+                    prevEl: '.swiper-button-prev-flashcard',
+                },
+                pagination: {
+                    el: '.swiper-pagination-flashcards',
+                    type: 'fraction',
+                },
+                breakpoints: {
+                    640: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 3, spaceBetween: 24 }
+                }
+            });
+        }
+
+        function shuffleFlashcards() {
+            for (var i = flashcardsData.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = flashcardsData[i];
+                flashcardsData[i] = flashcardsData[j];
+                flashcardsData[j] = temp;
+            }
+            filterFlashcards(activeFcFilter);
+        }
+
+        function flipAllFlashcards(shouldFlip) {
+            document.querySelectorAll('.flashcard-container').forEach(function(card) {
+                if (shouldFlip) card.classList.add('flipped');
+                else card.classList.remove('flipped');
+            });
+        }
+
+        function resetFlashcards() {
+            flipAllFlashcards(false);
+            filterFlashcards('all');
+        }
+
+        function filterRTTable() {
+            var q = document.getElementById('search-rt').value.toLowerCase();
+            var rows = document.querySelectorAll('#table-rt-tbody tr');
+            rows.forEach(function(r) {
+                var txt = r.innerText.toLowerCase();
+                r.style.display = txt.includes(q) ? '' : 'none';
+            });
+        }
+
+        function filterFasTable() {
+            var q = document.getElementById('search-fas').value.toLowerCase();
+            var rows = document.querySelectorAll('#table-fas-tbody tr');
+            rows.forEach(function(r) {
+                var txt = r.innerText.toLowerCase();
+                r.style.display = txt.includes(q) ? '' : 'none';
+            });
+        }
+
+        function openImagePreviewModal(imageSrc, title, caption) {
+            document.getElementById('modalPreviewImg').src = imageSrc;
+            document.getElementById('modalImageTitle').innerText = title || 'Pratinjau Foto';
+            document.getElementById('modalImageCaption').innerText = caption || 'Desa Pasir Palembang 2026';
+            
+            var downloadBtn = document.getElementById('modalDownloadBtn');
+            downloadBtn.href = imageSrc;
+            var filename = (title || 'foto_desa_pasir_palembang').toLowerCase().replace(/[^a-z0-9]/g, '_') + '.webp';
+            downloadBtn.setAttribute('download', filename);
+
+            var modal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
+            modal.show();
         }
     </script>
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</x-layouts.app>

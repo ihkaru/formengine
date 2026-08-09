@@ -1,94 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desa Sungai Bakau Kecil - Desa Cinta Statistik 2026</title>
-    <meta name="description" content="Portal Resmi Desa Cantik 2026 Desa Sungai Bakau Kecil - BPS Kabupaten Mempawah">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-
-    <style>
-        :root {
-            --primary: #064E3B;
-            --secondary: #0D9488;
-            --accent: #F59E0B;
-        }
-        body { font-family: 'Poppins', sans-serif; background-color: #F8FAFC; color: #1E293B; }
-        .navbar { background-color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
-        .page-header {
-            background: linear-gradient(135deg, rgba(6,78,59,0.88) 0%, rgba(13,148,136,0.90) 100%),
-                url("{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}");
-            background-size: cover; background-position: center;
-            color: white; padding: 80px 0 60px;
-        }
-        .kpi-card {
-            background: white; border-radius: 16px; padding: 24px;
-            border-left: 5px solid var(--secondary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            transition: transform 0.3s ease;
-        }
-        .kpi-card:hover { transform: translateY(-5px); }
-        .kpi-icon {
-            width: 50px; height: 50px; border-radius: 12px;
-            background: rgba(13,148,136,0.1); color: var(--secondary);
-            display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
-        }
-        #map { height: 480px; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
-        .table-responsive { max-height: 500px; overflow-y: auto; }
-        .nav-tabs .nav-link.active { color: var(--primary); font-weight: 700; border-bottom: 3px solid var(--primary); }
-        .sync-wrap { background: rgba(0,0,0,0.4); border-radius: 50px; padding: 6px 16px; display: inline-flex; align-items: center; gap: 8px; }
-        
-        /* Modal & Image Preview Enhancements */
-        .clickable-img {
-            cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
-        }
-        .clickable-img:hover {
-            transform: scale(1.03);
-            filter: brightness(1.05);
-        }
-        .img-hover-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .img-hover-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
-        }
-        .img-zoom-wrapper {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .img-zoom-wrapper .zoom-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(6, 78, 59, 0.55);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            font-weight: 600;
-            font-size: 0.85rem;
-            gap: 6px;
-            pointer-events: none;
-        }
-        .img-zoom-wrapper:hover .zoom-overlay {
-            opacity: 1;
-        }
-    </style>
-</head>
-
-<body>
-    @include('partials.navbar')
+<x-layouts.app title="Desa Sungai Bakau Kecil - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Sungai Bakau Kecil - BPS Kabupaten Mempawah">
 
     <header class="page-header text-center">
         <div class="container">
@@ -120,287 +30,21 @@
 
     <main class="container my-5">
 
-        <!-- KPI Cards -->
+        <!-- KPI Cards (Reusable Component) -->
         <div class="row g-4 mb-5">
-            <div class="col-md-4 col-lg-2">
-                <div class="kpi-card">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="text-muted fw-bold text-uppercase">Total Penduduk</small>
-                        <div class="kpi-icon"><i class="fas fa-users"></i></div>
-                    </div>
-                    <h3 class="fw-bold mb-0 text-dark" id="kpi-penduduk">-</h3>
-                    <small class="text-muted">Sex Ratio: <span id="kpi-sexratio" class="fw-bold text-primary">-</span></small>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-2">
-                <div class="kpi-card">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="text-muted fw-bold text-uppercase">Rumah Tangga / KK</small>
-                        <div class="kpi-icon"><i class="fas fa-home"></i></div>
-                    </div>
-                    <h3 class="fw-bold mb-0 text-dark" id="kpi-kk">-</h3>
-                    <small class="text-muted">ART Rata-rata: <span id="kpi-art" class="fw-bold text-success">-</span></small>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-2">
-                <div class="kpi-card">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="text-muted fw-bold text-uppercase">Bumbung Rumah</small>
-                        <div class="kpi-icon"><i class="fas fa-building"></i></div>
-                    </div>
-                    <h3 class="fw-bold mb-0 text-dark" id="kpi-bumbung">-</h3>
-                    <small class="text-muted">Kepadatan: <span id="kpi-kepadatan" class="fw-bold text-info">-</span></small>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-2">
-                <div class="kpi-card">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="text-muted fw-bold text-uppercase">Penduduk Lansia</small>
-                        <div class="kpi-icon"><i class="fas fa-user-clock"></i></div>
-                    </div>
-                    <h3 class="fw-bold mb-0 text-dark" id="kpi-lansia">-</h3>
-                    <small class="text-muted">Proporsi: <span id="kpi-pct-lansia" class="fw-bold text-warning">-</span></small>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-2">
-                <div class="kpi-card">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="text-muted fw-bold text-uppercase">Penerima Bansos</small>
-                        <div class="kpi-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    </div>
-                    <h3 class="fw-bold mb-0 text-dark" id="kpi-bansos">-</h3>
-                    <small class="text-muted">PKH/BPNT/BLT</small>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-2">
-                <div class="kpi-card">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="text-muted fw-bold text-uppercase">Fasilitas Umum</small>
-                        <div class="kpi-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    </div>
-                    <h3 class="fw-bold mb-0 text-dark" id="kpi-fasilitas">-</h3>
-                    <small class="text-muted">Terinventarisasi</small>
-                </div>
-            </div>
+            <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" />
+            <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" />
+            <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" />
+            <x-ui.kpi-card title="Penduduk Lansia" icon="fa-user-clock" id="kpi-lansia" sub-id="kpi-pct-lansia" sub-label="Proporsi" sub-color="text-warning" />
+            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH/BPNT/BLT" />
+            <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terinventarisasi" />
         </div>
 
-        <!-- Metadata SDI 2026 -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="fw-bold text-primary mb-0"><i class="fas fa-file-contract me-2"></i>Metadata Statistik Sektoral (SDI 2026)</h4>
-                <span class="badge bg-success">Satu Data Indonesia Compliant</span>
-            </div>
-            <ul class="nav nav-tabs border-bottom mb-4" id="metadataTab" role="tablist">
-                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#kegiatan" type="button">I. Metadata Kegiatan</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#variabel" type="button">II. Metadata Variabel</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#indikator" type="button">III. Metadata Indikator</button></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="kegiatan">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped align-middle">
-                            <thead class="table-dark"><tr><th>No</th><th>Elemen Metadata</th><th>Keterangan / Nilai</th></tr></thead>
-                            <tbody>
-                                <tr><td>1</td><td><strong>Nama Kegiatan</strong></td><td>Pendataan Potensi Kewilayahan Rukun Tetangga (RT) dan Inventarisasi Fasilitas Umum Desa Cantik Sungai Bakau Kecil 2026</td></tr>
-                                <tr><td>2</td><td><strong>Instansi Penyelenggara</strong></td><td>Pemerintah Desa Sungai Bakau Kecil bekerjasama dengan BPS Kabupaten Mempawah</td></tr>
-                                <tr><td>3</td><td><strong>Jenis Kegiatan</strong></td><td>Kompilasi Produk Administrasi &amp; Survei Sektoral</td></tr>
-                                <tr><td>4</td><td><strong>Tujuan Kegiatan</strong></td><td>Memetakan kondisi sosial-ekonomi penduduk di tingkat RT serta kelayakan sarana prasarana desa untuk evidence-based policy.</td></tr>
-                                <tr><td>5</td><td><strong>Cara Pengumpulan Data</strong></td><td>Wawancara langsung (CAPI) dengan Ketua RT dan observasi GPS sarana desa menggunakan AppSheet.</td></tr>
-                                <tr><td>6</td><td><strong>Cakupan Wilayah</strong></td><td>Seluruh wilayah Desa Sungai Bakau Kecil (Kec. Mempawah Hilir, Kab. Mempawah) mencakup 37 RT.</td></tr>
-                                <tr><td>7</td><td><strong>Unit Pengamatan</strong></td><td>Rukun Tetangga (RT), Bangunan Fisik Rumah, Sarana Prasarana (Fasilitas Umum)</td></tr>
-                                <tr><td>8</td><td><strong>Frekuensi &amp; Waktu</strong></td><td>Tahunan (Pengumpulan Lapangan: Juni - Juli 2026)</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="variabel">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6 class="fw-bold mb-2"><i class="fas fa-list-ol me-2 text-primary"></i>Variabel RT (Daftar_RT) — 26 Variabel</h6>
-                            <ul class="list-group list-group-flush small">
-                                <li class="list-group-item"><code>Nama_RT</code>, <code>Nama_Ketua_RT</code>, <code>Nama_Petugas</code></li>
-                                <li class="list-group-item"><code>Jumlah_Penduduk_Laki_Laki</code>, <code>Jumlah_Penduduk_Perempuan</code></li>
-                                <li class="list-group-item"><code>Jumlah_KK</code>, <code>Jumlah_Bumbung_Rumah</code>, <code>Jumlah_Penduduk_Lansia</code></li>
-                                <li class="list-group-item"><code>Jumlah_Penerima_PKH</code>, <code>BPNT</code>, <code>BLT</code>, <code>BST</code></li>
-                                <li class="list-group-item">Tingkat Pendidikan: <code>TK, SD, SMP, SMA, Sarjana, Putus Sekolah</code></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 class="fw-bold mb-2"><i class="fas fa-building me-2 text-success"></i>Variabel Fasilitas — 15 Variabel</h6>
-                            <ul class="list-group list-group-flush small">
-                                <li class="list-group-item"><code>ID_Fasilitas</code>, <code>Nama_Fasilitas</code>, <code>Lokasi_GPS</code></li>
-                                <li class="list-group-item"><code>Kategori_Fasilitas</code>: Ibadah, Pendidikan, Kesehatan, Ekonomi, dll.</li>
-                                <li class="list-group-item"><code>Kondisi_Bangunan</code>: Baik, Rusak Ringan, Rusak Berat</li>
-                                <li class="list-group-item"><code>Sumber_Listrik</code>, <code>Sumber_Air_Bersih</code>, <code>Akses_Jalan</code>, <code>Sinyal_Seluler</code></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="indikator">
-                    <div class="row g-3">
-                        <!-- #1 Sex Ratio -->
-                        <div class="col-md-6 col-lg-3">
-                            <div class="p-3 bg-white border border-1 rounded-4 h-100 shadow-sm d-flex flex-column justify-content-between position-relative">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="badge bg-primary-subtle text-primary fw-bold text-uppercase px-2 py-1 small">#1 Demografi</span>
-                                        <span class="text-muted extra-small"><i class="fas fa-venus-mars me-1"></i>SDI 2026</span>
-                                    </div>
-                                    <h6 class="fw-bold text-secondary mb-1">Rasio Jenis Kelamin</h6>
-                                    <div class="d-flex align-items-baseline gap-1 my-2">
-                                        <h3 class="fw-bold text-dark mb-0" id="ind-val-sexratio">-</h3>
-                                    </div>
-                                    <p class="small text-muted mb-2">Perbandingan jumlah Laki-Laki per 100 Perempuan di wilayah desa.</p>
-                                </div>
-                                <div class="pt-2 border-top">
-                                    <span class="badge bg-light text-secondary border font-monospace fw-normal small px-2 py-1">(Σ Laki / Σ Perempuan) &times; 100</span>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Metadata SDI 2026 (Reusable Component) -->
+        <x-widgets.sdi-metadata-tab village-name="Desa Sungai Bakau Kecil" :rt-count="37" :var-rt-count="26" :var-fas-count="15" />
 
-                        <!-- #2 ART -->
-                        <div class="col-md-6 col-lg-3">
-                            <div class="p-3 bg-white border border-1 rounded-4 h-100 shadow-sm d-flex flex-column justify-content-between position-relative">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="badge bg-success-subtle text-success fw-bold text-uppercase px-2 py-1 small">#2 Demografi</span>
-                                        <span class="text-muted extra-small"><i class="fas fa-home me-1"></i>SDI 2026</span>
-                                    </div>
-                                    <h6 class="fw-bold text-secondary mb-1">Rata-rata ART / KK</h6>
-                                    <div class="d-flex align-items-baseline gap-1 my-2">
-                                        <h3 class="fw-bold text-dark mb-0" id="ind-val-art">-</h3>
-                                    </div>
-                                    <p class="small text-muted mb-2">Rata-rata jumlah anggota keluarga yang mendiami 1 rumah tangga.</p>
-                                </div>
-                                <div class="pt-2 border-top">
-                                    <span class="badge bg-light text-secondary border font-monospace fw-normal small px-2 py-1">Total Penduduk / Total KK</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- #3 Lansia -->
-                        <div class="col-md-6 col-lg-3">
-                            <div class="p-3 bg-white border border-1 rounded-4 h-100 shadow-sm d-flex flex-column justify-content-between position-relative">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="badge bg-warning-subtle text-warning-emphasis fw-bold text-uppercase px-2 py-1 small">#3 Kelompok Rentan</span>
-                                        <span class="text-muted extra-small"><i class="fas fa-user-clock me-1"></i>SDI 2026</span>
-                                    </div>
-                                    <h6 class="fw-bold text-secondary mb-1">Persentase Lansia</h6>
-                                    <div class="d-flex align-items-baseline gap-1 my-2">
-                                        <h3 class="fw-bold text-dark mb-0" id="ind-val-lansia">-</h3>
-                                    </div>
-                                    <p class="small text-muted mb-2">Proporsi jumlah penduduk berusia 60 tahun ke atas terhadap total penduduk.</p>
-                                </div>
-                                <div class="pt-2 border-top">
-                                    <span class="badge bg-light text-secondary border font-monospace fw-normal small px-2 py-1">(Σ Lansia / Total Penduduk) &times; 100</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- #4 KTP -->
-                        <div class="col-md-6 col-lg-3">
-                            <div class="p-3 bg-white border border-1 rounded-4 h-100 shadow-sm d-flex flex-column justify-content-between position-relative">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="badge bg-info-subtle text-info-emphasis fw-bold text-uppercase px-2 py-1 small">#4 Adminduk</span>
-                                        <span class="text-muted extra-small"><i class="fas fa-id-card me-1"></i>SDI 2026</span>
-                                    </div>
-                                    <h6 class="fw-bold text-secondary mb-1">Kepemilikan KTP-el</h6>
-                                    <div class="d-flex align-items-baseline gap-1 my-2">
-                                        <h3 class="fw-bold text-dark mb-0" id="ind-val-ktp">-</h3>
-                                    </div>
-                                    <p class="small text-muted mb-2">Cakupan penduduk yang telah memiliki fisik KTP-el di wilayah desa.</p>
-                                </div>
-                                <div class="pt-2 border-top">
-                                    <span class="badge bg-light text-secondary border font-monospace fw-normal small px-2 py-1">(Σ KTP / Total Penduduk) &times; 100</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- #5 Bansos -->
-                        <div class="col-md-6 col-lg-3">
-                            <div class="p-3 bg-white border border-1 rounded-4 h-100 shadow-sm d-flex flex-column justify-content-between position-relative">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="badge bg-danger-subtle text-danger fw-bold text-uppercase px-2 py-1 small">#5 Kesejahteraan</span>
-                                        <span class="text-muted extra-small"><i class="fas fa-hand-holding-heart me-1"></i>SDI 2026</span>
-                                    </div>
-                                    <h6 class="fw-bold text-secondary mb-1">Penerima Bantuan Sosial</h6>
-                                    <div class="d-flex align-items-baseline gap-1 my-2">
-                                        <h3 class="fw-bold text-dark mb-0" id="ind-val-bansos">-</h3>
-                                    </div>
-                                    <p class="small text-muted mb-2">Proporsi penerima bantuan sosial (PKH/BPNT/BLT/BST) terhadap total penduduk.</p>
-                                </div>
-                                <div class="pt-2 border-top">
-                                    <span class="badge bg-light text-secondary border font-monospace fw-normal small px-2 py-1">(Σ Bansos / Total Penduduk) &times; 100</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- #6 Putus Sekolah -->
-                        <div class="col-md-6 col-lg-3">
-                            <div class="p-3 bg-white border border-1 rounded-4 h-100 shadow-sm d-flex flex-column justify-content-between position-relative">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="badge bg-dark-subtle text-dark fw-bold text-uppercase px-2 py-1 small">#6 Pendidikan</span>
-                                        <span class="text-muted extra-small"><i class="fas fa-user-graduate me-1"></i>SDI 2026</span>
-                                    </div>
-                                    <h6 class="fw-bold text-secondary mb-1">Anak Putus Sekolah</h6>
-                                    <div class="d-flex align-items-baseline gap-1 my-2">
-                                        <h3 class="fw-bold text-dark mb-0" id="ind-val-putus-sekolah">-</h3>
-                                    </div>
-                                    <p class="small text-muted mb-2">Proporsi anak usia sekolah (7-18 thn) yang tidak bersekolah lagi.</p>
-                                </div>
-                                <div class="pt-2 border-top">
-                                    <span class="badge bg-light text-secondary border font-monospace fw-normal small px-2 py-1">(Σ Putus / Σ Anak Sekolah) &times; 100</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- #7 Kepadatan -->
-                        <div class="col-md-6 col-lg-3">
-                            <div class="p-3 bg-white border border-1 rounded-4 h-100 shadow-sm d-flex flex-column justify-content-between position-relative">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="badge bg-secondary-subtle text-secondary-emphasis fw-bold text-uppercase px-2 py-1 small">#7 Infrastruktur</span>
-                                        <span class="text-muted extra-small"><i class="fas fa-building me-1"></i>SDI 2026</span>
-                                    </div>
-                                    <h6 class="fw-bold text-secondary mb-1">Kepadatan Hunian Rumah</h6>
-                                    <div class="d-flex align-items-baseline gap-1 my-2">
-                                        <h3 class="fw-bold text-dark mb-0" id="ind-val-kepadatan">-</h3>
-                                    </div>
-                                    <p class="small text-muted mb-2">Rata-rata jumlah penduduk yang menghuni setiap atap bumbung rumah.</p>
-                                </div>
-                                <div class="pt-2 border-top">
-                                    <span class="badge bg-light text-secondary border font-monospace fw-normal small px-2 py-1">Total Penduduk / Total Bumbung</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- #8 Sarana Ibadah -->
-                        <div class="col-md-6 col-lg-3">
-                            <div class="p-3 bg-white border border-1 rounded-4 h-100 shadow-sm d-flex flex-column justify-content-between position-relative">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="badge bg-teal-subtle text-teal fw-bold text-uppercase px-2 py-1 small" style="background-color:#ccfbf1;color:#0f766e;">#8 Keagamaan</span>
-                                        <span class="text-muted extra-small"><i class="fas fa-mosque me-1"></i>SDI 2026</span>
-                                    </div>
-                                    <h6 class="fw-bold text-secondary mb-1">Sarana Ibadah / 1k Jiwa</h6>
-                                    <div class="d-flex align-items-baseline gap-1 my-2">
-                                        <h3 class="fw-bold text-dark mb-0" id="ind-val-ibadah">-</h3>
-                                    </div>
-                                    <p class="small text-muted mb-2">Ketersediaan sarana tempat ibadah desa untuk setiap 1.000 jiwa penduduk.</p>
-                                </div>
-                                <div class="pt-2 border-top">
-                                    <span class="badge bg-light text-secondary border font-monospace fw-normal small px-2 py-1">(Σ Ibadah / Total Penduduk) &times; 1000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
+        <x-widgets.flashcard-deck village-name="Desa Sungai Bakau Kecil" title="Flashcard Trivia & Insights Data Desa" />
 
         <!-- Charts -->
         <div class="row g-4 mb-5">
@@ -445,17 +89,17 @@
                     <i class="fas fa-file-excel me-1"></i> Unduh Data Tabel (CSV/Excel)
                 </button>
             </div>
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills mb-3 flex-nowrap overflow-x-auto text-nowrap" id="pills-tab" role="tablist">
                 <li class="nav-item"><button class="nav-link active rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#pills-rt">Daftar RT (37 Wilayah)</button></li>
                 <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#pills-fas">Daftar Fasilitas (49 Unit)</button></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="pills-rt">
                     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-12">
                             <input type="text" id="search-rt" class="form-control form-control-sm rounded-pill" placeholder="Cari Nama RT / Ketua RT...">
                         </div>
-                        <div class="btn-group btn-group-sm rounded-pill p-1 bg-light border" role="group">
+                        <div class="btn-group btn-group-sm rounded-pill p-1 bg-light border text-nowrap flex-wrap flex-sm-nowrap" role="group">
                             <button type="button" class="btn btn-primary rounded-pill px-3 fw-semibold active" id="btn-mode-variabel" onclick="switchRTTableMode('variabel')">
                                 <i class="fas fa-list me-1"></i> Variabel Mentah
                             </button>
@@ -465,8 +109,8 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle small" id="table-rt">
-                            <thead class="table-light user-select-none" id="table-rt-thead">
+                        <table class="table table-hover align-middle small text-nowrap" id="table-rt">
+                            <thead class="table-light user-select-none text-nowrap" id="table-rt-thead">
                                 <tr>
                                     <th style="cursor:pointer;" onclick="sortTableRT('Nama_RT')">Nama RT <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_RT"></i></th>
                                     <th style="cursor:pointer;" onclick="sortTableRT('Nama_Ketua_RT')">Ketua RT <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_Ketua_RT"></i></th>
@@ -485,12 +129,12 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-fas">
-                    <div class="mb-3 col-md-4">
+                    <div class="mb-3 col-md-4 col-12">
                         <input type="text" id="search-fas" class="form-control form-control-sm rounded-pill" placeholder="Cari Nama Fasilitas / Kategori...">
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle small" id="table-fas">
-                            <thead class="table-light user-select-none">
+                        <table class="table table-hover align-middle small text-nowrap" id="table-fas">
+                            <thead class="table-light user-select-none text-nowrap">
                                 <tr>
                                     <th style="cursor:pointer;" onclick="sortTableFas('ID_Fasilitas')">ID <i class="fas fa-sort text-muted ms-1" id="sort-icon-ID_Fasilitas"></i></th>
                                     <th style="cursor:pointer;" onclick="sortTableFas('Nama_Fasilitas')">Nama Fasilitas <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_Fasilitas"></i></th>
@@ -508,45 +152,12 @@
                     </div>
                 </div>
             </div>
-        <!-- Dukungan Pemkab & Pembinaan Sektoral (Bukti Dukung Evaluasi) -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dukungan-pemkab">
-            <div class="row align-items-center">
-                <div class="col-lg-5 mb-4 mb-lg-0">
-                    <div class="rounded-4 overflow-hidden shadow-sm border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/dukungan-pemda.webp') }}', 'Dukungan Pemkab Mempawah &amp; BPS', 'Dokumentasi Komitmen Pemkab Mempawah &amp; BPS Kabupaten Mempawah dalam Pembinaan Sektoral Desa Cantik 2026')">
-                        <img src="{{ asset('images/dukungan-pemda.webp') }}" alt="Dukungan Pemkab Mempawah &amp; BPS" class="img-fluid w-100" style="height: auto; width: 100%; max-height: 460px; object-fit: contain;" onerror="this.onerror=null;this.src='{{ asset('images/dukungan-pemda.jpg') }}';">
-                        <div class="zoom-overlay">
-                            <i class="fas fa-search-plus"></i> Klik untuk Tampilan Besar
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="badge bg-primary-subtle text-primary fw-bold text-uppercase px-3 py-2 rounded-pill small">Bukti Pembinaan Sektoral 2026</span>
-                        <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill small">Pemkab Mempawah x BPS</span>
-                    </div>
-                    <h3 class="fw-bold text-dark mb-3">Dukungan Penuh Pemerintah Kabupaten Mempawah</h3>
-                    <p class="text-secondary mb-3">
-                        Pemerintah Kabupaten Mempawah menegaskan komitmen penuh terhadap keberhasilan penyelenggaraan statistik sektoral dan Program Desa Cantik di Desa Sungai Bakau Kecil 2026 sebagai percontohan kebijakan berbasis data (<em>evidence-based policy</em>).
-                    </p>
-                    <blockquote class="blockquote border-start border-4 border-primary ps-3 bg-light p-3 rounded-3 my-3">
-                        <p class="mb-2 fst-italic text-dark small">"Penguatan data hingga tingkat RT melalui Desa Cantik merupakan pondasi utama integrasi Satu Data Indonesia di Kabupaten Mempawah."</p>
-                        <footer class="blockquote-footer small text-muted">Komitmen Bersama <cite title="Source Title">Pemkab Mempawah &amp; BPS Kabupaten Mempawah</cite></footer>
-                    </blockquote>
-                    <div class="d-flex gap-2 mt-3">
-                        <a href="#" class="btn btn-sm btn-primary rounded-pill px-4">
-                            <i class="fab fa-instagram me-1"></i> Lihat Dokumentasi Liputan (Link)
-                        </a>
-                        <a href="#publikasi" class="btn btn-sm btn-outline-secondary rounded-pill px-4">
-                            <i class="fas fa-file-alt me-1"></i> Dokumen Pembinaan
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Dukungan Pemkab & Pembinaan Sektoral (Reusable Component) -->
+        <x-ui.dukungan-pemkab village-name="Desa Sungai Bakau Kecil" year="2026" />
 
         <!-- Publikasi Resmi & Booklet (Bukti Dukung Output) -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="publikasi">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-book-open me-2 text-primary"></i>Publikasi Resmi &amp; Booklet Profil Desa 2026</h4>
                     <p class="text-muted small mb-0">Dokumen publikasi dan analisis data potensi kewilayahan hasil pendataan Desa Cantik 2026.</p>
@@ -667,12 +278,12 @@
 
         <!-- Galeri Dokumentasi Kegiatan Lapangan (Bukti Proses Pembinaan & Pencacahan Agen Statistik) -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dokumentasi">
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan Lapangan</h4>
                     <p class="text-muted small mb-0">Proses kapasitas building, pelatihan CAPI, dan pendataan lapangan oleh Agen Statistik Desa Sungai Bakau Kecil.</p>
                 </div>
-                <span class="badge bg-success rounded-pill px-3 py-2">5 Foto Dokumentasi WebP (Klik untuk Tampilan Besar)</span>
+                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 font-monospace fw-bold">5 Foto Dokumentasi</span>
             </div>
             <div class="row g-3">
                 <div class="col-md-4 col-lg-4">
@@ -750,54 +361,12 @@
 
     </main>
 
-    <!-- Modal Preview Foto Tampilan Besar (Lightbox) -->
-    <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
-                <div class="modal-header bg-dark text-white border-0 py-3">
-                    <h5 class="modal-title fw-bold fs-6" id="imagePreviewModalLabel">
-                        <i class="fas fa-image me-2 text-primary"></i><span id="modalImageTitle">Pratinjau Foto</span>
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-0 bg-black text-center position-relative d-flex align-items-center justify-content-center" style="min-height: 350px;">
-                    <img id="modalPreviewImg" src="" alt="Pratinjau Foto" class="img-fluid w-100" style="max-height: 75vh; object-fit: contain;">
-                </div>
-                <div class="modal-footer bg-light border-0 py-2 d-flex justify-content-between align-items-center">
-                    <small class="text-muted fw-semibold" id="modalImageCaption">Desa Sungai Bakau Kecil 2026</small>
-                    <a id="modalDownloadBtn" href="#" download="" class="btn btn-sm btn-primary rounded-pill px-3 fw-bold">
-                        <i class="fas fa-download me-1"></i> Unduh Foto High-Res
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Modal Preview Foto Tampilan Besar (Lightbox Reusable Component) -->
+    <x-ui.image-modal />
 
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <p class="mb-0 text-muted small">&copy; 2026 BPS Kabupaten Mempawah &amp; Pemerintah Desa Sungai Bakau Kecil — Portal Desa Cantik.</p>
-        </div>
-    </footer>
+</x-layouts.app>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        function openImagePreviewModal(imageSrc, title, caption) {
-            document.getElementById('modalPreviewImg').src = imageSrc;
-            document.getElementById('modalImageTitle').innerText = title || 'Pratinjau Foto';
-            document.getElementById('modalImageCaption').innerText = caption || 'Desa Sungai Bakau Kecil 2026';
-            
-            var downloadBtn = document.getElementById('modalDownloadBtn');
-            downloadBtn.href = imageSrc;
-            var filename = (title || 'foto_desa_sungai_bakau_kecil').toLowerCase().replace(/[^a-z0-9]/g, '_') + '.webp';
-            downloadBtn.setAttribute('download', filename);
-
-            var modal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
-            modal.show();
-        }
-    </script>
-
-    <script id="fallback-rt" type="application/json">[{"Nama_RT": "RT 020 RW 01 DUSUN SENGGIRING", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "5/24/2026 17:53:00", "Nama_Ketua_RT": "DG. RIVA'IE", "Jumlah_Penduduk_Laki_Laki": "82", "Jumlah_Penduduk_Perempuan": "75", "Jumlah_Bumbung_Rumah": "50", "Jumlah_KK": "53", "Jumlah_Penduduk_Lansia": "16", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "121", "Jumlah_Sekolah_TK": "", "Jumlah_Sekolah_SD": "11", "Jumlah_Sekolah_SMP": "4", "Jumlah_Sekolah_SMA": "", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "3", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 001 RW 01 DUSUN SENGGIRING", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 9:30:10", "Nama_Ketua_RT": "SY. JAMALUDDIN", "Jumlah_Penduduk_Laki_Laki": "98", "Jumlah_Penduduk_Perempuan": "96", "Jumlah_Bumbung_Rumah": "40", "Jumlah_KK": "58", "Jumlah_Penduduk_Lansia": "15", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "160", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "11", "Jumlah_Sekolah_SMP": "1", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 002 RW 01 DUSUN SENGGIIRING", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 9:31:30", "Nama_Ketua_RT": "MURSID, S.Pd", "Jumlah_Penduduk_Laki_Laki": "67", "Jumlah_Penduduk_Perempuan": "73", "Jumlah_Bumbung_Rumah": "32", "Jumlah_KK": "41", "Jumlah_Penduduk_Lansia": "17", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "3", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "105", "Jumlah_Sekolah_TK": "6", "Jumlah_Sekolah_SD": "9", "Jumlah_Sekolah_SMP": "2", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "1", "Jumlah_Penduduk_Putus_Sekolah": "3", "Jumlah_Anak_Usia_0_1_Tahun": "3", "Jumlah_Anak_Usia_2_5_Tahun": "7", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 003 RW 01 DUSUN SENGGIRING", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:25:09", "Nama_Ketua_RT": "M. NAWI", "Jumlah_Penduduk_Laki_Laki": "59", "Jumlah_Penduduk_Perempuan": "64", "Jumlah_Bumbung_Rumah": "38", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "6", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "85", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "22", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "10", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 004 RW 02 DUSUN BENTENG RAYA", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:26:25", "Nama_Ketua_RT": "HARFANSYAH", "Jumlah_Penduduk_Laki_Laki": "57", "Jumlah_Penduduk_Perempuan": "64", "Jumlah_Bumbung_Rumah": "32", "Jumlah_KK": "40", "Jumlah_Penduduk_Lansia": "11", "Jumlah_Kelahiran_Bayi": "3", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "4", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "83", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "16", "Jumlah_Sekolah_SMP": "4", "Jumlah_Sekolah_SMA": "4", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "3", "Jumlah_Anak_Usia_2_5_Tahun": "3", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 031 RW 02 DUSUN BENTENG RAYA", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:54:07", "Nama_Ketua_RT": "RUDHI KHAIRUDDIN", "Jumlah_Penduduk_Laki_Laki": "39", "Jumlah_Penduduk_Perempuan": "38", "Jumlah_Bumbung_Rumah": "38", "Jumlah_KK": "38", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "55", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "9", "Jumlah_Sekolah_SMP": "2", "Jumlah_Sekolah_SMA": "2", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "1", "Jumlah_Anak_Usia_2_5_Tahun": "3", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 005 RW 02 DUSUN BENTENG RAYA", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:58:15", "Nama_Ketua_RT": "SATIAT", "Jumlah_Penduduk_Laki_Laki": "143", "Jumlah_Penduduk_Perempuan": "106", "Jumlah_Bumbung_Rumah": "42", "Jumlah_KK": "62", "Jumlah_Penduduk_Lansia": "9", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "2", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "2", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "109", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "13", "Jumlah_Sekolah_SMP": "9", "Jumlah_Sekolah_SMA": "6", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 006 RW 02 DUSUN BENTENG RAYA", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 12:28:47", "Nama_Ketua_RT": "EFFENDI RAUPE", "Jumlah_Penduduk_Laki_Laki": "108", "Jumlah_Penduduk_Perempuan": "92", "Jumlah_Bumbung_Rumah": "56", "Jumlah_KK": "57", "Jumlah_Penduduk_Lansia": "14", "Jumlah_Kelahiran_Bayi": "1", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "2", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "156", "Jumlah_Sekolah_TK": "3", "Jumlah_Sekolah_SD": "8", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "3", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "1", "Jumlah_Anak_Usia_2_5_Tahun": "3", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 007 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:53:59", "Nama_Ketua_RT": "SULAIMAN", "Jumlah_Penduduk_Laki_Laki": "76", "Jumlah_Penduduk_Perempuan": "81", "Jumlah_Bumbung_Rumah": "46", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "16", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "125", "Jumlah_Sekolah_TK": "4", "Jumlah_Sekolah_SD": "9", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "6", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "2", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "2", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 018 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 10:40:13", "Nama_Ketua_RT": "EFENDI", "Jumlah_Penduduk_Laki_Laki": "105", "Jumlah_Penduduk_Perempuan": "85", "Jumlah_Bumbung_Rumah": "54", "Jumlah_KK": "65", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "137", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "8", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "5", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 008 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:56:43", "Nama_Ketua_RT": "NURHAYATI", "Jumlah_Penduduk_Laki_Laki": "52", "Jumlah_Penduduk_Perempuan": "77", "Jumlah_Bumbung_Rumah": "43", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "2", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "74", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "10", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "15", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 009 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:01:17", "Nama_Ketua_RT": "BURHANI", "Jumlah_Penduduk_Laki_Laki": "64", "Jumlah_Penduduk_Perempuan": "74", "Jumlah_Bumbung_Rumah": "36", "Jumlah_KK": "46", "Jumlah_Penduduk_Lansia": "9", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "102", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "5", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "9", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 010 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:04:15", "Nama_Ketua_RT": "HARIANTO", "Jumlah_Penduduk_Laki_Laki": "66", "Jumlah_Penduduk_Perempuan": "72", "Jumlah_Bumbung_Rumah": "27", "Jumlah_KK": "39", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "104", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "5", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "11", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 011 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 11:13:14", "Nama_Ketua_RT": "JUNAIDI", "Jumlah_Penduduk_Laki_Laki": "54", "Jumlah_Penduduk_Perempuan": "51", "Jumlah_Bumbung_Rumah": "35", "Jumlah_KK": "32", "Jumlah_Penduduk_Lansia": "24", "Jumlah_Kelahiran_Bayi": "2", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "1", "Jumlah_Penerima_BPNT": "5", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "0", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "4", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "2", "Jumlah_Sekolah_Sarjana": "3", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "2", "Jumlah_Pendatang": "5", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 035 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/20/2026 10:29:24", "Nama_Ketua_RT": "JOHAN", "Jumlah_Penduduk_Laki_Laki": "79", "Jumlah_Penduduk_Perempuan": "79", "Jumlah_Bumbung_Rumah": "39", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "15", "Jumlah_Kelahiran_Bayi": "2", "Jumlah_Kematian": "3", "Jumlah_Penerima_PKH": "7", "Jumlah_Penerima_BPNT": "2", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "143", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "10", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "1", "Jumlah_Penduduk_Putus_Sekolah": "1", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "2", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 012 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:28:32", "Nama_Ketua_RT": "MARINO", "Jumlah_Penduduk_Laki_Laki": "146", "Jumlah_Penduduk_Perempuan": "124", "Jumlah_Bumbung_Rumah": "54", "Jumlah_KK": "72", "Jumlah_Penduduk_Lansia": "41", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "229", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "3", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "9", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 013 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 11:22:06", "Nama_Ketua_RT": "KHOLIS", "Jumlah_Penduduk_Laki_Laki": "70", "Jumlah_Penduduk_Perempuan": "62", "Jumlah_Bumbung_Rumah": "32", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "6", "Jumlah_Kelahiran_Bayi": "1", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "7", "Jumlah_Penerima_BPNT": "5", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "84", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "11", "Jumlah_Sekolah_SMP": "8", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "3", "Jumlah_Penduduk_Putus_Sekolah": "5", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "6", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 014 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 11:15:51", "Nama_Ketua_RT": "MARTILAM", "Jumlah_Penduduk_Laki_Laki": "71", "Jumlah_Penduduk_Perempuan": "83", "Jumlah_Bumbung_Rumah": "35", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "16", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "10", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "84", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "15", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "3", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "1", "Jumlah_Anak_Usia_0_1_Tahun": "1", "Jumlah_Anak_Usia_2_5_Tahun": "12", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 033 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/25/2026 10:26:39", "Nama_Ketua_RT": "FIRDAUS", "Jumlah_Penduduk_Laki_Laki": "95", "Jumlah_Penduduk_Perempuan": "100", "Jumlah_Bumbung_Rumah": "45", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "14", "Jumlah_Kelahiran_Bayi": "2", "Jumlah_Kematian": "2", "Jumlah_Penerima_PKH": "12", "Jumlah_Penerima_BPNT": "4", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "105", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "28", "Jumlah_Sekolah_SMP": "10", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "1", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "24", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 019 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:25:50", "Nama_Ketua_RT": "MARJUKI", "Jumlah_Penduduk_Laki_Laki": "79", "Jumlah_Penduduk_Perempuan": "60", "Jumlah_Bumbung_Rumah": "26", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "8", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "102", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "6", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "10", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 015 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 12:09:45", "Nama_Ketua_RT": "MAHRUJI", "Jumlah_Penduduk_Laki_Laki": "82", "Jumlah_Penduduk_Perempuan": "76", "Jumlah_Bumbung_Rumah": "38", "Jumlah_KK": "41", "Jumlah_Penduduk_Lansia": "11", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "1", "Jumlah_Penerima_PKH": "8", "Jumlah_Penerima_BPNT": "14", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "109", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "23", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "2", "Jumlah_Penduduk_Putus_Sekolah": "5", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 034 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 12:22:10", "Nama_Ketua_RT": "SADRA'I", "Jumlah_Penduduk_Laki_Laki": "86", "Jumlah_Penduduk_Perempuan": "115", "Jumlah_Bumbung_Rumah": "41", "Jumlah_KK": "45", "Jumlah_Penduduk_Lansia": "9", "Jumlah_Kelahiran_Bayi": "4", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "5", "Jumlah_Penerima_BPNT": "8", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "87", "Jumlah_Sekolah_TK": "3", "Jumlah_Sekolah_SD": "16", "Jumlah_Sekolah_SMP": "3", "Jumlah_Sekolah_SMA": "4", "Jumlah_Sekolah_Sarjana": "1", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "2", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 016 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 12:15:03", "Nama_Ketua_RT": "SIRI", "Jumlah_Penduduk_Laki_Laki": "92", "Jumlah_Penduduk_Perempuan": "105", "Jumlah_Bumbung_Rumah": "41", "Jumlah_KK": "47", "Jumlah_Penduduk_Lansia": "14", "Jumlah_Kelahiran_Bayi": "1", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "3", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "152", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "7", "Jumlah_Sekolah_SMA": "3", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "6", "Jumlah_Anak_Usia_0_1_Tahun": "5", "Jumlah_Anak_Usia_2_5_Tahun": "20", "Jumlah_Pendatang": "2", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 017 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:24:11", "Nama_Ketua_RT": "SAFURI", "Jumlah_Penduduk_Laki_Laki": "95", "Jumlah_Penduduk_Perempuan": "90", "Jumlah_Bumbung_Rumah": "34", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "146", "Jumlah_Sekolah_TK": "5", "Jumlah_Sekolah_SD": "11", "Jumlah_Sekolah_SMP": "15", "Jumlah_Sekolah_SMA": "4", "Jumlah_Sekolah_Sarjana": "2", "Jumlah_Penduduk_Putus_Sekolah": "2", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 030 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:24:48", "Nama_Ketua_RT": "MARSALIM", "Jumlah_Penduduk_Laki_Laki": "54", "Jumlah_Penduduk_Perempuan": "38", "Jumlah_Bumbung_Rumah": "0", "Jumlah_KK": "33", "Jumlah_Penduduk_Lansia": "14", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "78", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "2", "Jumlah_Sekolah_SMP": "3", "Jumlah_Sekolah_SMA": "1", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "2", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 021 RW 06 DUSUN KEDAUNG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/15/2026 10:36:02", "Nama_Ketua_RT": "PULIAN", "Jumlah_Penduduk_Laki_Laki": "66", "Jumlah_Penduduk_Perempuan": "66", "Jumlah_Bumbung_Rumah": "0", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "15", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "2", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "95", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "18", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "8", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 022 RW 06 DUSUN KEDAUNG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/15/2026 10:44:13", "Nama_Ketua_RT": "MARSULI", "Jumlah_Penduduk_Laki_Laki": "44", "Jumlah_Penduduk_Perempuan": "36", "Jumlah_Bumbung_Rumah": "0", "Jumlah_KK": "23", "Jumlah_Penduduk_Lansia": "5", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "58", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "8", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "3", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 023 RW 06 DUSUN KEDAUNG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 9:50:30", "Nama_Ketua_RT": "SYAHRUDDIN", "Jumlah_Penduduk_Laki_Laki": "111", "Jumlah_Penduduk_Perempuan": "95", "Jumlah_Bumbung_Rumah": "41", "Jumlah_KK": "56", "Jumlah_Penduduk_Lansia": "0", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "128", "Jumlah_Sekolah_TK": "37", "Jumlah_Sekolah_SD": "12", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "12", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 024 RW 07 DUSUN SENAMBANG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:46:30", "Nama_Ketua_RT": "MAT RAIS", "Jumlah_Penduduk_Laki_Laki": "57", "Jumlah_Penduduk_Perempuan": "51", "Jumlah_Bumbung_Rumah": "28", "Jumlah_KK": "34", "Jumlah_Penduduk_Lansia": "2", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "98", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "5", "Jumlah_Sekolah_SMP": "8", "Jumlah_Sekolah_SMA": "2", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 025 RW 07 DUSUN SENAMBANG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:48:02", "Nama_Ketua_RT": "HASANUDIN", "Jumlah_Penduduk_Laki_Laki": "71", "Jumlah_Penduduk_Perempuan": "67", "Jumlah_Bumbung_Rumah": "31", "Jumlah_KK": "33", "Jumlah_Penduduk_Lansia": "12", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "111", "Jumlah_Sekolah_TK": "7", "Jumlah_Sekolah_SD": "14", "Jumlah_Sekolah_SMP": "8", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 026 RW 07 DUSUN SENAMBANG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:48:54", "Nama_Ketua_RT": "SAHRUJI", "Jumlah_Penduduk_Laki_Laki": "101", "Jumlah_Penduduk_Perempuan": "111", "Jumlah_Bumbung_Rumah": "41", "Jumlah_KK": "47", "Jumlah_Penduduk_Lansia": "21", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "172", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "10", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "15", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 032 RW 07 DUSUN SENAMBANG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:49:39", "Nama_Ketua_RT": "M. ALI", "Jumlah_Penduduk_Laki_Laki": "71", "Jumlah_Penduduk_Perempuan": "68", "Jumlah_Bumbung_Rumah": "30", "Jumlah_KK": "33", "Jumlah_Penduduk_Lansia": "18", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "115", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "7", "Jumlah_Sekolah_SMP": "12", "Jumlah_Sekolah_SMA": "4", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 027 RW 08 DUSUN KONSASI", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 10:04:54", "Nama_Ketua_RT": "MARSYAD", "Jumlah_Penduduk_Laki_Laki": "65", "Jumlah_Penduduk_Perempuan": "54", "Jumlah_Bumbung_Rumah": "27", "Jumlah_KK": "36", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "2", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "1", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "80", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "14", "Jumlah_Sekolah_SMP": "3", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "7", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 028 RW 08 DUSUN KONSASI", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:50:33", "Nama_Ketua_RT": "SARUKI", "Jumlah_Penduduk_Laki_Laki": "86", "Jumlah_Penduduk_Perempuan": "70", "Jumlah_Bumbung_Rumah": "36", "Jumlah_KK": "35", "Jumlah_Penduduk_Lansia": "15", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "117", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "16", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 029 RW 08 DUSUN KONSASI", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/11/2026 10:17:12", "Nama_Ketua_RT": "MARSYAD", "Jumlah_Penduduk_Laki_Laki": "56", "Jumlah_Penduduk_Perempuan": "52", "Jumlah_Bumbung_Rumah": "108", "Jumlah_KK": "34", "Jumlah_Penduduk_Lansia": "13", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "8", "Jumlah_Penerima_BST": "7", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "59", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "6", "Jumlah_Sekolah_SMP": "2", "Jumlah_Sekolah_SMA": "1", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "7", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 036 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 10:42:42", "Nama_Ketua_RT": "JULIADI", "Jumlah_Penduduk_Laki_Laki": "115", "Jumlah_Penduduk_Perempuan": "98", "Jumlah_Bumbung_Rumah": "36", "Jumlah_KK": "63", "Jumlah_Penduduk_Lansia": "7", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "137", "Jumlah_Sekolah_TK": "5", "Jumlah_Sekolah_SD": "19", "Jumlah_Sekolah_SMP": "13", "Jumlah_Sekolah_SMA": "9", "Jumlah_Sekolah_Sarjana": "2", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "19", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 037 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:23:00", "Nama_Ketua_RT": "MUNAKI", "Jumlah_Penduduk_Laki_Laki": "40", "Jumlah_Penduduk_Perempuan": "51", "Jumlah_Bumbung_Rumah": "39", "Jumlah_KK": "63", "Jumlah_Penduduk_Lansia": "19", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "116", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "3", "Jumlah_Sekolah_SMA": "6", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}]</script>
+    <script id="fallback-rt" type="application/json">[{"Nama_RT": "RT 030 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:24:48", "Nama_Ketua_RT": "MARSALIM", "Jumlah_Penduduk_Laki_Laki": "54", "Jumlah_Penduduk_Perempuan": "38", "Jumlah_Bumbung_Rumah": "32", "Jumlah_KK": "33", "Jumlah_Penduduk_Lansia": "14", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "78", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "2", "Jumlah_Sekolah_SMP": "3", "Jumlah_Sekolah_SMA": "1", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "2", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 021 RW 06 DUSUN KEDAUNG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/15/2026 10:36:02", "Nama_Ketua_RT": "PULIAN", "Jumlah_Penduduk_Laki_Laki": "66", "Jumlah_Penduduk_Perempuan": "66", "Jumlah_Bumbung_Rumah": "36", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "15", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "2", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "95", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "18", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "8", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 022 RW 06 DUSUN KEDAUNG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/15/2026 10:44:13", "Nama_Ketua_RT": "MARSULI", "Jumlah_Penduduk_Laki_Laki": "44", "Jumlah_Penduduk_Perempuan": "36", "Jumlah_Bumbung_Rumah": "34", "Jumlah_KK": "23", "Jumlah_Penduduk_Lansia": "5", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "58", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "8", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "3", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 019 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:25:50", "Nama_Ketua_RT": "MARJUKI", "Jumlah_Penduduk_Laki_Laki": "79", "Jumlah_Penduduk_Perempuan": "60", "Jumlah_Bumbung_Rumah": "26", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "8", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "102", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "6", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "10", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 010 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:04:15", "Nama_Ketua_RT": "HARIANTO", "Jumlah_Penduduk_Laki_Laki": "66", "Jumlah_Penduduk_Perempuan": "72", "Jumlah_Bumbung_Rumah": "27", "Jumlah_KK": "39", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "104", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "5", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "11", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 027 RW 08 DUSUN KONSASI", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 10:04:54", "Nama_Ketua_RT": "MARSYAD", "Jumlah_Penduduk_Laki_Laki": "65", "Jumlah_Penduduk_Perempuan": "54", "Jumlah_Bumbung_Rumah": "27", "Jumlah_KK": "36", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "2", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "1", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "80", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "14", "Jumlah_Sekolah_SMP": "3", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "7", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 024 RW 07 DUSUN SENAMBANG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:46:30", "Nama_Ketua_RT": "MAT RAIS", "Jumlah_Penduduk_Laki_Laki": "57", "Jumlah_Penduduk_Perempuan": "51", "Jumlah_Bumbung_Rumah": "28", "Jumlah_KK": "34", "Jumlah_Penduduk_Lansia": "2", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "98", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "5", "Jumlah_Sekolah_SMP": "8", "Jumlah_Sekolah_SMA": "2", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 032 RW 07 DUSUN SENAMBANG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:49:39", "Nama_Ketua_RT": "M. ALI", "Jumlah_Penduduk_Laki_Laki": "71", "Jumlah_Penduduk_Perempuan": "68", "Jumlah_Bumbung_Rumah": "30", "Jumlah_KK": "33", "Jumlah_Penduduk_Lansia": "18", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "115", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "7", "Jumlah_Sekolah_SMP": "12", "Jumlah_Sekolah_SMA": "4", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 025 RW 07 DUSUN SENAMBANG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:48:02", "Nama_Ketua_RT": "HASANUDIN", "Jumlah_Penduduk_Laki_Laki": "71", "Jumlah_Penduduk_Perempuan": "67", "Jumlah_Bumbung_Rumah": "31", "Jumlah_KK": "33", "Jumlah_Penduduk_Lansia": "12", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "111", "Jumlah_Sekolah_TK": "7", "Jumlah_Sekolah_SD": "14", "Jumlah_Sekolah_SMP": "8", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 002 RW 01 DUSUN SENGGIIRING", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 9:31:30", "Nama_Ketua_RT": "MURSID, S.Pd", "Jumlah_Penduduk_Laki_Laki": "67", "Jumlah_Penduduk_Perempuan": "73", "Jumlah_Bumbung_Rumah": "32", "Jumlah_KK": "41", "Jumlah_Penduduk_Lansia": "17", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "3", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "105", "Jumlah_Sekolah_TK": "6", "Jumlah_Sekolah_SD": "9", "Jumlah_Sekolah_SMP": "2", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "1", "Jumlah_Penduduk_Putus_Sekolah": "3", "Jumlah_Anak_Usia_0_1_Tahun": "3", "Jumlah_Anak_Usia_2_5_Tahun": "7", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 004 RW 02 DUSUN BENTENG RAYA", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:26:25", "Nama_Ketua_RT": "HARFANSYAH", "Jumlah_Penduduk_Laki_Laki": "57", "Jumlah_Penduduk_Perempuan": "64", "Jumlah_Bumbung_Rumah": "32", "Jumlah_KK": "40", "Jumlah_Penduduk_Lansia": "11", "Jumlah_Kelahiran_Bayi": "3", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "4", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "83", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "16", "Jumlah_Sekolah_SMP": "4", "Jumlah_Sekolah_SMA": "4", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "3", "Jumlah_Anak_Usia_2_5_Tahun": "3", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 013 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 11:22:06", "Nama_Ketua_RT": "KHOLIS", "Jumlah_Penduduk_Laki_Laki": "70", "Jumlah_Penduduk_Perempuan": "62", "Jumlah_Bumbung_Rumah": "32", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "6", "Jumlah_Kelahiran_Bayi": "1", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "7", "Jumlah_Penerima_BPNT": "5", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "84", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "11", "Jumlah_Sekolah_SMP": "8", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "3", "Jumlah_Penduduk_Putus_Sekolah": "5", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "6", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 017 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:24:11", "Nama_Ketua_RT": "SAFURI", "Jumlah_Penduduk_Laki_Laki": "95", "Jumlah_Penduduk_Perempuan": "90", "Jumlah_Bumbung_Rumah": "34", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "146", "Jumlah_Sekolah_TK": "5", "Jumlah_Sekolah_SD": "11", "Jumlah_Sekolah_SMP": "15", "Jumlah_Sekolah_SMA": "4", "Jumlah_Sekolah_Sarjana": "2", "Jumlah_Penduduk_Putus_Sekolah": "2", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 011 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 11:13:14", "Nama_Ketua_RT": "JUNAIDI", "Jumlah_Penduduk_Laki_Laki": "54", "Jumlah_Penduduk_Perempuan": "51", "Jumlah_Bumbung_Rumah": "35", "Jumlah_KK": "32", "Jumlah_Penduduk_Lansia": "24", "Jumlah_Kelahiran_Bayi": "2", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "1", "Jumlah_Penerima_BPNT": "5", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "78", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "4", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "2", "Jumlah_Sekolah_Sarjana": "3", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "2", "Jumlah_Pendatang": "5", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 014 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 11:15:51", "Nama_Ketua_RT": "MARTILAM", "Jumlah_Penduduk_Laki_Laki": "71", "Jumlah_Penduduk_Perempuan": "83", "Jumlah_Bumbung_Rumah": "35", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "16", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "10", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "84", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "15", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "3", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "1", "Jumlah_Anak_Usia_0_1_Tahun": "1", "Jumlah_Anak_Usia_2_5_Tahun": "12", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 009 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:01:17", "Nama_Ketua_RT": "BURHANI", "Jumlah_Penduduk_Laki_Laki": "64", "Jumlah_Penduduk_Perempuan": "74", "Jumlah_Bumbung_Rumah": "36", "Jumlah_KK": "46", "Jumlah_Penduduk_Lansia": "9", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "102", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "5", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "9", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 028 RW 08 DUSUN KONSASI", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:50:33", "Nama_Ketua_RT": "SARUKI", "Jumlah_Penduduk_Laki_Laki": "86", "Jumlah_Penduduk_Perempuan": "70", "Jumlah_Bumbung_Rumah": "36", "Jumlah_KK": "35", "Jumlah_Penduduk_Lansia": "15", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "117", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "16", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 036 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 10:42:42", "Nama_Ketua_RT": "JULIADI", "Jumlah_Penduduk_Laki_Laki": "115", "Jumlah_Penduduk_Perempuan": "98", "Jumlah_Bumbung_Rumah": "36", "Jumlah_KK": "63", "Jumlah_Penduduk_Lansia": "7", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "137", "Jumlah_Sekolah_TK": "5", "Jumlah_Sekolah_SD": "19", "Jumlah_Sekolah_SMP": "13", "Jumlah_Sekolah_SMA": "9", "Jumlah_Sekolah_Sarjana": "2", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "19", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 003 RW 01 DUSUN SENGGIRING", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:25:09", "Nama_Ketua_RT": "M. NAWI", "Jumlah_Penduduk_Laki_Laki": "59", "Jumlah_Penduduk_Perempuan": "64", "Jumlah_Bumbung_Rumah": "38", "Jumlah_KK": "37", "Jumlah_Penduduk_Lansia": "6", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "85", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "22", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "10", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 031 RW 02 DUSUN BENTENG RAYA", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:54:07", "Nama_Ketua_RT": "RUDHI KHAIRUDDIN", "Jumlah_Penduduk_Laki_Laki": "39", "Jumlah_Penduduk_Perempuan": "38", "Jumlah_Bumbung_Rumah": "38", "Jumlah_KK": "38", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "55", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "9", "Jumlah_Sekolah_SMP": "2", "Jumlah_Sekolah_SMA": "2", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "1", "Jumlah_Anak_Usia_2_5_Tahun": "3", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 015 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 12:09:45", "Nama_Ketua_RT": "MAHRUJI", "Jumlah_Penduduk_Laki_Laki": "82", "Jumlah_Penduduk_Perempuan": "76", "Jumlah_Bumbung_Rumah": "38", "Jumlah_KK": "41", "Jumlah_Penduduk_Lansia": "11", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "1", "Jumlah_Penerima_PKH": "8", "Jumlah_Penerima_BPNT": "14", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "109", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "23", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "2", "Jumlah_Penduduk_Putus_Sekolah": "5", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 035 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/20/2026 10:29:24", "Nama_Ketua_RT": "JOHAN", "Jumlah_Penduduk_Laki_Laki": "79", "Jumlah_Penduduk_Perempuan": "79", "Jumlah_Bumbung_Rumah": "39", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "15", "Jumlah_Kelahiran_Bayi": "2", "Jumlah_Kematian": "3", "Jumlah_Penerima_PKH": "7", "Jumlah_Penerima_BPNT": "2", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "143", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "10", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "1", "Jumlah_Penduduk_Putus_Sekolah": "1", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "2", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 037 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:23:00", "Nama_Ketua_RT": "MUNAKI", "Jumlah_Penduduk_Laki_Laki": "73", "Jumlah_Penduduk_Perempuan": "61", "Jumlah_Bumbung_Rumah": "39", "Jumlah_KK": "63", "Jumlah_Penduduk_Lansia": "19", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "105", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "3", "Jumlah_Sekolah_SMA": "6", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 001 RW 01 DUSUN SENGGIRING", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 9:30:10", "Nama_Ketua_RT": "SY. JAMALUDDIN", "Jumlah_Penduduk_Laki_Laki": "98", "Jumlah_Penduduk_Perempuan": "96", "Jumlah_Bumbung_Rumah": "40", "Jumlah_KK": "58", "Jumlah_Penduduk_Lansia": "15", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "160", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "11", "Jumlah_Sekolah_SMP": "1", "Jumlah_Sekolah_SMA": "7", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 034 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 12:22:10", "Nama_Ketua_RT": "SADRA'I", "Jumlah_Penduduk_Laki_Laki": "86", "Jumlah_Penduduk_Perempuan": "115", "Jumlah_Bumbung_Rumah": "41", "Jumlah_KK": "45", "Jumlah_Penduduk_Lansia": "9", "Jumlah_Kelahiran_Bayi": "4", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "5", "Jumlah_Penerima_BPNT": "8", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "87", "Jumlah_Sekolah_TK": "3", "Jumlah_Sekolah_SD": "16", "Jumlah_Sekolah_SMP": "3", "Jumlah_Sekolah_SMA": "4", "Jumlah_Sekolah_Sarjana": "1", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "2", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 016 RW 05 DUSUN SEPAKAT DARAT", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 12:15:03", "Nama_Ketua_RT": "SIRI", "Jumlah_Penduduk_Laki_Laki": "92", "Jumlah_Penduduk_Perempuan": "105", "Jumlah_Bumbung_Rumah": "41", "Jumlah_KK": "47", "Jumlah_Penduduk_Lansia": "14", "Jumlah_Kelahiran_Bayi": "1", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "3", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "152", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "7", "Jumlah_Sekolah_SMA": "3", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "6", "Jumlah_Anak_Usia_0_1_Tahun": "5", "Jumlah_Anak_Usia_2_5_Tahun": "20", "Jumlah_Pendatang": "2", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 023 RW 06 DUSUN KEDAUNG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 9:50:30", "Nama_Ketua_RT": "SYAHRUDDIN", "Jumlah_Penduduk_Laki_Laki": "111", "Jumlah_Penduduk_Perempuan": "95", "Jumlah_Bumbung_Rumah": "41", "Jumlah_KK": "56", "Jumlah_Penduduk_Lansia": "0", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "128", "Jumlah_Sekolah_TK": "37", "Jumlah_Sekolah_SD": "12", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "12", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 026 RW 07 DUSUN SENAMBANG", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:48:54", "Nama_Ketua_RT": "SAHRUJI", "Jumlah_Penduduk_Laki_Laki": "101", "Jumlah_Penduduk_Perempuan": "111", "Jumlah_Bumbung_Rumah": "41", "Jumlah_KK": "47", "Jumlah_Penduduk_Lansia": "21", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "172", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "10", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "15", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 005 RW 02 DUSUN BENTENG RAYA", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:58:15", "Nama_Ketua_RT": "SATIAT", "Jumlah_Penduduk_Laki_Laki": "143", "Jumlah_Penduduk_Perempuan": "106", "Jumlah_Bumbung_Rumah": "42", "Jumlah_KK": "62", "Jumlah_Penduduk_Lansia": "9", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "2", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "2", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "109", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "13", "Jumlah_Sekolah_SMP": "9", "Jumlah_Sekolah_SMA": "6", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 008 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:56:43", "Nama_Ketua_RT": "NURHAYATI", "Jumlah_Penduduk_Laki_Laki": "52", "Jumlah_Penduduk_Perempuan": "77", "Jumlah_Bumbung_Rumah": "43", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "2", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "74", "Jumlah_Sekolah_TK": "1", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "10", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "15", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 033 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/25/2026 10:26:39", "Nama_Ketua_RT": "FIRDAUS", "Jumlah_Penduduk_Laki_Laki": "95", "Jumlah_Penduduk_Perempuan": "100", "Jumlah_Bumbung_Rumah": "45", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "14", "Jumlah_Kelahiran_Bayi": "2", "Jumlah_Kematian": "2", "Jumlah_Penerima_PKH": "12", "Jumlah_Penerima_BPNT": "4", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "105", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "28", "Jumlah_Sekolah_SMP": "10", "Jumlah_Sekolah_SMA": "5", "Jumlah_Sekolah_Sarjana": "1", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "2", "Jumlah_Anak_Usia_2_5_Tahun": "24", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 007 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 9:53:59", "Nama_Ketua_RT": "SULAIMAN", "Jumlah_Penduduk_Laki_Laki": "76", "Jumlah_Penduduk_Perempuan": "81", "Jumlah_Bumbung_Rumah": "46", "Jumlah_KK": "50", "Jumlah_Penduduk_Lansia": "16", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "125", "Jumlah_Sekolah_TK": "4", "Jumlah_Sekolah_SD": "9", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "6", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "2", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "2", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 020 RW 01 DUSUN SENGGIRING", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "5/24/2026 17:53:00", "Nama_Ketua_RT": "DG. RIVA'IE", "Jumlah_Penduduk_Laki_Laki": "82", "Jumlah_Penduduk_Perempuan": "75", "Jumlah_Bumbung_Rumah": "50", "Jumlah_KK": "53", "Jumlah_Penduduk_Lansia": "16", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "121", "Jumlah_Sekolah_TK": "", "Jumlah_Sekolah_SD": "11", "Jumlah_Sekolah_SMP": "4", "Jumlah_Sekolah_SMA": "", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "3", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 018 RW 03 DUSUN BENTENG TIMUR", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 10:40:13", "Nama_Ketua_RT": "EFENDI", "Jumlah_Penduduk_Laki_Laki": "105", "Jumlah_Penduduk_Perempuan": "85", "Jumlah_Bumbung_Rumah": "54", "Jumlah_KK": "65", "Jumlah_Penduduk_Lansia": "10", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "137", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "20", "Jumlah_Sekolah_SMP": "6", "Jumlah_Sekolah_SMA": "8", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "5", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 012 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:28:32", "Nama_Ketua_RT": "MARINO", "Jumlah_Penduduk_Laki_Laki": "146", "Jumlah_Penduduk_Perempuan": "124", "Jumlah_Bumbung_Rumah": "54", "Jumlah_KK": "72", "Jumlah_Penduduk_Lansia": "41", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "0", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "229", "Jumlah_Sekolah_TK": "0", "Jumlah_Sekolah_SD": "3", "Jumlah_Sekolah_SMP": "11", "Jumlah_Sekolah_SMA": "9", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "0", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 006 RW 02 DUSUN BENTENG RAYA", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 12:28:47", "Nama_Ketua_RT": "EFFENDI RAUPE", "Jumlah_Penduduk_Laki_Laki": "108", "Jumlah_Penduduk_Perempuan": "92", "Jumlah_Bumbung_Rumah": "56", "Jumlah_KK": "57", "Jumlah_Penduduk_Lansia": "14", "Jumlah_Kelahiran_Bayi": "1", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "2", "Jumlah_Penerima_BPNT": "0", "Jumlah_Penerima_BST": "0", "Jumlah_Penerima_BLT": "0", "Jumlah_Memiliki_KTP": "156", "Jumlah_Sekolah_TK": "3", "Jumlah_Sekolah_SD": "8", "Jumlah_Sekolah_SMP": "5", "Jumlah_Sekolah_SMA": "3", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "0", "Jumlah_Anak_Usia_0_1_Tahun": "1", "Jumlah_Anak_Usia_2_5_Tahun": "3", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}, {"Nama_RT": "RT 029 RW 08 DUSUN KONSASI", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/11/2026 10:17:12", "Nama_Ketua_RT": "MARSYAD", "Jumlah_Penduduk_Laki_Laki": "56", "Jumlah_Penduduk_Perempuan": "52", "Jumlah_Bumbung_Rumah": "108", "Jumlah_KK": "34", "Jumlah_Penduduk_Lansia": "13", "Jumlah_Kelahiran_Bayi": "0", "Jumlah_Kematian": "0", "Jumlah_Penerima_PKH": "4", "Jumlah_Penerima_BPNT": "8", "Jumlah_Penerima_BST": "7", "Jumlah_Penerima_BLT": "1", "Jumlah_Memiliki_KTP": "59", "Jumlah_Sekolah_TK": "2", "Jumlah_Sekolah_SD": "6", "Jumlah_Sekolah_SMP": "2", "Jumlah_Sekolah_SMA": "1", "Jumlah_Sekolah_Sarjana": "0", "Jumlah_Penduduk_Putus_Sekolah": "7", "Jumlah_Anak_Usia_0_1_Tahun": "0", "Jumlah_Anak_Usia_2_5_Tahun": "8", "Jumlah_Pendatang": "0", "Status_Pendataan": "Selesai"}]</script>
     <script id="fallback-fas" type="application/json">[{"ID_Fasilitas": "e1880180", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "5/26/2026 11:14:30", "Lokasi_GPS": "0.313411, 108.994129", "Foto_Fasilitas": "Fasilitas_Images/e1880180.Foto_Fasilitas.041844.jpg", "RT": "RT 001 RW 01 DUSUN SENGGIRING", "Nama_Fasilitas": "SURAU AL HIDAYAH", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "bb39de8e", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 10:08:07", "Lokasi_GPS": "0.311922, 109.002703", "Foto_Fasilitas": "Fasilitas_Images/bb39de8e.Foto_Fasilitas.030946.jpg", "RT": "RT 003 RW 01 DUSUN SENGGIRING", "Nama_Fasilitas": "SURAU NURUZZAMAN", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "740f59db", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 10:09:55", "Lokasi_GPS": "0.306965, 109.008208", "Foto_Fasilitas": "Fasilitas_Images/740f59db.Foto_Fasilitas.031155.jpg", "RT": "RT 018 RW 03 DUSUN BENTENG TIMUR", "Nama_Fasilitas": "SURAU ALHIDAYAH", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "5348b5cf", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 10:12:08", "Lokasi_GPS": "0.311664, 109.002145", "Foto_Fasilitas": "Fasilitas_Images/5348b5cf.Foto_Fasilitas.031539.png", "RT": "RT 002 RW 01 DUSUN SENGGIIRING", "Nama_Fasilitas": "KANTOR DESA SUNGAI BAKAU KECIL", "Kategori_Fasilitas": "Pemerintahan", "Sub_Kategori": "Kantor Desa", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "1a9541e1", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 10:39:06", "Lokasi_GPS": "0.336561, 109.017759", "Foto_Fasilitas": "Fasilitas_Images/1a9541e1.Foto_Fasilitas.040347.jpg", "RT": "RT 014 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "MUSHALLA BAITURRAHIM", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Mata Air/Sungai", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "2120204d", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/2/2026 11:52:08", "Lokasi_GPS": "0.310675, 109.008926", "Foto_Fasilitas": "Fasilitas_Images/2120204d.Foto_Fasilitas.045316.jpg", "RT": "RT 006 RW 02 DUSUN BENTENG RAYA", "Nama_Fasilitas": "MASJID SABILUL KHAIRAT", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "7c213726", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/2/2026 10:58:35", "Lokasi_GPS": "0.312140, 109.010819", "Foto_Fasilitas": "Fasilitas_Images/7c213726.Foto_Fasilitas.050152.jpg", "RT": "RT 011 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "SURAU H.BAHRUDDIN (AL-ABROR)", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "dbfc189f", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 12:33:54", "Lokasi_GPS": "0.331249, 109.000894", "Foto_Fasilitas": "Fasilitas_Images/dbfc189f.Foto_Fasilitas.030449.jpg", "RT": "RT 026 RW 07 DUSUN SENAMBANG", "Nama_Fasilitas": "SD ISLAM AMALIYAH", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SD/MI", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "4835badc", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 12:41:57", "Lokasi_GPS": "0.331359, 109.001302", "Foto_Fasilitas": "Fasilitas_Images/4835badc.Foto_Fasilitas.031139.jpg", "RT": "RT 024 RW 07 DUSUN SENAMBANG", "Nama_Fasilitas": "MASJID BABUN NA'IM", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "87f04975", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/8/2026 12:44:25", "Lokasi_GPS": "0.347086, 109.021033", "Foto_Fasilitas": "Fasilitas_Images/87f04975.Foto_Fasilitas.025110.jpg", "RT": "RT 016 RW 05 DUSUN SEPAKAT DARAT", "Nama_Fasilitas": "MASJID SAFINATUSSALAM", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "efdb660a", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/9/2026 10:53:58", "Lokasi_GPS": "0.310540, 109.008400", "Foto_Fasilitas": "Fasilitas_Images/efdb660a.Foto_Fasilitas.035522.jpg", "RT": "RT 006 RW 02 DUSUN BENTENG RAYA", "Nama_Fasilitas": "SMA MUHAMMADIYAH", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SMA/SMK/MA", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "114dda0b", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/9/2026 10:55:27", "Lokasi_GPS": "0.311247, 109.008988", "Foto_Fasilitas": "Fasilitas_Images/114dda0b.Foto_Fasilitas.035652.jpg", "RT": "RT 005 RW 02 DUSUN BENTENG RAYA", "Nama_Fasilitas": "MTS MUHAMMADIYAH", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SMP/MTs", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "4b50dd9e", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 10:56:55", "Lokasi_GPS": "0.311417, 109.010950", "Foto_Fasilitas": "Fasilitas_Images/4b50dd9e.Foto_Fasilitas.035801.jpg", "RT": "RT 011 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "SDN 15 MEMPAWAH TIMUR", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SD/MI", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "0a06c3c2", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/9/2026 10:58:01", "Lokasi_GPS": "0.311876, 109.010941", "Foto_Fasilitas": "Fasilitas_Images/0a06c3c2.Foto_Fasilitas.035856.jpg", "RT": "RT 011 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "SDN 8 MEMPAWAH TIMUR", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SD/MI", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "6b1396b7", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/9/2026 10:58:59", "Lokasi_GPS": "0.335154, 109.017434", "Foto_Fasilitas": "Fasilitas_Images/6b1396b7.Foto_Fasilitas.025130.jpg", "RT": "RT 014 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "SDN 14 MEMPAWAH TIMUR", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SD/MI", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "1dd2b894", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/9/2026 11:00:53", "Lokasi_GPS": "0.321297, 108.999287", "Foto_Fasilitas": "Fasilitas_Images/1dd2b894.Foto_Fasilitas.025751.jpg", "RT": "RT 022 RW 06 DUSUN KEDAUNG", "Nama_Fasilitas": "SMPN 3 MEMPAWAH TIMUR", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SMP/MTs", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "3d21c79c", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/9/2026 11:03:33", "Lokasi_GPS": "0.321473, 108.999469", "Foto_Fasilitas": "Fasilitas_Images/3d21c79c.Foto_Fasilitas.040427.jpg", "RT": "RT 022 RW 06 DUSUN KEDAUNG", "Nama_Fasilitas": "SDN 16 MEMPAWAH TIMUR", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SD/MI", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "e8edccee", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 12:28:21", "Lokasi_GPS": "0.323551, 109.014105", "Foto_Fasilitas": "Fasilitas_Images/e8edccee.Foto_Fasilitas.025332.jpg", "RT": "RT 012 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "MASJID AL IKHLAS", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "0f5f98aa", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 9:34:39", "Lokasi_GPS": "0.348166, 109.021167", "Foto_Fasilitas": "Fasilitas_Images/0f5f98aa.Foto_Fasilitas.023555.jpg", "RT": "RT 016 RW 05 DUSUN SEPAKAT DARAT", "Nama_Fasilitas": "POSKESDES SUNGAI BAKAU KECIL", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Polindes/Poskesdes", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "cdfcae7d", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 9:59:44", "Lokasi_GPS": "0.313511, 108.993804", "Foto_Fasilitas": "Fasilitas_Images/cdfcae7d.Foto_Fasilitas.030138.jpg", "RT": "RT 020 RW 01 DUSUN SENGGIRING", "Nama_Fasilitas": "POSYANDU MAWAR", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Posyandu", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "c9166f9c", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/10/2026 10:02:28", "Lokasi_GPS": "0.345231, 109.019839", "Foto_Fasilitas": "Fasilitas_Images/c9166f9c.Foto_Fasilitas.030510.jpg", "RT": "RT 037 RW 05 DUSUN SEPAKAT DARAT", "Nama_Fasilitas": "POSYANDU KASIH IBU", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Posyandu", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "af11103f", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:56:41", "Lokasi_GPS": "0.322295, 109.014134", "Foto_Fasilitas": "Fasilitas_Images/af11103f.Foto_Fasilitas.025821.jpg", "RT": "RT 012 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "POSYANDU MUTIARA", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Posyandu", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "e8e5f63e", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/15/2026 12:37:07", "Lokasi_GPS": "0.338571, 109.000162", "Foto_Fasilitas": "Fasilitas_Images/e8e5f63e.Foto_Fasilitas.053954.jpg", "RT": "RT 032 RW 07 DUSUN SENAMBANG", "Nama_Fasilitas": "SURAU AL MUHLISIN", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Jalan Tanah (Roda 2)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "eefec299", "Nama_Petugas": "Sahrul Rozi", "Tanggal_Waktu": "6/15/2026 12:39:56", "Lokasi_GPS": "0.330780, 109.004413", "Foto_Fasilitas": "Fasilitas_Images/eefec299.Foto_Fasilitas.025522.jpg", "RT": "RT 024 RW 07 DUSUN SENAMBANG", "Nama_Fasilitas": "SURAU ALMANAR", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "71d50bf8", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:46:04", "Lokasi_GPS": "0.345679, 109.020013", "Foto_Fasilitas": "Fasilitas_Images/71d50bf8.Foto_Fasilitas.024919.jpg", "RT": "RT 016 RW 05 DUSUN SEPAKAT DARAT", "Nama_Fasilitas": "PONDOK POSANTREN BAHRUL ULUM", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "Pondok Pesantren", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "549a1060", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:55:35", "Lokasi_GPS": "0.330850, 109.002738", "Foto_Fasilitas": "Fasilitas_Images/549a1060.Foto_Fasilitas.025730.jpg", "RT": "RT 026 RW 07 DUSUN SENAMBANG", "Nama_Fasilitas": "POSYANDU SEHAT BAROKAH", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Posyandu", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "d0782721", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 10:00:46", "Lokasi_GPS": "0.333226, 109.016633", "Foto_Fasilitas": "Fasilitas_Images/d0782721.Foto_Fasilitas.030147.jpg", "RT": "RT 033 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "MASJID BABUL KHAIR", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "0c399118", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 10:03:46", "Lokasi_GPS": "0.312977, 109.011336", "Foto_Fasilitas": "Fasilitas_Images/0c399118.Foto_Fasilitas.030505.jpg", "RT": "RT 011 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "VIHARA SHAN TUNG KIUNG", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Vihara/Klenteng", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "f465d720", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 11:00:38", "Lokasi_GPS": "0.342384, 109.019113", "Foto_Fasilitas": "Fasilitas_Images/f465d720.Foto_Fasilitas.040241.jpg", "RT": "RT 015 RW 05 DUSUN SEPAKAT DARAT", "Nama_Fasilitas": "MASJID KHITAMUL KHAIR", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "ef001b20", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 11:06:17", "Lokasi_GPS": "0.351186, 109.023887", "Foto_Fasilitas": "Fasilitas_Images/ef001b20.Foto_Fasilitas.040841.jpg", "RT": "RT 017 RW 05 DUSUN SEPAKAT DARAT", "Nama_Fasilitas": "RA. ALBILQIST", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "PAUD", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "edaff353", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:33:31", "Lokasi_GPS": "0.304753, 109.008078", "Foto_Fasilitas": "Fasilitas_Images/edaff353.Foto_Fasilitas.023634.jpg", "RT": "RT 008 RW 03 DUSUN BENTENG TIMUR", "Nama_Fasilitas": "PENGGALANGAN SAMPAN", "Kategori_Fasilitas": "Bangunan Lainnya", "Sub_Kategori": "Lainnya (Sebutkan di Catatan)", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Mata Air/Sungai", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": "PENGGALANGAN SAMPAN"}, {"ID_Fasilitas": "dd588eba", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:36:45", "Lokasi_GPS": "0.307837, 109.008999", "Foto_Fasilitas": "Fasilitas_Images/dd588eba.Foto_Fasilitas.023859.jpg", "RT": "RT 008 RW 03 DUSUN BENTENG TIMUR", "Nama_Fasilitas": "SURAU SABILUL JANNAH", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "PDAM/PAMSIMAS", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "c05037d6", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:43:50", "Lokasi_GPS": "0.311686, 109.009842", "Foto_Fasilitas": "Fasilitas_Images/c05037d6.Foto_Fasilitas.024610.jpg", "RT": "RT 010 RW 03 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "KLENTENG FUK TET MIAU", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Vihara/Klenteng", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "550f419a", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:48:49", "Lokasi_GPS": "0.303334, 109.007613", "Foto_Fasilitas": "Fasilitas_Images/550f419a.Foto_Fasilitas.024958.jpg", "RT": "RT 008 RW 03 DUSUN BENTENG TIMUR", "Nama_Fasilitas": "TK NEGERI PEDESAAN", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "TK", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "5b64d902", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:51:23", "Lokasi_GPS": "0.321663, 109.000616", "Foto_Fasilitas": "Fasilitas_Images/5b64d902.Foto_Fasilitas.025259.jpg", "RT": "RT 022 RW 06 DUSUN KEDAUNG", "Nama_Fasilitas": "POSYANDU FLAMBOYAN", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Posyandu", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "7b2c3814", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:53:06", "Lokasi_GPS": "0.321581, 109.002269", "Foto_Fasilitas": "Fasilitas_Images/7b2c3814.Foto_Fasilitas.025445.jpg", "RT": "RT 022 RW 06 DUSUN KEDAUNG", "Nama_Fasilitas": "SURAU NURUL ISLAM", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "70cc0ff1", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:55:14", "Lokasi_GPS": "0.321988, 109.000229", "Foto_Fasilitas": "Fasilitas_Images/70cc0ff1.Foto_Fasilitas.025630.jpg", "RT": "RT 022 RW 06 DUSUN KEDAUNG", "Nama_Fasilitas": "SURAU ALHAMIDI", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "3f7bf460", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 9:58:02", "Lokasi_GPS": "0.347275, 109.021084", "Foto_Fasilitas": "Fasilitas_Images/3f7bf460.Foto_Fasilitas.030236.jpg", "RT": "RT 016 RW 05 DUSUN SEPAKAT DARAT", "Nama_Fasilitas": "MADRASAH TSANAWIYAH BAHRUL ULUM AL-HAMIDIYAH", "Kategori_Fasilitas": "Pendidikan", "Sub_Kategori": "SMP/MTs", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "2cb73286", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 10:13:06", "Lokasi_GPS": "0.322156, 108.998991", "Foto_Fasilitas": "Fasilitas_Images/2cb73286.Foto_Fasilitas.031927.jpg", "RT": "RT 022 RW 06 DUSUN KEDAUNG", "Nama_Fasilitas": "MASJID RAUDHATUL JANNAH", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "678f2849", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/16/2026 10:20:22", "Lokasi_GPS": "0.326806, 109.014365", "Foto_Fasilitas": "Fasilitas_Images/678f2849.Foto_Fasilitas.032341.jpg", "RT": "RT 012 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "SURAU AL BAIHAQI", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Aspal/Beton (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "60915a25", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 11:25:34", "Lokasi_GPS": "0.332119, 109.007683", "Foto_Fasilitas": "Fasilitas_Images/60915a25.Foto_Fasilitas.043009.jpg", "RT": "RT 026 RW 07 DUSUN SENAMBANG", "Nama_Fasilitas": "MASJID NURUL HUDA", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "5cea9054", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 11:36:01", "Lokasi_GPS": "0.332198, 109.024496", "Foto_Fasilitas": "Fasilitas_Images/5cea9054.Foto_Fasilitas.043750.jpg", "RT": "RT 013 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "MASJID USSISA ALATTAQWA", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Masjid", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "d53bded0", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 11:38:06", "Lokasi_GPS": "0.332554, 109.024614", "Foto_Fasilitas": "Fasilitas_Images/d53bded0.Foto_Fasilitas.043919.jpg", "RT": "RT 013 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "POSYANDU AMPULOR", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Posyandu", "Kondisi_Bangunan": "Rusak Ringan", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "6c5301fb", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 11:42:33", "Lokasi_GPS": "0.326782, 109.025167", "Foto_Fasilitas": "Fasilitas_Images/6c5301fb.Foto_Fasilitas.044329.jpg", "RT": "RT 019 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "MUSHOLA NURUL JIHAD", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Rusak Ringan", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "da053cd3", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 11:45:16", "Lokasi_GPS": "0.333487, 109.021264", "Foto_Fasilitas": "Fasilitas_Images/da053cd3.Foto_Fasilitas.044615.jpg", "RT": "RT 013 RW 04 DUSUN SEPAKAT TENGAH", "Nama_Fasilitas": "SURAU AL MUTAZZAM", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "d167524b", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/18/2026 9:52:36", "Lokasi_GPS": "0.338871, 109.008036", "Foto_Fasilitas": "Fasilitas_Images/d167524b.Foto_Fasilitas.025356.jpg", "RT": "RT 027 RW 08 DUSUN KONSASI", "Nama_Fasilitas": "POSYANDU MELATI", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Posyandu", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Tidak Tersedia", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "b14df374", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 10:34:18", "Lokasi_GPS": "0.311924, 109.009735", "Foto_Fasilitas": "Fasilitas_Images/b14df374.Foto_Fasilitas.033534.jpg", "RT": "RT 005 RW 02 DUSUN BENTENG RAYA", "Nama_Fasilitas": "POSYANDU ANUGRAH", "Kategori_Fasilitas": "Kesehatan", "Sub_Kategori": "Posyandu", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Tidak Tersedia", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Sangat Baik (4G/LTE)", "Catatan": ""}, {"ID_Fasilitas": "d107f6ea", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "7/3/2026 10:35:36", "Lokasi_GPS": "0.344935, 109.009734", "Foto_Fasilitas": "Fasilitas_Images/d107f6ea.Foto_Fasilitas.033726.jpg", "RT": "RT 028 RW 08 DUSUN KONSASI", "Nama_Fasilitas": "SURAU MIFTAHUL ULUM", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Perkerasan/Batu (Roda 4)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}, {"ID_Fasilitas": "bac20daa", "Nama_Petugas": "Haqqi Wirakaryadi", "Tanggal_Waktu": "6/17/2026 12:44:31", "Lokasi_GPS": "0.343966, 109.013396", "Foto_Fasilitas": "Fasilitas_Images/bac20daa.Foto_Fasilitas.054626.jpg", "RT": "RT 029 RW 08 DUSUN KONSASI", "Nama_Fasilitas": "SURAU AL AMIN", "Kategori_Fasilitas": "Ibadah", "Sub_Kategori": "Musholla/Langgar", "Kondisi_Bangunan": "Baik", "Sumber_Listrik": "PLN 24 Jam", "Sumber_Air_Bersih": "Sumur Bor/Pompa", "Akses_Jalan": "Jalan Tanah (Roda 2)", "Sinyal_Seluler": "Cukup (3G)", "Catatan": ""}]</script>
 
     <script>
@@ -1066,9 +635,304 @@
             renderFasilitasChart(fas);
             renderMapMarkers(fas);
 
+            generate20Flashcards(rt, fas);
+
             // Default initial sort: Sort RT table by Nama_RT ascending
             sortTableRT('Nama_RT', true);
             sortTableFas('Nama_Fasilitas', true);
+        }
+
+        // Interactive 3D Flashcards Logic (20 Dynamic Facts + Village Improvement Insights)
+        var allFlashcardsData = [];
+        var activeFlashcardsData = [];
+        var swiperFlashcards = null;
+
+        function generate20Flashcards(rt, fas) {
+            if (!Array.isArray(rt) || !rt.length) return;
+
+            var totalL = 0, totalP = 0, totalKK = 0, totalBumbung = 0, totalLansia = 0, totalBansos = 0, totalKTP = 0, totalPutusSekolah = 0, totalAnakSekolah = 0;
+            
+            rt.forEach(function(r) {
+                totalL += parseInt(r.Jumlah_Penduduk_Laki_Laki || 0);
+                totalP += parseInt(r.Jumlah_Penduduk_Perempuan || 0);
+                totalKK += parseInt(r.Jumlah_KK || 0);
+                totalBumbung += parseInt(r.Jumlah_Bumbung_Rumah || 0);
+                totalLansia += parseInt(r.Jumlah_Penduduk_Lansia || 0);
+                totalKTP += parseInt(r.Jumlah_Memiliki_KTP || 0);
+                totalPutusSekolah += parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0);
+                totalAnakSekolah += parseInt(r.Jumlah_Sekolah_TK || 0)
+                                  + parseInt(r.Jumlah_Sekolah_SD || 0)
+                                  + parseInt(r.Jumlah_Sekolah_SMP || 0)
+                                  + parseInt(r.Jumlah_Sekolah_SMA || 0);
+                totalBansos += parseInt(r.Jumlah_Penerima_PKH || 0)
+                             + parseInt(r.Jumlah_Penerima_BPNT || 0)
+                             + parseInt(r.Jumlah_Penerima_BLT || 0)
+                             + parseInt(r.Jumlah_Penerima_BST || 0);
+            });
+
+            var totalPenduduk = totalL + totalP;
+            var sexRatio = totalP > 0 ? ((totalL / totalP) * 100).toFixed(1) : '-';
+            var artRata = totalKK > 0 ? (totalPenduduk / totalKK).toFixed(2) : '-';
+            var kepadatan = totalBumbung > 0 ? (totalPenduduk / totalBumbung).toFixed(2) : '-';
+            var pctLansia = totalPenduduk > 0 ? ((totalLansia / totalPenduduk) * 100).toFixed(1) : '-';
+            var pctKTP = totalPenduduk > 0 ? ((totalKTP / totalPenduduk) * 100).toFixed(1) : '-';
+            var pctBansos = totalPenduduk > 0 ? ((totalBansos / totalPenduduk) * 100).toFixed(1) : '-';
+            var pctPutusSekolah = totalAnakSekolah > 0 ? ((totalPutusSekolah / totalAnakSekolah) * 100).toFixed(1) : '-';
+            var bumbungPerKK = totalKK > 0 ? (totalBumbung / totalKK).toFixed(2) : '-';
+
+            // RT Rekor Sorting
+            var rtMaxPop = rt.slice().sort(function(a,b) { return (b._totalPop||0) - (a._totalPop||0); })[0] || {};
+            var rtMinPop = rt.slice().sort(function(a,b) { return (a._totalPop||0) - (b._totalPop||0); })[0] || {};
+
+            var rtMinKTP = rt.slice().filter(function(r){ return (r._totalPop||0) > 0; }).sort(function(a,b) { return (a._pctKTP||0) - (b._pctKTP||0); })[0] || {};
+            var rtMaxLansiaPct = rt.slice().filter(function(r){ return (r._totalPop||0) > 0; }).sort(function(a,b) { return (b._pctLansia||0) - (a._pctLansia||0); })[0] || {};
+            var rtMaxBansos = rt.slice().filter(function(r){ return (r._totalPop||0) > 0; }).sort(function(a,b) { return (b._pctBansos||0) - (a._pctBansos||0); })[0] || {};
+            var rtMaxPutus = rt.slice().sort(function(a,b) { return parseInt(b.Jumlah_Penduduk_Putus_Sekolah||0) - parseInt(a.Jumlah_Penduduk_Putus_Sekolah||0); })[0] || {};
+            var rtMaxKepadatan = rt.slice().filter(function(r){ return parseInt(r.Jumlah_Bumbung_Rumah||0)>0; }).sort(function(a,b) { return (b._kepadatan||0) - (a._kepadatan||0); })[0] || {};
+            var rtMaxIbadah = rt.slice().sort(function(a,b) { return (b._cntIbadah||0) - (a._cntIbadah||0); })[0] || {};
+
+            // Fasilitas stats
+            var fasCatMap = {};
+            var countIbadah = 0;
+            fas.forEach(function(f) {
+                var kat = (f.Kategori_Fasilitas || 'Lainnya').trim();
+                fasCatMap[kat] = (fasCatMap[kat] || 0) + 1;
+                if (kat.toLowerCase().indexOf('ibadah') !== -1 || kat.toLowerCase().indexOf('agama') !== -1) countIbadah++;
+            });
+            var topFasKat = Object.keys(fasCatMap).sort(function(a,b) { return fasCatMap[b] - fasCatMap[a]; })[0] || 'Tempat Ibadah';
+            var topFasCount = fasCatMap[topFasKat] || 0;
+            var ratioIbadah = totalPenduduk > 0 ? ((countIbadah / totalPenduduk) * 1000).toFixed(2) : '-';
+
+            // RT tanpa fasilitas langsung
+            var rtFasSet = new Set(fas.map(function(f) { return (f.RT || '').trim(); }));
+            var rtZeroFasCount = rt.filter(function(r) { return !rtFasSet.has((r.Nama_RT || '').trim()); }).length;
+
+            allFlashcardsData = [
+                {
+                    id: 1, category: 'demografi', badge: 'Populasi & Gender', isPerbaikan: false,
+                    question: 'Berapa total populasi penduduk & rasio jenis kelamin (Sex Ratio) di Desa Sungai Bakau Kecil?',
+                    answer: 'Total Penduduk: <strong>' + totalPenduduk.toLocaleString('id-ID') + ' Jiwa</strong> (' + totalL.toLocaleString('id-ID') + ' L & ' + totalP.toLocaleString('id-ID') + ' P). Sex Ratio desa adalah <strong>' + sexRatio + '</strong> (ada ' + sexRatio + ' Laki-laki per 100 Perempuan).'
+                },
+                {
+                    id: 2, category: 'demografi', badge: 'Struktur KK', isPerbaikan: false,
+                    question: 'Berapa jumlah Kartu Keluarga (KK) & rata-rata Anggota Rumah Tangga (ART) per KK?',
+                    answer: 'Terdata sebanyak <strong>' + totalKK.toLocaleString('id-ID') + ' KK</strong>. Rata-rata ukuran keluarga adalah <strong>' + artRata + ' orang per KK</strong> (tipe keluarga sedang).'
+                },
+                {
+                    id: 3, category: 'demografi', badge: 'Bumbung Rumah', isPerbaikan: false,
+                    question: 'Berapa total fisik bangunan rumah warga & kepadatan rata-rata per bumbung rumah?',
+                    answer: 'Terdapat <strong>' + totalBumbung.toLocaleString('id-ID') + ' unit bumbung rumah</strong> dengan rata-rata kepadatan <strong>' + kepadatan + ' jiwa per rumah</strong>.'
+                },
+                {
+                    id: 4, category: 'rekor', badge: 'RT Populer', isPerbaikan: false,
+                    question: 'RT manakah yang memiliki jumlah penduduk terbanyak di Desa Sungai Bakau Kecil?',
+                    answer: '<strong>' + (rtMaxPop.Nama_RT || 'RT') + '</strong> (Ketua: ' + (rtMaxPop.Nama_Ketua_RT || '-') + ') merupakan RT paling padat penduduk dengan total <strong>' + (rtMaxPop._totalPop || 0) + ' Jiwa</strong>.'
+                },
+                {
+                    id: 5, category: 'rekor', badge: 'Populasi Minimum', isPerbaikan: false,
+                    question: 'RT manakah yang memiliki jumlah penduduk paling sedikit di desa ini?',
+                    answer: '<strong>' + (rtMinPop.Nama_RT || 'RT') + '</strong> (Ketua: ' + (rtMinPop.Nama_Ketua_RT || '-') + ') dengan jumlah warga terdata sebanyak <strong>' + (rtMinPop._totalPop || 0) + ' Jiwa</strong>.'
+                },
+                {
+                    id: 6, category: 'perbaikan', badge: '⚠️ Intervensi KTP-el', isPerbaikan: true,
+                    question: 'RT mana yang memiliki % kepemilikan KTP-el terendah dan perlu layanan "Jemput Bola"?',
+                    answer: '<strong>' + (rtMinKTP.Nama_RT || 'RT') + '</strong> baru mencatat <strong>' + (rtMinKTP._pctKTP || 0) + '% kepemilikan KTP-el</strong> (' + (rtMinKTP.Jumlah_Memiliki_KTP || 0) + ' dari ' + (rtMinKTP._totalPop || 0) + ' jiwa). <em>Rekomendasi: Pelayanan KTP-el keliling ke RT ini!</em>'
+                },
+                {
+                    id: 7, category: 'lansia', badge: 'Tahap Penuaan', isPerbaikan: false,
+                    question: 'Berapa total penduduk lansia dan berapa proporsinya terhadap seluruh warga desa?',
+                    answer: 'Total Lansia: <strong>' + totalLansia.toLocaleString('id-ID') + ' Jiwa</strong> (<strong>' + pctLansia + '%</strong> populasi). Desa ini tergolong ke dalam struktur penuaan penduduk (*ageing population*).'
+                },
+                {
+                    id: 8, category: 'perbaikan', badge: '⚠️ Prioritas Lansia', isPerbaikan: true,
+                    question: 'RT manakah yang memiliki konsentrasi lansia paling tinggi & butuh posyandu lansia rutin?',
+                    answer: '<strong>' + (rtMaxLansiaPct.Nama_RT || 'RT') + '</strong> mencatat proporsi lansia tertinggi yaitu <strong>' + (rtMaxLansiaPct._pctLansia || 0) + '%</strong> (' + (rtMaxLansiaPct.Jumlah_Penduduk_Lansia || 0) + ' lansia). <em>Perlu penguatan posyandu lansia rutin.</em>'
+                },
+                {
+                    id: 9, category: 'lansia', badge: 'Bantuan Sosial', isPerbaikan: false,
+                    question: 'Berapa total warga penerima manfaat Bantuan Sosial (PKH/BPNT/BLT/BST) di desa ini?',
+                    answer: 'Total penerima manfaat bansos mencapai <strong>' + totalBansos.toLocaleString('id-ID') + ' penerima</strong> (<strong>' + pctBansos + '%</strong> dari total penduduk desa).'
+                },
+                {
+                    id: 10, category: 'perbaikan', badge: '⚠️ Verifikasi Bansos', isPerbaikan: true,
+                    question: 'RT mana dengan persentase penerima bansos tertinggi yang perlu pemutakhiran data berkala?',
+                    answer: '<strong>' + (rtMaxBansos.Nama_RT || 'RT') + '</strong> mencatatkan persentase penerima bansos <strong>' + (rtMaxBansos._pctBansos || 0) + '%</strong>. <em>Perlu pemutakhiran data DTKS untuk memastikan ketepatan sasaran.</em>'
+                },
+                {
+                    id: 11, category: 'perbaikan', badge: '⚠️ Putus Sekolah', isPerbaikan: true,
+                    question: 'Berapa total anak putus sekolah dan RT manakah dengan angka kasus tertinggi?',
+                    answer: 'Terdata <strong>' + totalPutusSekolah + ' anak putus sekolah</strong> (' + pctPutusSekolah + '% dari anak usia sekolah). Kasus terbanyak di <strong>' + (rtMaxPutus.Nama_RT || 'RT') + '</strong> (' + (rtMaxPutus.Jumlah_Penduduk_Putus_Sekolah || 0) + ' anak). <em>Perlu program pendampingan Kembali ke Sekolah.</em>'
+                },
+                {
+                    id: 12, category: 'fasilitas', badge: 'Inventaris Spasial', isPerbaikan: false,
+                    question: 'Berapa jumlah sarana & fasilitas umum yang sudah terinventarisasi lengkap dengan geotagging?',
+                    answer: 'Sebanyak <strong>' + fas.length + ' titik lokasi fasilitas publik</strong> (Sekolah, Posyandu, Tempat Ibadah, Lapangan, dll.) telah terpetakan secara presisi.'
+                },
+                {
+                    id: 13, category: 'fasilitas', badge: 'Dominasi Fasilitas', isPerbaikan: false,
+                    question: 'Kategori fasilitas umum apakah yang paling banyak jumlahnya di Desa Sungai Bakau Kecil?',
+                    answer: 'Kategori <strong>' + topFasKat + '</strong> merupakan sarana publik terbanyak dengan jumlah <strong>' + topFasCount + ' titik lokasi</strong>.'
+                },
+                {
+                    id: 14, category: 'fasilitas', badge: 'Rasio Peribadatan', isPerbaikan: false,
+                    question: 'Berapa jumlah tempat ibadah dan berapa rasionya per 1.000 penduduk desa?',
+                    answer: 'Terdapat <strong>' + countIbadah + ' rumah ibadah</strong> di desa ini, yang menghasilkan rasio <strong>' + ratioIbadah + ' tempat ibadah per 1.000 penduduk</strong>.'
+                },
+                {
+                    id: 15, category: 'rekor', badge: 'Sentra Ibadah', isPerbaikan: false,
+                    question: 'RT mana yang menjadi konsentrasi rumah ibadah terbanyak di desa ini?',
+                    answer: '<strong>' + (rtMaxIbadah.Nama_RT || 'RT') + '</strong> memiliki rumah ibadah terbanyak yaitu <strong>' + (rtMaxIbadah._cntIbadah || 0) + ' tempat ibadah</strong>.'
+                },
+                {
+                    id: 16, category: 'perbaikan', badge: '⚠️ Kepadatan Hunian', isPerbaikan: true,
+                    question: 'RT manakah yang paling padat tingkat huniannya (jiwa per bumbung rumah)?',
+                    answer: '<strong>' + (rtMaxKepadatan.Nama_RT || 'RT') + '</strong> mencatat kepadatan terpadat dengan <strong>' + (rtMaxKepadatan._kepadatan || 0) + ' jiwa per bumbung rumah</strong>. <em>Berpotensi memerlukan perhatian ventilasi & sanitasi lingkungan.</em>'
+                },
+                {
+                    id: 17, category: 'demografi', badge: 'Cakupan RT SDI', isPerbaikan: false,
+                    question: 'Berapa total Satuan Lingkungan Setempat (RT) yang tercakup dalam pendataan SDI desa ini?',
+                    answer: 'Sebanyak <strong>' + rt.length + ' RT</strong> terdata secara akurat berbasis rekapan kewilayahan RT (unit observasi: Ketua RT).'
+                },
+                {
+                    id: 18, category: 'demografi', badge: 'Kemandirian Tempat Tinggal', isPerbaikan: false,
+                    question: 'Berapa rasio bumbung rumah fisik dibanding total KK di desa ini?',
+                    answer: 'Rasio bumbung rumah/KK adalah <strong>' + bumbungPerKK + ' rumah per KK</strong>. Nilai ini menunjukkan sebagian besar keluarga di desa telah menempati bangunan rumah mandiri.'
+                },
+                {
+                    id: 19, category: 'perbaikan', badge: '⚠️ Akses Sarana Publik', isPerbaikan: true,
+                    question: 'Berapa jumlah RT yang belum memiliki fasilitas publik terdaftar langsung di wilayah RT-nya?',
+                    answer: 'Sebanyak <strong>' + rtZeroFasCount + ' RT</strong> belum memiliki titik fasilitas publik fisik terdaftar langsung di RT setempat. <em>Perlu kemudahan akses lintas RT.</em>'
+                },
+                {
+                    id: 20, category: 'perbaikan', badge: '💡 Action Plan Desa', isPerbaikan: true,
+                    question: 'Apa 3 rekomendasi kebijakan utama berbasis data (Data-Driven Policy) untuk desa ini?',
+                    answer: '<strong>1) Jemput bola KTP-el</strong> di ' + (rtMinKTP.Nama_RT || 'RT') + '<br><strong>2) Pendampingan Putus Sekolah</strong> di ' + (rtMaxPutus.Nama_RT || 'RT') + '<br><strong>3) Posyandu Lansia Ekstra</strong> di ' + (rtMaxLansiaPct.Nama_RT || 'RT') + '.'
+                }
+            ];
+
+            activeFlashcardsData = allFlashcardsData.slice();
+            renderFlashcards(activeFlashcardsData);
+        }
+
+        function renderFlashcards(cards) {
+            var wrapper = document.getElementById('flashcards-swiper-wrapper');
+            var badgeCount = document.getElementById('flashcards-count-badge');
+            if (!wrapper) return;
+
+            if (badgeCount) badgeCount.innerText = cards.length + ' Flashcard';
+
+            var html = '';
+            cards.forEach(function(card, idx) {
+                var cardClass = card.isPerbaikan ? 'flashcard-container is-perbaikan' : 'flashcard-container';
+                var badgeBg = card.isPerbaikan ? 'bg-danger text-white' : (card.category === 'rekor' ? 'bg-warning text-dark' : 'bg-success-subtle text-success');
+                
+                html += '<div class="swiper-slide">'
+                     +  '  <div class="' + cardClass + '" onclick="toggleFlipCard(this)">'
+                     +  '    <div class="flashcard-inner">'
+                     +  '      <div class="flashcard-front shadow-sm">'
+                     +  '        <div class="d-flex justify-content-between align-items-center w-100 mb-2">'
+                     +  '          <span class="badge ' + badgeBg + ' flashcard-badge"><i class="fas fa-tag me-1"></i>' + card.badge + '</span>'
+                     +  '          <span class="badge bg-light text-secondary rounded-circle px-2 py-1 small fw-bold">#' + (idx + 1) + '</span>'
+                     +  '        </div>'
+                     +  '        <div class="my-auto text-center px-2">'
+                     +  '          <i class="' + (card.isPerbaikan ? 'fas fa-exclamation-triangle text-danger fs-1 mb-3' : 'fas fa-question-circle text-primary fs-1 mb-3') + '"></i>'
+                     +  '          <h6 class="fw-bold text-dark lh-base mb-0">' + card.question + '</h6>'
+                     +  '        </div>'
+                     +  '        <div class="text-muted extra-small fw-semibold mt-2 text-center">'
+                     +  '          <i class="fas fa-hand-pointer me-1 text-primary"></i> Klik / Sentuh untuk buka jawaban'
+                     +  '        </div>'
+                     +  '      </div>'
+                     +  '      <div class="flashcard-back shadow-sm">'
+                     +  '        <div class="d-flex justify-content-between align-items-center w-100 mb-2">'
+                     +  '          <span class="badge bg-white text-dark flashcard-badge"><i class="fas fa-lightbulb text-warning me-1"></i>' + card.badge + '</span>'
+                     +  '          <span class="badge bg-white-50 text-white rounded-circle px-2 py-1 small fw-bold">#' + (idx + 1) + '</span>'
+                     +  '        </div>'
+                     +  '        <div class="my-auto text-start px-2 w-100">'
+                     +  '          <p class="mb-0 fs-6 lh-base">' + card.answer + '</p>'
+                     +  '        </div>'
+                     +  '        <div class="text-white-50 extra-small fw-semibold mt-2 text-center">'
+                     +  '          <i class="fas fa-undo me-1"></i> Klik lagi untuk balikkan'
+                     +  '        </div>'
+                     +  '      </div>'
+                     +  '    </div>'
+                     +  '  </div>'
+                     +  '</div>';
+            });
+
+            wrapper.innerHTML = html;
+
+            if (swiperFlashcards) {
+                swiperFlashcards.destroy(true, true);
+            }
+
+            swiperFlashcards = new Swiper('.swiper-flashcards', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: false,
+                pagination: {
+                    el: '.swiper-pagination-flashcards',
+                    clickable: true,
+                    type: 'fraction'
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next-flashcard',
+                    prevEl: '.swiper-button-prev-flashcard',
+                },
+                breakpoints: {
+                    640: { slidesPerView: 1.2, spaceBetween: 20 },
+                    768: { slidesPerView: 2.2, spaceBetween: 24 },
+                    1024: { slidesPerView: 3.2, spaceBetween: 28 }
+                }
+            });
+        }
+
+        function toggleFlipCard(el) {
+            if (el) el.classList.toggle('flipped');
+        }
+
+        function filterFlashcards(cat, btn) {
+            document.querySelectorAll('#flashcard-filter-container .btn-fc-filter').forEach(function(b) {
+                b.className = 'btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold btn-fc-filter';
+            });
+            if (btn) btn.className = 'btn btn-sm btn-primary rounded-pill px-3 fw-semibold active btn-fc-filter';
+
+            if (cat === 'all') {
+                activeFlashcardsData = allFlashcardsData.slice();
+            } else {
+                activeFlashcardsData = allFlashcardsData.filter(function(card) {
+                    return card.category === cat;
+                });
+            }
+            renderFlashcards(activeFlashcardsData);
+        }
+
+        function shuffleFlashcards() {
+            var arr = activeFlashcardsData.slice();
+            for (var i = arr.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            activeFlashcardsData = arr;
+            renderFlashcards(activeFlashcardsData);
+        }
+
+        function flipAllFlashcards(showAnswer) {
+            var cards = document.querySelectorAll('.flashcard-container');
+            cards.forEach(function(card) {
+                if (showAnswer) {
+                    card.classList.add('flipped');
+                } else {
+                    card.classList.remove('flipped');
+                }
+            });
+        }
+
+        function resetFlashcards() {
+            filterFlashcards('all', document.querySelector('#flashcard-filter-container button'));
+            flipAllFlashcards(false);
+            if (swiperFlashcards) swiperFlashcards.slideTo(0);
         }
 
         // Render Bar Chart: Sorted from Largest to Smallest total population for ALL RTs
