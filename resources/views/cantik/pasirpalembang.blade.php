@@ -1,12 +1,12 @@
 <x-layouts.app title="Desa Pasir Palembang - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Pasir Palembang - BPS Kabupaten Mempawah">
 
-    <header class="page-header text-center">
+    <header class="page-header text-center position-relative overflow-hidden" style="background: linear-gradient(135deg, rgba(6,78,59,0.92) 0%, rgba(13,148,136,0.88) 100%), url('{{ asset('images/pasirpalembang/kantor-desa.webp') }}') center/cover no-repeat; padding: 70px 0;">
         <div class="container">
             <div class="d-flex justify-content-center gap-2 mb-3">
                 <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
                 <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
             </div>
-            <h1 class="fw-bold display-5 mb-2">Desa Pasir Palembang</h1>
+            <h1 class="fw-bold display-5 mb-2 text-white">Desa Pasir Palembang</h1>
             <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;">
                 Kecamatan Mempawah Timur, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
             </p>
@@ -301,16 +301,18 @@
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan Lapangan</h4>
                     <p class="text-muted small mb-0">Proses pembekalan, pelatihan CAPI, dan pendataan lapangan Agen Statistik Pasir Palembang.</p>
                 </div>
-                <span class="badge bg-warning text-dark font-monospace px-3 py-2 rounded-pill"><i class="fas fa-images me-1"></i> PLACEHOLDER — 4 Slot Foto Belum Diupload</span>
+                <span class="badge bg-success text-white font-monospace px-3 py-2 rounded-pill"><i class="fas fa-camera me-1"></i> Dokumentasi Lapangan 2026</span>
             </div>
 
             <div class="row g-3">
                 <div class="col-md-6 col-lg-3">
-                    <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
-                        <i class="fas fa-camera-retro fa-3x text-warning mb-2"></i>
-                        <h6 class="fw-bold text-dark mb-1">Foto Posko Desa Cantik</h6>
-                        <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #1]</span>
-                        <p class="extra-small text-muted mt-2 mb-0">Posko data &amp; sekretariat Desa Cantik Pasir Palembang 2026.</p>
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/kantor-desa.webp') }}', 'Kantor Desa Pasir Palembang', 'Tampak depan posko &amp; kantor Desa Cantik Pasir Palembang 2026.')" style="cursor: pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
+                            <img src="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" class="w-100 h-100 object-fit-cover hover-zoom" alt="Kantor Desa Pasir Palembang">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Kantor Desa Pasir Palembang</h6>
+                        <span class="badge bg-success-subtle text-success extra-small">Tampak Depan</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Posko data &amp; sekretariat Desa Cantik Pasir Palembang 2026.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
