@@ -392,7 +392,7 @@
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <a href="{{ route('cantik.pasirwansalim') }}" class="desa-card-link">
                         <div class="desa-card">
-                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Kelurahan Pasir Wan Salim">
+                            <img src="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" class="card-img-top" alt="Kelurahan Pasir Wan Salim">
                             <div class="desa-card-body d-flex flex-column">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <span class="badge bg-success">Binaan 2026</span>

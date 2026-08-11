@@ -316,19 +316,23 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
-                        <i class="fas fa-user-graduate fa-3x text-warning mb-2"></i>
-                        <h6 class="fw-bold text-dark mb-1">Foto Pembekalan CAPI</h6>
-                        <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #2]</span>
-                        <p class="extra-small text-muted mt-2 mb-0">Pembekalan CAPI AppSheet bagi Agen Statistik Desa.</p>
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}', 'Pelatihan CAPI AppSheet', 'Pembekalan CAPI AppSheet bagi Agen Statistik Desa Pasir Palembang di Kantor BPS Mempawah 2026.')" style="cursor: pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
+                            <img src="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pelatihan CAPI Pasir Palembang">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Pelatihan CAPI AppSheet</h6>
+                        <span class="badge bg-success-subtle text-success extra-small">BPS Mempawah</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Pembekalan CAPI AppSheet bagi Agen Statistik Desa.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
-                        <i class="fas fa-comments fa-3x text-warning mb-2"></i>
-                        <h6 class="fw-bold text-dark mb-1">Foto Wawancara Keluarga CAPI</h6>
-                        <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #3]</span>
-                        <p class="extra-small text-muted mt-2 mb-0">Wawancara CAPI mikro bangunan &amp; rumah tangga.</p>
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}', 'Diseminasi Hasil CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Pasir Palembang di Kantor BPS Mempawah 2026.')" style="cursor: pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
+                            <img src="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Diseminasi CAPI Pasir Palembang">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Diseminasi Hasil CAPI</h6>
+                        <span class="badge bg-success-subtle text-success extra-small">BPS Mempawah</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Pelatihan diseminasi hasil wawancara CAPI mikro bangunan &amp; rumah tangga.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">

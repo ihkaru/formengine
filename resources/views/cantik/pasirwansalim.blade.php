@@ -120,8 +120,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(16, 42, 67, 0.95) 0%, rgba(36, 59, 83, 0.9) 100%), 
-                        url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1200') center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(16, 42, 67, 0.93) 0%, rgba(36, 59, 83, 0.88) 100%),
+                        url('{{ asset("images/pasirwansalim/kantor-kelurahan.webp") }}') center/cover no-repeat;
             color: var(--white);
             padding: 100px 20px 80px;
             text-align: center;
@@ -992,6 +992,83 @@
                 </div>
             </div>
         </section>
+
+        <!-- Galeri Dokumentasi Lapangan -->
+        <section class="container mb-5">
+            <div class="text-center mb-4">
+                <span class="badge bg-primary-subtle text-primary fw-semibold mb-2 px-3 py-2" style="font-size:0.78rem; border-radius:20px;"><i class="fas fa-camera me-1"></i> Dokumentasi Lapangan</span>
+                <h2 class="fw-bold" style="font-size:1.5rem;">Foto Kegiatan Pendataan Desa Cantik 2026</h2>
+                <p class="text-muted" style="font-size:0.9rem;">Rangkaian kegiatan pendataan potensi kewilayahan RT dan inventarisasi fasilitas umum di Kelurahan Pasir Wan Salim.</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}', 'Kantor Kelurahan Pasir Wan Salim', 'Tampak depan Kantor Kelurahan Pasir Wan Salim sebagai pusat koordinasi kegiatan Desa Cantik 2026.')" style="cursor:pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 160px;">
+                            <img src="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" class="w-100 h-100 object-fit-cover" alt="Kantor Kelurahan Pasir Wan Salim">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 px-1">Kantor Kelurahan</h6>
+                        <span class="badge bg-primary-subtle text-primary extra-small ms-1 mb-1">Pusat Koordinasi</span>
+                        <p class="extra-small text-muted px-1 mb-0">Tampak depan Kantor Kelurahan Pasir Wan Salim.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}', 'Wawancara CAPI Keluarga #1', 'Proses wawancara CAPI potensi keluarga di lapangan Kelurahan Pasir Wan Salim 2026.')" style="cursor:pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 160px;">
+                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Keluarga">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 px-1">Wawancara CAPI #1</h6>
+                        <span class="badge bg-success-subtle text-success extra-small ms-1 mb-1">Pendataan Keluarga</span>
+                        <p class="extra-small text-muted px-1 mb-0">Wawancara CAPI pendataan potensi keluarga di lapangan.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}', 'Wawancara CAPI Keluarga #2', 'Pengisian formulir potensi kewilayahan berbasis AppSheet secara langsung di rumah responden.')" style="cursor:pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 160px;">
+                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Keluarga #2">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 px-1">Wawancara CAPI #2</h6>
+                        <span class="badge bg-success-subtle text-success extra-small ms-1 mb-1">Pendataan Keluarga</span>
+                        <p class="extra-small text-muted px-1 mb-0">Pengisian formulir potensi kewilayahan via AppSheet.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}', 'Wawancara CAPI Keluarga #3', 'Verifikasi data lapangan bersama kepala keluarga dan aparatur RT Kelurahan Pasir Wan Salim.')" style="cursor:pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 160px;">
+                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Keluarga #3">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 px-1">Wawancara CAPI #3</h6>
+                        <span class="badge bg-success-subtle text-success extra-small ms-1 mb-1">Pendataan Keluarga</span>
+                        <p class="extra-small text-muted px-1 mb-0">Verifikasi data bersama kepala keluarga dan aparatur RT.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}', 'Wawancara CAPI Keluarga #4', 'Dokumentasi kegiatan pendataan potensi kewilayahan rumah tangga menggunakan AppSheet Desa Cantik 2026.')" style="cursor:pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 200px;">
+                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Keluarga #4">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 px-1">Wawancara CAPI #4</h6>
+                        <span class="badge bg-success-subtle text-success extra-small ms-1 mb-1">Pendataan Keluarga</span>
+                        <p class="extra-small text-muted px-1 mb-0">Dokumentasi pendataan potensi kewilayahan rumah tangga.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal for Pasir Wan Salim Gallery -->
+        <div id="pws-img-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;" onclick="document.getElementById('pws-img-modal').style.display='none'">
+            <div style="max-width:90vw;max-height:90vh;text-align:center;">
+                <img id="pws-modal-img" src="" style="max-width:100%;max-height:80vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);" alt="">
+                <p id="pws-modal-caption" style="color:white;margin-top:12px;font-size:0.95rem;"></p>
+            </div>
+        </div>
+        <script>
+        function openImageModal(el, src, title, desc) {
+            document.getElementById('pws-modal-img').src = src;
+            document.getElementById('pws-modal-caption').textContent = title + ' — ' + desc;
+            const modal = document.getElementById('pws-img-modal');
+            modal.style.display = 'flex';
+        }
+        </script>
 
         <!-- Banner Sensus Ekonomi 2026 Support -->
         <div class="se-banner">

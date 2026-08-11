@@ -356,6 +356,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/diseminasi.webp') }}', 'Diseminasi Hasil Pendataan CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Sungai Bakau Kecil di Kantor BPS Mempawah 2026.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
+                            <img src="{{ asset('images/sungaibakaukecil/diseminasi.webp') }}" alt="Diseminasi Hasil Pendataan CAPI" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Diseminasi Hasil Pendataan CAPI</h6>
+                            <p class="extra-small text-muted mb-0">Pelatihan diseminasi hasil pendataan CAPI di Kantor BPS Mempawah 2026.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
