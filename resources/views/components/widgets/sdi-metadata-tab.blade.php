@@ -2,7 +2,8 @@
     'villageName' => 'Desa Sungai Bakau Kecil',
     'rtCount' => 37,
     'varRtCount' => 26,
-    'varFasCount' => 15
+    'varFasCount' => 15,
+    'hideLansia' => false
 ])
 <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
@@ -77,6 +78,7 @@
                         <small class="text-muted">Total Pop / Total KK</small>
                     </div>
                 </div>
+                @if(!$hideLansia)
                 <div class="col-md-3">
                     <div class="p-3 border rounded-3 bg-light text-center h-100">
                         <h6 class="fw-bold text-secondary mb-1">Persentase Lansia</h6>
@@ -84,6 +86,7 @@
                         <small class="text-muted">(Lansia / Pop) &times; 100</small>
                     </div>
                 </div>
+                @endif
                 <div class="col-md-3">
                     <div class="p-3 border rounded-3 bg-light text-center h-100">
                         <h6 class="fw-bold text-secondary mb-1">Kepemilikan KTP-el</h6>

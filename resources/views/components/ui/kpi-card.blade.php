@@ -6,7 +6,7 @@
     'subLabel' => '',
     'subColor' => 'text-primary'
 ])
-<div class="col-md-4 col-lg-2">
+<div class="col-6 col-md-4 col-lg-2">
     <div class="kpi-card">
         <div class="d-flex justify-content-between align-items-center mb-2">
             <small class="text-muted fw-bold text-uppercase">{{ $title }}</small>

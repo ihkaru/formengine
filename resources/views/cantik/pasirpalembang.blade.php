@@ -15,7 +15,7 @@
                     <i class="fas fa-sync fa-spin text-success" id="sync-icon"></i>
                     <span id="sync-status">Menghubungkan ke Google Sheets...</span>
                 </div>
-                <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold" onclick="loadDataFromSheets()">
+                <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold" onclick="loadDataFromSheets(true)">
                     <i class="fas fa-redo me-1"></i> Sync Sekarang
                 </button>
                 <a href="#sop-layanan" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
@@ -35,13 +35,13 @@
             <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" />
             <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" />
             <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" />
-            <x-ui.kpi-card title="Penduduk Lansia" icon="fa-user-clock" id="kpi-lansia" sub-id="kpi-pct-lansia" sub-label="Proporsi" sub-color="text-warning" />
+            <x-ui.kpi-card title="Putus Sekolah" icon="fa-user-graduate" id="kpi-putus" sub-label="Usia 7-18 Thn" sub-color="text-danger" />
             <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH/BPNT/BLT" />
             <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terinventarisasi" />
         </div>
 
         <!-- Metadata SDI 2026 (Reusable Component) -->
-        <x-widgets.sdi-metadata-tab village-name="Desa Pasir Palembang" :rt-count="14" :var-rt-count="26" :var-fas-count="15" />
+        <x-widgets.sdi-metadata-tab village-name="Desa Pasir Palembang" :rt-count="14" :var-rt-count="26" :var-fas-count="15" :hide-lansia="true" />
 
         <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
         <x-widgets.flashcard-deck village-name="Desa Pasir Palembang" title="Flashcard Trivia &amp; Insights Data Desa Pasir Palembang" />
@@ -101,6 +101,9 @@
                             <i class="fas fa-chart-line me-1"></i> Mode 8 Indikator SDI
                         </button>
                     </div>
+                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="exportRTToCSV()">
+                        <i class="fas fa-file-excel me-1"></i> Unduh CSV/Excel
+                    </button>
                     <div class="input-group input-group-sm" style="width: 220px;">
                         <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
                         <input type="text" id="search-rt" class="form-control border-start-0 bg-light" placeholder="Cari Nama RT..." onkeyup="filterRTTable()">
@@ -118,13 +121,12 @@
                             <th style="cursor:pointer;" onclick="sortTableRT('total')">Total <i class="fas fa-sort text-muted ms-1" id="sort-icon-total"></i></th>
                             <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_KK')">KK <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_KK"></i></th>
                             <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_Bumbung_Rumah')">Bumbung Rumah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Bumbung_Rumah"></i></th>
-                            <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_Penduduk_Lansia')">Lansia <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Lansia"></i></th>
                             <th style="cursor:pointer;" onclick="sortTableRT('Jumlah_Penduduk_Putus_Sekolah')">Putus Sekolah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Putus_Sekolah"></i></th>
                             <th style="cursor:pointer;" onclick="sortTableRT('Status_Pendataan')">Status <i class="fas fa-sort text-muted ms-1" id="sort-icon-Status_Pendataan"></i></th>
                         </tr>
                     </thead>
                     <tbody id="table-rt-tbody">
-                        <tr><td colspan="10" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i>Memuat data RT Pasir Palembang...</td></tr>
+                        <tr><td colspan="9" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i>Memuat data RT Pasir Palembang...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -137,9 +139,13 @@
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-building me-2 text-primary"></i>Inventarisasi Fasilitas Umum &amp; Infrastruktur</h4>
                     <p class="text-muted small mb-0">Daftar sarana ibadah, sekolah, posyandu, dan kantor pemerintahan di Pasir Palembang.</p>
                 </div>
-                <div class="input-group input-group-sm" style="width: 240px;">
-                    <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
-                    <input type="text" id="search-fas" class="form-control border-start-0 bg-light" placeholder="Cari Fasilitas / Kategori..." onkeyup="filterFasTable()">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="exportFasToCSV()">
+                        <i class="fas fa-file-excel me-1"></i> Unduh CSV/Excel
+                    </button>
+                    <div class="input-group input-group-sm" style="width: 240px;">
+                        <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
+                        <input type="text" id="search-fas" class="form-control border-start-0 bg-light" placeholder="Cari Fasilitas / Kategori..." onkeyup="filterFasTable()">
                 </div>
             </div>
             <div class="table-responsive">
@@ -302,25 +308,25 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
                         <i class="fas fa-camera-retro fa-3x text-warning mb-2"></i>
-                        <h6 class="fw-bold text-dark mb-1">Foto Kantor Desa</h6>
+                        <h6 class="fw-bold text-dark mb-1">Foto Posko Desa Cantik</h6>
                         <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #1]</span>
-                        <p class="extra-small text-muted mt-2 mb-0">Posko data Desa Cantik Pasir Palembang.</p>
+                        <p class="extra-small text-muted mt-2 mb-0">Posko data &amp; sekretariat Desa Cantik Pasir Palembang 2026.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
                         <i class="fas fa-user-graduate fa-3x text-warning mb-2"></i>
-                        <h6 class="fw-bold text-dark mb-1">Foto Pelatihan Agen RT</h6>
+                        <h6 class="fw-bold text-dark mb-1">Foto Pembekalan CAPI</h6>
                         <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #2]</span>
-                        <p class="extra-small text-muted mt-2 mb-0">Pembekalan CAPI AppSheet Pasir Palembang.</p>
+                        <p class="extra-small text-muted mt-2 mb-0">Pembekalan CAPI AppSheet bagi Agen Statistik Desa.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
                         <i class="fas fa-comments fa-3x text-warning mb-2"></i>
-                        <h6 class="fw-bold text-dark mb-1">Foto Wawancara Ketua RT</h6>
+                        <h6 class="fw-bold text-dark mb-1">Foto Wawancara Keluarga CAPI</h6>
                         <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #3]</span>
-                        <p class="extra-small text-muted mt-2 mb-0">Pendataan lapangan variabel RT.</p>
+                        <p class="extra-small text-muted mt-2 mb-0">Wawancara CAPI mikro bangunan &amp; rumah tangga.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -328,7 +334,7 @@
                         <i class="fas fa-map-marker-alt fa-3x text-warning mb-2"></i>
                         <h6 class="fw-bold text-dark mb-1">Foto Tagging GPS Fasilitas</h6>
                         <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #4]</span>
-                        <p class="extra-small text-muted mt-2 mb-0">Inventarisasi geospasial sarana desa.</p>
+                        <p class="extra-small text-muted mt-2 mb-0">Observasi geospasial &amp; inventarisasi GPS sarana desa.</p>
                     </div>
                 </div>
             </div>
@@ -357,21 +363,22 @@
             markersLayer = L.layerGroup().addTo(map);
         }
 
-        async function loadDataFromSheets() {
+        async function loadDataFromSheets(isManualSync) {
             var syncStatus = document.getElementById('sync-status');
             var syncIcon   = document.getElementById('sync-icon');
             if (syncIcon) syncIcon.classList.add('fa-spin');
             if (syncStatus) syncStatus.innerText = 'Menyinkronkan data Google Sheets Pasir Palembang...';
 
             var rtData = null, fasData = null;
+            var queryParam = isManualSync ? '?refresh=1' : '';
 
             try {
-                var resRT = await fetch('/desa-cantik/api/pasirpalembang/Appsheet_RT');
+                var resRT = await fetch('/desa-cantik/api/pasirpalembang/Appsheet_RT' + queryParam);
                 if (resRT.ok) {
                     var jsonRT = await resRT.json();
                     if (Array.isArray(jsonRT)) rtData = jsonRT;
                 }
-                var resFas = await fetch('/desa-cantik/api/pasirpalembang/Appsheet_Fasilitas');
+                var resFas = await fetch('/desa-cantik/api/pasirpalembang/Appsheet_Fasilitas' + queryParam);
                 if (resFas.ok) {
                     var jsonFas = await resFas.json();
                     if (Array.isArray(jsonFas)) fasData = jsonFas;
@@ -402,7 +409,7 @@
 
             // Recalculate KPIs
             var totalPenduduk = 0, totalLaki = 0, totalPerempuan = 0;
-            var totalKK = 0, totalBumbung = 0, totalLansia = 0, totalKTP = 0, totalBansos = 0, totalPutus = 0;
+            var totalKK = 0, totalBumbung = 0, totalKTP = 0, totalBansos = 0, totalPutus = 0;
 
             rtList.forEach(function(item) {
                 var l = parseInt(item['Jumlah Orang Laki-Laki di Rumah'] || item['Jumlah_Penduduk_Laki_Laki'] || 0) || 0;
@@ -413,7 +420,6 @@
 
                 totalKK += parseInt(item['Jumlah Kartu Keluarga'] || item['Jumlah_KK'] || 0) || 0;
                 totalBumbung += parseInt(item['Nomor Bangunan'] || item['Jumlah_Bumbung_Rumah'] || 0) || 0;
-                totalLansia += parseInt(item['Jumlah_Penduduk_Lansia'] || 0) || 0;
                 totalKTP += parseInt(item['Jumlah_Memiliki_KTP'] || 0) || 0;
                 totalPutus += parseInt(item['Jumlah_Penduduk_Putus_Sekolah'] || 0) || 0;
 
@@ -425,36 +431,32 @@
 
             var countIbadah = 0;
             fasList.forEach(function(f) {
-                var kat = (f['Kategori_Fasilitas'] || f['Kategori'] || '').toLowerCase();
+                var kat = (getProp(f, ['Kategori_Fasilitas', 'Kategori', 'Sub_Kategori']) || '').toLowerCase();
                 if (kat.indexOf('ibadah') !== -1 || kat.indexOf('agama') !== -1) countIbadah++;
             });
-            if (!countIbadah) countIbadah = 8;
 
-            document.getElementById('kpi-penduduk').innerText = totalPenduduk.toLocaleString('id-ID');
-            document.getElementById('kpi-kk').innerText = totalKK.toLocaleString('id-ID');
-            document.getElementById('kpi-bumbung').innerText = totalBumbung.toLocaleString('id-ID');
-            document.getElementById('kpi-lansia').innerText = totalLansia.toLocaleString('id-ID');
-            document.getElementById('kpi-bansos').innerText = totalBansos.toLocaleString('id-ID');
-            document.getElementById('kpi-fasilitas').innerText = fasList.length.toLocaleString('id-ID');
+            if (document.getElementById('kpi-penduduk')) document.getElementById('kpi-penduduk').innerText = totalPenduduk.toLocaleString('id-ID');
+            if (document.getElementById('kpi-kk')) document.getElementById('kpi-kk').innerText = totalKK.toLocaleString('id-ID');
+            if (document.getElementById('kpi-bumbung')) document.getElementById('kpi-bumbung').innerText = totalBumbung.toLocaleString('id-ID');
+            if (document.getElementById('kpi-putus')) document.getElementById('kpi-putus').innerText = totalPutus.toLocaleString('id-ID');
+            if (document.getElementById('kpi-bansos')) document.getElementById('kpi-bansos').innerText = totalBansos.toLocaleString('id-ID');
+            if (document.getElementById('kpi-fasilitas')) document.getElementById('kpi-fasilitas').innerText = fasList.length.toLocaleString('id-ID');
 
             var sexRatio = totalPerempuan > 0 ? ((totalLaki / totalPerempuan) * 100).toFixed(1) : '-';
             var artRata = totalKK > 0 ? (totalPenduduk / totalKK).toFixed(2) : '-';
-            var pctLansia = totalPenduduk > 0 ? ((totalLansia / totalPenduduk) * 100).toFixed(1) + '%' : '-';
             var kepadatan = totalBumbung > 0 ? (totalPenduduk / totalBumbung).toFixed(2) : '-';
             var pctKtp = totalPenduduk > 0 ? ((totalKTP / totalPenduduk) * 100).toFixed(1) + '%' : '-';
             var pctBansos = totalKK > 0 ? ((totalBansos / totalKK) * 100).toFixed(1) + '%' : '-';
             var pctPutus = totalPenduduk > 0 ? ((totalPutus / totalPenduduk) * 100).toFixed(1) + '%' : '-';
             var ratioIbadah = totalPenduduk > 0 ? ((countIbadah / totalPenduduk) * 1000).toFixed(2) : '-';
 
-            document.getElementById('kpi-sexratio').innerText = sexRatio;
-            document.getElementById('kpi-art').innerText = artRata;
-            document.getElementById('kpi-pct-lansia').innerText = pctLansia;
-            document.getElementById('kpi-kepadatan').innerText = kepadatan;
+            if (document.getElementById('kpi-sexratio')) document.getElementById('kpi-sexratio').innerText = sexRatio;
+            if (document.getElementById('kpi-art')) document.getElementById('kpi-art').innerText = artRata;
+            if (document.getElementById('kpi-kepadatan')) document.getElementById('kpi-kepadatan').innerText = kepadatan;
 
             // Indikator SDI Metadata Tab
             if (document.getElementById('ind-val-sexratio')) document.getElementById('ind-val-sexratio').innerText = sexRatio;
             if (document.getElementById('ind-val-art')) document.getElementById('ind-val-art').innerText = artRata;
-            if (document.getElementById('ind-val-lansia')) document.getElementById('ind-val-lansia').innerText = pctLansia;
             if (document.getElementById('ind-val-ktp')) document.getElementById('ind-val-ktp').innerText = pctKtp;
             if (document.getElementById('ind-val-bansos')) document.getElementById('ind-val-bansos').innerText = pctBansos;
             if (document.getElementById('ind-val-putus-sekolah')) document.getElementById('ind-val-putus-sekolah').innerText = pctPutus;
@@ -467,6 +469,27 @@
             renderTableFas();
             renderMapMarkers(fasList);
             renderCharts(rtList, fasList);
+        }
+
+        function getProp(obj, keys, defaultVal) {
+            if (!obj || typeof obj !== 'object') return defaultVal || '';
+            for (var i = 0; i < keys.length; i++) {
+                var k = keys[i];
+                if (obj[k] !== undefined && obj[k] !== null && String(obj[k]).trim() !== '') {
+                    return String(obj[k]).trim();
+                }
+            }
+            var objKeys = Object.keys(obj);
+            for (var j = 0; j < keys.length; j++) {
+                var targetKey = keys[j].toLowerCase().replace(/_/g, '').replace(/\//g, '').replace(/\s+/g, '');
+                for (var k = 0; k < objKeys.length; k++) {
+                    var actualKey = objKeys[k].toLowerCase().replace(/_/g, '').replace(/\//g, '').replace(/\s+/g, '');
+                    if (targetKey === actualKey && obj[objKeys[k]] !== undefined && obj[objKeys[k]] !== null && String(obj[objKeys[k]]).trim() !== '') {
+                        return String(obj[objKeys[k]]).trim();
+                    }
+                }
+            }
+            return defaultVal || '';
         }
 
         function switchRTTableMode(mode) {
@@ -488,7 +511,6 @@
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'total\')">Total <i class="fas fa-sort text-muted ms-1" id="sort-icon-total"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_KK\')">KK <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_KK"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Bumbung_Rumah\')">Bumbung Rumah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Bumbung_Rumah"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Lansia\')">Lansia <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Lansia"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Putus_Sekolah\')">Putus Sekolah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Putus_Sekolah"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'Status_Pendataan\')">Status <i class="fas fa-sort text-muted ms-1" id="sort-icon-Status_Pendataan"></i></th>'
                         + '</tr>';
@@ -502,12 +524,10 @@
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'Nama_RT\')">Nama RT / SLS <i class="fas fa-sort text-muted ms-1" id="sort-icon-Nama_RT"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_sexRatio\')">#1 Sex Ratio <i class="fas fa-sort text-muted ms-1" id="sort-icon-_sexRatio"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_artRata\')">#2 ART/KK <i class="fas fa-sort text-muted ms-1" id="sort-icon-_artRata"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctLansia\')">#3 Lansia (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctLansia"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctKtp\')">#4 KTP-el (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctKtp"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctBansos\')">#5 Bansos (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctBansos"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctPutus\')">#6 Putus Sek (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctPutus"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_kepadatan\')">#7 Kepadatan <i class="fas fa-sort text-muted ms-1" id="sort-icon-_kepadatan"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_ratioIbadah\')">#8 Ibadah / 1k Jiwa <i class="fas fa-sort text-muted ms-1" id="sort-icon-_ratioIbadah"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctBansos\')">#3 Bansos (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctBansos"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctPutus\')">#4 Putus Sek (%) <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctPutus"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_kepadatan\')">#5 Kepadatan <i class="fas fa-sort text-muted ms-1" id="sort-icon-_kepadatan"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_ratioIbadah\')">#6 Ibadah / 1k Jiwa <i class="fas fa-sort text-muted ms-1" id="sort-icon-_ratioIbadah"></i></th>'
                         + '</tr>';
                 }
             }
@@ -519,7 +539,7 @@
             if (!tbody) return;
 
             if (!rawRTData.length) {
-                tbody.innerHTML = '<tr><td colspan="10" class="text-center py-4 text-muted">Belum ada data RT.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center py-4 text-muted">Belum ada data RT.</td></tr>';
                 return;
             }
 
@@ -532,8 +552,6 @@
                 var total = l + p;
                 var kk = parseInt(item['Jumlah_KK'] || item['Jumlah Kartu Keluarga'] || 0) || 0;
                 var bumbung = parseInt(item['Jumlah_Bumbung_Rumah'] || item['Nomor Bangunan'] || 0) || 0;
-                var lansia = parseInt(item['Jumlah_Penduduk_Lansia'] || 0) || 0;
-                var ktp = parseInt(item['Jumlah_Memiliki_KTP'] || 0) || 0;
                 var putus = parseInt(item['Jumlah_Penduduk_Putus_Sekolah'] || 0) || 0;
                 var status = item['Status_Pendataan'] || 'Selesai';
 
@@ -546,15 +564,12 @@
                         + '<td><span class="badge bg-primary rounded-pill">' + total + '</span></td>'
                         + '<td>' + kk + '</td>'
                         + '<td>' + bumbung + '</td>'
-                        + '<td>' + lansia + '</td>'
                         + '<td>' + putus + '</td>'
                         + '<td><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">' + status + '</span></td>'
                         + '</tr>';
                 } else {
                     var sr = p > 0 ? ((l / p) * 100).toFixed(1) : '-';
                     var art = kk > 0 ? (total / kk).toFixed(2) : '-';
-                    var pctLansia = total > 0 ? ((lansia / total) * 100).toFixed(1) + '%' : '-';
-                    var pctKtp = total > 0 ? ((ktp / total) * 100).toFixed(1) + '%' : '-';
                     var bansos = (parseInt(item['Jumlah_Penerima_PKH'] || 0) + parseInt(item['Jumlah_Penerima_BPNT'] || 0) + parseInt(item['Jumlah_Penerima_BLT'] || 0));
                     var pctBansos = kk > 0 ? ((bansos / kk) * 100).toFixed(1) + '%' : '-';
                     var pctPutus = total > 0 ? ((putus / total) * 100).toFixed(1) + '%' : '-';
@@ -565,8 +580,6 @@
                         + '<td><strong>' + namaRT + '</strong></td>'
                         + '<td><span class="badge bg-primary-subtle text-primary fw-bold">' + sr + '</span></td>'
                         + '<td><span class="badge bg-success-subtle text-success fw-bold">' + art + '</span></td>'
-                        + '<td><span class="badge bg-warning-subtle text-dark fw-bold">' + pctLansia + '</span></td>'
-                        + '<td><span class="badge bg-info-subtle text-info-emphasis fw-bold">' + pctKtp + '</span></td>'
                         + '<td><span class="badge bg-danger-subtle text-danger fw-bold">' + pctBansos + '</span></td>'
                         + '<td><span class="badge bg-dark-subtle text-dark fw-bold">' + pctPutus + '</span></td>'
                         + '<td><span class="badge bg-secondary-subtle text-secondary-emphasis fw-bold">' + kep + '</span></td>'
@@ -588,14 +601,14 @@
 
             var html = '';
             rawFasData.forEach(function(item) {
-                var namaFas = item['Nama_Fasilitas'] || item['Nama Fasilitas'] || 'Fasilitas';
-                var kat = item['Kategori_Fasilitas'] || item['Kategori'] || 'Lainnya';
-                var rt = item['RT'] || item['Wilayah RT'] || '-';
-                var kondisi = item['Kondisi_Bangunan'] || item['Kondisi'] || 'Baik';
-                var listrik = item['Sumber_Listrik'] || item['Listrik'] || 'PLN 24 Jam';
-                var air = item['Sumber_Air_Bersih'] || item['Air'] || 'Sumur Bor/Pompa';
+                var namaFas = getProp(item, ['Nama_Fasilitas', 'Nama Fasilitas', 'Nama Sarana', 'Nama'], 'Fasilitas');
+                var kat = getProp(item, ['Kategori_Fasilitas', 'Kategori Fasilitas', 'Sub_Kategori', 'Sub Kategori', 'Kategori'], 'Lainnya');
+                var rt = getProp(item, ['RT', 'Wilayah RT', 'Nama_RT', 'Nama RT', 'SLS'], '-');
+                var kondisi = getProp(item, ['Kondisi_Bangunan_Jalan', 'Kondisi_Bangunan', 'Kondisi Bangunan', 'Kondisi'], 'Baik');
+                var listrik = getProp(item, ['Sumber_Listrik', 'Sumber Listrik', 'Listrik'], 'PLN 24 Jam');
+                var air = getProp(item, ['Sumber_Air_Bersih', 'Sumber Air Bersih', 'Air'], 'Sumur Bor/Pompa');
                 var navBtn = '-';
-                var gps = item['Lokasi_GPS'] || item['Koordinat'];
+                var gps = getProp(item, ['Lokasi_GPS', 'Lokasi GPS', 'Koordinat', 'Geotagging'], '');
                 if (gps) {
                     var parts = gps.split(',');
                     if (parts.length === 2) {
@@ -652,18 +665,17 @@
 
                     if (key === '_sexRatio') { valA = pA > 0 ? (lA / pA) : 0; valB = pB > 0 ? (lB / pB) : 0; }
                     else if (key === '_artRata') { valA = kkA > 0 ? (totA / kkA) : 0; valB = kkB > 0 ? (totB / kkB) : 0; }
-                    else if (key === '_pctLansia') { valA = totA > 0 ? (parseInt(a['Jumlah_Penduduk_Lansia']||0) / totA) : 0; valB = totB > 0 ? (parseInt(b['Jumlah_Penduduk_Lansia']||0) / totB) : 0; }
-                    else if (key === '_pctKtp') { valA = totA > 0 ? (parseInt(a['Jumlah_Memiliki_KTP']||0) / totA) : 0; valB = totB > 0 ? (parseInt(b['Jumlah_Memiliki_KTP']||0) / totB) : 0; }
+                    else if (key === '_pctKtp') { valA = totA > 0 ? (parseInt(a['Jumlah_Memiliki_KTP']||0) / totA) : 0; valB = totB > 0 ? (parseInt(b['Jumlah_Memiliki_KTP']||0) / totA) : 0; }
                     else if (key === '_pctBansos') {
                         var bnsA = (parseInt(a['Jumlah_Penerima_PKH']||0) + parseInt(a['Jumlah_Penerima_BPNT']||0) + parseInt(a['Jumlah_Penerima_BLT']||0));
                         var bnsB = (parseInt(b['Jumlah_Penerima_PKH']||0) + parseInt(b['Jumlah_Penerima_BPNT']||0) + parseInt(b['Jumlah_Penerima_BLT']||0));
                         valA = kkA > 0 ? (bnsA / kkA) : 0; valB = kkB > 0 ? (bnsB / kkB) : 0;
                     }
-                    else if (key === '_pctPutus') { valA = totA > 0 ? (parseInt(a['Jumlah_Penduduk_Putus_Sekolah']||0) / totA) : 0; valB = totB > 0 ? (parseInt(b['Jumlah_Penduduk_Putus_Sekolah']||0) / totB) : 0; }
+                    else if (key === '_pctPutus') { valA = totA > 0 ? (parseInt(a['Jumlah_Penduduk_Putus_Sekolah']||0) / totA) : 0; valB = totB > 0 ? (parseInt(b['Jumlah_Penduduk_Putus_Sekolah']||0) / totA) : 0; }
                     else if (key === '_kepadatan') { valA = bumA > 0 ? (totA / bumA) : 0; valB = bumB > 0 ? (totB / bumB) : 0; }
                     else if (key === '_ratioIbadah') { valA = totA > 0 ? (1 / totA) : 0; valB = totB > 0 ? (1 / totB) : 0; }
                     else { valA = 0; valB = 0; }
-                } else if (['Jumlah_Penduduk_Laki_Laki', 'Jumlah_Penduduk_Perempuan', 'Jumlah_KK', 'Jumlah_Bumbung_Rumah', 'Jumlah_Penduduk_Lansia', 'Jumlah_Memiliki_KTP', 'Jumlah_Penduduk_Putus_Sekolah'].indexOf(key) !== -1) {
+                } else if (['Jumlah_Penduduk_Laki_Laki', 'Jumlah_Penduduk_Perempuan', 'Jumlah_KK', 'Jumlah_Bumbung_Rumah', 'Jumlah_Memiliki_KTP', 'Jumlah_Penduduk_Putus_Sekolah'].indexOf(key) !== -1) {
                     valA = parseInt(a[key] !== undefined && a[key] !== null ? a[key] : 0) || 0;
                     valB = parseInt(b[key] !== undefined && b[key] !== null ? b[key] : 0) || 0;
                 } else {
@@ -698,8 +710,8 @@
             }
 
             rawFasData.sort(function(a, b) {
-                var valA = (a[key] || a['Nama Fasilitas'] || a['Kategori'] || '').toString().toLowerCase();
-                var valB = (b[key] || b['Nama Fasilitas'] || b['Kategori'] || '').toString().toLowerCase();
+                var valA = getProp(a, [key, 'Nama_Fasilitas', 'Kategori_Fasilitas', 'Kategori'], '').toLowerCase();
+                var valB = getProp(b, [key, 'Nama_Fasilitas', 'Kategori_Fasilitas', 'Kategori'], '').toLowerCase();
                 if (valA < valB) return sortFasAsc ? -1 : 1;
                 if (valA > valB) return sortFasAsc ? 1 : -1;
                 return 0;
@@ -714,7 +726,7 @@
 
             var count = 0;
             fasList.forEach(function(item) {
-                var gps = item['Lokasi_GPS'] || item['Koordinat'];
+                var gps = getProp(item, ['Lokasi_GPS', 'Lokasi GPS', 'Koordinat', 'Geotagging'], '');
                 if (!gps) return;
                 var parts = gps.split(',');
                 if (parts.length === 2) {
@@ -722,9 +734,12 @@
                     var lng = parseFloat(parts[1].trim());
                     if (!isNaN(lat) && !isNaN(lng)) {
                         var marker = L.marker([lat, lng]);
-                        var popupContent = '<strong>' + (item['Nama_Fasilitas'] || 'Fasilitas') + '</strong><br>'
-                            + 'Kategori: ' + (item['Kategori_Fasilitas'] || '-') + '<br>'
-                            + 'RT: ' + (item['RT'] || '-');
+                        var namaFas = getProp(item, ['Nama_Fasilitas', 'Nama Fasilitas', 'Nama Sarana', 'Nama'], 'Fasilitas');
+                        var katFas = getProp(item, ['Kategori_Fasilitas', 'Kategori Fasilitas', 'Kategori'], '-');
+                        var rtFas = getProp(item, ['RT', 'Wilayah RT', 'Nama_RT'], '-');
+                        var popupContent = '<strong>' + namaFas + '</strong><br>'
+                            + 'Kategori: ' + katFas + '<br>'
+                            + 'RT: ' + rtFas;
                         marker.bindPopup(popupContent);
                         markersLayer.addLayer(marker);
                         count++;
@@ -746,12 +761,20 @@
                     container.style.minWidth = dynamicWidth + 'px';
                 }
 
-                var labels = rtList.map(function(item) { 
+                var sortedRTList = rtList.slice().sort(function(a, b) {
+                    var lA = parseInt(a['Jumlah Orang Laki-Laki di Rumah'] || a['Jumlah_Penduduk_Laki_Laki'] || 0) || 0;
+                    var pA = parseInt(a['Jumlah Orang Perempuan di Rumah'] || a['Jumlah_Penduduk_Perempuan'] || 0) || 0;
+                    var lB = parseInt(b['Jumlah Orang Laki-Laki di Rumah'] || b['Jumlah_Penduduk_Laki_Laki'] || 0) || 0;
+                    var pB = parseInt(b['Jumlah Orang Perempuan di Rumah'] || b['Jumlah_Penduduk_Perempuan'] || 0) || 0;
+                    return (lB + pB) - (lA + pA);
+                });
+
+                var labels = sortedRTList.map(function(item) { 
                     var name = (item['Nama RT'] || item['Nama_RT'] || '').trim();
                     return name.replace('DUSUN ', ''); 
                 });
-                var dataL = rtList.map(function(item) { return parseInt(item['Jumlah Orang Laki-Laki di Rumah'] || item['Jumlah_Penduduk_Laki_Laki'] || 0) || 0; });
-                var dataP = rtList.map(function(item) { return parseInt(item['Jumlah Orang Perempuan di Rumah'] || item['Jumlah_Penduduk_Perempuan'] || 0) || 0; });
+                var dataL = sortedRTList.map(function(item) { return parseInt(item['Jumlah Orang Laki-Laki di Rumah'] || item['Jumlah_Penduduk_Laki_Laki'] || 0) || 0; });
+                var dataP = sortedRTList.map(function(item) { return parseInt(item['Jumlah Orang Perempuan di Rumah'] || item['Jumlah_Penduduk_Perempuan'] || 0) || 0; });
 
                 chartDemografi = new Chart(ctxDem, {
                     type: 'bar',
@@ -785,17 +808,18 @@
 
                 var catCounts = {};
                 fasList.forEach(function(item) {
-                    var c = item['Kategori_Fasilitas'] || item['Kategori'] || 'Lainnya';
+                    var c = getProp(item, ['Kategori_Fasilitas', 'Kategori Fasilitas', 'Sub_Kategori', 'Kategori'], 'Lainnya');
                     catCounts[c] = (catCounts[c] || 0) + 1;
                 });
 
+                var hasData = Object.keys(catCounts).length > 0;
                 chartFasilitas = new Chart(ctxFas, {
                     type: 'doughnut',
                     data: {
-                        labels: Object.keys(catCounts).length ? Object.keys(catCounts) : ['Ibadah', 'Pendidikan', 'Kesehatan'],
+                        labels: hasData ? Object.keys(catCounts) : ['Belum Ada Data Fasilitas'],
                         datasets: [{
-                            data: Object.keys(catCounts).length ? Object.values(catCounts) : [5, 3, 2],
-                            backgroundColor: ['#064E3B', '#0D9488', '#F59E0B', '#3B82F6', '#EC4899']
+                            data: hasData ? Object.values(catCounts) : [1],
+                            backgroundColor: hasData ? ['#064E3B', '#0D9488', '#F59E0B', '#3B82F6', '#EC4899'] : ['#CBD5E1']
                         }]
                     },
                     options: {
@@ -896,9 +920,9 @@
                     a: '⚠️ Kasus putus sekolah tertinggi berada di <strong>' + (rtMaxPutus.Nama_RT || 'RT') + '</strong> (Ketua: ' + (rtMaxPutus.Nama_Ketua_RT || '-') + ') dengan <strong>' + (rtMaxPutus._putus || 0) + ' anak</strong>, sementara <strong>' + rtZeroPutusCount + ' RT lainnya</strong> tercatat 0 kasus.'
                 },
                 {
-                    id: 4, cat: 'lansia', tag: 'Demografi Lansia', isPerbaikan: false,
-                    q: 'Berapa jumlah dan proporsi penduduk lansia di Desa Pasir Palembang?',
-                    a: 'Terdata sebanyak <strong>' + totalLansia.toLocaleString('id-ID') + ' jiwa lansia</strong> (<strong>' + pctLansia + '%</strong> dari total populasi) yang memerlukan perhatian melalui Posyandu Lansia rutin.'
+                    id: 4, cat: 'demografi', tag: 'Bumbung Rumah', isPerbaikan: false,
+                    q: 'Berapa total fisik bumbung atap rumah di Pasir Palembang & kepadatan rata-ratanya?',
+                    a: 'Terdata <strong>' + totalBumbung.toLocaleString('id-ID') + ' unit bumbung rumah</strong> dengan rata-rata kepadatan hunian <strong>' + kepadatan + ' jiwa per rumah</strong>.'
                 },
                 {
                     id: 5, cat: 'perbaikan', tag: '⚠️ Solusi Intervensi Pendidikan', isPerbaikan: true,
@@ -916,9 +940,9 @@
                     a: '<strong>' + (rtMaxPop.Nama_RT || 'RT') + '</strong> (Ketua: ' + (rtMaxPop.Nama_Ketua_RT || '-') + ') memiliki populasi tertinggi dengan <strong>' + (rtMaxPop._totalPop || 0) + ' jiwa penduduk</strong> (' + (rtMaxPop._kk || 0) + ' KK).'
                 },
                 {
-                    id: 8, cat: 'lansia', tag: 'Bantuan Sosial', isPerbaikan: false,
+                    id: 8, cat: 'bansos', tag: 'Bantuan Sosial', isPerbaikan: false,
                     q: 'Berapa total keluarga penerima bantuan sosial (Bansos) di Desa Pasir Palembang?',
-                    a: 'Terdata sebanyak <strong>' + totalBansos.toLocaleString('id-ID') + ' keluarga penerima Bansos</strong> (PKH, BPNT, BLT) yang tersaring secara tepat sasaran berbasis Data Terpadu SDI.'
+                    a: 'Terdata sebanyak <strong>' + totalBansos.toLocaleString('id-ID') + ' penerima Bansos</strong> (PKH, BPNT, BLT) yang tersaring secara tepat sasaran berbasis Data Terpadu SDI.'
                 },
                 {
                     id: 9, cat: 'perbaikan', tag: '⚠️ Geospasial SDI', isPerbaikan: true,
@@ -933,7 +957,7 @@
                 {
                     id: 11, cat: 'demografi', tag: 'Ukuran Keluarga (ART)', isPerbaikan: false,
                     q: 'Berapa rata-rata Anggota Rumah Tangga (ART) per KK?',
-                    a: 'Setiap Kartu Keluarga di Pasir Palembang rata-rata memiliki <strong>' + artRata + ' Anggota Rumah Tangga dari total <strong>' + totalKK.toLocaleString('id-ID') + ' KK</strong>.'
+                    a: 'Setiap Kartu Keluarga di Pasir Palembang rata-rata memiliki <strong>' + artRata + ' Anggota Rumah Tangga</strong> dari total <strong>' + totalKK.toLocaleString('id-ID') + ' KK</strong>.'
                 },
                 {
                     id: 12, cat: 'rekor', tag: 'KK Terbanyak', isPerbaikan: false,
@@ -943,7 +967,7 @@
                 {
                     id: 13, cat: 'perbaikan', tag: '⚠️ Akses KTP-el', isPerbaikan: true,
                     q: 'Berapa persentase warga wajib KTP yang telah memiliki KTP-elektronik (KTP-el)?',
-                    a: '⚠️ Sebanyak <strong>' + totalKTP.toLocaleString('id-ID') + ' jiwa (' + pctKTP + '%)</strong> telah ber-KTP-el. Pemdes merekomendasikan <strong>Layanan Mobile Adminduk</strong> untuk lansia.'
+                    a: '⚠️ Sebanyak <strong>' + totalKTP.toLocaleString('id-ID') + ' jiwa (' + pctKTP + '%)</strong> telah ber-KTP-el. Pemdes merekomendasikan <strong>Layanan Mobile Adminduk</strong> untuk peningkatan cakupan adminduk.'
                 },
                 {
                     id: 14, cat: 'fasilitas', tag: 'Sarana Pendidikan', isPerbaikan: false,
@@ -951,7 +975,7 @@
                     a: 'Terdata <strong>' + countSekolah + ' sarana pendidikan dasar</strong>, mencakup SDN 05 Pasir Palembang dan MIS Bahrul Ulum.'
                 },
                 {
-                    id: 15, cat: 'lansia', tag: 'Posyandu & Faskes', isPerbaikan: false,
+                    id: 15, cat: 'fasilitas', tag: 'Posyandu & Faskes', isPerbaikan: false,
                     q: 'Berapa sarana kesehatan (Faskes) yang aktif beroperasi melayani warga?',
                     a: 'Terdata <strong>' + countFaskes + ' sarana kesehatan</strong>, mencakup Posyandu Kasih Ibu, Posyandu Mawar, dan Poskesdes Pasir Palembang.'
                 },
@@ -1120,6 +1144,104 @@
 
             var modal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
             modal.show();
+        }
+
+        function exportRTToCSV() {
+            if (!rawRTData || !rawRTData.length) {
+                alert('Data RT belum siap diunduh.');
+                return;
+            }
+            var rows = [];
+
+            if (currentRTMode === 'indikator') {
+                rows.push([
+                    "Nama RT", "Sex Ratio (#1)", "ART/KK (#2)", "Pct Bansos (#3)",
+                    "Pct Putus Sekolah (#4)", "Kepadatan Jiwa/Rumah (#5)", "Sarana Ibadah per 1k Jiwa (#6)"
+                ]);
+                rawRTData.forEach(function(r) {
+                    var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0) || 0;
+                    var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0) || 0;
+                    var total = l + p;
+                    var kk = parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0) || 0;
+                    var bumbung = parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0) || 0;
+                    var putus = parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0;
+                    var bansos = (parseInt(r.Jumlah_Penerima_PKH || 0) + parseInt(r.Jumlah_Penerima_BPNT || 0) + parseInt(r.Jumlah_Penerima_BLT || 0));
+
+                    var sr = p > 0 ? ((l / p) * 100).toFixed(1) : '-';
+                    var art = kk > 0 ? (total / kk).toFixed(2) : '-';
+                    var pctBansos = kk > 0 ? ((bansos / kk) * 100).toFixed(1) + '%' : '-';
+                    var pctPutus = total > 0 ? ((putus / total) * 100).toFixed(1) + '%' : '-';
+                    var kep = bumbung > 0 ? (total / bumbung).toFixed(2) : '-';
+                    var ratioIbadah = total > 0 ? ((1 / total) * 1000).toFixed(2) : '-';
+
+                    rows.push([
+                        r.Nama_RT || r['Nama RT'] || '', sr, art, pctBansos, pctPutus, kep, ratioIbadah
+                    ]);
+                });
+            } else {
+                rows.push([
+                    "Nama RT", "Ketua RT", "Penduduk Laki-Laki", "Penduduk Perempuan", "Total Penduduk",
+                    "Jumlah KK", "Bumbung Rumah", "Putus Sekolah", "Status Pendataan"
+                ]);
+                rawRTData.forEach(function(r) {
+                    var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0) || 0;
+                    var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0) || 0;
+                    var total = l + p;
+                    rows.push([
+                        r.Nama_RT || r['Nama RT'] || '', r.Nama_Ketua_RT || r['Nama Ketua RT'] || '',
+                        l, p, total,
+                        parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0) || 0,
+                        parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0) || 0,
+                        parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0,
+                        r.Status_Pendataan || 'Selesai'
+                    ]);
+                });
+            }
+
+            var fileName = currentRTMode === 'indikator' ? 'Indikator_SDI_RT_Pasir_Palembang_2026.csv' : 'Data_Variabel_RT_Pasir_Palembang_2026.csv';
+            triggerCSVDownload(rows, fileName);
+        }
+
+        function exportFasToCSV() {
+            if (!rawFasData || !rawFasData.length) {
+                alert('Data Fasilitas belum siap diunduh.');
+                return;
+            }
+            var rows = [
+                ["ID Fasilitas", "Nama Fasilitas", "Kategori", "Sub Kategori", "RT", "Kondisi Bangunan", "Sumber Listrik", "Sumber Air Bersih", "Lokasi GPS"]
+            ];
+            rawFasData.forEach(function(r) {
+                rows.push([
+                    getProp(r, ['ID_Fasilitas', 'ID Fasilitas']),
+                    getProp(r, ['Nama_Fasilitas', 'Nama Fasilitas', 'Nama Sarana']),
+                    getProp(r, ['Kategori_Fasilitas', 'Kategori Fasilitas', 'Sub_Kategori', 'Kategori']),
+                    getProp(r, ['Sub_Kategori', 'Sub Kategori']),
+                    getProp(r, ['RT', 'Wilayah RT', 'Nama_RT']),
+                    getProp(r, ['Kondisi_Bangunan_Jalan', 'Kondisi_Bangunan', 'Kondisi']),
+                    getProp(r, ['Sumber_Listrik', 'Sumber Listrik']),
+                    getProp(r, ['Sumber_Air_Bersih', 'Sumber Air Bersih']),
+                    getProp(r, ['Lokasi_GPS', 'Lokasi GPS', 'Koordinat'])
+                ]);
+            });
+            triggerCSVDownload(rows, 'Data_Fasilitas_Pasir_Palembang_2026.csv');
+        }
+
+        function triggerCSVDownload(rows, filename) {
+            var csvContent = "\uFEFF" + rows.map(function(e) {
+                return e.map(function(v) {
+                    var str = (v === null || v === undefined) ? '' : String(v);
+                    return '"' + str.replace(/"/g, '""') + '"';
+                }).join(",");
+            }).join("\r\n");
+
+            var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            var link = document.createElement("a");
+            var url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", filename);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </x-layouts.app>

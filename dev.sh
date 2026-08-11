@@ -50,9 +50,9 @@ fi
 echo "🗄️ Running database migrations (if pending)..."
 php artisan migrate --graceful --no-interaction || true
 
-# 7. Clear route and view caches for instant updates in Blade
-php artisan route:clear > /dev/null 2>&1 || true
-php artisan view:clear > /dev/null 2>&1 || true
+# 7. Clear all caches for instant updates in Blade and routes
+echo "⚡ Purging all Laravel caches..."
+php artisan optimize:clear > /dev/null 2>&1 || true
 
 # 8. Idempotent server process cleanup and automatic port selection
 pkill -f "artisan serve.*--port=$PORT" >/dev/null 2>&1 || true
@@ -69,7 +69,8 @@ done
 echo "--------------------------------------------------"
 echo "🌐 Web Portal   : http://$HOST:$PORT"
 echo "🗄️ phpMyAdmin   : http://localhost:$PMA_PORT"
+echo "⚡ No-Cache Dev : Browser & OPcache caching DISABLED"
 echo "💡 Press Ctrl+C to stop the dev server."
 echo "--------------------------------------------------"
 
-exec php artisan serve --host="$HOST" --port="$PORT"
+exec php -d opcache.enable_cli=0 -d opcache.enable=0 -d opcache.revalidate_freq=0 artisan serve --host="$HOST" --port="$PORT"
