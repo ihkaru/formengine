@@ -370,6 +370,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
+                            <img src="{{ asset('images/pencanangan-2026.webp') }}" alt="Pencanangan Desa Cantik 2026" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Pencanangan Desa Cantik 2026</h6>
+                            <p class="extra-small text-muted mb-0">Deklarasi &amp; pencanangan resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

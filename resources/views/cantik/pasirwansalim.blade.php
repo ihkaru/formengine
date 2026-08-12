@@ -1051,6 +1051,16 @@
                         <p class="extra-small text-muted px-1 mb-0">Dokumentasi pendataan potensi kewilayahan rumah tangga.</p>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Kelurahan Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')" style="cursor:pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 200px;">
+                            <img src="{{ asset('images/pencanangan-2026.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pencanangan Kelurahan Cantik 2026">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 px-1">Pencanangan Descan 2026</h6>
+                        <span class="badge bg-primary-subtle text-primary extra-small ms-1 mb-1">Pemkab &amp; BPS</span>
+                        <p class="extra-small text-muted px-1 mb-0">Deklarasi pencanangan resmi Desa &amp; Kelurahan Cantik 2026.</p>
+                    </div>
+                </div>
             </div>
         </section>
 

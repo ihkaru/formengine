@@ -336,11 +336,13 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="border border-warning border-dashed rounded-4 overflow-hidden shadow-sm h-100 bg-light p-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 220px;">
-                        <i class="fas fa-map-marker-alt fa-3x text-warning mb-2"></i>
-                        <h6 class="fw-bold text-dark mb-1">Foto Tagging GPS Fasilitas</h6>
-                        <span class="badge bg-warning text-dark extra-small">[PLACEHOLDER FOTO #4]</span>
-                        <p class="extra-small text-muted mt-2 mb-0">Observasi geospasial &amp; inventarisasi GPS sarana desa.</p>
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah Tahun 2026.')" style="cursor: pointer;">
+                        <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
+                            <img src="{{ asset('images/pencanangan-2026.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pencanangan Desa Cantik 2026">
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Pencanangan Descan 2026</h6>
+                        <span class="badge bg-primary-subtle text-primary extra-small">Pemkab &amp; BPS</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Deklarasi pencanangan resmi Desa &amp; Kelurahan Cantik 2026.</p>
                     </div>
                 </div>
             </div>

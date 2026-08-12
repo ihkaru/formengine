@@ -250,7 +250,17 @@
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
-                    <img src="{{ asset('images/dukungan-pemda.webp') }}" alt="Dukungan Pemda" class="img-fluid rounded-4 shadow border" onerror="this.src='{{ asset('images/dukungan-pemda.jpg') }}'">
+                    <div class="position-relative">
+                        <img src="{{ asset('images/pencanangan-2026.webp') }}" alt="Pencanangan Desa &amp; Kelurahan Cinta Statistik 2026" class="img-fluid rounded-4 shadow border mb-3 w-100" style="object-fit: cover; max-height: 310px;">
+                        <div class="d-flex gap-2">
+                            <img src="{{ asset('images/dukungan-pemda.webp') }}" alt="Dukungan Pemda" class="img-fluid rounded-3 shadow border w-50" style="object-fit: cover; max-height: 120px;" onerror="this.src='{{ asset('images/dukungan-pemda.jpg') }}'">
+                            <div class="w-50 p-2 bg-primary-subtle text-primary border rounded-3 d-flex flex-column justify-content-center">
+                                <span class="badge bg-primary w-auto align-self-start mb-1" style="font-size:0.7rem;">Resmi 2026</span>
+                                <small class="fw-bold text-dark mb-0">Pencanangan Descan 2026</small>
+                                <span class="extra-small text-muted">Pemkab &amp; BPS Mempawah</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
                     <h2 class="section-title">Tentang Cerdas-SM</h2>

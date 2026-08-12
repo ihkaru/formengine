@@ -533,10 +533,21 @@
             <div class="container py-5">
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
-                        <div class="about-image">
-                            <img src="{{ asset('images/dukungan-pemda.webp') }}"
-                                alt="Sekda Mempawah, Ismail, dalam acara Evaluasi Pembinaan Statistik Sektoral"
-                                class="img-fluid" onerror="this.src='{{ asset('images/dukungan-pemda.jpg') }}'">
+                        <div class="about-image rounded-4 overflow-hidden shadow border mb-3">
+                            <img src="{{ asset('images/pencanangan-2026.webp') }}"
+                                alt="Pencanangan Desa &amp; Kelurahan Cinta Statistik 2026"
+                                class="img-fluid w-100" style="object-fit: cover; max-height: 300px;">
+                            <div class="p-3 bg-light border-top">
+                                <span class="badge bg-primary me-2">Resmi 2026</span>
+                                <small class="fw-bold text-dark">Pencanangan Desa &amp; Kelurahan Cinta Statistik 2026</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3 p-2 bg-light rounded-4 border">
+                            <img src="{{ asset('images/dukungan-pemda.webp') }}" alt="Dukungan Pemda Mempawah" class="rounded-3 border" style="width: 110px; height: 75px; object-fit: cover;" onerror="this.src='{{ asset('images/dukungan-pemda.jpg') }}'">
+                            <div>
+                                <h6 class="fw-bold text-dark mb-1 small">Komitmen Pembinaan BPS &amp; Pemkab</h6>
+                                <p class="extra-small text-muted mb-0">Sinergi Pemkab Mempawah &amp; BPS Mempawah untuk Satu Data Indonesia.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
