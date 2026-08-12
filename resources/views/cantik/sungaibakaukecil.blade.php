@@ -85,8 +85,8 @@
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white">
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
                 <h4 class="fw-bold text-dark mb-0"><i class="fas fa-table me-2 text-primary"></i>Daftar Potensi RT &amp; Fasilitas Desa</h4>
-                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="downloadCurrentTableCSV()">
-                    <i class="fas fa-file-excel me-1"></i> Unduh Data Tabel (CSV/Excel)
+                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="downloadCurrentTableExcel()">
+                    <i class="fas fa-file-excel me-1"></i> Unduh Data Tabel (Excel)
                 </button>
             </div>
             <ul class="nav nav-pills mb-3 flex-nowrap overflow-x-auto text-nowrap" id="pills-tab" role="tablist">
@@ -255,7 +255,7 @@
                         <h6 class="fw-bold text-dark mb-1">Tabel Data Excel (SDI)</h6>
                         <p class="extra-small text-muted mb-3">Kumpulan dataset RT &amp; Fasilitas dalam format spreadsheet terbuka.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-info rounded-pill"><i class="fas fa-external-link-alt me-1"></i> Akses Spreadsheet</a>
+                            <button type="button" onclick="downloadCurrentTableExcel()" class="btn btn-sm btn-outline-info rounded-pill"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
                         </div>
                     </div>
                 </div>
@@ -1211,18 +1211,19 @@
         }
 
         // CSV / Excel Data Export Logic
-        function downloadCurrentTableCSV() {
+        function downloadCurrentTableExcel() {
             var activeTab = document.querySelector('#pills-tab .nav-link.active');
             var isRT = activeTab && (activeTab.getAttribute('data-bs-target') === '#pills-rt' || activeTab.innerText.indexOf('Daftar RT') !== -1);
 
             if (isRT) {
-                exportRTToCSV();
+                exportRTToExcel();
             } else {
-                exportFasToCSV();
+                exportFasToExcel();
             }
         }
+        function downloadCurrentTableCSV() { downloadCurrentTableExcel(); }
 
-        function exportRTToCSV() {
+        function exportRTToExcel() {
             if (!rawRTData || !rawRTData.length) {
                 alert('Data RT belum siap diunduh.');
                 return;
@@ -1238,10 +1239,10 @@
                 ]);
                 rawRTData.forEach(function(r) {
                     rows.push([
-                        r.Nama_RT || '', r._sexRatio || 0, r._artRata || 0, r.Jumlah_Penduduk_Lansia || 0, (r._pctLansia || 0) + '%',
-                        r.Jumlah_Memiliki_KTP || 0, (r._pctKTP || 0) + '%', r._cntBansos || 0, (r._pctBansos || 0) + '%',
-                        r.Jumlah_Penduduk_Putus_Sekolah || 0, (r._pctPutus || 0) + '%', r._kepadatan || 0,
-                        r._cntIbadah || 0, r._ratioIbadah || 0
+                        r.Nama_RT || '', parseFloat(r._sexRatio || 0), parseFloat(r._artRata || 0), parseInt(r.Jumlah_Penduduk_Lansia || 0), (r._pctLansia || 0) + '%',
+                        parseInt(r.Jumlah_Memiliki_KTP || 0), (r._pctKTP || 0) + '%', parseInt(r._cntBansos || 0), (r._pctBansos || 0) + '%',
+                        parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0), (r._pctPutus || 0) + '%', parseFloat(r._kepadatan || 0),
+                        parseInt(r._cntIbadah || 0), parseFloat(r._ratioIbadah || 0)
                     ]);
                 });
             } else {
@@ -1250,20 +1251,23 @@
                     "Jumlah KK", "Jumlah Bumbung Rumah", "Jumlah Lansia", "Jumlah Memiliki KTP", "Status Pendataan"
                 ]);
                 rawRTData.forEach(function(r) {
-                    var total = parseInt(r.Jumlah_Penduduk_Laki_Laki||0) + parseInt(r.Jumlah_Penduduk_Perempuan||0);
+                    var l = parseInt(r.Jumlah_Penduduk_Laki_Laki||0);
+                    var p = parseInt(r.Jumlah_Penduduk_Perempuan||0);
+                    var total = l + p;
                     rows.push([
-                        r.Nama_RT || '', r.Nama_Ketua_RT || '', r.Jumlah_Penduduk_Laki_Laki || 0, r.Jumlah_Penduduk_Perempuan || 0,
-                        total, r.Jumlah_KK || 0, r.Jumlah_Bumbung_Rumah || 0, r.Jumlah_Penduduk_Lansia || 0,
-                        r.Jumlah_Memiliki_KTP || 0, r.Status_Pendataan || 'Selesai'
+                        r.Nama_RT || '', r.Nama_Ketua_RT || '', l, p,
+                        total, parseInt(r.Jumlah_KK || 0), parseInt(r.Jumlah_Bumbung_Rumah || 0), parseInt(r.Jumlah_Penduduk_Lansia || 0),
+                        parseInt(r.Jumlah_Memiliki_KTP || 0), r.Status_Pendataan || 'Selesai'
                     ]);
                 });
             }
 
-            var fileName = currentRTMode === 'indikator' ? 'Indikator_SDI_RT_Sungai_Bakau_Kecil_2026.csv' : 'Data_Variabel_RT_Sungai_Bakau_Kecil_2026.csv';
-            triggerCSVDownload(rows, fileName);
+            var fileName = currentRTMode === 'indikator' ? 'Indikator_SDI_RT_Sungai_Bakau_Kecil_2026.xlsx' : 'Data_Variabel_RT_Sungai_Bakau_Kecil_2026.xlsx';
+            triggerExcelDownload(rows, fileName);
         }
+        function exportRTToCSV() { exportRTToExcel(); }
 
-        function exportFasToCSV() {
+        function exportFasToExcel() {
             if (!rawFasData || !rawFasData.length) {
                 alert('Data Fasilitas belum siap diunduh.');
                 return;
@@ -1277,25 +1281,52 @@
                     r.RT || '', r.Kondisi_Bangunan || 'Baik', r.Sumber_Listrik || '', r.Sumber_Air_Bersih || '', r.Lokasi_GPS || ''
                 ]);
             });
-            triggerCSVDownload(rows, 'Data_Fasilitas_Sungai_Bakau_Kecil_2026.csv');
+            triggerExcelDownload(rows, 'Data_Fasilitas_Sungai_Bakau_Kecil_2026.xlsx');
         }
+        function exportFasToCSV() { exportFasToExcel(); }
 
-        function triggerCSVDownload(rows, filename) {
-            var csvContent = "\uFEFF" + rows.map(function(e) {
-                return e.map(function(v) {
-                    var str = (v === null || v === undefined) ? '' : String(v);
-                    return '"' + str.replace(/"/g, '""') + '"';
-                }).join(",");
-            }).join("\r\n");
+        function triggerExcelDownload(rows, filename) {
+            if (!rows || !rows.length) {
+                alert('Data belum siap diunduh.');
+                return;
+            }
+            if (!filename.endsWith('.xlsx')) {
+                filename = filename.replace(/\.csv$/, '') + '.xlsx';
+            }
 
-            var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            var link = document.createElement("a");
-            var url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", filename);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (typeof XLSX !== 'undefined') {
+                var wb = XLSX.utils.book_new();
+                var ws = XLSX.utils.aoa_to_sheet(rows);
+
+                var colWidths = rows[0].map(function(col, i) {
+                    var maxLen = String(col || '').length;
+                    rows.forEach(function(row) {
+                        var cellLen = String(row[i] || '').length;
+                        if (cellLen > maxLen) maxLen = cellLen;
+                    });
+                    return { wch: Math.min(Math.max(maxLen + 3, 10), 45) };
+                });
+                ws['!cols'] = colWidths;
+
+                XLSX.utils.book_append_sheet(wb, ws, "Data SDI");
+                XLSX.writeFile(wb, filename);
+            } else {
+                var csvContent = "\uFEFF" + rows.map(function(e) {
+                    return e.map(function(v) {
+                        var str = (v === null || v === undefined) ? '' : String(v);
+                        return '"' + str.replace(/"/g, '""') + '"';
+                    }).join(",");
+                }).join("\r\n");
+
+                var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                var link = document.createElement("a");
+                var url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", filename.replace(/\.xlsx$/, '.csv'));
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
         }
     </script>
 </body>

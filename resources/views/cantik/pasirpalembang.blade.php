@@ -101,8 +101,8 @@
                             <i class="fas fa-chart-line me-1"></i> Mode 8 Indikator SDI
                         </button>
                     </div>
-                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="exportRTToCSV()">
-                        <i class="fas fa-file-excel me-1"></i> Unduh CSV/Excel
+                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="exportRTToExcel()">
+                        <i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)
                     </button>
                     <div class="input-group input-group-sm" style="width: 220px;">
                         <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
@@ -140,8 +140,8 @@
                     <p class="text-muted small mb-0">Daftar sarana ibadah, sekolah, posyandu, dan kantor pemerintahan di Pasir Palembang.</p>
                 </div>
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="exportFasToCSV()">
-                        <i class="fas fa-file-excel me-1"></i> Unduh CSV/Excel
+                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="exportFasToExcel()">
+                        <i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)
                     </button>
                     <div class="input-group input-group-sm" style="width: 240px;">
                         <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
@@ -265,16 +265,16 @@
                         </div>
                     </div>
                 </div>
-                <!-- Spreadsheet Placeholder -->
+                <!-- Dataset Excel Card -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="p-3 border border-warning border-dashed rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-warning d-flex align-items-center justify-content-center bg-white rounded-3 border" style="height: 130px;">
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card" onclick="exportRTToExcel()" style="cursor: pointer;">
+                        <div class="mb-3 text-success d-flex align-items-center justify-content-center bg-light rounded-3 border" style="height: 130px;">
                             <i class="fas fa-file-excel fa-3x"></i>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Dataset Excel (SDI)</h6>
-                        <p class="extra-small text-muted mb-3">Tabel kompilasi potensi RT &amp; Fasilitas umum.</p>
+                        <p class="extra-small text-muted mb-3">Tabel kompilasi potensi RT &amp; Fasilitas umum (.xlsx).</p>
                         <div class="mt-auto d-grid gap-2">
-                            <button class="btn btn-sm btn-outline-warning text-dark rounded-pill disabled" disabled><i class="fas fa-clock me-1"></i> Belum Tersedia</button>
+                            <button type="button" onclick="exportRTToExcel()" class="btn btn-sm btn-outline-success rounded-pill"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
                         </div>
                     </div>
                 </div>
@@ -1152,7 +1152,7 @@
             modal.show();
         }
 
-        function exportRTToCSV() {
+        function exportRTToExcel() {
             if (!rawRTData || !rawRTData.length) {
                 alert('Data RT belum siap diunduh.');
                 return;
@@ -1173,12 +1173,12 @@
                     var putus = parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0;
                     var bansos = (parseInt(r.Jumlah_Penerima_PKH || 0) + parseInt(r.Jumlah_Penerima_BPNT || 0) + parseInt(r.Jumlah_Penerima_BLT || 0));
 
-                    var sr = p > 0 ? ((l / p) * 100).toFixed(1) : '-';
-                    var art = kk > 0 ? (total / kk).toFixed(2) : '-';
+                    var sr = p > 0 ? parseFloat(((l / p) * 100).toFixed(1)) : '-';
+                    var art = kk > 0 ? parseFloat((total / kk).toFixed(2)) : '-';
                     var pctBansos = kk > 0 ? ((bansos / kk) * 100).toFixed(1) + '%' : '-';
                     var pctPutus = total > 0 ? ((putus / total) * 100).toFixed(1) + '%' : '-';
-                    var kep = bumbung > 0 ? (total / bumbung).toFixed(2) : '-';
-                    var ratioIbadah = total > 0 ? ((1 / total) * 1000).toFixed(2) : '-';
+                    var kep = bumbung > 0 ? parseFloat((total / bumbung).toFixed(2)) : '-';
+                    var ratioIbadah = total > 0 ? parseFloat(((1 / total) * 1000).toFixed(2)) : '-';
 
                     rows.push([
                         r.Nama_RT || r['Nama RT'] || '', sr, art, pctBansos, pctPutus, kep, ratioIbadah
@@ -1204,11 +1204,12 @@
                 });
             }
 
-            var fileName = currentRTMode === 'indikator' ? 'Indikator_SDI_RT_Pasir_Palembang_2026.csv' : 'Data_Variabel_RT_Pasir_Palembang_2026.csv';
-            triggerCSVDownload(rows, fileName);
+            var fileName = currentRTMode === 'indikator' ? 'Indikator_SDI_RT_Pasir_Palembang_2026.xlsx' : 'Data_Variabel_RT_Pasir_Palembang_2026.xlsx';
+            triggerExcelDownload(rows, fileName);
         }
+        function exportRTToCSV() { exportRTToExcel(); }
 
-        function exportFasToCSV() {
+        function exportFasToExcel() {
             if (!rawFasData || !rawFasData.length) {
                 alert('Data Fasilitas belum siap diunduh.');
                 return;
@@ -1229,25 +1230,52 @@
                     getProp(r, ['Lokasi_GPS', 'Lokasi GPS', 'Koordinat'])
                 ]);
             });
-            triggerCSVDownload(rows, 'Data_Fasilitas_Pasir_Palembang_2026.csv');
+            triggerExcelDownload(rows, 'Data_Fasilitas_Pasir_Palembang_2026.xlsx');
         }
+        function exportFasToCSV() { exportFasToExcel(); }
 
-        function triggerCSVDownload(rows, filename) {
-            var csvContent = "\uFEFF" + rows.map(function(e) {
-                return e.map(function(v) {
-                    var str = (v === null || v === undefined) ? '' : String(v);
-                    return '"' + str.replace(/"/g, '""') + '"';
-                }).join(",");
-            }).join("\r\n");
+        function triggerExcelDownload(rows, filename) {
+            if (!rows || !rows.length) {
+                alert('Data belum siap diunduh.');
+                return;
+            }
+            if (!filename.endsWith('.xlsx')) {
+                filename = filename.replace(/\.csv$/, '') + '.xlsx';
+            }
 
-            var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            var link = document.createElement("a");
-            var url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", filename);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (typeof XLSX !== 'undefined') {
+                var wb = XLSX.utils.book_new();
+                var ws = XLSX.utils.aoa_to_sheet(rows);
+
+                var colWidths = rows[0].map(function(col, i) {
+                    var maxLen = String(col || '').length;
+                    rows.forEach(function(row) {
+                        var cellLen = String(row[i] || '').length;
+                        if (cellLen > maxLen) maxLen = cellLen;
+                    });
+                    return { wch: Math.min(Math.max(maxLen + 3, 10), 45) };
+                });
+                ws['!cols'] = colWidths;
+
+                XLSX.utils.book_append_sheet(wb, ws, "Data SDI");
+                XLSX.writeFile(wb, filename);
+            } else {
+                var csvContent = "\uFEFF" + rows.map(function(e) {
+                    return e.map(function(v) {
+                        var str = (v === null || v === undefined) ? '' : String(v);
+                        return '"' + str.replace(/"/g, '""') + '"';
+                    }).join(",");
+                }).join("\r\n");
+
+                var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                var link = document.createElement("a");
+                var url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", filename.replace(/\.xlsx$/, '.csv'));
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
         }
     </script>
 </x-layouts.app>
