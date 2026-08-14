@@ -2127,9 +2127,8 @@
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Memiliki_KTP\')">Jml KTP-el <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Memiliki_KTP"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctKTP\')">#4 % KTP-el <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctKTP"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_cntBansos\')">Jml Bansos <i class="fas fa-sort text-muted ms-1" id="sort-icon-_cntBansos"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctBansos\')">#5 % Bansos <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctBansos"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Putus_Sekolah\')">Jml Putus <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Putus_Sekolah"></i></th>'
-                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctPutus\')">#6 % Putus <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctPutus"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Putus_Sekolah\')" title="Jumlah Anak Usia 7-18 Tahun yang Tidak Bersekolah">Putus Sekolah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Putus_Sekolah"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctPutus\')" title="Persentase Anak Putus Sekolah terhadap Total Anak Bersekolah di RT: (Putus / Siswa) × 100%">#6 % Putus Sekolah <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctPutus"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_kepadatan\')">#7 Kepadatan <i class="fas fa-sort text-muted ms-1" id="sort-icon-_kepadatan"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_cntIbadah\')">Jml Ibadah <i class="fas fa-sort text-muted ms-1" id="sort-icon-_cntIbadah"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_ratioIbadah\')">#8 Ibadah/1k <i class="fas fa-sort text-muted ms-1" id="sort-icon-_ratioIbadah"></i></th>'
@@ -2734,9 +2733,14 @@
                         + '<td class="fw-bold text-dark">' + (r.Jumlah_Memiliki_KTP || 0) + '</td>'
                         + '<td><span class="badge bg-info-subtle text-info-emphasis fw-bold">' + (r._pctKTP || 0) + '%</span></td>'
                         + '<td class="fw-bold text-dark">' + (r._cntBansos || 0) + '</td>'
-                        + '<td><span class="badge bg-danger-subtle text-danger fw-bold">' + (r._pctBansos || 0) + '%</span></td>'
-                        + '<td class="fw-bold text-dark">' + (r.Jumlah_Penduduk_Putus_Sekolah || 0) + '</td>'
-                        + '<td><span class="badge bg-dark-subtle text-dark fw-bold">' + (r._pctPutus || 0) + '%</span></td>'
+                        + '<td class="fw-bold ' + ((r.Jumlah_Penduduk_Putus_Sekolah || 0) > 0 ? 'text-danger' : 'text-muted') + '">' + (r.Jumlah_Penduduk_Putus_Sekolah || 0) + '</td>'
+                        + '<td>' + (
+                            (r._pctPutus || 0) > 10
+                                ? '<span class="badge bg-danger-subtle text-danger fw-bold border border-danger-subtle" title="Perlu Intervensi: >10% dari siswa di RT ini"><i class="fas fa-exclamation-circle me-1"></i>' + r._pctPutus + '%</span>'
+                                : ((r._pctPutus || 0) > 0
+                                    ? '<span class="badge bg-warning-subtle text-dark fw-bold border border-warning-subtle">' + r._pctPutus + '%</span>'
+                                    : '<span class="badge bg-light text-muted border">0%</span>')
+                        ) + '</td>'
                         + '<td><span class="badge bg-secondary-subtle text-secondary-emphasis fw-bold">' + (r._kepadatan || 0) + '</span></td>'
                         + '<td class="fw-bold text-dark">' + (r._cntIbadah || 0) + '</td>'
                         + '<td><span class="badge bg-teal-subtle text-teal fw-bold" style="background:#ccfbf1;color:#0f766e;">' + (r._ratioIbadah || 0) + '</span></td>';
