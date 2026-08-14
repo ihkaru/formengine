@@ -3209,5 +3209,23 @@
             }
         }
     </script>
-</body>
-</html>
+
+    {{-- Tambahkan AOS initialization langsung di sini karena layout app memuatnya sebelum </body> --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    once: true,
+                    duration: 800,
+                    offset: 100,
+                    easing: 'ease-out-cubic'
+                });
+                // Refresh setelah data dinamis (Google Sheets) selesai dimuat
+                window.addEventListener('load', function() {
+                    AOS.refresh();
+                });
+            }
+        });
+    </script>
+
+</x-layouts.app>
