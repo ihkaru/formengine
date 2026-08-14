@@ -54,7 +54,8 @@ class CantikController extends Controller
             'pasirwansalim' => [
                 'id' => '1ulJONIebP6ytRUldb7I2zDhhoKnqpaHTy4LR3SlahBo',
                 'sheets' => [
-                    'Appsheet_RT' => 'sheet=' . urlencode('Appsheet_RT')
+                    'Appsheet_RT' => 'gid=0',
+                    'Appsheet_Fasilitas' => 'sheet=' . urlencode('Fasilitas')
                 ]
             ],
             'pasirpalembang' => [
@@ -82,7 +83,7 @@ class CantikController extends Controller
 
         try {
             $data = Cache::remember($cacheKey, $cacheTtl, function() use ($url) {
-                $response = Http::timeout(10)->get($url);
+                $response = Http::timeout(15)->get($url);
                 if (!$response->successful()) {
                     throw new \Exception("Failed to fetch from Google Sheets");
                 }
@@ -107,7 +108,7 @@ class CantikController extends Controller
                 return $data;
             });
 
-            if ($slug === 'pasirpalembang' && $sheet === 'Appsheet_RT') {
+            if (($slug === 'pasirpalembang' || $slug === 'pasirwansalim') && $sheet === 'Appsheet_RT') {
                 $data = $this->aggregateBnbaToRtData($data);
             }
 
@@ -133,7 +134,7 @@ class CantikController extends Controller
             $fallbackFile = resource_path("data/{$slug}_{$sheet}.json");
             if (file_exists($fallbackFile)) {
                 $data = json_decode(file_get_contents($fallbackFile), true);
-                if ($slug === 'pasirpalembang' && $sheet === 'Appsheet_RT') {
+                if (($slug === 'pasirpalembang' || $slug === 'pasirwansalim') && $sheet === 'Appsheet_RT') {
                     $data = $this->aggregateBnbaToRtData($data);
                 }
                 return response()->json($data);
@@ -163,6 +164,8 @@ class CantikController extends Controller
                     'Jumlah_Penerima_PKH' => 0,
                     'Jumlah_Penerima_BPNT' => 0,
                     'Jumlah_Penerima_BLT' => 0,
+                    'Jumlah_UMKM' => 0,
+                    'Jumlah_BPJS' => 0,
                     'Jumlah_Penduduk_Putus_Sekolah' => 0,
                     'Status_Pendataan' => 'Selesai'
                 ];
@@ -172,17 +175,21 @@ class CantikController extends Controller
 
             $l = (int)($row['Jumlah Orang Laki-Laki di Rumah'] ?? $row['Jumlah_Penduduk_Laki_Laki'] ?? $row['Jumlah_Orang_Laki_Dirumah'] ?? 0);
             $p = (int)($row['Jumlah Orang Perempuan di Rumah'] ?? $row['Jumlah_Penduduk_Perempuan'] ?? $row['Jumlah_Orang_Perempuan_Dirumah'] ?? 0);
-            $kk = (int)($row['Jumlah Kartu Keluarga'] ?? $row['Jumlah_KK'] ?? 1);
+            $kk = (int)($row['Jumlah Kartu Keluarga'] ?? $row['Jumlah_Kartu_Keluarga'] ?? $row['Jumlah_KK'] ?? 1);
 
             $aggregated[$rtName]['Jumlah_Penduduk_Laki_Laki'] += $l;
             $aggregated[$rtName]['Jumlah_Penduduk_Perempuan'] += $p;
             $aggregated[$rtName]['Jumlah_KK'] += ($kk > 0 ? $kk : 1);
 
+            $lansia = (int)($row['Jumlah Penduduk Berusia 65-74'] ?? $row['Jumlah_Penduduk_Lansia'] ?? 0)
+                    + (int)($row['Jumlah Penduduk Berusia 75+'] ?? 0);
+            $aggregated[$rtName]['Jumlah_Penduduk_Lansia'] += $lansia;
+
             $putus = (int)($row['Jumlah Anggota Keluarga Putus Sekolah (7-18 tahun tetapi tidak sedang sekolah)'] ?? $row['Jumlah_Penduduk_Putus_Sekolah'] ?? 0);
             $aggregated[$rtName]['Jumlah_Penduduk_Putus_Sekolah'] += $putus;
 
             $pkh = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan PKH'] ?? $row['Jml_Penerima_Terdaftar_PKH'] ?? 0);
-            $bpnt = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BPNT'] ?? $row['Jml_Penerima_Terdaftar_Sembako_BPNT'] ?? 0);
+            $bpnt = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BPNT'] ?? $row['Jml_Penerima_Terdaftar_Sembako_BPNT'] ?? $row['Jml_Penerima_Terdaftar_Sembako/BPNT'] ?? 0);
             $blts = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BLTS'] ?? 0);
             $bltdd = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BLTDD'] ?? 0);
             $bcp = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BCP'] ?? 0);
@@ -190,6 +197,12 @@ class CantikController extends Controller
             $aggregated[$rtName]['Jumlah_Penerima_PKH'] += $pkh;
             $aggregated[$rtName]['Jumlah_Penerima_BPNT'] += $bpnt;
             $aggregated[$rtName]['Jumlah_Penerima_BLT'] += ($blts + $bltdd + $bcp);
+
+            $umkm = (int)($row['Jumlah_UMKM_Dalam_Keluarga'] ?? $row['Jumlah_UMKM'] ?? 0);
+            $aggregated[$rtName]['Jumlah_UMKM'] += $umkm;
+
+            $bpjs = (int)($row['Jumlah_ART_Memiliki_BPJS'] ?? $row['Jumlah_BPJS'] ?? 0);
+            $aggregated[$rtName]['Jumlah_BPJS'] += $bpjs;
         }
 
         $finalResult = [];

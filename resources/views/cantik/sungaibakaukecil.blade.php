@@ -18,6 +18,9 @@
                 <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold" onclick="loadDataFromSheets()">
                     <i class="fas fa-redo me-1"></i> Sync Sekarang
                 </button>
+                <a href="#infografis" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                    <i class="fas fa-chart-pie me-1"></i> Galeri Infografis
+                </a>
                 <a href="#sop-layanan" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
                     <i class="fas fa-envelope me-1"></i> Permintaan Data
                 </a>
@@ -82,11 +85,13 @@
         </div>
 
         <!-- Tables -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white">
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-                <h4 class="fw-bold text-dark mb-0"><i class="fas fa-table me-2 text-primary"></i>Daftar Potensi RT &amp; Fasilitas Desa</h4>
-                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="downloadCurrentTableExcel()">
-                    <i class="fas fa-file-excel me-1"></i> Unduh Data Tabel (Excel)
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-table me-2 text-primary"></i>Daftar Potensi RT &amp; Fasilitas Desa</h4>
+                    <p class="text-muted small mb-0">Dataset terpadu 37 RT dan 49 titik fasilitas umum Desa Sungai Bakau Kecil.</p>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 py-2 fw-bold shadow-sm" onclick="downloadCurrentTableExcel()">
+                    <i class="fas fa-file-excel me-1"></i> Unduh Data Excel Lengkap (.xlsx)
                 </button>
             </div>
             <ul class="nav nav-pills mb-3 flex-nowrap overflow-x-auto text-nowrap" id="pills-tab" role="tablist">
@@ -155,6 +160,108 @@
         <!-- Dukungan Pemkab & Pembinaan Sektoral (Reusable Component) -->
         <x-ui.dukungan-pemkab village-name="Desa Sungai Bakau Kecil" year="2026" />
 
+        <!-- Galeri Infografis Tematik Desa Cantik 2026 -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="infografis">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-chart-pie me-2 text-success"></i>Galeri Infografis Tematik Desa Cantik 2026</h4>
+                    <p class="text-muted small mb-0">Visualisasi grafis data kependudukan, pendidikan, kesejahteraan sosial, dan infrastruktur Desa Sungai Bakau Kecil.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill">Desa Cantik 2026</span>
+                    <span class="badge bg-primary px-3 py-2 rounded-pill">BPS Mempawah</span>
+                </div>
+            </div>
+            <div class="row g-4">
+                <!-- Infografis 1: Profil Demografi -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}', 'Infografis Profil Demografi 2026', 'Struktur kependudukan, piramida kelompok usia, rasio gender, sebaran RT per dusun, dan persentase kepemilikan E-KTP (71,17%).')" style="height: 280px; background-color: #f8fafc;">
+                            <img src="{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}" alt="Infografis Profil Demografi Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 6px;">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Pratinjau HD
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <div class="d-flex gap-1 flex-wrap mb-2">
+                                <span class="badge bg-primary-subtle text-primary extra-small">5.744 Jiwa</span>
+                                <span class="badge bg-success-subtle text-success extra-small">1.661 KK</span>
+                                <span class="badge bg-warning-subtle text-dark extra-small">E-KTP 71,17%</span>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Profil Demografi &amp; Kependudukan</h6>
+                            <p class="text-muted extra-small mb-3">Gambaran umum struktur piramida penduduk, rasio gender (2.935 Laki-laki / 2.809 Perempuan), dan sebaran RT di 8 Dusun.</p>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-success rounded-pill" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}', 'Infografis Profil Demografi 2026', 'Struktur kependudukan, piramida kelompok usia, rasio gender, sebaran RT per dusun, dan persentase kepemilikan E-KTP (71,17%).')">
+                                    <i class="fas fa-eye me-1"></i> Pratinjau HD
+                                </button>
+                                <a href="https://drive.google.com/file/d/1FV3GkEALufdKjKLxYLioAlEmm5MBOGK2/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill">
+                                    <i class="fas fa-download me-1"></i> Unduh Poster HD
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infografis 2: Pendidikan & Kesejahteraan Sosial -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-pendidikan-sosial.webp') }}', 'Infografis Pendidikan &amp; Kesejahteraan Sosial 2026', 'Pemetaan tingkat pendidikan, sebaran penerima bantuan sosial PKH/BPNT/BLT, serta mitigasi 32 anak putus sekolah.')" style="height: 280px; background-color: #f8fafc;">
+                            <img src="{{ asset('images/sungaibakaukecil/infografis-pendidikan-sosial.webp') }}" alt="Infografis Pendidikan dan Kesejahteraan Sosial" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 6px;">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Pratinjau HD
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <div class="d-flex gap-1 flex-wrap mb-2">
+                                <span class="badge bg-info-subtle text-dark extra-small">731 Siswa Terdata</span>
+                                <span class="badge bg-danger-subtle text-danger extra-small">32 Putus Sekolah</span>
+                                <span class="badge bg-primary-subtle text-primary extra-small">PKH &amp; BPNT</span>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Pendidikan &amp; Kesejahteraan Sosial</h6>
+                            <p class="text-muted extra-small mb-3">Indikator pemerataan pendidikan (SD-Sarjana), analisis penyaluran bantuan sosial desa, dan data anak usia 7-18 tahun.</p>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-info rounded-pill" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-pendidikan-sosial.webp') }}', 'Infografis Pendidikan &amp; Kesejahteraan Sosial 2026', 'Pemetaan tingkat pendidikan, sebaran penerima bantuan sosial PKH/BPNT/BLT, serta mitigasi 32 anak putus sekolah.')">
+                                    <i class="fas fa-eye me-1"></i> Pratinjau HD
+                                </button>
+                                <a href="https://drive.google.com/file/d/1FV3GkEALufdKjKLxYLioAlEmm5MBOGK2/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary rounded-pill">
+                                    <i class="fas fa-download me-1"></i> Unduh Poster HD
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infografis 3: Fasilitas & Infrastruktur -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-fasilitas-infrastruktur.webp') }}', 'Infografis Fasilitas &amp; Infrastruktur 2026', 'Inventarisasi 49 fasilitas umum desa (53,1% sarana ibadah), kondisi 77,6% akses aspal/beton, dan sebaran 1.397 bumbung rumah.')" style="height: 280px; background-color: #f8fafc;">
+                            <img src="{{ asset('images/sungaibakaukecil/infografis-fasilitas-infrastruktur.webp') }}" alt="Infografis Fasilitas dan Infrastruktur Desa" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 6px;">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Pratinjau HD
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <div class="d-flex gap-1 flex-wrap mb-2">
+                                <span class="badge bg-success-subtle text-success extra-small">49 Fasilitas</span>
+                                <span class="badge bg-primary-subtle text-primary extra-small">77,6% Aspal/Beton</span>
+                                <span class="badge bg-warning-subtle text-dark extra-small">1.397 Bumbung</span>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">Fasilitas &amp; Infrastruktur Desa</h6>
+                            <p class="text-muted extra-small mb-3">Pemetaan sarana peribadatan, kesehatan, pendidikan, kondisi akses jalan transportasi, dan sebaran unit rumah hunian.</p>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-warning rounded-pill text-dark" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-fasilitas-infrastruktur.webp') }}', 'Infografis Fasilitas &amp; Infrastruktur 2026', 'Inventarisasi 49 fasilitas umum desa (53,1% sarana ibadah), kondisi 77,6% akses aspal/beton, dan sebaran 1.397 bumbung rumah.')">
+                                    <i class="fas fa-eye me-1"></i> Pratinjau HD
+                                </button>
+                                <a href="https://drive.google.com/file/d/1FV3GkEALufdKjKLxYLioAlEmm5MBOGK2/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-warning rounded-pill text-dark">
+                                    <i class="fas fa-download me-1"></i> Unduh Poster HD
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Publikasi Resmi & Booklet (Bukti Dukung Output) -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="publikasi">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
@@ -164,43 +271,41 @@
                 </div>
                 <span class="badge bg-primary px-3 py-2 rounded-pill">SDI Compliant</span>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
-                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-file-pdf text-danger display-4"></i>
+            <div class="row g-4 justify-content-center">
+                <!-- Publikasi 1: SBK Dalam Angka -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center d-flex flex-column img-hover-card">
+                        <div class="overflow-hidden rounded-3 border mb-3 img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.webp') }}', 'Cover Publikasi Desa Sungai Bakau Kecil Dalam Angka 2026', 'Publikasi resmi hasil pendataan lapangan Desa Cinta Statistik 2026 BPS Kabupaten Mempawah &amp; Pemerintah Desa Sungai Bakau Kecil.')" style="height: 260px; background-color: #fbf9f5;">
+                            <img src="{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.webp') }}" alt="Cover Sungai Bakau Kecil Dalam Angka 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Cover
+                            </div>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Desa Sungai Bakau Kecil Dalam Angka 2026</h5>
+                        <span class="badge bg-primary-subtle text-primary mb-2 align-self-center px-3 py-1 rounded-pill">Publikasi Utama 2026</span>
+                        <h5 class="fw-bold text-dark mb-1">Sungai Bakau Kecil Dalam Angka 2026</h5>
                         <p class="text-muted small mb-3">Publikasi komprehensif data sosial, ekonomi, kependudukan, dan potensi desa.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
-                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF Publikasi</a>
+                            <a href="https://drive.google.com/file/d/1w-G8kY9jC00jQoGhbxaUYNlJcsiZvJyq/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive)</a>
+                            <a href="https://drive.google.com/file/d/1w-G8kY9jC00jQoGhbxaUYNlJcsiZvJyq/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF Publikasi</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
-                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-atlas text-success display-4"></i>
+
+                <!-- Publikasi 2: Potensi Desa (Podes) -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center d-flex flex-column img-hover-card">
+                        <div class="overflow-hidden rounded-3 border mb-3 img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-podes-sbk-2026.webp') }}', 'Cover Publikasi Potensi Desa Sungai Bakau Kecil 2026', 'Publikasi potensi kewilayahan, sarana dan prasarana fasilitas umum 37 RT di Sungai Bakau Kecil.')" style="height: 260px; background-color: #fbf9f5;">
+                            <img src="{{ asset('images/sungaibakaukecil/cover-podes-sbk-2026.webp') }}" alt="Cover Potensi Desa Sungai Bakau Kecil 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Cover
+                            </div>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Booklet Potensi RT &amp; Fasilitas Desa 2026</h5>
-                        <p class="text-muted small mb-3">Ringkasan grafis dan peta persebaran fasilitas umum 37 RT di Sungai Bakau Kecil.</p>
+                        <span class="badge bg-success-subtle text-success mb-2 align-self-center px-3 py-1 rounded-pill">Potensi Wilayah (Podes)</span>
+                        <h5 class="fw-bold text-dark mb-1">Potensi Desa Sungai Bakau Kecil 2026</h5>
+                        <p class="text-muted small mb-3">Ringkasan grafis dan publikasi potensi kewilayahan serta persebaran fasilitas umum 37 RT di Sungai Bakau Kecil.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
-                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh Booklet PDF</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
-                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-chart-line text-warning display-4"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-1">Laporan Analisis Indikator SDI 2026</h5>
-                        <p class="text-muted small mb-3">Kajian indikator rasio gender, ART, lansia, bansos, dan sarana ibadah.</p>
-                        <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
-                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh Laporan PDF</a>
+                            <a href="https://drive.google.com/file/d/1F3ZAMa_B45zhdPK1a9r0D6vOyR-sfnd8/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive)</a>
+                            <a href="https://drive.google.com/file/d/1F3ZAMa_B45zhdPK1a9r0D6vOyR-sfnd8/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill"><i class="fas fa-download me-1"></i> Unduh Publikasi Podes</a>
                         </div>
                     </div>
                 </div>
@@ -235,27 +340,33 @@
                 </div>
                 <!-- Infografis -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-success d-flex align-items-center justify-content-center" style="height: 130px;">
-                            <i class="fas fa-chart-pie fa-3x"></i>
+                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}', 'Infografis Demografi Desa 2026', 'Visualisasi data statistik demografi dalam bentuk poster ringkas dan komunikatif.')" style="height: 130px; background-color: #f8fafc;">
+                            <img src="{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}" alt="Infografis Demografi Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;">
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Perbesar
+                            </div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">Infografis Demografi</h6>
+                        <h6 class="fw-bold text-dark mb-1">Infografis Demografi 2026</h6>
                         <p class="extra-small text-muted mb-3">Visualisasi data statistik dalam bentuk poster ringkas dan komunikatif.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-success rounded-pill"><i class="fas fa-image me-1"></i> Lihat Infografis</a>
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}', 'Infografis Demografi Desa 2026', 'Visualisasi data statistik demografi dalam bentuk poster ringkas dan komunikatif.')">
+                                <i class="fas fa-eye me-1"></i> Pratinjau Poster
+                            </button>
+                            <a href="https://drive.google.com/file/d/1FV3GkEALufdKjKLxYLioAlEmm5MBOGK2/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill"><i class="fas fa-download me-1"></i> Unduh Versi HD</a>
                         </div>
                     </div>
                 </div>
                 <!-- Tabel Excel Raw Data -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column">
+                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 text-info d-flex align-items-center justify-content-center" style="height: 130px;">
                             <i class="fas fa-file-excel fa-3x"></i>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Tabel Data Excel (SDI)</h6>
-                        <p class="extra-small text-muted mb-3">Kumpulan dataset RT &amp; Fasilitas dalam format spreadsheet terbuka.</p>
+                        <p class="extra-small text-muted mb-3">Workbook multi-sheet lengkap: Ringkasan SDI, 8 Indikator RT, Variabel Mentah, Rekap Dusun &amp; 49 Fasilitas.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <button type="button" onclick="downloadCurrentTableExcel()" class="btn btn-sm btn-outline-info rounded-pill"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
+                            <button type="button" onclick="downloadCurrentTableExcel()" class="btn btn-sm btn-outline-info rounded-pill fw-bold"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
                         </div>
                     </div>
                 </div>
@@ -1224,108 +1335,410 @@
             });
         }
 
-        // CSV / Excel Data Export Logic
+        // Comprehensive Multi-Sheet Excel Data Export Logic (SDI Compliant)
         function downloadCurrentTableExcel() {
-            var activeTab = document.querySelector('#pills-tab .nav-link.active');
-            var isRT = activeTab && (activeTab.getAttribute('data-bs-target') === '#pills-rt' || activeTab.innerText.indexOf('Daftar RT') !== -1);
-
-            if (isRT) {
-                exportRTToExcel();
-            } else {
-                exportFasToExcel();
-            }
+            downloadComprehensiveSDIWorkbook();
         }
         function downloadCurrentTableCSV() { downloadCurrentTableExcel(); }
+        function exportRTToExcel() { downloadComprehensiveSDIWorkbook(); }
+        function exportFasToExcel() { downloadComprehensiveSDIWorkbook(); }
 
-        function exportRTToExcel() {
+        function downloadComprehensiveSDIWorkbook() {
             if (!rawRTData || !rawRTData.length) {
-                alert('Data RT belum siap diunduh.');
+                alert('Data RT dan Fasilitas belum siap diunduh.');
                 return;
             }
-            var rows = [];
 
-            if (currentRTMode === 'indikator') {
-                rows.push([
-                    "Nama RT", "Sex Ratio (#1)", "ART/KK (#2)", "Jumlah Lansia", "Pct Lansia (#3)",
-                    "Jumlah KTP-el", "Pct KTP-el (#4)", "Jumlah Bansos", "Pct Bansos (#5)",
-                    "Jumlah Putus Sekolah", "Pct Putus Sekolah (#6)", "Kepadatan Jiwa/Rumah (#7)",
-                    "Jumlah Sarana Ibadah", "Sarana Ibadah per 1k Jiwa (#8)"
-                ]);
-                rawRTData.forEach(function(r) {
-                    rows.push([
-                        r.Nama_RT || '', parseFloat(r._sexRatio || 0), parseFloat(r._artRata || 0), parseInt(r.Jumlah_Penduduk_Lansia || 0), (r._pctLansia || 0) + '%',
-                        parseInt(r.Jumlah_Memiliki_KTP || 0), (r._pctKTP || 0) + '%', parseInt(r._cntBansos || 0), (r._pctBansos || 0) + '%',
-                        parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0), (r._pctPutus || 0) + '%', parseFloat(r._kepadatan || 0),
-                        parseInt(r._cntIbadah || 0), parseFloat(r._ratioIbadah || 0)
-                    ]);
-                });
-            } else {
-                rows.push([
-                    "Nama RT", "Ketua RT", "Penduduk Laki-Laki", "Penduduk Perempuan", "Total Penduduk",
-                    "Jumlah KK", "Jumlah Bumbung Rumah", "Jumlah Lansia", "Jumlah Memiliki KTP", "Status Pendataan"
-                ]);
-                rawRTData.forEach(function(r) {
-                    var l = parseInt(r.Jumlah_Penduduk_Laki_Laki||0);
-                    var p = parseInt(r.Jumlah_Penduduk_Perempuan||0);
-                    var total = l + p;
-                    rows.push([
-                        r.Nama_RT || '', r.Nama_Ketua_RT || '', l, p,
-                        total, parseInt(r.Jumlah_KK || 0), parseInt(r.Jumlah_Bumbung_Rumah || 0), parseInt(r.Jumlah_Penduduk_Lansia || 0),
-                        parseInt(r.Jumlah_Memiliki_KTP || 0), r.Status_Pendataan || 'Selesai'
-                    ]);
-                });
-            }
+            // 1. Calculate Aggregate Statistics for Sheet 1 & 5
+            var totalL = 0, totalP = 0, totalKK = 0, totalBumbung = 0, totalLansia = 0;
+            var totalBansos = 0, totalKTP = 0, totalPutusSekolah = 0, totalAnakSekolah = 0;
+            var totalTK = 0, totalSD = 0, totalSMP = 0, totalSMA = 0, totalSarjana = 0;
+            var totalPKH = 0, totalBPNT = 0, totalBST = 0, totalBLT = 0;
+            var totalLahir = 0, totalMati = 0, totalPendatang = 0;
 
-            var fileName = currentRTMode === 'indikator' ? 'Indikator_SDI_RT_Sungai_Bakau_Kecil_2026.xlsx' : 'Data_Variabel_RT_Sungai_Bakau_Kecil_2026.xlsx';
-            triggerExcelDownload(rows, fileName);
-        }
-        function exportRTToCSV() { exportRTToExcel(); }
+            var dusunMap = {};
 
-        function exportFasToExcel() {
-            if (!rawFasData || !rawFasData.length) {
-                alert('Data Fasilitas belum siap diunduh.');
-                return;
-            }
-            var rows = [
-                ["ID Fasilitas", "Nama Fasilitas", "Kategori", "Sub Kategori", "RT", "Kondisi Bangunan", "Sumber Listrik", "Sumber Air Bersih", "Lokasi GPS"]
+            rawRTData.forEach(function(r) {
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || 0);
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || 0);
+                var pop = l + p;
+                var kk = parseInt(r.Jumlah_KK || 0);
+                var bumbung = parseInt(r.Jumlah_Bumbung_Rumah || 0);
+                var lansia = parseInt(r.Jumlah_Penduduk_Lansia || 0);
+                var ktp = parseInt(r.Jumlah_Memiliki_KTP || 0);
+                var pkh = parseInt(r.Jumlah_Penerima_PKH || 0);
+                var bpnt = parseInt(r.Jumlah_Penerima_BPNT || 0);
+                var bst = parseInt(r.Jumlah_Penerima_BST || 0);
+                var blt = parseInt(r.Jumlah_Penerima_BLT || 0);
+                var bansos = pkh + bpnt + bst + blt;
+                var putus = parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0);
+                var tk = parseInt(r.Jumlah_Sekolah_TK || 0);
+                var sd = parseInt(r.Jumlah_Sekolah_SD || 0);
+                var smp = parseInt(r.Jumlah_Sekolah_SMP || 0);
+                var sma = parseInt(r.Jumlah_Sekolah_SMA || 0);
+                var sarjana = parseInt(r.Jumlah_Sekolah_Sarjana || 0);
+                var lahir = parseInt(r.Jumlah_Kelahiran_Bayi || 0);
+                var mati = parseInt(r.Jumlah_Kematian || 0);
+                var pendatang = parseInt(r.Jumlah_Pendatang || 0);
+
+                totalL += l;
+                totalP += p;
+                totalKK += kk;
+                totalBumbung += bumbung;
+                totalLansia += lansia;
+                totalKTP += ktp;
+                totalPKH += pkh;
+                totalBPNT += bpnt;
+                totalBST += bst;
+                totalBLT += blt;
+                totalBansos += bansos;
+                totalPutusSekolah += putus;
+                totalTK += tk;
+                totalSD += sd;
+                totalSMP += smp;
+                totalSMA += sma;
+                totalSarjana += sarjana;
+                totalAnakSekolah += (tk + sd + smp + sma);
+                totalLahir += lahir;
+                totalMati += mati;
+                totalPendatang += pendatang;
+
+                // Extract Dusun Name
+                var rtName = (r.Nama_RT || '').trim();
+                var dusunName = 'Lainnya';
+                var dIdx = rtName.indexOf('DUSUN');
+                if (dIdx !== -1) {
+                    dusunName = rtName.substring(dIdx).trim();
+                } else if (rtName.indexOf('RW') !== -1) {
+                    dusunName = rtName.substring(rtName.indexOf('RW')).trim();
+                }
+
+                if (!dusunMap[dusunName]) {
+                    dusunMap[dusunName] = {
+                        nama: dusunName,
+                        rtCount: 0,
+                        l: 0, p: 0, pop: 0, kk: 0, bumbung: 0,
+                        lansia: 0, ktp: 0, bansos: 0, putus: 0, fasCount: 0
+                    };
+                }
+                dusunMap[dusunName].rtCount++;
+                dusunMap[dusunName].l += l;
+                dusunMap[dusunName].p += p;
+                dusunMap[dusunName].pop += pop;
+                dusunMap[dusunName].kk += kk;
+                dusunMap[dusunName].bumbung += bumbung;
+                dusunMap[dusunName].lansia += lansia;
+                dusunMap[dusunName].ktp += ktp;
+                dusunMap[dusunName].bansos += bansos;
+                dusunMap[dusunName].putus += putus;
+            });
+
+            var totalPop = totalL + totalP;
+            var totalFas = (rawFasData && rawFasData.length) ? rawFasData.length : 0;
+            var countIbadah = 0, countPendidikan = 0, countKesehatan = 0, countPemerintah = 0, countLainnya = 0;
+            var countAspal = 0, countPerkerasan = 0, countTanah = 0;
+
+            (rawFasData || []).forEach(function(f) {
+                var kat = (f.Kategori_Fasilitas || '').toLowerCase();
+                if (kat.indexOf('ibadah') !== -1 || kat.indexOf('agama') !== -1) countIbadah++;
+                else if (kat.indexOf('pendidikan') !== -1) countPendidikan++;
+                else if (kat.indexOf('kesehatan') !== -1) countKesehatan++;
+                else if (kat.indexOf('pemerintah') !== -1) countPemerintah++;
+                else countLainnya++;
+
+                var akses = (f.Akses_Jalan || '').toLowerCase();
+                if (akses.indexOf('aspal') !== -1 || akses.indexOf('beton') !== -1) countAspal++;
+                else if (akses.indexOf('perkerasan') !== -1 || akses.indexOf('batu') !== -1) countPerkerasan++;
+                else if (akses.indexOf('tanah') !== -1) countTanah++;
+
+                // Map fas to dusun
+                var fRt = (f.RT || '').trim();
+                var dIdx = fRt.indexOf('DUSUN');
+                if (dIdx !== -1) {
+                    var dName = fRt.substring(dIdx).trim();
+                    if (dusunMap[dName]) dusunMap[dName].fasCount++;
+                }
+            });
+
+            // ==========================================
+            // SHEET 1: RINGKASAN & INDIKATOR SDI DESA
+            // ==========================================
+            var s1Rows = [
+                ["REKAPITULASI PROFIL DESA CANTIK & INDIKATOR SDI 2026"],
+                ["DESA SUNGAI BAKAU KECIL - KECAMATAN MEMPAWAH TIMUR, KABUPATEN MEMPAWAH"],
+                ["Standar: Satu Data Indonesia (SDI) | Pembina Teknis: BPS Kabupaten Mempawah"],
+                ["Tanggal Ekspor Data:", new Date().toLocaleDateString('id-ID', { year:'numeric', month:'long', day:'numeric' })],
+                [],
+                ["No", "Nama Variabel / Indikator SDI", "Nilai", "Satuan", "Keterangan & Catatan Metodologi"],
+                [1, "Total Populasi Penduduk", totalPop, "Jiwa", "Hasil pendataan mikro CAPI AppSheet 37 RT"],
+                [2, "Penduduk Laki-Laki", totalL, "Jiwa", (totalPop > 0 ? (totalL / totalPop * 100).toFixed(2) : 0) + "% dari total penduduk"],
+                [3, "Penduduk Perempuan", totalP, "Jiwa", (totalPop > 0 ? (totalP / totalPop * 100).toFixed(2) : 0) + "% dari total penduduk"],
+                [4, "Rasio Jenis Kelamin (Sex Ratio) [#1]", totalP > 0 ? parseFloat((totalL / totalP * 100).toFixed(2)) : 0, "L / 100 P", "Jumlah penduduk laki-laki per 100 perempuan"],
+                [5, "Jumlah Kepala Keluarga (KK)", totalKK, "KK", "Tersebar di 37 RT dalam 8 Dusun"],
+                [6, "Rata-rata Anggota Rumah Tangga (ART) [#2]", totalKK > 0 ? parseFloat((totalPop / totalKK).toFixed(2)) : 0, "Jiwa / KK", "Rata-rata tanggungan per Kepala Keluarga"],
+                [7, "Jumlah Bumbung Rumah (Unit Fisik Hunian)", totalBumbung, "Unit", "Total bangunan tempat tinggal terdata"],
+                [8, "Kepadatan Hunian (Jiwa / Rumah) [#7]", totalBumbung > 0 ? parseFloat((totalPop / totalBumbung).toFixed(2)) : 0, "Jiwa / Rumah", "Rata-rata penghuni per unit rumah"],
+                [9, "Populasi Lansia (≥ 60 Tahun)", totalLansia, "Jiwa", "Penduduk usia lanjut terdata"],
+                [10, "Proporsi Penduduk Lansia [#3]", totalPop > 0 ? (totalLansia / totalPop * 100).toFixed(2) + "%" : "0%", "Persen", "Persentase kelompok lansia terhadap total penduduk"],
+                [11, "Warga Memiliki KTP-el", totalKTP, "Jiwa", "Warga yang telah memiliki identitas KTP-el"],
+                [12, "Tingkat Kepemilikan KTP-el [#4]", totalPop > 0 ? (totalKTP / totalPop * 100).toFixed(2) + "%" : "0%", "Persen", "Cakupan kepemilikan dokumen identitas kependudukan"],
+                [13, "Total KK Penerima Bantuan Sosial", totalBansos, "KK", "Akumulasi penerima manfaat PKH, BPNT, BST, & BLT"],
+                [14, "Persentase KK Penerima Bansos [#5]", totalPop > 0 ? (totalBansos / totalPop * 100).toFixed(2) + "%" : "0%", "Persen", "Rincian: PKH=" + totalPKH + ", BPNT=" + totalBPNT + ", BST=" + totalBST + ", BLT=" + totalBLT],
+                [15, "Jumlah Anak Putus Sekolah (7-18 Tahun)", totalPutusSekolah, "Anak", "Anak usia wajib belajar yang tidak bersekolah"],
+                [16, "Persentase Anak Putus Sekolah [#6]", totalAnakSekolah > 0 ? (totalPutusSekolah / totalAnakSekolah * 100).toFixed(2) + "%" : "0%", "Persen", "Dibandingkan total anak usia sekolah terdata (" + totalAnakSekolah + " anak)"],
+                [17, "Total Sarana & Fasilitas Umum Terdata", totalFas, "Unit", "Terinventarisasi dengan koordinat GPS dan foto"],
+                [18, "Sarana Ibadah (Masjid, Surau, Vihara)", countIbadah, "Unit", "53,1% dari total fasilitas desa"],
+                [19, "Rasio Sarana Ibadah per 1.000 Jiwa [#8]", totalPop > 0 ? parseFloat((countIbadah / totalPop * 1000).toFixed(2)) : 0, "Unit / 1.000 Jiwa", "Kecukupan sarana peribadatan per 1.000 penduduk"],
+                [20, "Sarana Pendidikan (TK, SD, SMP, SMA, Ponpes)", countPendidikan, "Unit", "24,5% dari total fasilitas desa"],
+                [21, "Sarana Kesehatan (Posyandu, Poskesdes)", countKesehatan, "Unit", "18,4% dari total fasilitas desa"],
+                [22, "Kantor Pemerintahan Desa", countPemerintah, "Unit", "Pusat pelayanan administrasi & posko Desa Cantik"],
+                [23, "Fasilitas & Bangunan Lainnya", countLainnya, "Unit", "Penggalangan sampan warga"],
+                [24, "Kondisi Akses Jalan: Aspal / Beton", countAspal + " unit (" + (totalFas > 0 ? (countAspal / totalFas * 100).toFixed(1) : 0) + "%)", "Persen", "Dapat diakses kendaraan roda 4"],
+                [25, "Kondisi Akses Jalan: Perkerasan / Batu", countPerkerasan + " unit (" + (totalFas > 0 ? (countPerkerasan / totalFas * 100).toFixed(1) : 0) + "%)", "Persen", "Dapat diakses kendaraan roda 4"],
+                [26, "Kondisi Akses Jalan: Jalan Tanah", countTanah + " unit (" + (totalFas > 0 ? (countTanah / totalFas * 100).toFixed(1) : 0) + "%)", "Persen", "Dapat diakses kendaraan roda 2"],
+                [],
+                ["KOMPOSISI PENDIDIKAN TERCATAT (JIWA)"],
+                ["Jenjang TK", totalTK, "Jiwa", "Pendidikan Anak Usia Dini / TK"],
+                ["Jenjang SD / MI", totalSD, "Jiwa", "Pendidikan Dasar"],
+                ["Jenjang SMP / MTs", totalSMP, "Jiwa", "Pendidikan Menengah Pertama"],
+                ["Jenjang SMA / SMK / MA", totalSMA, "Jiwa", "Pendidikan Menengah Atas"],
+                ["Jenjang Diploma / Sarjana", totalSarjana, "Jiwa", "Pendidikan Tinggi"],
+                [],
+                ["DINAMIKA KEPENDUDUKAN TERCATAT (JIWA)"],
+                ["Kelahiran Bayi", totalLahir, "Jiwa", "Bayi baru lahir tahun berjalan"],
+                ["Kematian", totalMati, "Jiwa", "Kematian tercatat tahun berjalan"],
+                ["Pendatang Baru", totalPendatang, "Jiwa", "Warga pendatang masuk ke desa"]
             ];
-            rawFasData.forEach(function(r) {
-                rows.push([
-                    r.ID_Fasilitas || '', r.Nama_Fasilitas || '', r.Kategori_Fasilitas || '', r.Sub_Kategori || '',
-                    r.RT || '', r.Kondisi_Bangunan || 'Baik', r.Sumber_Listrik || '', r.Sumber_Air_Bersih || '', r.Lokasi_GPS || ''
+
+            // ==========================================
+            // SHEET 2: 8 INDIKATOR SDI PER RT
+            // ==========================================
+            var s2Rows = [
+                [
+                    "No", "Nama RT", "Dusun", "Nama Ketua RT", "Total Penduduk",
+                    "Penduduk L", "Penduduk P", "Sex Ratio [#1]", "Rata-rata ART [#2]",
+                    "Jumlah Lansia", "Proporsi Lansia [#3] (%)", "Jumlah KTP-el", "Kepemilikan KTP-el [#4] (%)",
+                    "Jumlah KK", "Jumlah Bansos (KK)", "Persentase Bansos [#5] (%)",
+                    "Jumlah Putus Sekolah", "Persentase Putus Sekolah [#6] (%)",
+                    "Jumlah Bumbung Rumah", "Kepadatan Hunian [#7] (Jiwa/Rumah)",
+                    "Jumlah Sarana Ibadah", "Rasio Ibadah [#8] (per 1k Jiwa)"
+                ]
+            ];
+            rawRTData.forEach(function(r, idx) {
+                var rtName = (r.Nama_RT || '').trim();
+                var dusunName = rtName.indexOf('DUSUN') !== -1 ? rtName.substring(rtName.indexOf('DUSUN')).trim() : '-';
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || 0);
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || 0);
+                var pop = l + p;
+
+                s2Rows.push([
+                    idx + 1,
+                    rtName,
+                    dusunName,
+                    r.Nama_Ketua_RT || '',
+                    pop,
+                    l,
+                    p,
+                    parseFloat(r._sexRatio || 0),
+                    parseFloat(r._artRata || 0),
+                    parseInt(r.Jumlah_Penduduk_Lansia || 0),
+                    parseFloat(r._pctLansia || 0),
+                    parseInt(r.Jumlah_Memiliki_KTP || 0),
+                    parseFloat(r._pctKTP || 0),
+                    parseInt(r.Jumlah_KK || 0),
+                    parseInt(r._cntBansos || 0),
+                    parseFloat(r._pctBansos || 0),
+                    parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0),
+                    parseFloat(r._pctPutus || 0),
+                    parseInt(r.Jumlah_Bumbung_Rumah || 0),
+                    parseFloat(r._kepadatan || 0),
+                    parseInt(r._cntIbadah || 0),
+                    parseFloat(r._ratioIbadah || 0)
                 ]);
             });
-            triggerExcelDownload(rows, 'Data_Fasilitas_Sungai_Bakau_Kecil_2026.xlsx');
-        }
-        function exportFasToCSV() { exportFasToExcel(); }
 
-        function triggerExcelDownload(rows, filename) {
-            if (!rows || !rows.length) {
-                alert('Data belum siap diunduh.');
-                return;
-            }
-            if (!filename.endsWith('.xlsx')) {
-                filename = filename.replace(/\.csv$/, '') + '.xlsx';
-            }
+            // ==========================================
+            // SHEET 3: VARIABEL POTENSI RT (MENTAH)
+            // ==========================================
+            var s3Rows = [
+                [
+                    "No", "Nama RT", "Dusun", "Nama Ketua RT", "Nama Petugas Pendata", "Tanggal & Waktu",
+                    "Penduduk L", "Penduduk P", "Total Penduduk", "Jumlah Bumbung Rumah", "Jumlah KK",
+                    "Jumlah Lansia", "Kelahiran Bayi", "Kematian",
+                    "Penerima PKH", "Penerima BPNT", "Penerima BST", "Penerima BLT", "Total Penerima Bansos",
+                    "Jumlah Memiliki KTP", "Siswa TK", "Siswa SD", "Siswa SMP", "Siswa SMA", "Siswa Sarjana",
+                    "Total Siswa / Pelajar", "Penduduk Putus Sekolah", "Anak Usia 0-1 Tahun", "Anak Usia 2-5 Tahun",
+                    "Jumlah Pendatang", "Status Pendataan"
+                ]
+            ];
+            rawRTData.forEach(function(r, idx) {
+                var rtName = (r.Nama_RT || '').trim();
+                var dusunName = rtName.indexOf('DUSUN') !== -1 ? rtName.substring(rtName.indexOf('DUSUN')).trim() : '-';
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || 0);
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || 0);
+                var pop = l + p;
+                var pkh = parseInt(r.Jumlah_Penerima_PKH || 0);
+                var bpnt = parseInt(r.Jumlah_Penerima_BPNT || 0);
+                var bst = parseInt(r.Jumlah_Penerima_BST || 0);
+                var blt = parseInt(r.Jumlah_Penerima_BLT || 0);
+                var bansos = pkh + bpnt + bst + blt;
+                var tk = parseInt(r.Jumlah_Sekolah_TK || 0);
+                var sd = parseInt(r.Jumlah_Sekolah_SD || 0);
+                var smp = parseInt(r.Jumlah_Sekolah_SMP || 0);
+                var sma = parseInt(r.Jumlah_Sekolah_SMA || 0);
+                var sarjana = parseInt(r.Jumlah_Sekolah_Sarjana || 0);
+                var totalSiswa = tk + sd + smp + sma + sarjana;
+
+                s3Rows.push([
+                    idx + 1,
+                    rtName,
+                    dusunName,
+                    r.Nama_Ketua_RT || '',
+                    r.Nama_Petugas || '',
+                    r.Tanggal_Waktu || '',
+                    l,
+                    p,
+                    pop,
+                    parseInt(r.Jumlah_Bumbung_Rumah || 0),
+                    parseInt(r.Jumlah_KK || 0),
+                    parseInt(r.Jumlah_Penduduk_Lansia || 0),
+                    parseInt(r.Jumlah_Kelahiran_Bayi || 0),
+                    parseInt(r.Jumlah_Kematian || 0),
+                    pkh,
+                    bpnt,
+                    bst,
+                    blt,
+                    bansos,
+                    parseInt(r.Jumlah_Memiliki_KTP || 0),
+                    tk,
+                    sd,
+                    smp,
+                    sma,
+                    sarjana,
+                    totalSiswa,
+                    parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0),
+                    parseInt(r.Jumlah_Anak_Usia_0_1_Tahun || 0),
+                    parseInt(r.Jumlah_Anak_Usia_2_5_Tahun || 0),
+                    parseInt(r.Jumlah_Pendatang || 0),
+                    r.Status_Pendataan || 'Selesai'
+                ]);
+            });
+
+            // ==========================================
+            // SHEET 4: SARANA & FASILITAS UMUM
+            // ==========================================
+            var s4Rows = [
+                [
+                    "No", "ID Fasilitas", "Nama Fasilitas", "Kategori Fasilitas", "Sub Kategori",
+                    "RT / Wilayah", "Kondisi Bangunan", "Sumber Listrik", "Sumber Air Bersih",
+                    "Akses Jalan Menuju Lokasi", "Kualitas Sinyal Seluler", "Titik Koordinat GPS",
+                    "Nama Petugas Pendata", "Tanggal & Waktu", "Catatan Khusus"
+                ]
+            ];
+            (rawFasData || []).forEach(function(r, idx) {
+                s4Rows.push([
+                    idx + 1,
+                    r.ID_Fasilitas || '',
+                    r.Nama_Fasilitas || '',
+                    r.Kategori_Fasilitas || '',
+                    r.Sub_Kategori || '',
+                    r.RT || '',
+                    r.Kondisi_Bangunan || 'Baik',
+                    r.Sumber_Listrik || '',
+                    r.Sumber_Air_Bersih || '',
+                    r.Akses_Jalan || '',
+                    r.Sinyal_Seluler || '',
+                    r.Lokasi_GPS || '',
+                    r.Nama_Petugas || '',
+                    r.Tanggal_Waktu || '',
+                    r.Catatan || ''
+                ]);
+            });
+
+            // ==========================================
+            // SHEET 5: REKAPITULASI PER DUSUN
+            // ==========================================
+            var s5Rows = [
+                [
+                    "No", "Nama Dusun", "Jumlah RT", "Penduduk L", "Penduduk P", "Total Penduduk",
+                    "Jumlah KK", "Rata-rata ART", "Jumlah Bumbung Rumah", "Populasi Lansia",
+                    "Warga Memiliki KTP-el", "Penerima Bansos (KK)", "Anak Putus Sekolah", "Jumlah Fasilitas Umum"
+                ]
+            ];
+            var dIdx = 1;
+            Object.keys(dusunMap).sort().forEach(function(k) {
+                var d = dusunMap[k];
+                s5Rows.push([
+                    dIdx++,
+                    d.nama,
+                    d.rtCount,
+                    d.l,
+                    d.p,
+                    d.pop,
+                    d.kk,
+                    d.kk > 0 ? parseFloat((d.pop / d.kk).toFixed(2)) : 0,
+                    d.bumbung,
+                    d.lansia,
+                    d.ktp,
+                    d.bansos,
+                    d.putus,
+                    d.fasCount
+                ]);
+            });
+            // Total Dusun Row
+            s5Rows.push([
+                "", "TOTAL DESA", rawRTData.length, totalL, totalP, totalPop,
+                totalKK, totalKK > 0 ? parseFloat((totalPop / totalKK).toFixed(2)) : 0, totalBumbung, totalLansia,
+                totalKTP, totalBansos, totalPutusSekolah, totalFas
+            ]);
+
+            // ==========================================
+            // BUILD WORKBOOK WITH SHEETJS (XLSX)
+            // ==========================================
+            var filename = 'Data_SDI_Lengkap_Desa_Sungai_Bakau_Kecil_2026.xlsx';
 
             if (typeof XLSX !== 'undefined') {
                 var wb = XLSX.utils.book_new();
-                var ws = XLSX.utils.aoa_to_sheet(rows);
 
-                var colWidths = rows[0].map(function(col, i) {
-                    var maxLen = String(col || '').length;
-                    rows.forEach(function(row) {
-                        var cellLen = String(row[i] || '').length;
-                        if (cellLen > maxLen) maxLen = cellLen;
+                function autoColWidth(ws, data) {
+                    var colWidths = [];
+                    data.forEach(function(row) {
+                        row.forEach(function(cell, cIdx) {
+                            var len = (cell === null || cell === undefined) ? 0 : String(cell).length;
+                            if (!colWidths[cIdx] || len > colWidths[cIdx]) {
+                                colWidths[cIdx] = len;
+                            }
+                        });
                     });
-                    return { wch: Math.min(Math.max(maxLen + 3, 10), 45) };
-                });
-                ws['!cols'] = colWidths;
+                    ws['!cols'] = colWidths.map(function(w) {
+                        return { wch: Math.min(Math.max((w || 0) + 3, 10), 48) };
+                    });
+                }
 
-                XLSX.utils.book_append_sheet(wb, ws, "Data SDI");
+                var ws1 = XLSX.utils.aoa_to_sheet(s1Rows);
+                autoColWidth(ws1, s1Rows);
+                XLSX.utils.book_append_sheet(wb, ws1, "Ringkasan SDI");
+
+                var ws2 = XLSX.utils.aoa_to_sheet(s2Rows);
+                autoColWidth(ws2, s2Rows);
+                XLSX.utils.book_append_sheet(wb, ws2, "8 Indikator SDI Per RT");
+
+                var ws3 = XLSX.utils.aoa_to_sheet(s3Rows);
+                autoColWidth(ws3, s3Rows);
+                XLSX.utils.book_append_sheet(wb, ws3, "Variabel Potensi RT");
+
+                var ws4 = XLSX.utils.aoa_to_sheet(s4Rows);
+                autoColWidth(ws4, s4Rows);
+                XLSX.utils.book_append_sheet(wb, ws4, "Sarana & Fasilitas");
+
+                var ws5 = XLSX.utils.aoa_to_sheet(s5Rows);
+                autoColWidth(ws5, s5Rows);
+                XLSX.utils.book_append_sheet(wb, ws5, "Rekapitulasi Dusun");
+
                 XLSX.writeFile(wb, filename);
             } else {
-                var csvContent = "\uFEFF" + rows.map(function(e) {
+                // Fallback CSV
+                var csvContent = "\uFEFF" + s2Rows.map(function(e) {
                     return e.map(function(v) {
                         var str = (v === null || v === undefined) ? '' : String(v);
                         return '"' + str.replace(/"/g, '""') + '"';
@@ -1341,6 +1754,9 @@
                 link.click();
                 document.body.removeChild(link);
             }
+        }
+        function triggerExcelDownload(rows, filename) {
+            downloadComprehensiveSDIWorkbook();
         }
     </script>
 </body>

@@ -1154,115 +1154,327 @@
             modal.show();
         }
 
+        // Comprehensive Multi-Sheet Excel Data Export Logic (SDI Compliant)
         function exportRTToExcel() {
-            if (!rawRTData || !rawRTData.length) {
-                alert('Data RT belum siap diunduh.');
-                return;
-            }
-            var rows = [];
-
-            if (currentRTMode === 'indikator') {
-                rows.push([
-                    "Nama RT", "Sex Ratio (#1)", "ART/KK (#2)", "Pct Bansos (#3)",
-                    "Pct Putus Sekolah (#4)", "Kepadatan Jiwa/Rumah (#5)", "Sarana Ibadah per 1k Jiwa (#6)"
-                ]);
-                rawRTData.forEach(function(r) {
-                    var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0) || 0;
-                    var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0) || 0;
-                    var total = l + p;
-                    var kk = parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0) || 0;
-                    var bumbung = parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0) || 0;
-                    var putus = parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0;
-                    var bansos = (parseInt(r.Jumlah_Penerima_PKH || 0) + parseInt(r.Jumlah_Penerima_BPNT || 0) + parseInt(r.Jumlah_Penerima_BLT || 0));
-
-                    var sr = p > 0 ? parseFloat(((l / p) * 100).toFixed(1)) : '-';
-                    var art = kk > 0 ? parseFloat((total / kk).toFixed(2)) : '-';
-                    var pctBansos = kk > 0 ? ((bansos / kk) * 100).toFixed(1) + '%' : '-';
-                    var pctPutus = total > 0 ? ((putus / total) * 100).toFixed(1) + '%' : '-';
-                    var kep = bumbung > 0 ? parseFloat((total / bumbung).toFixed(2)) : '-';
-                    var ratioIbadah = total > 0 ? parseFloat(((1 / total) * 1000).toFixed(2)) : '-';
-
-                    rows.push([
-                        r.Nama_RT || r['Nama RT'] || '', sr, art, pctBansos, pctPutus, kep, ratioIbadah
-                    ]);
-                });
-            } else {
-                rows.push([
-                    "Nama RT", "Ketua RT", "Penduduk Laki-Laki", "Penduduk Perempuan", "Total Penduduk",
-                    "Jumlah KK", "Bumbung Rumah", "Putus Sekolah", "Status Pendataan"
-                ]);
-                rawRTData.forEach(function(r) {
-                    var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0) || 0;
-                    var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0) || 0;
-                    var total = l + p;
-                    rows.push([
-                        r.Nama_RT || r['Nama RT'] || '', r.Nama_Ketua_RT || r['Nama Ketua RT'] || '',
-                        l, p, total,
-                        parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0) || 0,
-                        parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0) || 0,
-                        parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0,
-                        r.Status_Pendataan || 'Selesai'
-                    ]);
-                });
-            }
-
-            var fileName = currentRTMode === 'indikator' ? 'Indikator_SDI_RT_Pasir_Palembang_2026.xlsx' : 'Data_Variabel_RT_Pasir_Palembang_2026.xlsx';
-            triggerExcelDownload(rows, fileName);
+            downloadComprehensiveSDIWorkbookPasirPalembang();
+        }
+        function exportFasToExcel() {
+            downloadComprehensiveSDIWorkbookPasirPalembang();
         }
         function exportRTToCSV() { exportRTToExcel(); }
+        function exportFasToCSV() { exportFasToExcel(); }
 
-        function exportFasToExcel() {
-            if (!rawFasData || !rawFasData.length) {
-                alert('Data Fasilitas belum siap diunduh.');
+        function downloadComprehensiveSDIWorkbookPasirPalembang() {
+            if (!rawRTData || !rawRTData.length) {
+                alert('Data RT dan Fasilitas Pasir Palembang belum siap diunduh.');
                 return;
             }
-            var rows = [
-                ["ID Fasilitas", "Nama Fasilitas", "Kategori", "Sub Kategori", "RT", "Kondisi Bangunan", "Sumber Listrik", "Sumber Air Bersih", "Lokasi GPS"]
+
+            // 1. Calculate Aggregate Statistics
+            var totalL = 0, totalP = 0, totalKK = 0, totalBumbung = 0, totalLansia = 0;
+            var totalBansos = 0, totalKTP = 0, totalPutusSekolah = 0;
+            var totalPKH = 0, totalBPNT = 0, totalBLT = 0, totalBST = 0;
+            var dusunMap = {};
+
+            rawRTData.forEach(function(r) {
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0) || 0;
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0) || 0;
+                var pop = l + p;
+                var kk = parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0) || 0;
+                var bumbung = parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0) || 0;
+                var lansia = parseInt(r.Jumlah_Penduduk_Lansia || 0) || 0;
+                var ktp = parseInt(r.Jumlah_Memiliki_KTP || 0) || 0;
+                var pkh = parseInt(r.Jumlah_Penerima_PKH || 0) || 0;
+                var bpnt = parseInt(r.Jumlah_Penerima_BPNT || 0) || 0;
+                var blt = parseInt(r.Jumlah_Penerima_BLT || 0) || 0;
+                var bst = parseInt(r.Jumlah_Penerima_BST || 0) || 0;
+                var bansos = pkh + bpnt + blt + bst;
+                var putus = parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0;
+
+                totalL += l;
+                totalP += p;
+                totalKK += kk;
+                totalBumbung += bumbung;
+                totalLansia += lansia;
+                totalKTP += ktp;
+                totalPKH += pkh;
+                totalBPNT += bpnt;
+                totalBLT += blt;
+                totalBST += bst;
+                totalBansos += bansos;
+                totalPutusSekolah += putus;
+
+                var rtName = (r.Nama_RT || r['Nama RT'] || '').trim();
+                var dusunName = 'Lainnya';
+                var dIdx = rtName.indexOf('DUSUN');
+                if (dIdx !== -1) {
+                    dusunName = rtName.substring(dIdx).trim();
+                } else if (rtName.indexOf('RW') !== -1) {
+                    dusunName = rtName.substring(rtName.indexOf('RW')).trim();
+                }
+
+                if (!dusunMap[dusunName]) {
+                    dusunMap[dusunName] = {
+                        nama: dusunName,
+                        rtCount: 0,
+                        l: 0, p: 0, pop: 0, kk: 0, bumbung: 0,
+                        bansos: 0, putus: 0, fasCount: 0
+                    };
+                }
+                dusunMap[dusunName].rtCount++;
+                dusunMap[dusunName].l += l;
+                dusunMap[dusunName].p += p;
+                dusunMap[dusunName].pop += pop;
+                dusunMap[dusunName].kk += kk;
+                dusunMap[dusunName].bumbung += bumbung;
+                dusunMap[dusunName].bansos += bansos;
+                dusunMap[dusunName].putus += putus;
+            });
+
+            var totalPop = totalL + totalP;
+            var totalFas = (rawFasData && rawFasData.length) ? rawFasData.length : 0;
+            var countIbadah = 0, countPendidikan = 0, countKesehatan = 0, countPemerintah = 0, countLainnya = 0;
+
+            (rawFasData || []).forEach(function(f) {
+                var kat = (getProp(f, ['Kategori_Fasilitas', 'Kategori', 'Sub_Kategori']) || '').toLowerCase();
+                if (kat.indexOf('ibadah') !== -1 || kat.indexOf('agama') !== -1) countIbadah++;
+                else if (kat.indexOf('pendidikan') !== -1) countPendidikan++;
+                else if (kat.indexOf('kesehatan') !== -1) countKesehatan++;
+                else if (kat.indexOf('pemerintah') !== -1) countPemerintah++;
+                else countLainnya++;
+
+                var fRt = (getProp(f, ['RT', 'Wilayah RT', 'Nama_RT']) || '').trim();
+                var dIdx = fRt.indexOf('DUSUN');
+                if (dIdx !== -1) {
+                    var dName = fRt.substring(dIdx).trim();
+                    if (dusunMap[dName]) dusunMap[dName].fasCount++;
+                }
+            });
+
+            // ==========================================
+            // SHEET 1: RINGKASAN & INDIKATOR SDI
+            // ==========================================
+            var s1Rows = [
+                ["REKAPITULASI PROFIL DESA CANTIK & INDIKATOR SDI 2026"],
+                ["DESA PASIR PALEMBANG - KECAMATAN MEMPAWAH TIMUR, KABUPATEN MEMPAWAH"],
+                ["Standar: Satu Data Indonesia (SDI) | Pembina Teknis: BPS Kabupaten Mempawah"],
+                ["Tanggal Ekspor Data:", new Date().toLocaleDateString('id-ID', { year:'numeric', month:'long', day:'numeric' })],
+                [],
+                ["No", "Nama Variabel / Indikator SDI", "Nilai", "Satuan", "Keterangan & Catatan Metodologi"],
+                [1, "Total Populasi Penduduk", totalPop, "Jiwa", "Hasil pendataan mikro CAPI AppSheet 14 RT"],
+                [2, "Penduduk Laki-Laki", totalL, "Jiwa", (totalPop > 0 ? (totalL / totalPop * 100).toFixed(2) : 0) + "% dari total penduduk"],
+                [3, "Penduduk Perempuan", totalP, "Jiwa", (totalPop > 0 ? (totalP / totalPop * 100).toFixed(2) : 0) + "% dari total penduduk"],
+                [4, "Rasio Jenis Kelamin (Sex Ratio) [#1]", totalP > 0 ? parseFloat((totalL / totalP * 100).toFixed(2)) : 0, "L / 100 P", "Jumlah penduduk laki-laki per 100 perempuan"],
+                [5, "Jumlah Kepala Keluarga (KK)", totalKK, "KK", "Tersebar di 14 RT"],
+                [6, "Rata-rata Anggota Rumah Tangga (ART) [#2]", totalKK > 0 ? parseFloat((totalPop / totalKK).toFixed(2)) : 0, "Jiwa / KK", "Rata-rata tanggungan per Kepala Keluarga"],
+                [7, "Jumlah Bumbung Rumah (Unit Fisik Hunian)", totalBumbung, "Unit", "Total bangunan tempat tinggal terdata"],
+                [8, "Kepadatan Hunian (Jiwa / Rumah) [#7]", totalBumbung > 0 ? parseFloat((totalPop / totalBumbung).toFixed(2)) : 0, "Jiwa / Rumah", "Rata-rata penghuni per unit rumah"],
+                [9, "Warga Memiliki KTP-el", totalKTP, "Jiwa", "Warga yang telah memiliki identitas KTP-el"],
+                [10, "Tingkat Kepemilikan KTP-el [#4]", totalPop > 0 ? (totalKTP / totalPop * 100).toFixed(2) + "%" : "0%", "Persen", "Cakupan kepemilikan dokumen identitas kependudukan"],
+                [11, "Total KK Penerima Bantuan Sosial", totalBansos, "KK", "Akumulasi penerima manfaat PKH, BPNT, & BLT"],
+                [12, "Persentase KK Penerima Bansos [#5]", totalKK > 0 ? (totalBansos / totalKK * 100).toFixed(2) + "%" : "0%", "Persen", "Rincian: PKH=" + totalPKH + ", BPNT=" + totalBPNT + ", BLT=" + totalBLT],
+                [13, "Jumlah Anak Putus Sekolah", totalPutusSekolah, "Anak", "Anak usia sekolah tidak bersekolah"],
+                [14, "Persentase Anak Putus Sekolah [#6]", totalPop > 0 ? (totalPutusSekolah / totalPop * 100).toFixed(2) + "%" : "0%", "Persen", "Terhadap total populasi terdata"],
+                [15, "Total Sarana & Fasilitas Umum Terdata", totalFas, "Unit", "Terinventarisasi dengan koordinat GPS dan foto"],
+                [16, "Sarana Ibadah (Masjid, Surau)", countIbadah, "Unit", "Sarana peribadatan terdata"],
+                [17, "Rasio Sarana Ibadah per 1.000 Jiwa [#8]", totalPop > 0 ? parseFloat((countIbadah / totalPop * 1000).toFixed(2)) : 0, "Unit / 1.000 Jiwa", "Kecukupan sarana peribadatan per 1.000 penduduk"],
+                [18, "Sarana Pendidikan", countPendidikan, "Unit", "Fasilitas pendidikan di desa"],
+                [19, "Sarana Kesehatan", countKesehatan, "Unit", "Fasilitas posyandu & pelayanan kesehatan"],
+                [20, "Kantor Pemerintahan Desa", countPemerintah, "Unit", "Pusat pelayanan administrasi desa"]
             ];
-            rawFasData.forEach(function(r) {
-                rows.push([
+
+            // ==========================================
+            // SHEET 2: 8 INDIKATOR SDI PER RT
+            // ==========================================
+            var s2Rows = [
+                [
+                    "No", "Nama RT", "Dusun", "Nama Ketua RT", "Total Penduduk",
+                    "Penduduk L", "Penduduk P", "Sex Ratio [#1]", "Rata-rata ART [#2]",
+                    "Total KK", "Jumlah Bansos (KK)", "Persentase Bansos [#5] (%)",
+                    "Jumlah Putus Sekolah", "Persentase Putus Sekolah [#6] (%)",
+                    "Jumlah Bumbung Rumah", "Kepadatan Hunian [#7] (Jiwa/Rumah)",
+                    "Rasio Sarana Ibadah [#8] (per 1k Jiwa)"
+                ]
+            ];
+            rawRTData.forEach(function(r, idx) {
+                var rtName = (r.Nama_RT || r['Nama RT'] || '').trim();
+                var dusunName = rtName.indexOf('DUSUN') !== -1 ? rtName.substring(rtName.indexOf('DUSUN')).trim() : '-';
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0) || 0;
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0) || 0;
+                var pop = l + p;
+                var kk = parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0) || 0;
+                var bumbung = parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0) || 0;
+                var putus = parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0;
+                var bansos = (parseInt(r.Jumlah_Penerima_PKH || 0) + parseInt(r.Jumlah_Penerima_BPNT || 0) + parseInt(r.Jumlah_Penerima_BLT || 0));
+
+                s2Rows.push([
+                    idx + 1,
+                    rtName,
+                    dusunName,
+                    r.Nama_Ketua_RT || r['Nama Ketua RT'] || '',
+                    pop,
+                    l,
+                    p,
+                    p > 0 ? parseFloat((l / p * 100).toFixed(2)) : 0,
+                    kk > 0 ? parseFloat((pop / kk).toFixed(2)) : 0,
+                    kk,
+                    bansos,
+                    kk > 0 ? parseFloat((bansos / kk * 100).toFixed(2)) : 0,
+                    putus,
+                    pop > 0 ? parseFloat((putus / pop * 100).toFixed(2)) : 0,
+                    bumbung,
+                    bumbung > 0 ? parseFloat((pop / bumbung).toFixed(2)) : 0,
+                    pop > 0 ? parseFloat((1 / pop * 1000).toFixed(2)) : 0
+                ]);
+            });
+
+            // ==========================================
+            // SHEET 3: VARIABEL POTENSI RT (MENTAH)
+            // ==========================================
+            var s3Rows = [
+                [
+                    "No", "Nama RT", "Dusun", "Nama Ketua RT",
+                    "Penduduk L", "Penduduk P", "Total Penduduk", "Jumlah Bumbung Rumah", "Jumlah KK",
+                    "Penerima PKH", "Penerima BPNT", "Penerima BLT", "Total Penerima Bansos",
+                    "Penduduk Putus Sekolah", "Status Pendataan"
+                ]
+            ];
+            rawRTData.forEach(function(r, idx) {
+                var rtName = (r.Nama_RT || r['Nama RT'] || '').trim();
+                var dusunName = rtName.indexOf('DUSUN') !== -1 ? rtName.substring(rtName.indexOf('DUSUN')).trim() : '-';
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || r['Jumlah Orang Laki-Laki di Rumah'] || 0) || 0;
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || r['Jumlah Orang Perempuan di Rumah'] || 0) || 0;
+                var pop = l + p;
+                var pkh = parseInt(r.Jumlah_Penerima_PKH || 0) || 0;
+                var bpnt = parseInt(r.Jumlah_Penerima_BPNT || 0) || 0;
+                var blt = parseInt(r.Jumlah_Penerima_BLT || 0) || 0;
+                var bansos = pkh + bpnt + blt;
+
+                s3Rows.push([
+                    idx + 1,
+                    rtName,
+                    dusunName,
+                    r.Nama_Ketua_RT || r['Nama Ketua RT'] || '',
+                    l,
+                    p,
+                    pop,
+                    parseInt(r.Jumlah_Bumbung_Rumah || r['Nomor Bangunan'] || 0) || 0,
+                    parseInt(r.Jumlah_KK || r['Jumlah Kartu Keluarga'] || 0) || 0,
+                    pkh,
+                    bpnt,
+                    blt,
+                    bansos,
+                    parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0,
+                    r.Status_Pendataan || 'Selesai'
+                ]);
+            });
+
+            // ==========================================
+            // SHEET 4: SARANA & FASILITAS UMUM
+            // ==========================================
+            var s4Rows = [
+                [
+                    "No", "ID Fasilitas", "Nama Fasilitas", "Kategori Fasilitas", "Sub Kategori",
+                    "RT / Wilayah", "Kondisi Bangunan", "Sumber Listrik", "Sumber Air Bersih",
+                    "Titik Koordinat GPS"
+                ]
+            ];
+            (rawFasData || []).forEach(function(r, idx) {
+                s4Rows.push([
+                    idx + 1,
                     getProp(r, ['ID_Fasilitas', 'ID Fasilitas']),
                     getProp(r, ['Nama_Fasilitas', 'Nama Fasilitas', 'Nama Sarana']),
                     getProp(r, ['Kategori_Fasilitas', 'Kategori Fasilitas', 'Sub_Kategori', 'Kategori']),
                     getProp(r, ['Sub_Kategori', 'Sub Kategori']),
                     getProp(r, ['RT', 'Wilayah RT', 'Nama_RT']),
-                    getProp(r, ['Kondisi_Bangunan_Jalan', 'Kondisi_Bangunan', 'Kondisi']),
+                    getProp(r, ['Kondisi_Bangunan_Jalan', 'Kondisi_Bangunan', 'Kondisi']) || 'Baik',
                     getProp(r, ['Sumber_Listrik', 'Sumber Listrik']),
                     getProp(r, ['Sumber_Air_Bersih', 'Sumber Air Bersih']),
                     getProp(r, ['Lokasi_GPS', 'Lokasi GPS', 'Koordinat'])
                 ]);
             });
-            triggerExcelDownload(rows, 'Data_Fasilitas_Pasir_Palembang_2026.xlsx');
-        }
-        function exportFasToCSV() { exportFasToExcel(); }
 
-        function triggerExcelDownload(rows, filename) {
-            if (!rows || !rows.length) {
-                alert('Data belum siap diunduh.');
-                return;
-            }
-            if (!filename.endsWith('.xlsx')) {
-                filename = filename.replace(/\.csv$/, '') + '.xlsx';
-            }
+            // ==========================================
+            // SHEET 5: REKAPITULASI PER DUSUN / RW
+            // ==========================================
+            var s5Rows = [
+                [
+                    "No", "Nama Dusun / RW", "Jumlah RT", "Penduduk L", "Penduduk P", "Total Penduduk",
+                    "Jumlah KK", "Rata-rata ART", "Jumlah Bumbung Rumah",
+                    "Penerima Bansos (KK)", "Anak Putus Sekolah", "Jumlah Fasilitas Umum"
+                ]
+            ];
+            var dIdx = 1;
+            Object.keys(dusunMap).sort().forEach(function(k) {
+                var d = dusunMap[k];
+                s5Rows.push([
+                    dIdx++,
+                    d.nama,
+                    d.rtCount,
+                    d.l,
+                    d.p,
+                    d.pop,
+                    d.kk,
+                    d.kk > 0 ? parseFloat((d.pop / d.kk).toFixed(2)) : 0,
+                    d.bumbung,
+                    d.bansos,
+                    d.putus,
+                    d.fasCount
+                ]);
+            });
+            // Total Row
+            s5Rows.push([
+                "", "TOTAL DESA", rawRTData.length, totalL, totalP, totalPop,
+                totalKK, totalKK > 0 ? parseFloat((totalPop / totalKK).toFixed(2)) : 0, totalBumbung,
+                totalBansos, totalPutusSekolah, totalFas
+            ]);
+
+            // ==========================================
+            // BUILD WORKBOOK WITH SHEETJS (XLSX)
+            // ==========================================
+            var filename = 'Data_SDI_Lengkap_Desa_Pasir_Palembang_2026.xlsx';
 
             if (typeof XLSX !== 'undefined') {
                 var wb = XLSX.utils.book_new();
-                var ws = XLSX.utils.aoa_to_sheet(rows);
 
-                var colWidths = rows[0].map(function(col, i) {
-                    var maxLen = String(col || '').length;
-                    rows.forEach(function(row) {
-                        var cellLen = String(row[i] || '').length;
-                        if (cellLen > maxLen) maxLen = cellLen;
+                function autoColWidth(ws, data) {
+                    var colWidths = [];
+                    data.forEach(function(row) {
+                        row.forEach(function(cell, cIdx) {
+                            var len = (cell === null || cell === undefined) ? 0 : String(cell).length;
+                            if (!colWidths[cIdx] || len > colWidths[cIdx]) {
+                                colWidths[cIdx] = len;
+                            }
+                        });
                     });
-                    return { wch: Math.min(Math.max(maxLen + 3, 10), 45) };
-                });
-                ws['!cols'] = colWidths;
+                    ws['!cols'] = colWidths.map(function(w) {
+                        return { wch: Math.min(Math.max((w || 0) + 3, 10), 48) };
+                    });
+                }
 
-                XLSX.utils.book_append_sheet(wb, ws, "Data SDI");
+                var ws1 = XLSX.utils.aoa_to_sheet(s1Rows);
+                autoColWidth(ws1, s1Rows);
+                XLSX.utils.book_append_sheet(wb, ws1, "Ringkasan SDI");
+
+                var ws2 = XLSX.utils.aoa_to_sheet(s2Rows);
+                autoColWidth(ws2, s2Rows);
+                XLSX.utils.book_append_sheet(wb, ws2, "8 Indikator SDI Per RT");
+
+                var ws3 = XLSX.utils.aoa_to_sheet(s3Rows);
+                autoColWidth(ws3, s3Rows);
+                XLSX.utils.book_append_sheet(wb, ws3, "Variabel Potensi RT");
+
+                var ws4 = XLSX.utils.aoa_to_sheet(s4Rows);
+                autoColWidth(ws4, s4Rows);
+                XLSX.utils.book_append_sheet(wb, ws4, "Sarana & Fasilitas");
+
+                var ws5 = XLSX.utils.aoa_to_sheet(s5Rows);
+                autoColWidth(ws5, s5Rows);
+                XLSX.utils.book_append_sheet(wb, ws5, "Rekapitulasi Dusun");
+
                 XLSX.writeFile(wb, filename);
             } else {
-                var csvContent = "\uFEFF" + rows.map(function(e) {
+                var csvContent = "\uFEFF" + s2Rows.map(function(e) {
                     return e.map(function(v) {
                         var str = (v === null || v === undefined) ? '' : String(v);
                         return '"' + str.replace(/"/g, '""') + '"';
@@ -1278,6 +1490,9 @@
                 link.click();
                 document.body.removeChild(link);
             }
+        }
+        function triggerExcelDownload(rows, filename) {
+            downloadComprehensiveSDIWorkbookPasirPalembang();
         }
     </script>
 </x-layouts.app>

@@ -1,1198 +1,855 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelurahan Pasir Wan Salim - Desa Cinta Statistik 2026</title>
-    <meta name="description" content="Portal Resmi Kelurahan Cantik Pasir Wan Salim - BPS Kabupaten Mempawah">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Bootstrap CSS for dynamic global navbar -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #102a43;
-            --primary-light: #243b53;
-            --secondary: #ff8c00;
-            --secondary-light: #ffa500;
-            --accent: #2e7d32;
-            --dark: #0f172a;
-            --light: #f1f5f9;
-            --text-main: #334155;
-            --text-muted: #627d98;
-            --white: #ffffff;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        /* Header / Navbar */
-        header {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            z-index: 1000;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .navbar {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .nav-logo i {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            animation: pulse 2s infinite;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-item a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .nav-item a:hover {
-            color: var(--secondary);
-        }
-
-        .nav-btn {
-            background-color: var(--primary);
-            color: var(--white) !important;
-            padding: 8px 18px;
-            border-radius: 50px;
-            transition: var(--transition);
-        }
-
-        .nav-btn:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(16, 42, 67, 0.2);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(16, 42, 67, 0.93) 0%, rgba(36, 59, 83, 0.88) 100%),
-                        url('{{ asset("images/pasirwansalim/kantor-kelurahan.webp") }}') center/cover no-repeat;
-            color: var(--white);
-            padding: 100px 20px 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: var(--light);
-            transform: skewY(-2deg);
-        }
-
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            background-color: rgba(255, 140, 0, 0.2);
-            color: var(--secondary);
-            border: 1px solid var(--secondary);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
-            margin-bottom: 20px;
-        }
-
-        .hero-title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        /* Container Utama */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* Section Layout */
-        .section {
-            margin-bottom: 60px;
-        }
-
-        .section-title-wrap {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--primary);
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--secondary);
-            border-radius: 2px;
-        }
-
-        /* Interactive Statistics Widget */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            transition: var(--transition);
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--secondary);
-        }
-
-        .stat-icon {
-            font-size: 2.2rem;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-
-        .stat-num {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 5px;
-            transition: var(--transition);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* Charts Container */
-        .chart-box {
-            background-color: var(--white);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            margin-top: 30px;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .chart-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .chart-tabs {
-            display: flex;
-            background: var(--light);
-            padding: 4px;
-            border-radius: 50px;
-        }
-
-        .chart-tab-btn {
-            border: none;
-            background: none;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .chart-tab-btn.active {
-            background-color: var(--white);
-            color: var(--primary);
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Pure CSS Bar Chart */
-        .bar-chart {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            height: 250px;
-            padding: 20px 0;
-            border-bottom: 2px solid rgba(226, 232, 240, 0.8);
-            margin-bottom: 15px;
-        }
-
-        .chart-bar-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 15%;
-            height: 100%;
-            justify-content: flex-end;
-        }
-
-        .chart-bar-value {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .chart-bar {
-            width: 100%;
-            border-radius: 8px 8px 0 0;
-            background: linear-gradient(to top, var(--primary) 0%, var(--primary-light) 100%);
-            transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chart-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-        }
-
-        .chart-bar-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-top: 10px;
-        }
-
-        /* App Hub Grid */
-        .hub-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .hub-card {
-            background-color: var(--white);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hub-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .hub-card-top {
-            padding: 30px;
-            flex-grow: 1;
-        }
-
-        .hub-card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            background-color: rgba(16, 42, 67, 0.1);
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }
-
-        .hub-card:hover .hub-card-icon {
-            background-color: var(--primary);
-            color: var(--white);
-            transform: rotate(360deg);
-        }
-
-        .hub-card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        .hub-card-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .hub-card-action {
-            background-color: rgba(226, 232, 240, 0.4);
-            padding: 20px 30px;
-            border-top: 1px solid rgba(226, 232, 240, 0.8);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .hub-action-btn {
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .hub-action-btn:hover {
-            color: var(--secondary);
-            gap: 12px;
-        }
-
-        /* SOP / Prosedur Request Data */
-        .sop-wrap {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .sop-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: flex-start;
-        }
-
-        @media (max-width: 768px) {
-            .sop-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .sop-timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .sop-timeline::before {
-            content: '';
-            position: absolute;
-            left: 9px;
-            top: 10px;
-            width: 2px;
-            height: calc(100% - 20px);
-            background-color: rgba(16, 42, 67, 0.2);
-        }
-
-        .sop-item {
-            position: relative;
-            margin-bottom: 30px;
-        }
-
-        .sop-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .sop-badge {
-            position: absolute;
-            left: -30px;
-            top: 2px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            border: 4px solid var(--white);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .sop-item-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sop-item-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* Form Permintaan Data */
-        .request-form {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-main);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(203, 213, 225, 0.8);
-            font-family: inherit;
-            font-size: 0.9rem;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.15);
-        }
-
-        textarea.form-control {
-            height: 100px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background-color: var(--secondary);
-            color: var(--white);
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--secondary-light);
-            transform: translateY(-2px);
-        }
-
-        /* Downloads Center */
-        .downloads-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .dl-card {
-            background-color: var(--white);
-            border-radius: 12px;
-            padding: 20px 25px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: var(--transition);
-        }
-
-        .dl-card:hover {
-            border-color: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .dl-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .dl-icon {
-            font-size: 1.8rem;
-            color: var(--secondary);
-        }
-
-        .dl-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--primary);
-        }
-
-        .dl-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .dl-btn {
-            background: none;
-            border: none;
-            color: var(--primary);
-            cursor: pointer;
-            font-size: 1.15rem;
-            transition: var(--transition);
-        }
-
-        .dl-btn:hover {
-            color: var(--secondary);
-            transform: scale(1.2);
-        }
-
-        /* Banner Sensus Ekonomi 2026 */
-        .se-banner {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            border-radius: 20px;
-            padding: 40px;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-            flex-wrap: wrap;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 60px;
-        }
-
-        .se-content {
-            max-width: 600px;
-        }
-
-        .se-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: var(--secondary);
-        }
-
-        .se-desc {
-            font-size: 0.95rem;
-            opacity: 0.85;
-            line-height: 1.5;
-        }
-
-        .se-logo-box {
-            font-size: 4rem;
-            color: rgba(255, 255, 255, 0.15);
-            animation: bounce 3s infinite;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 5px solid var(--secondary);
-        }
-
-        .footer-logo {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: var(--white);
-            margin-bottom: 10px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-logo i {
-            color: var(--secondary);
-        }
-
-        .footer-text {
-            font-size: 0.85rem;
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Success Message Overlay */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--dark);
-            color: var(--white);
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 2000;
-            transform: translateY(150%);
-            transition: var(--transition);
-        }
-
-        .toast.show {
-            transform: translateY(0);
-        }
-
-        .toast-icon {
-            color: var(--secondary);
-            font-size: 1.2rem;
-        }
-
-    </style>
-</head>
-<body>
-
-    <!-- Header Navbar -->
-    @include('partials.navbar')
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-badge">Desa Cinta Statistik 2026</div>
-            <h1 class="hero-title">Portal Kelurahan Cantik Pasir Wan Salim</h1>
-            <p class="hero-subtitle">Menghubungkan data hasil pendataan potensi kelurahan secara digital untuk mendukung tata kelola pemerintahan kelurahan yang transparan dan berbasis data akurat.</p>
-            <a href="#stat" class="nav-btn" style="display:inline-block; font-size:1rem; padding:12px 30px; background-color: var(--secondary);">Mulai Jelajahi Data</a>
+<x-layouts.app title="Kelurahan Pasir Wan Salim - Desa Cinta Statistik 2026" description="Portal Resmi Kelurahan Cantik 2026 Pasir Wan Salim - BPS Kabupaten Mempawah">
+
+    <header class="page-header text-center">
+        <div class="container">
+            <div class="d-flex justify-content-center gap-2 mb-3">
+                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-star me-1"></i> Kelurahan Cantik 2026</span>
+                <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
+            </div>
+            <h1 class="fw-bold display-5 mb-2">Kelurahan Pasir Wan Salim</h1>
+            <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;">
+                Kecamatan Mempawah Timur, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
+            </p>
+            <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
+                <div class="sync-wrap text-white small fw-semibold">
+                    <i class="fas fa-sync fa-spin text-success" id="sync-icon"></i>
+                    <span id="sync-status">Menghubungkan ke Google Sheets...</span>
+                </div>
+                <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold" onclick="loadDataFromSheets()">
+                    <i class="fas fa-redo me-1"></i> Sync Sekarang
+                </button>
+                <a href="#tabel-rt" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                    <i class="fas fa-table me-1"></i> Tabel Potensi RT
+                </a>
+                <a href="#sop-layanan" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                    <i class="fas fa-file-excel me-1"></i> Unduh Data SDI (Excel)
+                </a>
+                <a href="#dokumentasi" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                    <i class="fas fa-camera me-1"></i> Dokumentasi
+                </a>
+            </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Main Content Container -->
-    <main class="main-container">
+    <main class="container my-5">
 
-        <!-- Section: Interactive Statistics Widget -->
-        <section class="section" id="stat">
-            <div class="section-title-wrap">
-                <h2 class="section-title">Indikator Statistik Utama</h2>
-            </div>
-            
-            <!-- Grid Indikator -->
-            <div class="stats-grid">
-                <div class="stat-card" onclick="updateChart('penduduk')">
-                    <div class="stat-icon"><i class="fa-solid fa-users-line"></i></div>
-                    <div class="stat-num" id="stat-pend">1.868</div>
-                    <div class="stat-label">Penduduk</div>
-                </div>
-                <div class="stat-card" onclick="updateChart('kk')">
-                    <div class="stat-icon"><i class="fa-solid fa-house-chimney-user"></i></div>
-                    <div class="stat-num" id="stat-kk">554</div>
-                    <div class="stat-label">Kepala Keluarga</div>
-                </div>
-                <div class="stat-card" onclick="updateChart('umkm')">
-                    <div class="stat-icon"><i class="fa-solid fa-bag-shopping"></i></div>
-                    <div class="stat-num" id="stat-umkm">112</div>
-                    <div class="stat-label">UMKM Aktif</div>
-                </div>
-                <div class="stat-card" onclick="updateChart('pekerja')">
-                    <div class="stat-icon"><i class="fa-solid fa-person-digging"></i></div>
-                    <div class="stat-num" id="stat-pekerja">234</div>
-                    <div class="stat-label">Buruh / Pekerja Jasa</div>
-                </div>
-                <div class="stat-card" onclick="updateChart('bantuan')">
-                    <div class="stat-icon"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <div class="stat-num" id="stat-bantuan">142</div>
-                    <div class="stat-label">Penerima Bansos</div>
-                </div>
-            </div>
+        <!-- KPI Cards (Reusable Component) -->
+        <div class="row g-4 mb-5">
+            <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" />
+            <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" />
+            <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" />
+            <x-ui.kpi-card title="Penduduk Lansia" icon="fa-user-clock" id="kpi-lansia" sub-id="kpi-pct-lansia" sub-label="Proporsi" sub-color="text-warning" />
+            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH &amp; BPNT" />
+            <x-ui.kpi-card title="Fasilitas Publik" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terdata &amp; Aktif" />
+        </div>
 
-            <!-- Dynamic Chart Display (3-Year Series) -->
-            <div class="chart-box">
-                <div class="chart-header">
-                    <div class="chart-title" id="chart-main-title">Tren Perkembangan Jumlah Penduduk</div>
-                    <div class="chart-tabs">
-                        <button class="chart-tab-btn active" id="tab-2026">2026</button>
-                        <button class="chart-tab-btn" id="tab-2025">2025</button>
-                        <button class="chart-tab-btn" id="tab-2024">2024</button>
-                    </div>
-                </div>
-                
-                <!-- Bar Chart -->
-                <div class="bar-chart" id="bar-chart-body">
-                    <!-- Column 2024 -->
-                    <div class="chart-bar-container">
-                        <div class="chart-bar-value" id="val-2024">1.780</div>
-                        <div class="chart-bar" id="bar-2024" style="height: 85%;"></div>
-                        <div class="chart-bar-label">2024</div>
-                    </div>
-                    <!-- Column 2025 -->
-                    <div class="chart-bar-container">
-                        <div class="chart-bar-value" id="val-2025">1.822</div>
-                        <div class="chart-bar" id="bar-2025" style="height: 90%;"></div>
-                        <div class="chart-bar-label">2025</div>
-                    </div>
-                    <!-- Column 2026 -->
-                    <div class="chart-bar-container">
-                        <div class="chart-bar-value" id="val-2026">1.868</div>
-                        <div class="chart-bar" id="bar-2026" style="height: 95%;"></div>
-                        <div class="chart-bar-label">2026</div>
-                    </div>
-                </div>
-                <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;"><i class="fa-solid fa-circle-info"></i> Klik pada kartu indikator di atas untuk mengubah visualisasi data tren seri 3 tahun terakhir.</p>
-            </div>
-        </section>
+        <!-- Metadata SDI 2026 (Reusable Component) -->
+        <x-widgets.sdi-metadata-tab village-name="Kelurahan Pasir Wan Salim" :rt-count="9" :var-rt-count="26" :var-fas-count="10" />
 
-        <!-- Section: App & Canva Hub -->
-        <section class="section" id="hub">
-            <div class="section-title-wrap">
-                <h2 class="section-title">Portal Aplikasi & Desain Pembinaan</h2>
-            </div>
-            
-            <div class="hub-grid">
-                <!-- AppSheet Card -->
-                <div class="hub-card">
-                    <div class="hub-card-top">
-                        <div class="hub-card-icon"><i class="fa-solid fa-mobile-screen"></i></div>
-                        <h3 class="hub-card-title">AppSheet Pengumpulan Data</h3>
-                        <p class="hub-card-desc">Aplikasi pengisian kuesioner profil kelurahan secara mobile untuk pendataan lapangan Potensi Keluarga dan SLS di Pasir Wan Salim.</p>
-                    </div>
-                    <div class="hub-card-action">
-                        <a href="https://www.appsheet.com/Template/AppDef?appName=New_PasirWanSalim-32620358&utm_source=share_app_link" target="_blank" class="hub-action-btn">Buka AppSheet <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
+        <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
+        <x-widgets.flashcard-deck village-name="Kelurahan Pasir Wan Salim" title="Flashcard Trivia &amp; Wawasan Data Kelurahan" />
 
-                <!-- Google Sheet Tabulation Card -->
-                <div class="hub-card">
-                    <div class="hub-card-top">
-                        <div class="hub-card-icon"><i class="fa-solid fa-table"></i></div>
-                        <h3 class="hub-card-title">Database & Tabulasi Asli</h3>
-                        <p class="hub-card-desc">Google Sheets database utama hasil kompilasi kuesioner lapangan yang digunakan sebagai basis data tabulasi sektoral kelurahan.</p>
+        <!-- Charts Section -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <div>
+                            <h5 class="fw-bold text-dark mb-1"><i class="fas fa-chart-bar me-2 text-primary"></i>Jumlah Penduduk &amp; KK Per RT</h5>
+                            <p class="text-muted extra-small mb-0"><i class="fas fa-arrows-left-right me-1 text-primary"></i>Grafik sebaran penduduk laki-laki, perempuan &amp; kepala keluarga</p>
+                        </div>
+                        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill" id="rt-chart-count-badge">Wilayah Terdata</span>
                     </div>
-                    <div class="hub-card-action">
-                        <a href="https://docs.google.com/spreadsheets/d/1ulJONIebP6ytRUldb7I2zDhhoKnqpaHTy4LR3SlahBo/edit?gid=431999826#gid=431999826" target="_blank" class="hub-action-btn">Akses Database <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Canva Infographics Card -->
-                <div class="hub-card">
-                    <div class="hub-card-top">
-                        <div class="hub-card-icon"><i class="fa-solid fa-image"></i></div>
-                        <h3 class="hub-card-title">Desain Canva & Infografis</h3>
-                        <p class="hub-card-desc">Visualisasi infografis hasil kompilasi data berupa poster statistik informatif yang disusun bersama agen kelurahan cantik.</p>
-                    </div>
-                    <div class="hub-card-action">
-                        <a href="https://canva.link/rqjttbp27kwg9xa" target="_blank" class="hub-action-btn">Buka Canva <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: SOP & Data Request Form -->
-        <section class="section" id="sop">
-            <div class="section-title-wrap">
-                <h2 class="section-title">SOP Permintaan Data & Permohonan</h2>
-            </div>
-            
-            <div class="sop-wrap">
-                <div class="sop-grid">
-                    <!-- Timeline SOP -->
-                    <div>
-                        <h3 class="chart-title" style="margin-bottom: 25px;"><i class="fa-solid fa-network-wired"></i> Alur Prosedur Pelayanan Data</h3>
-                        
-                        <div class="sop-timeline">
-                            <div class="sop-item">
-                                <div class="sop-badge"></div>
-                                <div class="sop-item-title">1. Ajukan Kebutuhan</div>
-                                <div class="sop-item-desc">Pemohon data mendatangi kantor kelurahan secara langsung atau mengisi form permintaan di sebelah kanan secara online.</div>
-                            </div>
-                            
-                            <div class="sop-item">
-                                <div class="sop-badge"></div>
-                                <div class="sop-item-title">2. Verifikasi & Approval</div>
-                                <div class="sop-item-desc">Agen statistik kelurahan memproses permintaan dan mencocokkan ketersediaan data berdasarkan buku monografi/publikasi.</div>
-                            </div>
-                            
-                            <div class="sop-item">
-                                <div class="sop-badge"></div>
-                                <div class="sop-item-title">3. Penyediaan Data</div>
-                                <div class="sop-item-desc">Data diserahkan via softfile (PDF/Excel) melalui Email / WhatsApp resmi pemohon secara gratis.</div>
-                            </div>
+                    <div style="overflow-x: auto; overflow-y: hidden; width: 100%; -webkit-overflow-scrolling: touch;" class="pb-2">
+                        <div id="chartDemografiContainer" style="width: 100%; min-width: 550px; height: 350px; position: relative;">
+                            <canvas id="chartDemografi"></canvas>
                         </div>
                     </div>
-                    
-                    <!-- Form Request -->
-                    <div class="request-form">
-                        <form id="dataRequestForm" onsubmit="handleFormSubmit(event)">
-                            <div class="form-group">
-                                <label for="req-name" class="form-label">Nama Lengkap Pemohon</label>
-                                <input type="text" id="req-name" class="form-control" placeholder="Contoh: Budi Santoso" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="req-email" class="form-label">Alamat Email Aktif</label>
-                                <input type="email" id="req-email" class="form-control" placeholder="Contoh: budi@gmail.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="req-inst" class="form-label">Instansi / Pekerjaan</label>
-                                <input type="text" id="req-inst" class="form-control" placeholder="Contoh: Universitas Tanjungpura" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="req-desc" class="form-label">Rincian Data yang Dibutuhkan</label>
-                                <textarea id="req-desc" class="form-control" placeholder="Contoh: Data jumlah keluarga miskin per RT tahun 2026 untuk keperluan penelitian skripsi." required></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn">
-                                <i class="fa-solid fa-paper-plane"></i> Kirim Permintaan Data
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                    <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-pie me-2 text-success"></i>Kategori Fasilitas Kelurahan</h5>
+                    <canvas id="chartFasilitas" style="max-height:350px;"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Facility Map -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="peta-sebaran">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-primary mb-0"><i class="fas fa-map-marked-alt me-2"></i>Peta Persebaran Sarana &amp; Fasilitas Publik</h4>
+                    <p class="text-muted small mb-0">Lokasi fasilitas publik dan infrastruktur wilayah Kelurahan Pasir Wan Salim.</p>
+                </div>
+                <span class="badge bg-success text-white px-3 py-2 rounded-pill fw-bold" id="map-count-badge">5 Titik Fasilitas</span>
+            </div>
+            <div id="map" style="height: 440px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+        </div>
+
+        <!-- Tables Section -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="tabel-rt">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-table me-2 text-primary"></i>Daftar Potensi RT &amp; Fasilitas Umum</h4>
+                    <p class="text-muted small mb-0">Agregasi data mikro statistik kewilayahan hasil pembinaan Desa Cantik 2026.</p>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 py-2 fw-bold shadow-sm" onclick="downloadComprehensiveSDIWorkbookPasirWanSalim()">
+                    <i class="fas fa-file-excel me-1"></i> Unduh Data Excel Lengkap (.xlsx)
+                </button>
+            </div>
+            <ul class="nav nav-pills mb-3 flex-nowrap overflow-x-auto text-nowrap" id="pills-tab" role="tablist">
+                <li class="nav-item"><button class="nav-link active rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#pills-rt">Potensi RT (Agregat)</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#pills-fas">Sarana &amp; Fasilitas Publik</button></li>
+            </ul>
+            <div class="tab-content">
+                <!-- Tab 1: RT Agregat -->
+                <div class="tab-pane fade show active" id="pills-rt">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <div class="col-md-4 col-12">
+                            <input type="text" id="search-rt" class="form-control form-control-sm rounded-pill" placeholder="Cari Nama RT / RW..." onkeyup="filterTableRT()">
+                        </div>
+                        <div class="btn-group btn-group-sm rounded-pill p-1 bg-light border text-nowrap flex-wrap flex-sm-nowrap" role="group">
+                            <button type="button" class="btn btn-primary rounded-pill px-3 fw-semibold active" id="btn-mode-variabel" onclick="switchRTTableMode('variabel')">
+                                <i class="fas fa-list me-1"></i> Variabel Mentah
                             </button>
-                        </form>
+                            <button type="button" class="btn btn-outline-success rounded-pill px-3 fw-semibold" id="btn-mode-indikator" onclick="switchRTTableMode('indikator')">
+                                <i class="fas fa-chart-line me-1"></i> 8 Indikator SDI Per RT
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle small text-nowrap" id="table-rt">
+                            <thead class="table-light user-select-none text-nowrap" id="table-rt-thead">
+                                <tr>
+                                    <th>Nama RT / Wilayah</th>
+                                    <th>L</th>
+                                    <th>P</th>
+                                    <th>Total Penduduk</th>
+                                    <th>Total KK</th>
+                                    <th>Bumbung Rumah</th>
+                                    <th>Lansia</th>
+                                    <th>Penerima Bansos</th>
+                                    <th>UMKM</th>
+                                    <th>BPJS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-rt-tbody">
+                                <tr><td colspan="10" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i>Memuat data RT...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Fasilitas -->
+                <div class="tab-pane fade" id="pills-fas">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <div class="col-md-4 col-12">
+                            <input type="text" id="search-fas" class="form-control form-control-sm rounded-pill" placeholder="Cari Fasilitas / Sarana..." onkeyup="filterTableFas()">
+                        </div>
+                        <span class="badge bg-secondary-subtle text-dark px-3 py-2 rounded-pill fw-semibold">5 Fasilitas Terdata</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle small text-nowrap" id="table-fas">
+                            <thead class="table-light user-select-none text-nowrap">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Fasilitas</th>
+                                    <th>Kategori</th>
+                                    <th>Wilayah RW</th>
+                                    <th>Kondisi Bangunan</th>
+                                    <th>Aksesibilitas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-fas-tbody">
+                                <tr>
+                                    <td>1</td>
+                                    <td class="fw-bold">Kantor Kelurahan Pasir Wan Salim</td>
+                                    <td><span class="badge bg-primary">Pemerintahan</span></td>
+                                    <td>RW 01</td>
+                                    <td><span class="badge bg-success">Baik</span></td>
+                                    <td>Aspal / Beton (Roda 4)</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="fw-bold">Poskesdes / Posyandu Melati</td>
+                                    <td><span class="badge bg-danger">Kesehatan</span></td>
+                                    <td>RW 02</td>
+                                    <td><span class="badge bg-success">Baik</span></td>
+                                    <td>Aspal / Beton (Roda 4)</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="fw-bold">SD Negeri 05 Pasir Wan Salim</td>
+                                    <td><span class="badge bg-warning text-dark">Pendidikan</span></td>
+                                    <td>RW 01</td>
+                                    <td><span class="badge bg-success">Baik</span></td>
+                                    <td>Aspal (Roda 4)</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td class="fw-bold">Masjid Jami Pasir Wan Salim</td>
+                                    <td><span class="badge bg-success">Sarana Ibadah</span></td>
+                                    <td>RW 02</td>
+                                    <td><span class="badge bg-success">Baik</span></td>
+                                    <td>Aspal (Roda 4)</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td class="fw-bold">Sentra Kuliner &amp; Olahan UMKM Pesisir</td>
+                                    <td><span class="badge bg-info text-dark">Ekonomi</span></td>
+                                    <td>RW 08</td>
+                                    <td><span class="badge bg-success">Baik</span></td>
+                                    <td>Aspal (Roda 4)</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Section: Downloads Center -->
-        <section class="section" id="downloads">
-            <div class="section-title-wrap">
-                <h2 class="section-title">Pusat Unduhan (Downloads Center)</h2>
-            </div>
-            
-            <div class="downloads-grid">
+        <!-- Dukungan Pemkab (Reusable Component) -->
+        <x-ui.dukungan-pemkab village-name="Kelurahan Pasir Wan Salim" year="2026" />
+
+        <!-- Produk Statistik & SOP Permintaan Data -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="sop-layanan">
+            <h4 class="fw-bold text-dark mb-3"><i class="fas fa-concierge-bell me-2 text-primary"></i>Produk Statistik &amp; SOP Layanan Data Publik</h4>
+            <p class="text-muted small mb-4">Layanan aksesibilitas data agregat bagi masyarakat, akademisi, dan perangkat daerah Kabupaten Mempawah.</p>
+            <div class="row g-4">
                 <!-- Monografi -->
-                <div class="dl-card">
-                    <div class="dl-info">
-                        <div class="dl-icon"><i class="fa-solid fa-file-excel"></i></div>
-                        <div>
-                            <div class="dl-name">Monografi Kelurahan 2026</div>
-                            <div class="dl-meta">Format: PDF | Ukuran: 2.1 MB</div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/kantor-kelurahan.webp') }', 'Profil Kelurahan Pasir Wan Salim 2026', 'Monografi Kependudukan, Potensi RT &amp; Fasilitas Wilayah')" style="height: 130px;">
+                            <img src="{ asset('images/pasirwansalim/kantor-kelurahan.webp') }" alt="Monografi Kelurahan Pasir Wan Salim" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Monografi Kelurahan 2026</h6>
+                        <p class="extra-small text-muted mb-3">Ringkasan profil demografi, wilayah, dan rekapitulasi data potensi RT.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/kantor-kelurahan.webp') }', 'Monografi Kelurahan Pasir Wan Salim 2026', 'Monografi data statistik mikro potensi kelurahan.')"><i class="fas fa-eye me-1"></i> Pratinjau Profil</button>
                         </div>
                     </div>
-                    <button class="dl-btn" onclick="triggerDownload('Monografi Kelurahan 2026')"><i class="fa-solid fa-cloud-arrow-down"></i></button>
                 </div>
 
-                <!-- Booklet -->
-                <div class="dl-card">
-                    <div class="dl-info">
-                        <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                        <div>
-                            <div class="dl-name">Buku Publikasi Kelurahan Cantik 2026</div>
-                            <div class="dl-meta">Format: PDF | Ukuran: 3.9 MB</div>
+                <!-- Infografis -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/pendataan-capi-1.webp') }', 'Infografis Pendataan CAPI 2026', 'Dokumentasi kegiatan wawancara potensi wilayah di Pasir Wan Salim')" style="height: 130px;">
+                            <img src="{ asset('images/pasirwansalim/pendataan-capi-1.webp') }" alt="Infografis CAPI" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Infografis Sektoral 2026</h6>
+                        <p class="extra-small text-muted mb-3">Visualisasi data statistik dalam bentuk grafik dan infografis komunikatif.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/pendataan-capi-1.webp') }', 'Infografis Lapangan 2026', 'Dokumentasi pembinaan Desa Cantik.')"><i class="fas fa-eye me-1"></i> Pratinjau Poster</button>
                         </div>
                     </div>
-                    <button class="dl-btn" onclick="triggerDownload('Buku Publikasi Kelurahan Cantik 2026')"><i class="fa-solid fa-cloud-arrow-down"></i></button>
                 </div>
 
-                <!-- Metadata -->
-                <div class="dl-card">
-                    <div class="dl-info">
-                        <div class="dl-icon"><i class="fa-solid fa-database"></i></div>
-                        <div>
-                            <div class="dl-name">Metadata Statistik Sektoral</div>
-                            <div class="dl-meta">Format: XLSX | Ukuran: 920 KB</div>
+                <!-- Tabel Excel Multi-Sheet -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 text-info d-flex align-items-center justify-content-center" style="height: 130px;">
+                            <i class="fas fa-file-excel fa-3x"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Tabel Data Excel (SDI)</h6>
+                        <p class="extra-small text-muted mb-3">Workbook multi-sheet lengkap: Ringkasan SDI, 8 Indikator RT, Variabel Mentah, Fasilitas, dan Rekap RW.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button type="button" onclick="downloadComprehensiveSDIWorkbookPasirWanSalim()" class="btn btn-sm btn-outline-info rounded-pill fw-bold"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
                         </div>
                     </div>
-                    <button class="dl-btn" onclick="triggerDownload('Metadata Statistik Sektoral')"><i class="fa-solid fa-cloud-arrow-down"></i></button>
+                </div>
+
+                <!-- SOP Permintaan Data -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column">
+                        <div class="mb-3 text-danger d-flex align-items-center justify-content-center" style="height: 130px;">
+                            <i class="fas fa-clipboard-list fa-3x"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">SOP Permintaan Data</h6>
+                        <p class="extra-small text-muted mb-3">Standar Operasional Prosedur pengajuan layanan permintaan data kelurahan.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <a href="#sop-layanan" onclick="alert('Permohonan data resmi dapat diajukan ke Kantor Kelurahan Pasir Wan Salim atau melalui kanal resmi PST BPS Kabupaten Mempawah.')" class="btn btn-sm btn-outline-danger rounded-pill"><i class="fas fa-info-circle me-1"></i> Informasi SOP</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Galeri Dokumentasi Lapangan -->
-        <section class="container mb-5">
+        <section class="container mb-5" id="dokumentasi">
             <div class="text-center mb-4">
                 <span class="badge bg-primary-subtle text-primary fw-semibold mb-2 px-3 py-2" style="font-size:0.78rem; border-radius:20px;"><i class="fas fa-camera me-1"></i> Dokumentasi Lapangan</span>
-                <h2 class="fw-bold" style="font-size:1.5rem;">Foto Kegiatan Pendataan Desa Cantik 2026</h2>
-                <p class="text-muted" style="font-size:0.9rem;">Rangkaian kegiatan pendataan potensi kewilayahan RT dan inventarisasi fasilitas umum di Kelurahan Pasir Wan Salim.</p>
+                <h3 class="fw-bold">Foto Kegiatan Pendataan Kelurahan Cantik 2026</h3>
+                <p class="text-muted small">Rangkaian kegiatan pendataan potensi wilayah dan inventarisasi fasilitas di Kelurahan Pasir Wan Salim.</p>
             </div>
             <div class="row g-3">
-                <div class="col-md-6 col-lg-3">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}', 'Kantor Kelurahan Pasir Wan Salim', 'Tampak depan Kantor Kelurahan Pasir Wan Salim sebagai pusat koordinasi kegiatan Desa Cantik 2026.')" style="cursor:pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 160px;">
-                            <img src="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" class="w-100 h-100 object-fit-cover" alt="Kantor Kelurahan Pasir Wan Salim">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/kantor-kelurahan.webp') }', 'Kantor Kelurahan Pasir Wan Salim', 'Tampak depan Kantor Kelurahan Pasir Wan Salim sebagai pusat koordinasi kegiatan Desa Cantik 2026.')">
+                        <div style="height:120px; overflow:hidden; border-radius:10px;">
+                            <img src="{ asset('images/pasirwansalim/kantor-kelurahan.webp') }" class="w-100 h-100 object-fit-cover" alt="Kantor Kelurahan Pasir Wan Salim">
                         </div>
-                        <h6 class="fw-bold text-dark mb-1 px-1">Kantor Kelurahan</h6>
-                        <span class="badge bg-primary-subtle text-primary extra-small ms-1 mb-1">Pusat Koordinasi</span>
-                        <p class="extra-small text-muted px-1 mb-0">Tampak depan Kantor Kelurahan Pasir Wan Salim.</p>
+                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Kantor Kelurahan</div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}', 'Wawancara CAPI Keluarga #1', 'Proses wawancara CAPI potensi keluarga di lapangan Kelurahan Pasir Wan Salim 2026.')" style="cursor:pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 160px;">
-                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Keluarga">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/pendataan-capi-1.webp') }', 'Wawancara CAPI Lapangan #1', 'Proses wawancara CAPI potensi keluarga di lapangan Kelurahan Pasir Wan Salim 2026.')">
+                        <div style="height:120px; overflow:hidden; border-radius:10px;">
+                            <img src="{ asset('images/pasirwansalim/pendataan-capi-1.webp') }" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan">
                         </div>
-                        <h6 class="fw-bold text-dark mb-1 px-1">Wawancara CAPI #1</h6>
-                        <span class="badge bg-success-subtle text-success extra-small ms-1 mb-1">Pendataan Keluarga</span>
-                        <p class="extra-small text-muted px-1 mb-0">Wawancara CAPI pendataan potensi keluarga di lapangan.</p>
+                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Wawancara CAPI #1</div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}', 'Wawancara CAPI Keluarga #2', 'Pengisian formulir potensi kewilayahan berbasis AppSheet secara langsung di rumah responden.')" style="cursor:pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 160px;">
-                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Keluarga #2">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/pendataan-capi-2.webp') }', 'Wawancara CAPI Lapangan #2', 'Pengisian formulir potensi kewilayahan berbasis AppSheet secara langsung bersama responden.')">
+                        <div style="height:120px; overflow:hidden; border-radius:10px;">
+                            <img src="{ asset('images/pasirwansalim/pendataan-capi-2.webp') }" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan #2">
                         </div>
-                        <h6 class="fw-bold text-dark mb-1 px-1">Wawancara CAPI #2</h6>
-                        <span class="badge bg-success-subtle text-success extra-small ms-1 mb-1">Pendataan Keluarga</span>
-                        <p class="extra-small text-muted px-1 mb-0">Pengisian formulir potensi kewilayahan via AppSheet.</p>
+                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Wawancara CAPI #2</div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}', 'Wawancara CAPI Keluarga #3', 'Verifikasi data lapangan bersama kepala keluarga dan aparatur RT Kelurahan Pasir Wan Salim.')" style="cursor:pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 160px;">
-                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Keluarga #3">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/pendataan-capi-3.webp') }', 'Wawancara CAPI Lapangan #3', 'Verifikasi data lapangan bersama aparatur RT Kelurahan Pasir Wan Salim.')">
+                        <div style="height:120px; overflow:hidden; border-radius:10px;">
+                            <img src="{ asset('images/pasirwansalim/pendataan-capi-3.webp') }" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan #3">
                         </div>
-                        <h6 class="fw-bold text-dark mb-1 px-1">Wawancara CAPI #3</h6>
-                        <span class="badge bg-success-subtle text-success extra-small ms-1 mb-1">Pendataan Keluarga</span>
-                        <p class="extra-small text-muted px-1 mb-0">Verifikasi data bersama kepala keluarga dan aparatur RT.</p>
+                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Verifikasi Lapangan</div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}', 'Wawancara CAPI Keluarga #4', 'Dokumentasi kegiatan pendataan potensi kewilayahan rumah tangga menggunakan AppSheet Desa Cantik 2026.')" style="cursor:pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 200px;">
-                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Keluarga #4">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{ asset('images/pasirwansalim/pendataan-capi-4.webp') }', 'Wawancara CAPI Lapangan #4', 'Dokumentasi kegiatan pendataan potensi kewilayahan menggunakan AppSheet Desa Cantik 2026.')">
+                        <div style="height:120px; overflow:hidden; border-radius:10px;">
+                            <img src="{ asset('images/pasirwansalim/pendataan-capi-4.webp') }" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan #4">
                         </div>
-                        <h6 class="fw-bold text-dark mb-1 px-1">Wawancara CAPI #4</h6>
-                        <span class="badge bg-success-subtle text-success extra-small ms-1 mb-1">Pendataan Keluarga</span>
-                        <p class="extra-small text-muted px-1 mb-0">Dokumentasi pendataan potensi kewilayahan rumah tangga.</p>
+                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Pendataan AppSheet</div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2" onclick="openImageModal(this, '{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Kelurahan Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')" style="cursor:pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 200px;">
-                            <img src="{{ asset('images/pencanangan-2026.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pencanangan Kelurahan Cantik 2026">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{ asset('images/pencanangan-2026.webp') }', 'Pencanangan Kelurahan Cantik 2026', 'Deklarasi resmi program Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026.')">
+                        <div style="height:120px; overflow:hidden; border-radius:10px;">
+                            <img src="{ asset('images/pencanangan-2026.webp') }" class="w-100 h-100 object-fit-cover" alt="Pencanangan Kelurahan Cantik 2026">
                         </div>
-                        <h6 class="fw-bold text-dark mb-1 px-1">Pencanangan Descan 2026</h6>
-                        <span class="badge bg-primary-subtle text-primary extra-small ms-1 mb-1">Pemkab &amp; BPS</span>
-                        <p class="extra-small text-muted px-1 mb-0">Deklarasi pencanangan resmi Desa &amp; Kelurahan Cantik 2026.</p>
+                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Pencanangan 2026</div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Lightbox Modal for Pasir Wan Salim Gallery -->
-        <div id="pws-img-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;" onclick="document.getElementById('pws-img-modal').style.display='none'">
-            <div style="max-width:90vw;max-height:90vh;text-align:center;">
-                <img id="pws-modal-img" src="" style="max-width:100%;max-height:80vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);" alt="">
-                <p id="pws-modal-caption" style="color:white;margin-top:12px;font-size:0.95rem;"></p>
-            </div>
-        </div>
-        <script>
-        function openImageModal(el, src, title, desc) {
-            document.getElementById('pws-modal-img').src = src;
-            document.getElementById('pws-modal-caption').textContent = title + ' — ' + desc;
-            const modal = document.getElementById('pws-img-modal');
-            modal.style.display = 'flex';
-        }
-        </script>
-
-        <!-- Banner Sensus Ekonomi 2026 Support -->
-        <div class="se-banner">
-            <div class="se-content">
-                <h3 class="se-title">Dukung Pelaksanaan Sensus Ekonomi 2026!</h3>
-                <p class="se-desc">Mari bersama-sama menyukseskan pelaksanaan Sensus Ekonomi 2026. Berikan jawaban yang jujur dan akurat kepada petugas sensus untuk menyokong penyusunan kebijakan perekonomian nasional yang lebih kuat.</p>
-            </div>
-            <div class="se-logo-box">
-                <i class="fa-solid fa-chart-pie"></i>
-            </div>
-        </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Desa Cinta Statistik (Desa Cantik)</span>
-        </div>
-        <p class="footer-text">Merupakan program pembinaan statistik sektoral yang diinisiasi oleh BPS Kabupaten Mempawah secara kolaboratif untuk memperkuat database pembangunan di tingkat akar rumput kelurahan.</p>
-        <p style="font-size:0.75rem; opacity:0.6;">&copy; 2026 BPS Kabupaten Mempawah & Kelurahan Pasir Wan Salim. All Rights Reserved.</p>
-    </footer>
+    <!-- Image Preview Modal Component -->
+    <x-ui.image-modal />
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <i class="fa-solid fa-circle-check toast-icon"></i>
-        <span id="toast-text">Tindakan berhasil!</span>
-    </div>
+    <!-- Embedded Fallback RT Aggregated Script (100% Privacy Compliant, Zero PII) -->
+    <script id="fallback-rt" type="application/json">[{"Nama_RT":"RT 001 RW 01","Nama_Ketua_RT":"Ketua RT 001 RW 01","Jumlah_Penduduk_Laki_Laki":6,"Jumlah_Penduduk_Perempuan":4,"Jumlah_KK":7,"Jumlah_Bumbung_Rumah":5,"Jumlah_Penduduk_Lansia":2,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":0,"Jumlah_Penerima_BPNT":0,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":1,"Jumlah_BPJS":11,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"},{"Nama_RT":"RT 002 RW 01","Nama_Ketua_RT":"Ketua RT 002 RW 01","Jumlah_Penduduk_Laki_Laki":3,"Jumlah_Penduduk_Perempuan":1,"Jumlah_KK":4,"Jumlah_Bumbung_Rumah":4,"Jumlah_Penduduk_Lansia":1,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":0,"Jumlah_Penerima_BPNT":1,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":0,"Jumlah_BPJS":5,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"},{"Nama_RT":"RT 003 RW 02","Nama_Ketua_RT":"Ketua RT 003 RW 02","Jumlah_Penduduk_Laki_Laki":1,"Jumlah_Penduduk_Perempuan":3,"Jumlah_KK":6,"Jumlah_Bumbung_Rumah":6,"Jumlah_Penduduk_Lansia":0,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":0,"Jumlah_Penerima_BPNT":0,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":0,"Jumlah_BPJS":4,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"},{"Nama_RT":"RT 004 RW 02","Nama_Ketua_RT":"Ketua RT 004 RW 02","Jumlah_Penduduk_Laki_Laki":0,"Jumlah_Penduduk_Perempuan":0,"Jumlah_KK":4,"Jumlah_Bumbung_Rumah":4,"Jumlah_Penduduk_Lansia":0,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":0,"Jumlah_Penerima_BPNT":0,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":0,"Jumlah_BPJS":0,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"},{"Nama_RT":"RT 013 RW 06","Nama_Ketua_RT":"Ketua RT 013 RW 06","Jumlah_Penduduk_Laki_Laki":3,"Jumlah_Penduduk_Perempuan":4,"Jumlah_KK":5,"Jumlah_Bumbung_Rumah":5,"Jumlah_Penduduk_Lansia":0,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":0,"Jumlah_Penerima_BPNT":0,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":0,"Jumlah_BPJS":0,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"},{"Nama_RT":"RT 014 RW 07","Nama_Ketua_RT":"Ketua RT 014 RW 07","Jumlah_Penduduk_Laki_Laki":6,"Jumlah_Penduduk_Perempuan":2,"Jumlah_KK":3,"Jumlah_Bumbung_Rumah":1,"Jumlah_Penduduk_Lansia":1,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":0,"Jumlah_Penerima_BPNT":0,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":0,"Jumlah_BPJS":7,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"},{"Nama_RT":"RT 015 RW 08","Nama_Ketua_RT":"Ketua RT 015 RW 08","Jumlah_Penduduk_Laki_Laki":0,"Jumlah_Penduduk_Perempuan":0,"Jumlah_KK":1,"Jumlah_Bumbung_Rumah":1,"Jumlah_Penduduk_Lansia":0,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":0,"Jumlah_Penerima_BPNT":0,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":0,"Jumlah_BPJS":0,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"},{"Nama_RT":"RT 016 RW 08","Nama_Ketua_RT":"Ketua RT 016 RW 08","Jumlah_Penduduk_Laki_Laki":6,"Jumlah_Penduduk_Perempuan":7,"Jumlah_KK":2,"Jumlah_Bumbung_Rumah":1,"Jumlah_Penduduk_Lansia":0,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":0,"Jumlah_Penerima_BPNT":1,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":0,"Jumlah_BPJS":0,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"},{"Nama_RT":"RT 017 RW 08","Nama_Ketua_RT":"Ketua RT 017 RW 08","Jumlah_Penduduk_Laki_Laki":14,"Jumlah_Penduduk_Perempuan":18,"Jumlah_KK":11,"Jumlah_Bumbung_Rumah":3,"Jumlah_Penduduk_Lansia":3,"Jumlah_Memiliki_KTP":0,"Jumlah_Penerima_PKH":1,"Jumlah_Penerima_BPNT":1,"Jumlah_Penerima_BLT":0,"Jumlah_UMKM":0,"Jumlah_BPJS":26,"Jumlah_Penduduk_Putus_Sekolah":0,"Status_Pendataan":"Selesai"}]</script>
 
-    <!-- JS Logic -->
     <script>
-        // Data trends 3 tahun
-        const statsData = {
-            penduduk: {
-                title: "Tren Perkembangan Jumlah Penduduk",
-                years: ["2024", "2025", "2026"],
-                values: [1780, 1822, 1868],
-                heights: ["80%", "88%", "95%"]
-            },
-            kk: {
-                title: "Tren Perkembangan Jumlah Kepala Keluarga (KK)",
-                years: ["2024", "2025", "2026"],
-                values: [538, 545, 554],
-                heights: ["82%", "88%", "95%"]
-            },
-            umkm: {
-                title: "Tren Perkembangan Jumlah UMKM Aktif",
-                years: ["2024", "2025", "2026"],
-                values: [86, 98, 112],
-                heights: ["65%", "80%", "95%"]
-            },
-            pekerja: {
-                title: "Tren Perkembangan Jumlah Buruh / Pekerja Jasa",
-                years: ["2024", "2025", "2026"],
-                values: [210, 222, 234],
-                heights: ["75%", "85%", "95%"]
-            },
-            bantuan: {
-                title: "Tren Perkembangan Jumlah Penerima Bansos",
-                years: ["2024", "2025", "2026"],
-                values: [156, 148, 142],
-                heights: ["95%", "88%", "82%"]
-            }
-        };
+        var rawRTData = [];
+        var currentRTMode = 'variabel';
+        var mapInstance = null;
+        var chartDemografiInstance = null;
+        var chartFasilitasInstance = null;
 
-        function updateChart(key) {
-            const data = statsData[key];
-            if (!data) return;
+        var fasilitasData = [
+            { nama: "Kantor Kelurahan Pasir Wan Salim", kategori: "Pemerintahan", rw: "RW 01", lat: 0.327415, lng: 108.970008, icon: "fa-building-columns", color: "#2563eb" },
+            { nama: "Poskesdes / Posyandu Melati", kategori: "Kesehatan", rw: "RW 02", lat: 0.325654, lng: 108.969271, icon: "fa-heart-pulse", color: "#dc2626" },
+            { nama: "SD Negeri 05 Pasir Wan Salim", kategori: "Pendidikan", rw: "RW 01", lat: 0.327639, lng: 108.970337, icon: "fa-graduation-cap", color: "#f59e0b" },
+            { nama: "Masjid Jami Pasir Wan Salim", kategori: "Sarana Ibadah", rw: "RW 02", lat: 0.326071, lng: 108.969709, icon: "fa-mosque", color: "#16a34a" },
+            { nama: "Sentra Kuliner Pesisir UMKM", kategori: "Ekonomi", rw: "RW 08", lat: 0.323709, lng: 108.980095, icon: "fa-store", color: "#0891b2" }
+        ];
 
-            // Update title
-            document.getElementById('chart-main-title').innerText = data.title;
+        document.addEventListener('DOMContentLoaded', function() {
+            initMap();
+            loadDataFromSheets();
+        });
 
-            // Update columns
-            const years = ["2024", "2025", "2026"];
-            years.forEach((y, idx) => {
-                const bar = document.getElementById('bar-' + y);
-                bar.style.height = data.heights[idx];
-                
-                const valEl = document.getElementById('val-' + y);
-                valEl.innerText = data.values[idx].toLocaleString('id-ID');
+        function initMap() {
+            if (mapInstance) return;
+            mapInstance = L.map('map').setView([0.326, 108.973], 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(mapInstance);
+
+            var bounds = [];
+            fasilitasData.forEach(function(f) {
+                bounds.push([f.lat, f.lng]);
+                var popupContent = '<div class="p-2" style="font-family:sans-serif;">'
+                    + '<h6 class="fw-bold mb-1">' + escHtml(f.nama) + '</h6>'
+                    + '<div class="small text-muted mb-1"><i class="fas ' + f.icon + ' me-1" style="color:' + f.color + '"></i>' + escHtml(f.kategori) + ' (' + escHtml(f.rw) + ')</div>'
+                    + '<div class="extra-small text-muted">Kondisi: Baik | Akses Roda 4</div>'
+                    + '</div>';
+
+                var marker = L.circleMarker([f.lat, f.lng], {
+                    radius: 8,
+                    fillColor: f.color,
+                    color: '#ffffff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.95
+                }).bindPopup(popupContent);
+
+                marker.addTo(mapInstance);
             });
 
-            showToast("Visualisasi diubah: " + data.title);
+            if (bounds.length > 0) {
+                mapInstance.fitBounds(bounds, { padding: [30, 30] });
+            }
         }
 
-        // Form Submit Handler
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('req-name').value;
-            const email = document.getElementById('req-email').value;
-            
-            showToast("Terima kasih " + name + "! Permohonan data telah terkirim ke email admin kelurahan.");
-            document.getElementById('dataRequestForm').reset();
+        function loadDataFromSheets() {
+            var syncIcon = document.getElementById('sync-icon');
+            var syncStatus = document.getElementById('sync-status');
+            if (syncIcon) syncIcon.classList.add('fa-spin');
+            if (syncStatus) syncStatus.innerText = 'Mengambil data dari Google Sheets...';
+
+            fetch('/desa-cantik/api/pasirwansalim/Appsheet_RT?refresh=1')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (Array.isArray(data) && data.length > 0 && !data.error) {
+                        rawRTData = data;
+                        if (syncStatus) syncStatus.innerText = 'Terhubung Live (' + new Date().toLocaleTimeString('id-ID') + ')';
+                    } else {
+                        useFallbackData();
+                        if (syncStatus) syncStatus.innerText = 'Data Lokal Aktif';
+                    }
+                    if (syncIcon) syncIcon.classList.remove('fa-spin');
+                    processRTData();
+                })
+                .catch(function(err) {
+                    console.warn('API fetch failed, using embedded fallback:', err);
+                    useFallbackData();
+                    if (syncStatus) syncStatus.innerText = 'Data Lokal Aktif';
+                    if (syncIcon) syncIcon.classList.remove('fa-spin');
+                    processRTData();
+                });
         }
 
-        // Trigger Download simulation
-        function triggerDownload(fileName) {
-            showToast("Memulai pengunduhan berkas: " + fileName);
+        function useFallbackData() {
+            var scriptEl = document.getElementById('fallback-rt');
+            if (scriptEl && scriptEl.textContent) {
+                try {
+                    rawRTData = JSON.parse(scriptEl.textContent);
+                } catch (e) {
+                    console.error('Failed to parse fallback:', e);
+                }
+            }
         }
 
-        // Toast logic
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-text').innerText = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+        function processRTData() {
+            if (!rawRTData || !rawRTData.length) return;
+
+            var totalL = 0, totalP = 0, totalKK = 0, totalBumbung = 0;
+            var totalLansia = 0, totalBansos = 0, totalUMKM = 0, totalBPJS = 0;
+
+            rawRTData.forEach(function(r) {
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || 0) || 0;
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || 0) || 0;
+                var kk = parseInt(r.Jumlah_KK || 0) || 0;
+                var bumbung = parseInt(r.Jumlah_Bumbung_Rumah || 0) || 0;
+                var lansia = parseInt(r.Jumlah_Penduduk_Lansia || 0) || 0;
+                var pkh = parseInt(r.Jumlah_Penerima_PKH || 0) || 0;
+                var bpnt = parseInt(r.Jumlah_Penerima_BPNT || 0) || 0;
+                var bansos = pkh + bpnt;
+                var umkm = parseInt(r.Jumlah_UMKM || 0) || 0;
+                var bpjs = parseInt(r.Jumlah_BPJS || 0) || 0;
+
+                totalL += l;
+                totalP += p;
+                totalKK += kk;
+                totalBumbung += bumbung;
+                totalLansia += lansia;
+                totalBansos += bansos;
+                totalUMKM += umkm;
+                totalBPJS += bpjs;
+
+                r._pop = l + p;
+                r._sexRatio = p > 0 ? parseFloat((l / p * 100).toFixed(1)) : 0;
+                r._artRata = kk > 0 ? parseFloat(((l + p) / kk).toFixed(2)) : 0;
+                r._pctLansia = (l + p) > 0 ? parseFloat((lansia / (l + p) * 100).toFixed(1)) : 0;
+                r._pctBansos = kk > 0 ? parseFloat((bansos / kk * 100).toFixed(1)) : 0;
+                r._kepadatan = bumbung > 0 ? parseFloat(((l + p) / bumbung).toFixed(2)) : 0;
+            });
+
+            var totalPop = totalL + totalP;
+            var sexRatio = totalP > 0 ? ((totalL / totalP) * 100).toFixed(1) : '-';
+            var artRata = totalKK > 0 ? (totalPop / totalKK).toFixed(2) : '-';
+            var kepadatan = totalBumbung > 0 ? (totalPop / totalBumbung).toFixed(2) : '-';
+            var pctLansia = totalPop > 0 ? ((totalLansia / totalPop) * 100).toFixed(1) : '-';
+
+            // Update KPI Cards
+            if (document.getElementById('kpi-penduduk')) document.getElementById('kpi-penduduk').innerText = totalPop.toLocaleString('id-ID');
+            if (document.getElementById('kpi-sexratio')) document.getElementById('kpi-sexratio').innerText = sexRatio;
+            if (document.getElementById('kpi-kk')) document.getElementById('kpi-kk').innerText = totalKK.toLocaleString('id-ID');
+            if (document.getElementById('kpi-art')) document.getElementById('kpi-art').innerText = artRata + ' ART/KK';
+            if (document.getElementById('kpi-bumbung')) document.getElementById('kpi-bumbung').innerText = totalBumbung.toLocaleString('id-ID');
+            if (document.getElementById('kpi-kepadatan')) document.getElementById('kpi-kepadatan').innerText = kepadatan + ' Jiwa/Rumah';
+            if (document.getElementById('kpi-lansia')) document.getElementById('kpi-lansia').innerText = totalLansia.toLocaleString('id-ID');
+            if (document.getElementById('kpi-pct-lansia')) document.getElementById('kpi-pct-lansia').innerText = pctLansia + '%';
+            if (document.getElementById('kpi-bansos')) document.getElementById('kpi-bansos').innerText = totalBansos.toLocaleString('id-ID') + ' Penerima';
+            if (document.getElementById('kpi-fasilitas')) document.getElementById('kpi-fasilitas').innerText = fasilitasData.length + ' Fasilitas';
+
+            var chartBadge = document.getElementById('rt-chart-count-badge');
+            if (chartBadge) chartBadge.innerText = rawRTData.length + ' RT Terdata';
+
+            renderTableRT();
+            renderCharts();
+        }
+
+        function switchRTTableMode(mode) {
+            currentRTMode = mode;
+            var btnVar = document.getElementById('btn-mode-variabel');
+            var btnInd = document.getElementById('btn-mode-indikator');
+
+            if (mode === 'indikator') {
+                btnVar.classList.remove('btn-primary', 'active');
+                btnVar.classList.add('btn-outline-primary');
+                btnInd.classList.remove('btn-outline-success');
+                btnInd.classList.add('btn-success', 'active');
+            } else {
+                btnInd.classList.remove('btn-success', 'active');
+                btnInd.classList.add('btn-outline-success');
+                btnVar.classList.remove('btn-outline-primary');
+                btnVar.classList.add('btn-primary', 'active');
+            }
+            renderTableRT();
+        }
+
+        function renderTableRT() {
+            var thead = document.getElementById('table-rt-thead');
+            var tbody = document.getElementById('table-rt-tbody');
+            if (!thead || !tbody) return;
+
+            if (currentRTMode === 'indikator') {
+                thead.innerHTML = '<tr>'
+                    + '<th>Nama RT / Wilayah</th>'
+                    + '<th>Total Penduduk</th>'
+                    + '<th>Sex Ratio (#1)</th>'
+                    + '<th>Rata-rata ART (#2)</th>'
+                    + '<th>Proporsi Lansia (#3)</th>'
+                    + '<th>Keluarga Bansos (#5)</th>'
+                    + '<th>Kepadatan Hunian (#7)</th>'
+                    + '<th>UMKM Produktif</th>'
+                    + '</tr>';
+
+                tbody.innerHTML = '';
+                rawRTData.forEach(function(r) {
+                    var bansos = (parseInt(r.Jumlah_Penerima_PKH || 0) || 0) + (parseInt(r.Jumlah_Penerima_BPNT || 0) || 0);
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = '<td class="fw-bold">' + escHtml(r.Nama_RT) + '</td>'
+                        + '<td><span class="badge bg-light text-dark fw-bold">' + r._pop + ' Jiwa</span></td>'
+                        + '<td><span class="badge bg-primary-subtle text-primary">' + r._sexRatio + '</span></td>'
+                        + '<td>' + r._artRata + ' ART/KK</td>'
+                        + '<td>' + r._pctLansia + '% (' + (r.Jumlah_Penduduk_Lansia || 0) + ' jiwa)</td>'
+                        + '<td>' + r._pctBansos + '% (' + bansos + ' KK)</td>'
+                        + '<td>' + r._kepadatan + ' Jiwa/Rumah</td>'
+                        + '<td><span class="badge bg-success-subtle text-success fw-bold">' + (r.Jumlah_UMKM || 0) + ' Unit</span></td>';
+                    tbody.appendChild(tr);
+                });
+            } else {
+                thead.innerHTML = '<tr>'
+                    + '<th>Nama RT / Wilayah</th>'
+                    + '<th>L</th>'
+                    + '<th>P</th>'
+                    + '<th>Total Penduduk</th>'
+                    + '<th>Total KK</th>'
+                    + '<th>Bumbung Rumah</th>'
+                    + '<th>Lansia</th>'
+                    + '<th>Penerima Bansos</th>'
+                    + '<th>UMKM</th>'
+                    + '<th>BPJS</th>'
+                    + '</tr>';
+
+                tbody.innerHTML = '';
+                rawRTData.forEach(function(r) {
+                    var bansos = (parseInt(r.Jumlah_Penerima_PKH || 0) || 0) + (parseInt(r.Jumlah_Penerima_BPNT || 0) || 0);
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = '<td class="fw-bold">' + escHtml(r.Nama_RT) + '</td>'
+                        + '<td>' + (r.Jumlah_Penduduk_Laki_Laki || 0) + '</td>'
+                        + '<td>' + (r.Jumlah_Penduduk_Perempuan || 0) + '</td>'
+                        + '<td><span class="badge bg-primary-subtle text-primary fw-bold">' + r._pop + '</span></td>'
+                        + '<td>' + (r.Jumlah_KK || 0) + '</td>'
+                        + '<td>' + (r.Jumlah_Bumbung_Rumah || 0) + '</td>'
+                        + '<td>' + (r.Jumlah_Penduduk_Lansia || 0) + '</td>'
+                        + '<td>' + bansos + '</td>'
+                        + '<td>' + (r.Jumlah_UMKM || 0) + '</td>'
+                        + '<td>' + (r.Jumlah_BPJS || 0) + '</td>';
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        function renderCharts() {
+            // Demografi Chart
+            if (document.getElementById('chartDemografi')) {
+                if (chartDemografiInstance) chartDemografiInstance.destroy();
+                var labels = rawRTData.map(function(r) { return r.Nama_RT; });
+                var dataL = rawRTData.map(function(r) { return parseInt(r.Jumlah_Penduduk_Laki_Laki || 0); });
+                var dataP = rawRTData.map(function(r) { return parseInt(r.Jumlah_Penduduk_Perempuan || 0); });
+                var dataKK = rawRTData.map(function(r) { return parseInt(r.Jumlah_KK || 0); });
+
+                var ctx = document.getElementById('chartDemografi').getContext('2d');
+                chartDemografiInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            { label: 'Laki-Laki', data: dataL, backgroundColor: '#3b82f6', borderRadius: 6 },
+                            { label: 'Perempuan', data: dataP, backgroundColor: '#ec4899', borderRadius: 6 },
+                            { label: 'Kepala Keluarga (KK)', data: dataKK, backgroundColor: '#10b981', borderRadius: 6 }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } },
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+            }
+
+            // Fasilitas Pie Chart
+            if (document.getElementById('chartFasilitas')) {
+                if (chartFasilitasInstance) chartFasilitasInstance.destroy();
+                var ctx2 = document.getElementById('chartFasilitas').getContext('2d');
+
+                var katCounts = {};
+                fasilitasData.forEach(function(f) {
+                    katCounts[f.kategori] = (katCounts[f.kategori] || 0) + 1;
+                });
+
+                chartFasilitasInstance = new Chart(ctx2, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(katCounts),
+                        datasets: [{
+                            data: Object.values(katCounts),
+                            backgroundColor: ['#2563eb', '#dc2626', '#f59e0b', '#16a34a', '#0891b2']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom' } }
+                    }
+                });
+            }
+        }
+
+        function filterTableRT() {
+            var q = (document.getElementById('search-rt').value || '').toLowerCase();
+            document.querySelectorAll('#table-rt tbody tr').forEach(function(tr) {
+                tr.style.display = tr.innerText.toLowerCase().indexOf(q) !== -1 ? '' : 'none';
+            });
+        }
+
+        function filterTableFas() {
+            var q = (document.getElementById('search-fas').value || '').toLowerCase();
+            document.querySelectorAll('#table-fas tbody tr').forEach(function(tr) {
+                tr.style.display = tr.innerText.toLowerCase().indexOf(q) !== -1 ? '' : 'none';
+            });
+        }
+
+        function escHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // Multi-Sheet Excel Export (SDI 2026 Compliant)
+        function downloadComprehensiveSDIWorkbookPasirWanSalim() {
+            if (!rawRTData || !rawRTData.length) {
+                alert('Data Pasir Wan Salim belum siap diunduh.');
+                return;
+            }
+
+            var totalL = 0, totalP = 0, totalKK = 0, totalBumbung = 0;
+            var totalLansia = 0, totalBansos = 0, totalUMKM = 0, totalBPJS = 0;
+
+            rawRTData.forEach(function(r) {
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || 0) || 0;
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || 0) || 0;
+                var kk = parseInt(r.Jumlah_KK || 0) || 0;
+                var bumbung = parseInt(r.Jumlah_Bumbung_Rumah || 0) || 0;
+                var lansia = parseInt(r.Jumlah_Penduduk_Lansia || 0) || 0;
+                var pkh = parseInt(r.Jumlah_Penerima_PKH || 0) || 0;
+                var bpnt = parseInt(r.Jumlah_Penerima_BPNT || 0) || 0;
+
+                totalL += l;
+                totalP += p;
+                totalKK += kk;
+                totalBumbung += bumbung;
+                totalLansia += lansia;
+                totalBansos += (pkh + bpnt);
+                totalUMKM += (parseInt(r.Jumlah_UMKM || 0) || 0);
+                totalBPJS += (parseInt(r.Jumlah_BPJS || 0) || 0);
+            });
+
+            var totalPop = totalL + totalP;
+
+            // Sheet 1: Ringkasan SDI
+            var s1Rows = [
+                ["REKAPITULASI PROFIL KELURAHAN CANTIK & INDIKATOR SDI 2026"],
+                ["KELURAHAN PASIR WAN SALIM - KECAMATAN MEMPAWAH TIMUR, KABUPATEN MEMPAWAH"],
+                ["Standar: Satu Data Indonesia (SDI) | Pembina Teknis: BPS Kabupaten Mempawah"],
+                ["Tanggal Ekspor Data:", new Date().toLocaleDateString('id-ID', { year:'numeric', month:'long', day:'numeric' })],
+                [],
+                ["No", "Nama Indikator / Variabel SDI", "Nilai", "Satuan", "Keterangan & Catatan Metodologi"],
+                [1, "Total Populasi Penduduk Terdata", totalPop, "Jiwa", "Pendataan mikro potensi RT Desa Cantik 2026"],
+                [2, "Penduduk Laki-Laki", totalL, "Jiwa", (totalPop > 0 ? (totalL / totalPop * 100).toFixed(2) : 0) + "% dari total penduduk"],
+                [3, "Penduduk Perempuan", totalP, "Jiwa", (totalPop > 0 ? (totalP / totalPop * 100).toFixed(2) : 0) + "% dari total penduduk"],
+                [4, "Rasio Jenis Kelamin (Sex Ratio) [#1]", totalP > 0 ? parseFloat((totalL / totalP * 100).toFixed(2)) : 0, "L / 100 P", "Jumlah penduduk laki-laki per 100 perempuan"],
+                [5, "Jumlah Kepala Keluarga (KK)", totalKK, "KK", "Tersebar di seluruh wilayah RT"],
+                [6, "Rata-rata Anggota Rumah Tangga (ART) [#2]", totalKK > 0 ? parseFloat((totalPop / totalKK).toFixed(2)) : 0, "Jiwa / KK", "Rata-rata tanggungan per Kepala Keluarga"],
+                [7, "Jumlah Bangunan Rumah Tinggal", totalBumbung, "Unit Rumah", "Total bangunan fisik tempat tinggal"],
+                [8, "Kepadatan Hunian (Jiwa / Rumah) [#7]", totalBumbung > 0 ? parseFloat((totalPop / totalBumbung).toFixed(2)) : 0, "Jiwa / Rumah", "Rata-rata penghuni per unit rumah"],
+                [9, "Populasi Lansia (≥ 65 Tahun)", totalLansia, "Jiwa", "Kelompok penduduk lanjut usia"],
+                [10, "Proporsi Penduduk Lansia [#3]", totalPop > 0 ? (totalLansia / totalPop * 100).toFixed(2) + "%" : "0%", "Persen", "Persentase lansia terhadap total penduduk"],
+                [11, "Total KK Penerima Bantuan Sosial", totalBansos, "KK", "Penerima manfaat program PKH & BPNT"],
+                [12, "Jumlah UMKM Produktif Terdata", totalUMKM, "Unit", "Usaha mikro binaan"],
+                [13, "Cakupan BPJS Kesehatan", totalBPJS, "Jiwa", "Warga yang memiliki jaminan kesehatan BPJS"],
+                [14, "Sarana & Fasilitas Publik", fasilitasData.length, "Unit", "Fasilitas pemerintahan, pendidikan, kesehatan, ibadah"]
+            ];
+
+            // Sheet 2: 8 Indikator SDI Per RT
+            var s2Rows = [
+                [
+                    "No", "Nama RT / Wilayah", "Total Penduduk", "Penduduk L", "Penduduk P",
+                    "Sex Ratio [#1]", "Rata-rata ART [#2]", "Jumlah Lansia", "Proporsi Lansia [#3] (%)",
+                    "Total KK", "Penerima Bansos (KK)", "Persentase Bansos [#5] (%)",
+                    "Jumlah Rumah", "Kepadatan Hunian [#7] (Jiwa/Rumah)", "Jumlah UMKM"
+                ]
+            ];
+            rawRTData.forEach(function(r, idx) {
+                var bansos = (parseInt(r.Jumlah_Penerima_PKH || 0) || 0) + (parseInt(r.Jumlah_Penerima_BPNT || 0) || 0);
+                s2Rows.push([
+                    idx + 1,
+                    r.Nama_RT,
+                    r._pop,
+                    parseInt(r.Jumlah_Penduduk_Laki_Laki || 0),
+                    parseInt(r.Jumlah_Penduduk_Perempuan || 0),
+                    r._sexRatio,
+                    r._artRata,
+                    parseInt(r.Jumlah_Penduduk_Lansia || 0),
+                    r._pctLansia,
+                    parseInt(r.Jumlah_KK || 0),
+                    bansos,
+                    r._pctBansos,
+                    parseInt(r.Jumlah_Bumbung_Rumah || 0),
+                    r._kepadatan,
+                    parseInt(r.Jumlah_UMKM || 0)
+                ]);
+            });
+
+            // Sheet 3: Variabel Potensi RT
+            var s3Rows = [
+                [
+                    "No", "Nama RT / Wilayah", "Nama Ketua RT", "Penduduk L", "Penduduk P",
+                    "Total Penduduk", "Total KK", "Bumbung Rumah", "Lansia", "Penerima PKH", "Penerima BPNT", "UMKM", "BPJS", "Putus Sekolah"
+                ]
+            ];
+            rawRTData.forEach(function(r, idx) {
+                s3Rows.push([
+                    idx + 1,
+                    r.Nama_RT,
+                    r.Nama_Ketua_RT || '-',
+                    parseInt(r.Jumlah_Penduduk_Laki_Laki || 0),
+                    parseInt(r.Jumlah_Penduduk_Perempuan || 0),
+                    r._pop,
+                    parseInt(r.Jumlah_KK || 0),
+                    parseInt(r.Jumlah_Bumbung_Rumah || 0),
+                    parseInt(r.Jumlah_Penduduk_Lansia || 0),
+                    parseInt(r.Jumlah_Penerima_PKH || 0),
+                    parseInt(r.Jumlah_Penerima_BPNT || 0),
+                    parseInt(r.Jumlah_UMKM || 0),
+                    parseInt(r.Jumlah_BPJS || 0),
+                    parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0)
+                ]);
+            });
+
+            // Sheet 4: Sarana & Fasilitas
+            var s4Rows = [
+                ["No", "Nama Fasilitas / Sarana", "Kategori", "Wilayah RW", "Kondisi Bangunan", "Aksesibilitas", "Koordinat GPS"],
+                [1, "Kantor Kelurahan Pasir Wan Salim", "Pemerintahan", "RW 01", "Baik", "Aspal / Beton (Roda 4)", "0.327415, 108.970008"],
+                [2, "Poskesdes / Posyandu Melati", "Kesehatan", "RW 02", "Baik", "Aspal / Beton (Roda 4)", "0.325654, 108.969271"],
+                [3, "SD Negeri 05 Pasir Wan Salim", "Pendidikan", "RW 01", "Baik", "Aspal (Roda 4)", "0.327639, 108.970337"],
+                [4, "Masjid Jami Pasir Wan Salim", "Sarana Ibadah", "RW 02", "Baik", "Aspal (Roda 4)", "0.326071, 108.969709"],
+                [5, "Sentra Kuliner Pesisir UMKM", "Ekonomi", "RW 08", "Baik", "Aspal (Roda 4)", "0.323709, 108.980095"]
+            ];
+
+            // Sheet 5: Rekapitulasi Dusun / RW
+            var rwGroups = {};
+            rawRTData.forEach(function(r) {
+                var rwName = "RW 01";
+                if (r.Nama_RT.indexOf('RW') !== -1) {
+                    var parts = r.Nama_RT.split('RW');
+                    rwName = 'RW ' + parts[1].trim();
+                }
+                if (!rwGroups[rwName]) {
+                    rwGroups[rwName] = { l: 0, p: 0, pop: 0, kk: 0, bumbung: 0, lansia: 0, bansos: 0, umkm: 0 };
+                }
+                var bansos = (parseInt(r.Jumlah_Penerima_PKH || 0) || 0) + (parseInt(r.Jumlah_Penerima_BPNT || 0) || 0);
+                rwGroups[rwName].l += parseInt(r.Jumlah_Penduduk_Laki_Laki || 0);
+                rwGroups[rwName].p += parseInt(r.Jumlah_Penduduk_Perempuan || 0);
+                rwGroups[rwName].pop += r._pop;
+                rwGroups[rwName].kk += parseInt(r.Jumlah_KK || 0);
+                rwGroups[rwName].bumbung += parseInt(r.Jumlah_Bumbung_Rumah || 0);
+                rwGroups[rwName].lansia += parseInt(r.Jumlah_Penduduk_Lansia || 0);
+                rwGroups[rwName].bansos += bansos;
+                rwGroups[rwName].umkm += parseInt(r.Jumlah_UMKM || 0);
+            });
+
+            var s5Rows = [
+                ["No", "Wilayah RW", "Total Penduduk", "L", "P", "Total KK", "Bumbung Rumah", "Lansia", "Bansos (KK)", "UMKM"]
+            ];
+            var rwIdx = 1;
+            Object.keys(rwGroups).sort().forEach(function(rwKey) {
+                var g = rwGroups[rwKey];
+                s5Rows.push([rwIdx++, rwKey, g.pop, g.l, g.p, g.kk, g.bumbung, g.lansia, g.bansos, g.umkm]);
+            });
+
+            var filename = 'Data_SDI_Lengkap_Kelurahan_Pasir_Wan_Salim_2026.xlsx';
+
+            if (typeof XLSX !== 'undefined') {
+                var wb = XLSX.utils.book_new();
+
+                function autoColWidth(ws, data) {
+                    var colWidths = [];
+                    data.forEach(function(row) {
+                        row.forEach(function(cell, cIdx) {
+                            var len = (cell === null || cell === undefined) ? 0 : String(cell).length;
+                            if (!colWidths[cIdx] || len > colWidths[cIdx]) {
+                                colWidths[cIdx] = len;
+                            }
+                        });
+                    });
+                    ws['!cols'] = colWidths.map(function(w) {
+                        return { wch: Math.min(Math.max((w || 0) + 3, 10), 48) };
+                    });
+                }
+
+                var ws1 = XLSX.utils.aoa_to_sheet(s1Rows);
+                autoColWidth(ws1, s1Rows);
+                XLSX.utils.book_append_sheet(wb, ws1, "Ringkasan SDI");
+
+                var ws2 = XLSX.utils.aoa_to_sheet(s2Rows);
+                autoColWidth(ws2, s2Rows);
+                XLSX.utils.book_append_sheet(wb, ws2, "8 Indikator SDI RT");
+
+                var ws3 = XLSX.utils.aoa_to_sheet(s3Rows);
+                autoColWidth(ws3, s3Rows);
+                XLSX.utils.book_append_sheet(wb, ws3, "Variabel Potensi RT");
+
+                var ws4 = XLSX.utils.aoa_to_sheet(s4Rows);
+                autoColWidth(ws4, s4Rows);
+                XLSX.utils.book_append_sheet(wb, ws4, "Sarana & Fasilitas");
+
+                var ws5 = XLSX.utils.aoa_to_sheet(s5Rows);
+                autoColWidth(ws5, s5Rows);
+                XLSX.utils.book_append_sheet(wb, ws5, "Rekapitulasi RW");
+
+                XLSX.writeFile(wb, filename);
+            }
         }
     </script>
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</x-layouts.app>
