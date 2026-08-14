@@ -2127,6 +2127,7 @@
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Memiliki_KTP\')">Jml KTP-el <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Memiliki_KTP"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctKTP\')">#4 % KTP-el <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctKTP"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_cntBansos\')">Jml Bansos <i class="fas fa-sort text-muted ms-1" id="sort-icon-_cntBansos"></i></th>'
+                        + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctBansos\')">#5 % Bansos <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctBansos"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'Jumlah_Penduduk_Putus_Sekolah\')" title="Jumlah Anak Usia 7-18 Tahun yang Tidak Bersekolah">Putus Sekolah <i class="fas fa-sort text-muted ms-1" id="sort-icon-Jumlah_Penduduk_Putus_Sekolah"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_pctPutus\')" title="Persentase Anak Putus Sekolah terhadap Total Anak Bersekolah di RT: (Putus / Siswa) × 100%">#6 % Putus Sekolah <i class="fas fa-sort text-muted ms-1" id="sort-icon-_pctPutus"></i></th>'
                         + '<th style="cursor:pointer;" onclick="sortTableRT(\'_kepadatan\')">#7 Kepadatan <i class="fas fa-sort text-muted ms-1" id="sort-icon-_kepadatan"></i></th>'
