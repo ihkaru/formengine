@@ -267,14 +267,24 @@
                 </div>
                 <!-- Dataset Excel Card -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card" onclick="exportRTToExcel()" style="cursor: pointer;">
-                        <div class="mb-3 text-success d-flex align-items-center justify-content-center bg-light rounded-3 border" style="height: 130px;">
-                            <i class="fas fa-file-excel fa-3x"></i>
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Dataset Excel SDI 2026', 'Tabel kompilasi potensi RT &amp; Fasilitas umum Desa Pasir Palembang 2026.')" style="height: 130px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/excel-sdi-cover.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/excel-sdi-cover.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/excel-sdi-cover.webp') }}" alt="Dataset Excel SDI Desa Pasir Palembang 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="800" height="600">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Perbesar
+                            </div>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Dataset Excel (SDI)</h6>
                         <p class="extra-small text-muted mb-3">Tabel kompilasi potensi RT &amp; Fasilitas umum (.xlsx).</p>
                         <div class="mt-auto d-grid gap-2">
-                            <button type="button" onclick="exportRTToExcel()" class="btn btn-sm btn-outline-success rounded-pill"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Dataset Excel SDI 2026', 'Tabel kompilasi potensi RT &amp; Fasilitas umum Desa Pasir Palembang 2026.')">
+                                <i class="fas fa-eye me-1"></i> Pratinjau Cover
+                            </button>
+                            <button type="button" onclick="exportRTToExcel()" class="btn btn-sm btn-success rounded-pill fw-bold"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
                         </div>
                     </div>
                 </div>
@@ -294,14 +304,14 @@
             </div>
         </div>
 
-        <!-- Section Placeholder 2: Galeri Dokumentasi Kegiatan Lapangan -->
+        <!-- Section: Galeri Dokumentasi Kegiatan Pendataan -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-warning" id="dokumentasi">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
                 <div>
-                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan Lapangan</h4>
-                    <p class="text-muted small mb-0">Proses pembekalan, pelatihan CAPI, dan pendataan lapangan Agen Statistik Pasir Palembang.</p>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan</h4>
+                    <p class="text-muted small mb-0">Proses pembekalan, pelatihan CAPI, dan pendataan Agen Statistik Pasir Palembang.</p>
                 </div>
-                <span class="badge bg-success text-white font-monospace px-3 py-2 rounded-pill"><i class="fas fa-camera me-1"></i> Dokumentasi Lapangan 2026</span>
+                <span class="badge bg-success text-white font-monospace px-3 py-2 rounded-pill"><i class="fas fa-camera me-1"></i> Dokumentasi Kegiatan 2026</span>
             </div>
 
             <div class="row g-3">

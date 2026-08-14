@@ -363,13 +363,23 @@
                 <!-- Tabel Excel Raw Data -->
                 <div class="col-lg-3 col-md-6">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
-                        <div class="mb-3 text-info d-flex align-items-center justify-content-center" style="height: 130px;">
-                            <i class="fas fa-file-excel fa-3x"></i>
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Tabel Data Excel (SDI) 2026', 'Workbook multi-sheet lengkap: Ringkasan SDI, 8 Indikator RT, Variabel Mentah, Rekap Dusun &amp; 49 Fasilitas.')" style="height: 130px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/excel-sdi-cover.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/excel-sdi-cover.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/excel-sdi-cover.webp') }}" alt="Tabel Data Excel SDI Desa Sungai Bakau Kecil 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="800" height="600">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Perbesar
+                            </div>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Tabel Data Excel (SDI)</h6>
                         <p class="extra-small text-muted mb-3">Workbook multi-sheet lengkap: Ringkasan SDI, 8 Indikator RT, Variabel Mentah, Rekap Dusun &amp; 49 Fasilitas.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <button type="button" onclick="downloadCurrentTableExcel()" class="btn btn-sm btn-outline-info rounded-pill fw-bold"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Tabel Data Excel (SDI) 2026', 'Workbook multi-sheet lengkap: Ringkasan SDI, 8 Indikator RT, Variabel Mentah, Rekap Dusun &amp; 49 Fasilitas.')">
+                                <i class="fas fa-eye me-1"></i> Pratinjau Cover
+                            </button>
+                            <button type="button" onclick="downloadCurrentTableExcel()" class="btn btn-sm btn-success rounded-pill fw-bold"><i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)</button>
                         </div>
                     </div>
                 </div>
@@ -401,7 +411,120 @@
             </div>
         </div>
 
-        <!-- ============================================================== -->
+        <!-- Galeri Dokumentasi Kegiatan (Bukti Proses Pembinaan & Pencacahan Agen Statistik) -->
+
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dokumentasi">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan</h4>
+                    <p class="text-muted small mb-0">Proses kapasitas building, pelatihan CAPI, dan pendataan oleh Agen Statistik Desa Sungai Bakau Kecil.</p>
+                </div>
+                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 font-monospace fw-bold">5 Foto Dokumentasi</span>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4 col-lg-4">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}', 'Pemerintah Desa Sungai Bakau Kecil', 'Pusat koordinasi &amp; kesiapan posko pelayanan data Desa Cantik 2026.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture><source srcset="{{ asset('images/sungaibakaukecil/kantor-desa.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" alt="Pemerintah Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Pemerintah Desa Sungai Bakau Kecil</h6>
+                            <p class="extra-small text-muted mb-0">Pusat koordinasi &amp; kesiapan posko pelayanan data Desa Cantik 2026.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-1.webp') }}', 'Pelatihan Agen Statistik RT', 'Pembekalan metodologi CAPI AppSheet &amp; verifikasi indikator SDI oleh BPS Mempawah.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-1.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" alt="Pembekalan & Pelatihan Agen Statistik" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Pelatihan Agen Statistik RT</h6>
+                            <p class="extra-small text-muted mb-0">Pembekalan metodologi CAPI AppSheet &amp; verifikasi indikator SDI oleh BPS Mempawah.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-2.webp') }}', 'Wawancara CAPI dengan Ketua RT', 'Pengumpulan 26 variabel potensi kewilayahan RT secara komprehensif di lapangan.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-2.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" alt="Wawancara CAPI dengan Ketua RT" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Wawancara CAPI dengan Ketua RT</h6>
+                            <p class="extra-small text-muted mb-0">Pengumpulan 26 variabel potensi kewilayahan RT secara komprehensif di lapangan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-3.webp') }}', 'Tagging GPS Sarana & Fasilitas Umum', 'Inventarisasi geospasial titik koordinat tempat ibadah, sekolah, dan posyandu desa.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
+                            <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-3.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-3.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-3.webp') }}" alt="Tagging GPS Sarana & Fasilitas" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Tagging GPS Sarana &amp; Fasilitas Umum</h6>
+                            <p class="extra-small text-muted mb-0">Inventarisasi geospasial titik koordinat tempat ibadah, sekolah, dan posyandu desa.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-4.webp') }}', 'Quality Control & Ground Check Data', 'Pemeriksaan ulang akurasi data hasil pendataan bersama aparatur desa dan BPS.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
+                            <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-4.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-4.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-4.webp') }}" alt="Ground Check & Quality Control Data" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Quality Control &amp; Ground Check Data</h6>
+                            <p class="extra-small text-muted mb-0">Pemeriksaan ulang akurasi data hasil pendataan bersama aparatur desa dan BPS.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/diseminasi.webp') }}', 'Diseminasi Hasil Pendataan CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Sungai Bakau Kecil di Kantor BPS Mempawah 2026.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
+                            <picture><source srcset="{{ asset('images/sungaibakaukecil/diseminasi.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/diseminasi.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/diseminasi.webp') }}" alt="Diseminasi Hasil Pendataan CAPI" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Diseminasi Hasil Pendataan CAPI</h6>
+                            <p class="extra-small text-muted mb-0">Pelatihan diseminasi hasil pendataan CAPI di Kantor BPS Mempawah 2026.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
+                            <picture><source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif"><source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp"><img src="{{ asset('images/pencanangan-2026.webp') }}" alt="Pencanangan Desa Cantik 2026" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Pencanangan Desa Cantik 2026</h6>
+                            <p class="extra-small text-muted mb-0">Deklarasi &amp; pencanangan resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!-- ============================================================== -->
         <!--        STRUKTUR & APARATUR PEMERINTAH DESA SUNGAI BAKAU KECIL      -->
         <!-- ============================================================== -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="aparat-desa">
@@ -949,117 +1072,6 @@
             <div id="no-aparat-found" class="text-center py-5 d-none">
                 <i class="fas fa-user-slash fa-3x text-muted mb-3"></i>
                 <h6 class="text-muted fw-bold">Tidak ada aparatur yang cocok dengan pencarian</h6>
-            </div>
-        </div>
-
-        <!-- Galeri Dokumentasi Kegiatan Lapangan (Bukti Proses Pembinaan & Pencacahan Agen Statistik) -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dokumentasi">
-            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
-                <div>
-                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan Lapangan</h4>
-                    <p class="text-muted small mb-0">Proses kapasitas building, pelatihan CAPI, dan pendataan lapangan oleh Agen Statistik Desa Sungai Bakau Kecil.</p>
-                </div>
-                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 font-monospace fw-bold">5 Foto Dokumentasi</span>
-            </div>
-            <div class="row g-3">
-                <div class="col-md-4 col-lg-4">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}', 'Pemerintah Desa Sungai Bakau Kecil', 'Pusat koordinasi &amp; kesiapan posko pelayanan data Desa Cantik 2026.')">
-                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
-                            <picture><source srcset="{{ asset('images/sungaibakaukecil/kantor-desa.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" alt="Pemerintah Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
-                            <div class="zoom-overlay">
-                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
-                            </div>
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-1">Pemerintah Desa Sungai Bakau Kecil</h6>
-                            <p class="extra-small text-muted mb-0">Pusat koordinasi &amp; kesiapan posko pelayanan data Desa Cantik 2026.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-1.webp') }}', 'Pelatihan Agen Statistik RT', 'Pembekalan metodologi CAPI AppSheet &amp; verifikasi indikator SDI oleh BPS Mempawah.')">
-                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
-                            <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-1.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" alt="Pembekalan & Pelatihan Agen Statistik" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>
-                            <div class="zoom-overlay">
-                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
-                            </div>
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-1">Pelatihan Agen Statistik RT</h6>
-                            <p class="extra-small text-muted mb-0">Pembekalan metodologi CAPI AppSheet &amp; verifikasi indikator SDI oleh BPS Mempawah.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-2.webp') }}', 'Wawancara CAPI dengan Ketua RT', 'Pengumpulan 26 variabel potensi kewilayahan RT secara komprehensif di lapangan.')">
-                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
-                            <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-2.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" alt="Wawancara CAPI dengan Ketua RT" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
-                            <div class="zoom-overlay">
-                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
-                            </div>
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-1">Wawancara CAPI dengan Ketua RT</h6>
-                            <p class="extra-small text-muted mb-0">Pengumpulan 26 variabel potensi kewilayahan RT secara komprehensif di lapangan.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-3.webp') }}', 'Tagging GPS Sarana & Fasilitas Umum', 'Inventarisasi geospasial titik koordinat tempat ibadah, sekolah, dan posyandu desa.')">
-                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
-                            <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-3.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-3.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-3.webp') }}" alt="Tagging GPS Sarana & Fasilitas" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
-                            <div class="zoom-overlay">
-                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
-                            </div>
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-1">Tagging GPS Sarana &amp; Fasilitas Umum</h6>
-                            <p class="extra-small text-muted mb-0">Inventarisasi geospasial titik koordinat tempat ibadah, sekolah, dan posyandu desa.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-4.webp') }}', 'Quality Control & Ground Check Data', 'Pemeriksaan ulang akurasi data hasil pendataan bersama aparatur desa dan BPS.')">
-                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
-                            <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-4.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-4.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-4.webp') }}" alt="Ground Check & Quality Control Data" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
-                            <div class="zoom-overlay">
-                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
-                            </div>
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-1">Quality Control &amp; Ground Check Data</h6>
-                            <p class="extra-small text-muted mb-0">Pemeriksaan ulang akurasi data hasil pendataan bersama aparatur desa dan BPS.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/diseminasi.webp') }}', 'Diseminasi Hasil Pendataan CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Sungai Bakau Kecil di Kantor BPS Mempawah 2026.')">
-                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
-                            <picture><source srcset="{{ asset('images/sungaibakaukecil/diseminasi.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/diseminasi.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/diseminasi.webp') }}" alt="Diseminasi Hasil Pendataan CAPI" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>
-                            <div class="zoom-overlay">
-                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
-                            </div>
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-1">Diseminasi Hasil Pendataan CAPI</h6>
-                            <p class="extra-small text-muted mb-0">Pelatihan diseminasi hasil pendataan CAPI di Kantor BPS Mempawah 2026.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')">
-                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
-                            <picture><source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif"><source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp"><img src="{{ asset('images/pencanangan-2026.webp') }}" alt="Pencanangan Desa Cantik 2026" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>
-                            <div class="zoom-overlay">
-                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
-                            </div>
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-1">Pencanangan Desa Cantik 2026</h6>
-                            <p class="extra-small text-muted mb-0">Deklarasi &amp; pencanangan resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
