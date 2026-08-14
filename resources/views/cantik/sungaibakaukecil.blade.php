@@ -173,10 +173,10 @@
         <!-- ============================================================== -->
         <!--  ALUR PENYELENGGARAAN PEMBINAAN DESA CINTA STATISTIK (GSBPM)   -->
         <!-- ============================================================== -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="gsbpm-flow" data-aos="fade-up" data-aos-duration="1000">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="gsbpm-flow" data-aos="fade-up" data-aos-duration="1000" style="overflow: hidden;">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
                 <div>
-                    <div class="d-flex align-items-center gap-2 mb-1">
+                    <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
                         <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 fw-bold extra-small">
                             <i class="fas fa-certificate me-1"></i> Standar Internasional BPS &amp; UNECE
                         </span>
@@ -232,8 +232,8 @@
             </style>
 
             <!-- GSBPM Stepper / Horizontal Nav Pills -->
-            <div class="overflow-x-auto pb-2 mb-4">
-                <ul class="nav nav-pills flex-nowrap gap-2" id="gsbpm-tabs" role="tablist" style="min-width: 820px;">
+            <div class="overflow-x-auto pb-2 mb-4" style="overflow-x: auto !important; overflow-y: hidden;">
+                <ul class="nav nav-pills flex-nowrap gap-2" id="gsbpm-tabs" role="tablist" style="min-width: 680px;">
                     <li class="nav-item flex-fill" role="presentation">
                         <button class="nav-link active gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-1" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-1" type="button" role="tab" aria-selected="true" onclick="manualSelectGsbpmTab(0)">
                             <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-clipboard-check text-primary me-1"></i> Fase 1</span>
