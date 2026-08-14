@@ -213,7 +213,7 @@
             will-change: background-position;
             transition: background-position 0.1s ease-out;
         }
-        /* Hero Section & Parallax Background (Sejegi Style) */
+                /* Hero Section 100vh Full Viewport (Sejegi Style) & Anti-Jitter GPU Optimization */
         .hero-section {
             background-image: url("{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}");
             background-size: cover;
@@ -225,8 +225,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 520px;
-            padding: 95px 0 75px;
+            min-height: 100vh;
+            padding: 80px 0;
             overflow: hidden;
         }
         .hero-overlay {
@@ -243,16 +243,24 @@
             z-index: 2;
         }
         .hero-title {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 16px;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
         }
         .hero-subtitle {
-            font-size: 1.15rem;
-            margin-bottom: 24px;
+            font-size: 1.25rem;
+            margin-bottom: 28px;
             opacity: 0.95;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.35);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Anti-Jitter & Hardware Acceleration for AOS */
+        [data-aos] {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         /* Banner Word-by-Word Slide Up Animation */
@@ -269,6 +277,7 @@
         @keyframes word-slide-up {
             to { transform: translateY(0); }
         }
+
     </style>
     {{ $extraHead }}
 </head>
@@ -287,17 +296,19 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Inisialisasi AOS dengan durasi lebih terasa (900ms) dan offset terkalibrasi
+            // Inisialisasi AOS Anti-Jitter (once: true, debounceDelay, throttleDelay, offset terkalibrasi)
             if (typeof AOS !== "undefined") {
                 AOS.init({
                     once: true,
                     duration: 900,
-                    offset: 70,
-                    easing: "ease-out-cubic"
+                    offset: 90,
+                    easing: "ease-out-cubic",
+                    debounceDelay: 50,
+                    throttleDelay: 99
                 });
             }
 
-            // Animasi teks per kata (data-animate-text) persis seperti Desa Sejegi
+            // Animasi teks per kata (data-animate-text)
             const textElements = document.querySelectorAll('[data-animate-text]');
             textElements.forEach(textEl => {
                 const text = textEl.textContent.trim();
@@ -310,12 +321,19 @@
                 textEl.innerHTML = newContent.trim();
             });
 
-            // Efek Parallax Sejati persis seperti Desa Sejegi
+            // Efek Parallax Halus Berbasis requestAnimationFrame (Bebas Jitter & Stutter)
             const heroSection = document.querySelector('.hero-section');
             if (heroSection) {
+                let ticking = false;
                 window.addEventListener('scroll', function() {
-                    const scrollPosition = window.pageYOffset;
-                    heroSection.style.backgroundPositionY = (scrollPosition * 0.5) + 'px';
+                    if (!ticking) {
+                        window.requestAnimationFrame(function() {
+                            const scrollPos = window.pageYOffset;
+                            heroSection.style.backgroundPositionY = (scrollPos * 0.5) + 'px';
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
                 }, { passive: true });
             }
         });
