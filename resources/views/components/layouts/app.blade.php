@@ -321,7 +321,7 @@
                 textEl.innerHTML = newContent.trim();
             });
 
-            // Efek Parallax Halus Berbasis requestAnimationFrame (Bebas Jitter & Stutter)
+            // Efek Parallax Presisi Seamless (Mencegah Shift/Lompat Background)
             const heroSection = document.querySelector('.hero-section');
             if (heroSection) {
                 let ticking = false;
@@ -329,7 +329,8 @@
                     if (!ticking) {
                         window.requestAnimationFrame(function() {
                             const scrollPos = window.pageYOffset;
-                            heroSection.style.backgroundPositionY = (scrollPos * 0.5) + 'px';
+                            // Menjaga titik jangkar tetap di 50% (tengah) dan menggeser relatif secara mulus
+                            heroSection.style.backgroundPositionY = `calc(50% + ${scrollPos * 0.35}px)`;
                             ticking = false;
                         });
                         ticking = true;
