@@ -21,7 +21,6 @@
         </div>
         <div class="col-lg-7" data-aos="fade-left" data-aos-delay="300" data-aos-duration="900">
             <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                <span class="badge bg-primary-subtle text-primary fw-bold text-uppercase px-3 py-2 rounded-pill small text-nowrap">Bukti Pembinaan Sektoral {{ $year }}</span>
                 <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill small text-nowrap">Pemkab Mempawah x BPS</span>
             </div>
             <h3 class="fw-bold text-dark mb-3">{{ $title }}</h3>
