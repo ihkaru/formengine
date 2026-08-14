@@ -59,8 +59,8 @@
 
         <!-- Charts (Staggered Slide Left & Right) -->
         <div class="row g-4 mb-5">
-            <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="150" data-aos-duration="900">
-                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+            <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="150" style="overflow: hidden;">
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100" style="overflow: hidden;">
                     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                         <div>
                             <h5 class="fw-bold text-dark mb-1"><i class="fas fa-chart-bar me-2 text-primary"></i>Jumlah Penduduk &amp; KK Per RT</h5>
@@ -68,7 +68,7 @@
                         </div>
                         <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill" id="rt-chart-count-badge">37 RT Terdata</span>
                     </div>
-                    <div style="overflow-x: auto; overflow-y: hidden; width: 100%; -webkit-overflow-scrolling: touch;" class="pb-2">
+                    <div style="overflow-x: auto; overflow-y: hidden; width: 100%; max-width: 100%; -webkit-overflow-scrolling: touch;" class="pb-2">
                         <div id="chartDemografiContainer" style="width: 1800px; height: 350px; position: relative;">
                             <canvas id="chartDemografi"></canvas>
                         </div>
