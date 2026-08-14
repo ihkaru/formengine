@@ -6,8 +6,8 @@
                 <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
                 <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
             </div>
-            <h1 class="fw-bold display-5 mb-2" data-aos="fade-up" data-aos-duration="700">Desa Sungai Bakau Kecil</h1>
-            <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+            <h1 class="fw-bold display-5 mb-2" data-animate-text>Desa Sungai Bakau Kecil</h1>
+            <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;" data-animate-text>
                 Kecamatan Mempawah Hilir, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
             </p>
             <div class="d-flex justify-content-center align-items-center flex-wrap gap-2" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
@@ -1914,6 +1914,7 @@
             if (syncStatus) syncStatus.innerText = 'Terhubung Live (Last sync: ' + new Date().toLocaleTimeString('id-ID') + ')';
             if (syncIcon) syncIcon.classList.remove('fa-spin');
             processAndRenderData(rtData, fasData);
+            if (typeof AOS !== "undefined") { setTimeout(function() { AOS.refresh(); }, 300); }
         }
 
         function cleanKeys(arr) {

@@ -195,6 +195,24 @@
             .flashcard-back p { font-size: 0.88rem; }
             #map { height: 350px; }
         }
+        /* Banner Word-by-Word Slide Up Animation */
+        .word-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+        .word {
+            display: inline-block;
+            transform: translateY(110%);
+            animation: word-slide-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        @keyframes word-slide-up {
+            to { transform: translateY(0); }
+        }
+        .page-header {
+            will-change: background-position;
+            transition: background-position 0.1s ease-out;
+        }
     </style>
     {{ $extraHead }}
 </head>
@@ -213,12 +231,37 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Inisialisasi AOS dengan offset optimal agar animasi tidak terlewat
             if (typeof AOS !== "undefined") {
                 AOS.init({
-                    once: true,
+                    once: false,
                     duration: 800,
-                    easing: "ease-out-cubic"
+                    offset: 120,
+                    easing: "ease-out-cubic",
+                    mirror: false
                 });
+            }
+
+            // Animasi teks per kata (data-animate-text)
+            const textElements = document.querySelectorAll('[data-animate-text]');
+            textElements.forEach(textEl => {
+                const text = textEl.textContent.trim();
+                const words = text.split(/\s+/);
+                let newContent = '';
+                words.forEach((word, index) => {
+                    const wordHtml = `<span class="word-wrapper"><span class="word" style="animation-delay: ${index * 0.07}s">${word}</span></span>`;
+                    newContent += wordHtml + ' ';
+                });
+                textEl.innerHTML = newContent.trim();
+            });
+
+            // Efek Parallax pada Header Banner
+            const pageHeader = document.querySelector('.page-header');
+            if (pageHeader) {
+                window.addEventListener('scroll', function() {
+                    const scrollPos = window.pageYOffset;
+                    pageHeader.style.backgroundPositionY = (scrollPos * 0.4) + 'px';
+                }, { passive: true });
             }
         });
     </script>
