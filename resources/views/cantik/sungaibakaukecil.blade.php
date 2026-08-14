@@ -372,15 +372,26 @@
                 </div>
                 <!-- SOP Permintaan Data -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-danger d-flex align-items-center justify-content-center" style="height: 130px;">
-                            <i class="fas fa-clipboard-list fa-3x"></i>
+                    <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.webp') }}', 'SOP Permintaan Data Desa Sungai Bakau Kecil 2026', 'Standar Operasional Prosedur Pelayanan &amp; Permintaan Data Statistik Sektoral Desa Sungai Bakau Kecil 2026.')" style="height: 130px; background-color: #fbf9f5;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.webp') }}" alt="SOP Permintaan Data Desa Sungai Bakau Kecil 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="726" height="1024">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Perbesar
+                            </div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">SOP Permintaan Data</h6>
-                        <p class="extra-small text-muted mb-3">Standar Operasional Prosedur pengajuan layanan permintaan data desa.</p>
+                        <h6 class="fw-bold text-dark mb-1">SOP Permintaan Data 2026</h6>
+                        <p class="extra-small text-muted mb-3">Standar Operasional Prosedur pelayanan &amp; pengajuan permintaan data desa.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-danger rounded-pill"><i class="fas fa-download me-1"></i> Unduh SOP PDF</a>
-                            <a href="#" class="btn btn-sm btn-danger rounded-pill"><i class="fas fa-paper-plane me-1"></i> Form Pengajuan Data</a>
+                            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.webp') }}', 'SOP Permintaan Data Desa Sungai Bakau Kecil 2026', 'Standar Operasional Prosedur Pelayanan &amp; Permintaan Data Statistik Sektoral Desa Sungai Bakau Kecil 2026.')">
+                                <i class="fas fa-eye me-1"></i> Pratinjau Cover
+                            </button>
+                            <a href="https://drive.google.com/file/d/1Hj1c4WsDdj2NTdmz8Y6rYTZUkWAx0O_V/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-danger rounded-pill">
+                                <i class="fas fa-download me-1"></i> Unduh Dokumen SOP
+                            </a>
                         </div>
                     </div>
                 </div>
