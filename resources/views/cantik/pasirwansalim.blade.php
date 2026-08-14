@@ -851,5 +851,31 @@
                 XLSX.writeFile(wb, filename);
             }
         }
+
+        // ==========================================
+        // IMAGE PREVIEW MODAL HANDLER
+        // ==========================================
+        function openImagePreviewModal(imageSrc, title, caption) {
+            var imgEl = document.getElementById('modalPreviewImg');
+            var titleEl = document.getElementById('modalImageTitle');
+            var captionEl = document.getElementById('modalImageCaption');
+            var downloadBtn = document.getElementById('modalDownloadBtn');
+            var modalEl = document.getElementById('imagePreviewModal');
+
+            if (imgEl) imgEl.src = imageSrc;
+            if (titleEl) titleEl.innerText = title || 'Pratinjau Foto';
+            if (captionEl) captionEl.innerText = caption || 'Kelurahan Pasir Wan Salim 2026';
+            
+            if (downloadBtn) {
+                downloadBtn.href = imageSrc;
+                var filename = (title || 'foto_kelurahan_pasir_wan_salim').toLowerCase().replace(/[^a-z0-9]/g, '_') + '.webp';
+                downloadBtn.setAttribute('download', filename);
+            }
+
+            if (modalEl && typeof bootstrap !== 'undefined') {
+                var modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        }
     </script>
 </x-layouts.app>
