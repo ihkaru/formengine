@@ -24,6 +24,9 @@
                 <a href="#sop-layanan" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
                     <i class="fas fa-envelope me-1"></i> Permintaan Data
                 </a>
+                <a href="#aparat-desa" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                    <i class="fas fa-user-tie me-1"></i> Perangkat Desa
+                </a>
                 <a href="#publikasi" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
                     <i class="fas fa-book me-1"></i> Bukti Dukung 2026
                 </a>
@@ -395,6 +398,557 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!--        STRUKTUR & APARATUR PEMERINTAH DESA SUNGAI BAKAU KECIL      -->
+        <!-- ============================================================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="aparat-desa">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-users-cog me-2 text-primary"></i>Struktur &amp; Aparatur Pemerintah Desa Sungai Bakau Kecil</h4>
+                    <p class="text-muted small mb-0">Susunan kepemimpinan desa, jajaran sekretariat, kepala seksi, kepala urusan, kepala dusun, dan staf pelaksana.</p>
+                </div>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2 font-monospace fw-bold">20 Aparatur Desa</span>
+            </div>
+
+            <!-- Filter Categories & Search Bar -->
+            <div class="row g-2 mb-4 align-items-center">
+                <div class="col-lg-8 col-md-12">
+                    <div class="d-flex gap-2 flex-wrap" id="aparat-filter-buttons">
+                        <button type="button" class="btn btn-sm btn-primary rounded-pill px-3 fw-semibold active" onclick="filterAparatCards('all', this)">
+                            <i class="fas fa-th-large me-1"></i> Semua (20)
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold" onclick="filterAparatCards('pimpinan', this)">
+                            <i class="fas fa-crown me-1"></i> Pimpinan &amp; Sekdes (2)
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-info rounded-pill px-3 fw-semibold" onclick="filterAparatCards('kasi-kaur', this)">
+                            <i class="fas fa-user-tie me-1"></i> Kasi &amp; Kaur (6)
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-warning rounded-pill px-3 fw-semibold" onclick="filterAparatCards('kadus', this)">
+                            <i class="fas fa-map-marked-alt me-1"></i> Kepala Dusun (8)
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold" onclick="filterAparatCards('staf', this)">
+                            <i class="fas fa-user-friends me-1"></i> Staf Pelaksana (4)
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text bg-white border-end-0 rounded-start-pill"><i class="fas fa-search text-muted"></i></span>
+                        <input type="text" id="search-aparat" class="form-control border-start-0 rounded-end-pill" placeholder="Cari nama atau jabatan aparatur..." oninput="searchAparatCards(this.value)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid Kartu Aparat -->
+            <div class="row g-3" id="aparat-grid-container">
+                <!-- SANIMAN -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="pimpinan" data-name="saniman" data-role="pj. kepala desa">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/saniman.webp') }}', 'SANIMAN', 'PJ. KEPALA DESA - Penjabat Kepala Desa Pemerintah Desa Sungai Bakau Kecil')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/saniman.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/saniman.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/saniman.webp') }}" alt="SANIMAN - PJ. KEPALA DESA" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-primary rounded-pill px-3 py-1 extra-small align-self-center mb-2">PJ. KEPALA DESA</span>
+                            <h6 class="fw-bold text-dark mb-1">SANIMAN</h6>
+                            <p class="extra-small text-muted mb-3">Penjabat Kepala Desa Pemerintah Desa Sungai Bakau Kecil</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/saniman.webp') }}', 'SANIMAN', 'PJ. KEPALA DESA - Penjabat Kepala Desa Pemerintah Desa Sungai Bakau Kecil')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- RIANDI PRAYUDA S,Pd -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="pimpinan" data-name="riandi prayuda s,pd" data-role="sekretaris desa">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/riandi.webp') }}', 'RIANDI PRAYUDA S,Pd', 'SEKRETARIS DESA - Sekretaris Desa & Koordinator Administrasi Desa')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/riandi.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/riandi.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/riandi.webp') }}" alt="RIANDI PRAYUDA S,Pd - SEKRETARIS DESA" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-success rounded-pill px-3 py-1 extra-small align-self-center mb-2">SEKRETARIS DESA</span>
+                            <h6 class="fw-bold text-dark mb-1">RIANDI PRAYUDA S,Pd</h6>
+                            <p class="extra-small text-muted mb-3">Sekretaris Desa & Koordinator Administrasi Desa</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/riandi.webp') }}', 'RIANDI PRAYUDA S,Pd', 'SEKRETARIS DESA - Sekretaris Desa & Koordinator Administrasi Desa')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- HAQQI WIRAKARYADI, S.Pd -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="haqqi wirakaryadi, s.pd" data-role="kasi pemerintahan">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/haqqi.webp') }}', 'HAQQI WIRAKARYADI, S.Pd', 'KASI PEMERINTAHAN - Kepala Seksi Pemerintahan Desa')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/haqqi.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/haqqi.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/haqqi.webp') }}" alt="HAQQI WIRAKARYADI, S.Pd - KASI PEMERINTAHAN" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-info text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KASI PEMERINTAHAN</span>
+                            <h6 class="fw-bold text-dark mb-1">HAQQI WIRAKARYADI, S.Pd</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Seksi Pemerintahan Desa</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/haqqi.webp') }}', 'HAQQI WIRAKARYADI, S.Pd', 'KASI PEMERINTAHAN - Kepala Seksi Pemerintahan Desa')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MASUDI EDI MULYONO -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="masudi edi mulyono" data-role="kasi pelayanan">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/masudi.webp') }}', 'MASUDI EDI MULYONO', 'KASI PELAYANAN - Kepala Seksi Pelayanan Masyarakat')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/masudi.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/masudi.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/masudi.webp') }}" alt="MASUDI EDI MULYONO - KASI PELAYANAN" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-info text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KASI PELAYANAN</span>
+                            <h6 class="fw-bold text-dark mb-1">MASUDI EDI MULYONO</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Seksi Pelayanan Masyarakat</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/masudi.webp') }}', 'MASUDI EDI MULYONO', 'KASI PELAYANAN - Kepala Seksi Pelayanan Masyarakat')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- USNI HUSIN -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="usni husin" data-role="kasi kesejahteraan">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/usni.webp') }}', 'USNI HUSIN', 'KASI KESEJAHTERAAN - Kepala Seksi Kesejahteraan Sosial & Pembangunan')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/usni.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/usni.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/usni.webp') }}" alt="USNI HUSIN - KASI KESEJAHTERAAN" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-info text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KASI KESEJAHTERAAN</span>
+                            <h6 class="fw-bold text-dark mb-1">USNI HUSIN</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Seksi Kesejahteraan Sosial & Pembangunan</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/usni.webp') }}', 'USNI HUSIN', 'KASI KESEJAHTERAAN - Kepala Seksi Kesejahteraan Sosial & Pembangunan')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- PUTRI NURMALASARI, S.Si -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="putri nurmalasari, s.si" data-role="kaur perencanaan">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/putri.webp') }}', 'PUTRI NURMALASARI, S.Si', 'KAUR PERENCANAAN - Kepala Urusan Perencanaan & Evaluasi Program')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/putri.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/putri.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/putri.webp') }}" alt="PUTRI NURMALASARI, S.Si - KAUR PERENCANAAN" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1 extra-small align-self-center mb-2">KAUR PERENCANAAN</span>
+                            <h6 class="fw-bold text-dark mb-1">PUTRI NURMALASARI, S.Si</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Urusan Perencanaan & Evaluasi Program</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/putri.webp') }}', 'PUTRI NURMALASARI, S.Si', 'KAUR PERENCANAAN - Kepala Urusan Perencanaan & Evaluasi Program')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- EVA RAYANI -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="eva rayani" data-role="kaur umum">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/eva.webp') }}', 'EVA RAYANI', 'KAUR UMUM - Kepala Urusan Umum & Rumah Tangga Desa')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/eva.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/eva.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/eva.webp') }}" alt="EVA RAYANI - KAUR UMUM" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1 extra-small align-self-center mb-2">KAUR UMUM</span>
+                            <h6 class="fw-bold text-dark mb-1">EVA RAYANI</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Urusan Umum & Rumah Tangga Desa</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/eva.webp') }}', 'EVA RAYANI', 'KAUR UMUM - Kepala Urusan Umum & Rumah Tangga Desa')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- BURHANUDIN -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="burhanudin" data-role="kaur keuangan">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/burhanudin.webp') }}', 'BURHANUDIN', 'KAUR KEUANGAN - Kepala Urusan Keuangan & Perbendaharaan Desa')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/burhanudin.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/burhanudin.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/burhanudin.webp') }}" alt="BURHANUDIN - KAUR KEUANGAN" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1 extra-small align-self-center mb-2">KAUR KEUANGAN</span>
+                            <h6 class="fw-bold text-dark mb-1">BURHANUDIN</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Urusan Keuangan & Perbendaharaan Desa</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/burhanudin.webp') }}', 'BURHANUDIN', 'KAUR KEUANGAN - Kepala Urusan Keuangan & Perbendaharaan Desa')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- HAIRIDIANSYAH A.md -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="hairidiansyah a.md" data-role="kepala dusun senggiring">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/hairidiansyah.webp') }}', 'HAIRIDIANSYAH A.md', 'KEPALA DUSUN SENGGIRING - Kepala Dusun Senggiring (RT 001 - RT 003, RT 020)')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/hairidiansyah.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/hairidiansyah.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/hairidiansyah.webp') }}" alt="HAIRIDIANSYAH A.md - KEPALA DUSUN SENGGIRING" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-warning-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KEPALA DUSUN SENGGIRING</span>
+                            <h6 class="fw-bold text-dark mb-1">HAIRIDIANSYAH A.md</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Dusun Senggiring (RT 001 - RT 003, RT 020)</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/hairidiansyah.webp') }}', 'HAIRIDIANSYAH A.md', 'KEPALA DUSUN SENGGIRING - Kepala Dusun Senggiring (RT 001 - RT 003, RT 020)')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ZULMI ARIANSYAH S.Pd -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="zulmi ariansyah s.pd" data-role="kepala dusun benteng timur">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/zulmi.webp') }}', 'ZULMI ARIANSYAH S.Pd', 'KEPALA DUSUN BENTENG TIMUR - Kepala Dusun Benteng Timur (RT 007 - RT 009, RT 018, RT 036)')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/zulmi.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/zulmi.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/zulmi.webp') }}" alt="ZULMI ARIANSYAH S.Pd - KEPALA DUSUN BENTENG TIMUR" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-warning-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KEPALA DUSUN BENTENG TIMUR</span>
+                            <h6 class="fw-bold text-dark mb-1">ZULMI ARIANSYAH S.Pd</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Dusun Benteng Timur (RT 007 - RT 009, RT 018, RT 036)</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/zulmi.webp') }}', 'ZULMI ARIANSYAH S.Pd', 'KEPALA DUSUN BENTENG TIMUR - Kepala Dusun Benteng Timur (RT 007 - RT 009, RT 018, RT 036)')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- LILY MAULINA S.Kom -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="lily maulina s.kom" data-role="kepala dusun benteng raya">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/lily.webp') }}', 'LILY MAULINA S.Kom', 'KEPALA DUSUN BENTENG RAYA - Kepala Dusun Benteng Raya (RT 004 - RT 006, RT 031)')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/lily.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/lily.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/lily.webp') }}" alt="LILY MAULINA S.Kom - KEPALA DUSUN BENTENG RAYA" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-warning-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KEPALA DUSUN BENTENG RAYA</span>
+                            <h6 class="fw-bold text-dark mb-1">LILY MAULINA S.Kom</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Dusun Benteng Raya (RT 004 - RT 006, RT 031)</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/lily.webp') }}', 'LILY MAULINA S.Kom', 'KEPALA DUSUN BENTENG RAYA - Kepala Dusun Benteng Raya (RT 004 - RT 006, RT 031)')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ISMAIL -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="ismail" data-role="kepala dusun sepakat tengah">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/ismail.webp') }}', 'ISMAIL', 'KEPALA DUSUN SEPAKAT TENGAH - Kepala Dusun Sepakat Tengah (RT 010 - RT 014, RT 019, RT 033, RT 035)')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/ismail.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/ismail.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/ismail.webp') }}" alt="ISMAIL - KEPALA DUSUN SEPAKAT TENGAH" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-warning-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KEPALA DUSUN SEPAKAT TENGAH</span>
+                            <h6 class="fw-bold text-dark mb-1">ISMAIL</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Dusun Sepakat Tengah (RT 010 - RT 014, RT 019, RT 033, RT 035)</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/ismail.webp') }}', 'ISMAIL', 'KEPALA DUSUN SEPAKAT TENGAH - Kepala Dusun Sepakat Tengah (RT 010 - RT 014, RT 019, RT 033, RT 035)')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- KHOLIS -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="kholis" data-role="kepala dusun sepakat darat">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/kholis.webp') }}', 'KHOLIS', 'KEPALA DUSUN SEPAKAT DARAT - Kepala Dusun Sepakat Darat (RT 015 - RT 017, RT 030, RT 034, RT 037)')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/kholis.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/kholis.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/kholis.webp') }}" alt="KHOLIS - KEPALA DUSUN SEPAKAT DARAT" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-warning-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KEPALA DUSUN SEPAKAT DARAT</span>
+                            <h6 class="fw-bold text-dark mb-1">KHOLIS</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Dusun Sepakat Darat (RT 015 - RT 017, RT 030, RT 034, RT 037)</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/kholis.webp') }}', 'KHOLIS', 'KEPALA DUSUN SEPAKAT DARAT - Kepala Dusun Sepakat Darat (RT 015 - RT 017, RT 030, RT 034, RT 037)')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- A. RANI BAHARI -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="a. rani bahari" data-role="kepala dusun kedaung">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/rani.webp') }}', 'A. RANI BAHARI', 'KEPALA DUSUN KEDAUNG - Kepala Dusun Kedaung (RT 021 - RT 023)')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/rani.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/rani.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/rani.webp') }}" alt="A. RANI BAHARI - KEPALA DUSUN KEDAUNG" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-warning-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KEPALA DUSUN KEDAUNG</span>
+                            <h6 class="fw-bold text-dark mb-1">A. RANI BAHARI</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Dusun Kedaung (RT 021 - RT 023)</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/rani.webp') }}', 'A. RANI BAHARI', 'KEPALA DUSUN KEDAUNG - Kepala Dusun Kedaung (RT 021 - RT 023)')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- HAIDIN -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="haidin" data-role="kepala dusun senambang">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/haidin.webp') }}', 'HAIDIN', 'KEPALA DUSUN SENAMBANG - Kepala Dusun Senambang (RT 024 - RT 026, RT 032)')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/haidin.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/haidin.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/haidin.webp') }}" alt="HAIDIN - KEPALA DUSUN SENAMBANG" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-warning-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KEPALA DUSUN SENAMBANG</span>
+                            <h6 class="fw-bold text-dark mb-1">HAIDIN</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Dusun Senambang (RT 024 - RT 026, RT 032)</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/haidin.webp') }}', 'HAIDIN', 'KEPALA DUSUN SENAMBANG - Kepala Dusun Senambang (RT 024 - RT 026, RT 032)')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SAMURI -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="samuri" data-role="kepala dusun konsasi">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/samuri.webp') }}', 'SAMURI', 'KEPALA DUSUN KONSASI - Kepala Dusun Konsasi (RT 027 - RT 029)')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/samuri.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/samuri.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/samuri.webp') }}" alt="SAMURI - KEPALA DUSUN KONSASI" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-warning-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">KEPALA DUSUN KONSASI</span>
+                            <h6 class="fw-bold text-dark mb-1">SAMURI</h6>
+                            <p class="extra-small text-muted mb-3">Kepala Dusun Konsasi (RT 027 - RT 029)</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/samuri.webp') }}', 'SAMURI', 'KEPALA DUSUN KONSASI - Kepala Dusun Konsasi (RT 027 - RT 029)')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FITRIANI -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="fitriani" data-role="staf tata usaha & umum">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/fitriani.webp') }}', 'FITRIANI', 'STAF TATA USAHA & UMUM - Staf Pelaksana Urusan Tata Usaha & Administrasi Umum')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/fitriani.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/fitriani.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/fitriani.webp') }}" alt="FITRIANI - STAF TATA USAHA & UMUM" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-secondary-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">STAF TATA USAHA & UMUM</span>
+                            <h6 class="fw-bold text-dark mb-1">FITRIANI</h6>
+                            <p class="extra-small text-muted mb-3">Staf Pelaksana Urusan Tata Usaha & Administrasi Umum</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/fitriani.webp') }}', 'FITRIANI', 'STAF TATA USAHA & UMUM - Staf Pelaksana Urusan Tata Usaha & Administrasi Umum')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ZAINUDDIN -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="zainuddin" data-role="staf kasi pelayanan">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/zainuddin.webp') }}', 'ZAINUDDIN', 'STAF KASI PELAYANAN - Staf Pelaksana Seksi Pelayanan Masyarakat')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/zainuddin.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/zainuddin.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/zainuddin.webp') }}" alt="ZAINUDDIN - STAF KASI PELAYANAN" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-secondary-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">STAF KASI PELAYANAN</span>
+                            <h6 class="fw-bold text-dark mb-1">ZAINUDDIN</h6>
+                            <p class="extra-small text-muted mb-3">Staf Pelaksana Seksi Pelayanan Masyarakat</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/zainuddin.webp') }}', 'ZAINUDDIN', 'STAF KASI PELAYANAN - Staf Pelaksana Seksi Pelayanan Masyarakat')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- HIKMATUN -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="hikmatun" data-role="staf kaur keuangan">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/hikmatun.webp') }}', 'HIKMATUN', 'STAF KAUR KEUANGAN - Staf Pelaksana Urusan Keuangan & Kas Desa')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/hikmatun.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/hikmatun.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/hikmatun.webp') }}" alt="HIKMATUN - STAF KAUR KEUANGAN" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-secondary-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">STAF KAUR KEUANGAN</span>
+                            <h6 class="fw-bold text-dark mb-1">HIKMATUN</h6>
+                            <p class="extra-small text-muted mb-3">Staf Pelaksana Urusan Keuangan & Kas Desa</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/hikmatun.webp') }}', 'HIKMATUN', 'STAF KAUR KEUANGAN - Staf Pelaksana Urusan Keuangan & Kas Desa')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SAHRUL ROZI -->
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="sahrul rozi" data-role="staf pbb kasi pemerintahan">
+                    <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
+                        <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/sahrul.webp') }}', 'SAHRUL ROZI', 'STAF PBB KASI PEMERINTAHAN - Staf Pelaksana PBB & Pendataan Seksi Pemerintahan')" style="height: 270px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/sahrul.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/sungaibakaukecil/aparat/sahrul.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/sungaibakaukecil/aparat/sahrul.webp') }}" alt="SAHRUL ROZI - STAF PBB KASI PEMERINTAHAN" class="w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="450" height="580">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Foto
+                            </div>
+                        </div>
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-secondary-subtle text-dark rounded-pill px-3 py-1 extra-small align-self-center mb-2">STAF PBB KASI PEMERINTAHAN</span>
+                            <h6 class="fw-bold text-dark mb-1">SAHRUL ROZI</h6>
+                            <p class="extra-small text-muted mb-3">Staf Pelaksana PBB & Pendataan Seksi Pemerintahan</p>
+                            <div class="mt-auto">
+                                <button type="button" class="btn btn-sm btn-outline-secondary w-100 rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/sahrul.webp') }}', 'SAHRUL ROZI', 'STAF PBB KASI PEMERINTAHAN - Staf Pelaksana PBB & Pendataan Seksi Pemerintahan')">
+                                    <i class="fas fa-eye me-1"></i> Lihat Foto Lengkap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="no-aparat-found" class="text-center py-5 d-none">
+                <i class="fas fa-user-slash fa-3x text-muted mb-3"></i>
+                <h6 class="text-muted fw-bold">Tidak ada aparatur yang cocok dengan pencarian</h6>
             </div>
         </div>
 
