@@ -184,18 +184,41 @@
             transform: scale(1.05);
         }
 
-        /* Mobile Adjustments for Small Screens (< 576px) */
-        @media (max-width: 576px) {
+        /* Mobile Adjustments for Small Screens (< 576px) — iPhone SE, Galaxy A Series */
+        @media (max-width: 575.98px) {
+            /* Hero Section */
+            .hero-section { padding: 60px 0 40px; min-height: 100svh; }
+            .hero-title { font-size: 2rem !important; margin-bottom: 12px; line-height: 1.2; }
+            .hero-subtitle { font-size: 0.9rem !important; margin-bottom: 16px; }
+            /* Hero CTA buttons */
+            .hero-section .btn { font-size: 0.78rem; padding: 0.3rem 0.75rem; }
+            .hero-section .d-flex.flex-wrap { gap: 6px !important; }
+            .hero-section .sync-wrap { font-size: 0.78rem; padding: 4px 12px; }
+
+            /* General */
             .page-header { padding: 45px 0 30px; }
             .page-header h1 { font-size: 1.7rem; }
             .page-header .lead { font-size: 0.9rem; }
-            .kpi-card { padding: 16px; }
-            .flashcard-container { height: 350px; }
-            .flashcard-front, .flashcard-back { padding: 16px; }
-            .flashcard-front h6 { font-size: 0.95rem; }
-            .flashcard-back p { font-size: 0.88rem; }
-            #map { height: 350px; }
+            .kpi-card { padding: 14px; }
+            .flashcard-container { height: 340px; }
+            .flashcard-front, .flashcard-back { padding: 14px; }
+            .flashcard-front h6 { font-size: 0.9rem; }
+            .flashcard-back p { font-size: 0.85rem; }
+            #map { height: 320px; }
+
+            /* Badges & small text */
+            .badge { font-size: 0.72rem; }
+            h4 { font-size: 1.15rem; }
+            h5 { font-size: 1rem; }
         }
+
+        /* Mid-Range: Phablets & Small Tablets (576px–767px) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .hero-title { font-size: 2.6rem !important; }
+            .hero-subtitle { font-size: 1.05rem !important; }
+            .hero-section { padding: 70px 0 50px; }
+        }
+
         /* Banner Word-by-Word Slide Up Animation */
         .word-wrapper {
             display: inline-block;
@@ -214,7 +237,7 @@
             will-change: background-position;
             transition: background-position 0.1s ease-out;
         }
-                /* Hero Section 100vh Full Viewport (Sejegi Style) & Anti-Jitter GPU Optimization */
+        /* Hero Section 100vh Full Viewport (Sejegi Style) */
         .hero-section {
             background-image: url("{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}");
             background-size: cover;
