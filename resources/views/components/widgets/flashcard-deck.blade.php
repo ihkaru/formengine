@@ -3,7 +3,7 @@
     'villageName' => 'Desa Sungai Bakau Kecil',
     'badgeText' => 'Interactive Gimmick'
 ])
-<div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white overflow-hidden" data-aos="fade-up" data-aos-duration="850">
+<div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white overflow-hidden" data-aos="slide-up" data-aos-duration="850">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
         <div>
             <div class="d-flex align-items-center gap-2 mb-1">

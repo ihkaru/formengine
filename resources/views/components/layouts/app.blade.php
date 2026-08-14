@@ -278,6 +278,34 @@
             to { transform: translateY(0); }
         }
 
+        /* Smooth Slide Animations */
+        [data-aos="slide-up"] {
+            transform: translateY(50px);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+        [data-aos="slide-up"].aos-animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        [data-aos="slide-right"] {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+        [data-aos="slide-right"].aos-animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        [data-aos="slide-left"] {
+            transform: translateX(50px);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+        [data-aos="slide-left"].aos-animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
     </style>
     {{ $extraHead }}
 </head>

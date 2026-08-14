@@ -6,7 +6,7 @@
     'subLabel' => '',
     'subColor' => 'text-primary',
     'delay' => 0,
-    'aos' => 'fade-up',
+    'aos' => 'slide-up',
     'duration' => 800
 ])
 <div class="col-6 col-md-4 col-lg-2" data-aos="{{ $aos }}" data-aos-delay="{{ $delay }}" data-aos-duration="{{ $duration }}">
