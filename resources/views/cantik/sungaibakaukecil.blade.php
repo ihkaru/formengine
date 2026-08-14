@@ -1,21 +1,23 @@
 <x-layouts.app title="Desa Sungai Bakau Kecil - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Sungai Bakau Kecil - BPS Kabupaten Mempawah">
 
-    <header class="page-header text-center">
-        <div class="container">
-            <div class="d-flex justify-content-center gap-2 mb-3" data-aos="fade-down" data-aos-duration="600">
-                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
-                <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
+        <!-- Hero Section with Sejegi-style Parallax & Overlay -->
+    <header class="hero-section text-center" id="beranda">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="d-flex justify-content-center gap-2 mb-3" data-aos="fade-down" data-aos-duration="900">
+                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold shadow-sm"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
+                <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold shadow-sm"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
             </div>
-            <h1 class="fw-bold display-5 mb-2" data-animate-text>Desa Sungai Bakau Kecil</h1>
-            <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;" data-animate-text>
+            <h1 class="hero-title" data-animate-text>Desa Sungai Bakau Kecil</h1>
+            <p class="hero-subtitle lead mx-auto text-white mb-4" style="max-width:820px;" data-animate-text>
                 Kecamatan Mempawah Hilir, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
             </p>
-            <div class="d-flex justify-content-center align-items-center flex-wrap gap-2" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
+            <div class="d-flex justify-content-center align-items-center flex-wrap gap-2" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                 <div class="sync-wrap text-white small fw-semibold">
                     <i class="fas fa-sync fa-spin text-success" id="sync-icon"></i>
                     <span id="sync-status">Menghubungkan ke Google Sheets...</span>
                 </div>
-                <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold" onclick="loadDataFromSheets()">
+                <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold shadow-sm" onclick="loadDataFromSheets()">
                     <i class="fas fa-redo me-1"></i> Sync Sekarang
                 </button>
                 <a href="#gsbpm-flow" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">

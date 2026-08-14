@@ -213,6 +213,62 @@
             will-change: background-position;
             transition: background-position 0.1s ease-out;
         }
+        /* Hero Section & Parallax Background (Sejegi Style) */
+        .hero-section {
+            background-image: url("{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 520px;
+            padding: 95px 0 75px;
+            overflow: hidden;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(6, 78, 59, 0.88) 0%, rgba(13, 148, 136, 0.85) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
+        }
+        .hero-subtitle {
+            font-size: 1.15rem;
+            margin-bottom: 24px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Banner Word-by-Word Slide Up Animation */
+        .word-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+        .word {
+            display: inline-block;
+            transform: translateY(110%);
+            animation: word-slide-up 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        @keyframes word-slide-up {
+            to { transform: translateY(0); }
+        }
     </style>
     {{ $extraHead }}
 </head>
@@ -231,36 +287,35 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Inisialisasi AOS dengan offset optimal agar animasi tidak terlewat
+            // Inisialisasi AOS dengan durasi lebih terasa (900ms) dan offset terkalibrasi
             if (typeof AOS !== "undefined") {
                 AOS.init({
-                    once: false,
-                    duration: 800,
-                    offset: 120,
-                    easing: "ease-out-cubic",
-                    mirror: false
+                    once: true,
+                    duration: 900,
+                    offset: 70,
+                    easing: "ease-out-cubic"
                 });
             }
 
-            // Animasi teks per kata (data-animate-text)
+            // Animasi teks per kata (data-animate-text) persis seperti Desa Sejegi
             const textElements = document.querySelectorAll('[data-animate-text]');
             textElements.forEach(textEl => {
                 const text = textEl.textContent.trim();
                 const words = text.split(/\s+/);
                 let newContent = '';
                 words.forEach((word, index) => {
-                    const wordHtml = `<span class="word-wrapper"><span class="word" style="animation-delay: ${index * 0.07}s">${word}</span></span>`;
+                    const wordHtml = '<span class="word-wrapper"><span class="word" style="animation-delay: ' + (index * 0.08) + 's">' + word + '</span></span>';
                     newContent += wordHtml + ' ';
                 });
                 textEl.innerHTML = newContent.trim();
             });
 
-            // Efek Parallax pada Header Banner
-            const pageHeader = document.querySelector('.page-header');
-            if (pageHeader) {
+            // Efek Parallax Sejati persis seperti Desa Sejegi
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
                 window.addEventListener('scroll', function() {
-                    const scrollPos = window.pageYOffset;
-                    pageHeader.style.backgroundPositionY = (scrollPos * 0.4) + 'px';
+                    const scrollPosition = window.pageYOffset;
+                    heroSection.style.backgroundPositionY = (scrollPosition * 0.5) + 'px';
                 }, { passive: true });
             }
         });
