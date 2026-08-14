@@ -379,7 +379,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <a href="{{ route('cantik.sambora') }}" class="desa-card-link">
                             <div class="desa-card border border-warning border-2">
-                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop" class="card-img-top" alt="Desa Sambora">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop" class="card-img-top" loading="lazy" decoding="async" alt="Desa Sambora">
                                 <div class="desa-card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="badge bg-warning text-dark font-weight-bold"><i class="fas fa-microchip me-1"></i>Pra-Desa 2026</span>
@@ -400,7 +400,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <a href="{{ route('cantik.pasirwansalim') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" class="card-img-top" alt="Kelurahan Pasir Wan Salim">
+                                <img src="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" class="card-img-top" loading="lazy" decoding="async" alt="Kelurahan Pasir Wan Salim">
                                 <div class="desa-card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="badge bg-success">Binaan 2026</span>
@@ -421,7 +421,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <a href="{{ route('cantik.pasirpalembang') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" class="card-img-top" alt="Desa Pasir Palembang" style="height: 220px; object-fit: cover;">
+                                <img src="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" class="card-img-top" loading="lazy" decoding="async" alt="Desa Pasir Palembang" style="height: 220px; object-fit: cover;">
                                 <div class="desa-card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="badge bg-success">Binaan 2026</span>
@@ -442,7 +442,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <a href="{{ route('cantik.sungaibakaukecil') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" class="card-img-top" alt="Desa Sungai Bakau Kecil" style="height: 220px; object-fit: cover;">
+                                <img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" class="card-img-top" loading="lazy" decoding="async" alt="Desa Sungai Bakau Kecil" style="height: 220px; object-fit: cover;">
                                 <div class="desa-card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="badge bg-success">Binaan 2026</span>
@@ -463,7 +463,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <a href="{{ route('cantik.pedalaman') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{ asset('images/pulaupedalaman.webp') }}" class="card-img-top" alt="Kelurahan Pulau Pedalaman" onerror="this.src='https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop'">
+                                <img src="{{ asset('images/pulaupedalaman.webp') }}" class="card-img-top" loading="lazy" decoding="async" alt="Kelurahan Pulau Pedalaman" onerror="this.src='https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop'">
                                 <div class="desa-card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="badge bg-info text-dark">Binaan 2025</span>
@@ -484,7 +484,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <a href="{{ route('cantik.sejegi') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{ asset('images/sejegi.webp') }}" class="card-img-top" alt="Desa Sejegi" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop'">
+                                <img src="{{ asset('images/sejegi.webp') }}" class="card-img-top" loading="lazy" decoding="async" alt="Desa Sejegi" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop'">
                                 <div class="desa-card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="badge bg-info text-dark">Binaan 2025</span>
@@ -505,7 +505,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <a href="{{ route('cantik.wajokhilir') }}" class="desa-card-link">
                             <div class="desa-card">
-                                <img src="{{ asset('images/wajokhilir.webp') }}" class="card-img-top" alt="Desa Wajok Hilir" onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop'">
+                                <img src="{{ asset('images/wajokhilir.webp') }}" class="card-img-top" loading="lazy" decoding="async" alt="Desa Wajok Hilir" onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop'">
                                 <div class="desa-card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="badge bg-secondary">Binaan 2024</span>

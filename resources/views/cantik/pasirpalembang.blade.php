@@ -308,7 +308,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/kantor-desa.webp') }}', 'Kantor Desa Pasir Palembang', 'Tampak depan posko &amp; kantor Desa Cantik Pasir Palembang 2026.')" style="cursor: pointer;">
                         <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
-                            <img src="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" class="w-100 h-100 object-fit-cover hover-zoom" alt="Kantor Desa Pasir Palembang">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/kantor-desa.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" class="w-100 h-100 object-fit-cover hover-zoom" alt="Kantor Desa Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Kantor Desa Pasir Palembang</h6>
                         <span class="badge bg-success-subtle text-success extra-small">Tampak Depan</span>
@@ -318,7 +318,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}', 'Pelatihan CAPI AppSheet', 'Pembekalan CAPI AppSheet bagi Agen Statistik Desa Pasir Palembang di Kantor BPS Mempawah 2026.')" style="cursor: pointer;">
                         <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
-                            <img src="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pelatihan CAPI Pasir Palembang">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pelatihan CAPI Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Pelatihan CAPI AppSheet</h6>
                         <span class="badge bg-success-subtle text-success extra-small">BPS Mempawah</span>
@@ -328,7 +328,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}', 'Diseminasi Hasil CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Pasir Palembang di Kantor BPS Mempawah 2026.')" style="cursor: pointer;">
                         <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
-                            <img src="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Diseminasi CAPI Pasir Palembang">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/diseminasi-capi.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Diseminasi CAPI Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Diseminasi Hasil CAPI</h6>
                         <span class="badge bg-success-subtle text-success extra-small">BPS Mempawah</span>
@@ -338,7 +338,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah Tahun 2026.')" style="cursor: pointer;">
                         <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
-                            <img src="{{ asset('images/pencanangan-2026.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pencanangan Desa Cantik 2026">
+                            <picture><source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif"><source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp"><img src="{{ asset('images/pencanangan-2026.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pencanangan Desa Cantik 2026" loading="lazy" decoding="async" width="1000" height="750"></picture>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Pencanangan Descan 2026</h6>
                         <span class="badge bg-primary-subtle text-primary extra-small">Pemkab &amp; BPS</span>
