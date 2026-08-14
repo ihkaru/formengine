@@ -2,15 +2,15 @@
 
     <header class="page-header text-center">
         <div class="container">
-            <div class="d-flex justify-content-center gap-2 mb-3">
+            <div class="d-flex justify-content-center gap-2 mb-3" data-aos="fade-down" data-aos-duration="600">
                 <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
                 <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
             </div>
-            <h1 class="fw-bold display-5 mb-2">Desa Sungai Bakau Kecil</h1>
-            <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;">
+            <h1 class="fw-bold display-5 mb-2" data-aos="fade-up" data-aos-duration="700">Desa Sungai Bakau Kecil</h1>
+            <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
                 Kecamatan Mempawah Hilir, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
             </p>
-            <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
+            <div class="d-flex justify-content-center align-items-center flex-wrap gap-2" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
                 <div class="sync-wrap text-white small fw-semibold">
                     <i class="fas fa-sync fa-spin text-success" id="sync-icon"></i>
                     <span id="sync-status">Menghubungkan ke Google Sheets...</span>
@@ -40,7 +40,7 @@
     <main class="container my-5">
 
         <!-- KPI Cards (Reusable Component) -->
-        <div class="row g-4 mb-5">
+        <div class="row g-4 mb-5" data-aos="fade-up" data-aos-duration="800">
             <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" />
             <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" />
             <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" />
@@ -82,7 +82,7 @@
         </div>
 
         <!-- Map -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" data-aos="fade-up" data-aos-duration="800">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4 class="fw-bold text-primary mb-0"><i class="fas fa-map-marked-alt me-2"></i>Peta Persebaran Sarana &amp; Fasilitas Umum</h4>
                 <span class="badge bg-info text-dark" id="map-count-badge">0 Fasilitas Terpetakan</span>
@@ -169,7 +169,7 @@
         <!-- ============================================================== -->
         <!--  ALUR PENYELENGGARAAN PEMBINAAN DESA CINTA STATISTIK (GSBPM)   -->
         <!-- ============================================================== -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="gsbpm-flow">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="gsbpm-flow" data-aos="fade-up" data-aos-duration="800">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
                 <div>
                     <div class="d-flex align-items-center gap-2 mb-1">
@@ -675,7 +675,7 @@
         </div>
 
         <!-- Galeri Infografis Tematik Desa Cantik 2026 -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="infografis">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="infografis" data-aos="fade-up" data-aos-duration="800">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-chart-pie me-2 text-success"></i>Galeri Infografis Tematik Desa Cantik 2026</h4>
@@ -777,7 +777,7 @@
         </div>
 
         <!-- Publikasi Resmi & Booklet (Bukti Dukung Output) -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="publikasi">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="publikasi" data-aos="fade-up" data-aos-duration="800">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-book-open me-2 text-primary"></i>Publikasi Resmi &amp; Booklet Profil Desa 2026</h4>
@@ -827,7 +827,7 @@
         </div>
 
         <!-- Produk Statistik & SOP Permintaan Data (Bukti Dukung Layanan & Standar Operasional) -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="sop-layanan">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="sop-layanan" data-aos="fade-up" data-aos-duration="800">
             <h4 class="fw-bold text-dark mb-3"><i class="fas fa-concierge-bell me-2 text-primary"></i>Produk Statistik &amp; SOP Layanan Data Publik</h4>
             <p class="text-muted small mb-4">Layanan aksesibilitas data bagi masyarakat, akademisi, dan perangkat daerah Kabupaten Mempawah.</p>
             <div class="row g-4">
@@ -924,7 +924,7 @@
 
         <!-- Galeri Dokumentasi Kegiatan (Bukti Proses Pembinaan & Pencacahan Agen Statistik) -->
 
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dokumentasi">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dokumentasi" data-aos="fade-up" data-aos-duration="800">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan</h4>
@@ -1038,7 +1038,7 @@
 <!-- ============================================================== -->
         <!--        STRUKTUR & APARATUR PEMERINTAH DESA SUNGAI BAKAU KECIL      -->
         <!-- ============================================================== -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="aparat-desa">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="aparat-desa" data-aos="fade-up" data-aos-duration="800">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-users-cog me-2 text-primary"></i>Struktur &amp; Aparatur Pemerintah Desa Sungai Bakau Kecil</h4>
@@ -1049,7 +1049,7 @@
 
             <!-- Filter Categories & Search Bar -->
             <div class="row g-2 mb-4 align-items-center">
-                <div class="col-lg-8 col-md-12">
+                <div class="col-lg-8 col-md-12" data-aos="fade-left" data-aos-duration="800">
                     <div class="d-flex gap-2 flex-wrap" id="aparat-filter-buttons">
                         <button type="button" class="btn btn-sm btn-primary rounded-pill px-3 fw-semibold active" onclick="filterAparatCards('all', this)">
                             <i class="fas fa-th-large me-1"></i> Semua (20)
@@ -1068,7 +1068,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12">
+                <div class="col-lg-4 col-md-12" data-aos="fade-right" data-aos-duration="800">
                     <div class="input-group input-group-sm">
                         <span class="input-group-text bg-white border-end-0 rounded-start-pill"><i class="fas fa-search text-muted"></i></span>
                         <input type="text" id="search-aparat" class="form-control border-start-0 rounded-end-pill" placeholder="Cari nama atau jabatan aparatur..." oninput="searchAparatCards(this.value)">
