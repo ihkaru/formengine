@@ -19,7 +19,7 @@
                     <i class="fas fa-redo me-1"></i> Sync Sekarang
                 </button>
                 <a href="#gsbpm-flow" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
-                    <i class="fas fa-project-diagram me-1"></i> Alur GSBPM
+                    <i class="fas fa-project-diagram me-1"></i> Alur Pembinaan
                 </a>
                 <a href="#infografis" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
                     <i class="fas fa-chart-pie me-1"></i> Galeri Infografis
@@ -167,7 +167,7 @@
         <x-ui.dukungan-pemkab village-name="Desa Sungai Bakau Kecil" year="2026" />
 
         <!-- ============================================================== -->
-        <!--     SECTION GSBPM (Generic Statistical Business Process Model)  -->
+        <!--  ALUR PENYELENGGARAAN PEMBINAAN DESA CINTA STATISTIK (GSBPM)   -->
         <!-- ============================================================== -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="gsbpm-flow">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
@@ -181,72 +181,106 @@
                         </span>
                     </div>
                     <h4 class="fw-bold text-dark mb-1">
-                        <i class="fas fa-project-diagram me-2 text-primary"></i>Alur Penyelenggaraan Statistik Sektoral (GSBPM)
+                        <i class="fas fa-project-diagram me-2 text-primary"></i>Alur Penyelenggaraan Pembinaan Desa Cinta Statistik
                     </h4>
-                    <p class="text-muted small mb-0">Tahapan pembinaan Desa Cantik Sungai Bakau Kecil 2026 mengadopsi 8 fase <em>Generic Statistical Business Process Model</em> (GSBPM v5.1).</p>
+                    <p class="text-muted small mb-0">Rangkaian pembinaan Desa Cantik Sungai Bakau Kecil 2026 mengadopsi 8 fase <em>Generic Statistical Business Process Model</em> (GSBPM v5.1).</p>
                 </div>
                 <div class="d-flex gap-2 align-items-center flex-wrap">
                     <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#modalMetadataSDI">
                         <i class="fas fa-database me-1"></i> Buka Metadata SDI
                     </button>
-                    <span class="badge bg-dark text-white rounded-pill px-3 py-2 font-monospace fw-bold">8 Fase Terpenuhi</span>
+                    <span class="badge bg-dark text-white rounded-pill px-3 py-2 font-monospace fw-bold" id="gsbpm-timer-badge">
+                        <i class="fas fa-play fa-xs text-warning me-1"></i> 8 Fase Terpenuhi
+                    </span>
                 </div>
             </div>
+
+            <!-- Custom CSS for GSBPM Soft Active Tabs -->
+            <style>
+                .gsbpm-nav-btn {
+                    background: #f8fafc;
+                    border: 1px solid #e2e8f0 !important;
+                    transition: all 0.25s ease-in-out;
+                    color: #475569 !important;
+                    position: relative;
+                }
+                .gsbpm-nav-btn:hover {
+                    background: #f1f5f9;
+                    border-color: #cbd5e1 !important;
+                    transform: translateY(-2px);
+                }
+                .gsbpm-nav-btn.active {
+                    background: #ffffff !important;
+                    border-color: #3b82f6 !important;
+                    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
+                    color: #1e293b !important;
+                }
+                .gsbpm-nav-btn.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 12px;
+                    right: 12px;
+                    height: 3px;
+                    background: #3b82f6;
+                    border-radius: 3px 3px 0 0;
+                }
+            </style>
 
             <!-- GSBPM Stepper / Horizontal Nav Pills -->
             <div class="overflow-x-auto pb-2 mb-4">
                 <ul class="nav nav-pills flex-nowrap gap-2" id="gsbpm-tabs" role="tablist" style="min-width: 820px;">
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link active w-100 rounded-3 py-2 px-3 text-start border d-flex flex-column h-100" id="tab-gsbpm-1" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-1" type="button" role="tab" aria-selected="true">
+                        <button class="nav-link active gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-1" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-1" type="button" role="tab" aria-selected="true" onclick="manualSelectGsbpmTab(0)">
                             <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-clipboard-check text-primary me-1"></i> Fase 1</span>
                             <span class="fw-bold small text-dark d-block text-truncate">Specify Needs</span>
                             <span class="extra-small text-muted">Identifikasi Kebutuhan</span>
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 rounded-3 py-2 px-3 text-start border d-flex flex-column h-100" id="tab-gsbpm-2" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-2" type="button" role="tab" aria-selected="false">
+                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-2" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-2" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(1)">
                             <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-drafting-compass text-info me-1"></i> Fase 2</span>
                             <span class="fw-bold small text-dark d-block text-truncate">Design</span>
                             <span class="extra-small text-muted">Metadata &amp; Kuesioner</span>
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 rounded-3 py-2 px-3 text-start border d-flex flex-column h-100" id="tab-gsbpm-3" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-3" type="button" role="tab" aria-selected="false">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-cubes text-indigo me-1" style="color: #6610f2;"></i> Fase 3</span>
+                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-3" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-3" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(2)">
+                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-cubes text-secondary me-1"></i> Fase 3</span>
                             <span class="fw-bold small text-dark d-block text-truncate">Build</span>
                             <span class="extra-small text-muted">CAPI &amp; Database</span>
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 rounded-3 py-2 px-3 text-start border d-flex flex-column h-100" id="tab-gsbpm-4" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-4" type="button" role="tab" aria-selected="false">
+                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-4" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-4" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(3)">
                             <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-mobile-alt text-success me-1"></i> Fase 4</span>
                             <span class="fw-bold small text-dark d-block text-truncate">Collect</span>
                             <span class="extra-small text-muted">Pelatihan &amp; CAPI RT</span>
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 rounded-3 py-2 px-3 text-start border d-flex flex-column h-100" id="tab-gsbpm-5" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-5" type="button" role="tab" aria-selected="false">
+                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-5" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-5" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(4)">
                             <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-brain text-warning me-1"></i> Fase 5</span>
                             <span class="fw-bold small text-dark d-block text-truncate">Process</span>
                             <span class="extra-small text-muted">AI Gemini &amp; Validasi</span>
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 rounded-3 py-2 px-3 text-start border d-flex flex-column h-100" id="tab-gsbpm-6" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-6" type="button" role="tab" aria-selected="false">
+                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-6" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-6" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(5)">
                             <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-chart-line text-danger me-1"></i> Fase 6</span>
                             <span class="fw-bold small text-dark d-block text-truncate">Analyze</span>
                             <span class="extra-small text-muted">8 Indikator &amp; Canva</span>
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 rounded-3 py-2 px-3 text-start border d-flex flex-column h-100" id="tab-gsbpm-7" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-7" type="button" role="tab" aria-selected="false">
+                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-7" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-7" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(6)">
                             <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-globe text-primary me-1"></i> Fase 7</span>
                             <span class="fw-bold small text-dark d-block text-truncate">Disseminate</span>
                             <span class="extra-small text-muted">Publikasi &amp; Web</span>
                         </button>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link w-100 rounded-3 py-2 px-3 text-start border d-flex flex-column h-100" id="tab-gsbpm-8" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-8" type="button" role="tab" aria-selected="false">
+                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-8" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-8" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(7)">
                             <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-sync-alt text-success me-1"></i> Fase 8</span>
                             <span class="fw-bold small text-dark d-block text-truncate">Evaluate</span>
                             <span class="extra-small text-muted">SOP Permintaan Data</span>
@@ -260,18 +294,18 @@
                 
                 <!-- FASE 1: SPECIFY NEEDS -->
                 <div class="tab-pane fade show active" id="pane-gsbpm-1" role="tabpanel">
-                    <div class="p-4 rounded-4 bg-light border border-primary-subtle">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
                         <div class="row align-items-center g-4">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                                    <span class="badge bg-primary px-3 py-1 rounded-pill extra-small">Fase 1: Specify Needs</span>
-                                    <span class="badge bg-white text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-primary"></i> Mei - Awal Juni 2026</span>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 1: Specify Needs</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-primary"></i> Mei - Awal Juni 2026</span>
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Selesai &amp; Diresmikan</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Identifikasi Kebutuhan Data &amp; Pencanangan Resmi Desa Cantik</h5>
                                 <p class="text-muted small mb-3">Langkah inisiasi pembinaan statistik sektoral yang diawali koordinasi antara BPS Kabupaten Mempawah dan Pemerintah Desa Sungai Bakau Kecil hingga pencanangan serentak oleh Pemkab Mempawah.</p>
                                 
-                                <div class="bg-white p-3 rounded-3 border mb-3">
+                                <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-list-check text-primary me-2"></i>Aktivitas Konkret yang Dilalui:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Koordinasi Awal BPS Mempawah:</strong> Tim pembina BPS Mempawah hadir melakukan audiensi dan menawarkan program pembinaan Desa Cantik 2026.</li>
@@ -281,19 +315,25 @@
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <a href="#dokumentasi" class="btn btn-sm btn-outline-primary rounded-pill extra-small">
-                                        <i class="fas fa-camera me-1"></i> Foto Pencanangan 2026
-                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-primary rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')">
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Pencanangan
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-center">
-                                <div class="p-3 bg-white rounded-4 border shadow-sm">
-                                    <div class="rounded-3 p-3 bg-primary-subtle text-primary mb-3">
-                                        <i class="fas fa-handshake fa-3x"></i>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pencanangan-2026.webp') }}" alt="Pencanangan Desa Cantik 2026" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1">Aktor Utama</h6>
-                                    <p class="extra-small text-muted mb-2">BPS Kab. Mempawah &bull; Bupati Mempawah &bull; Pj. Kades &amp; Pemdes SBK</p>
-                                    <span class="badge bg-primary rounded-pill px-3 py-1 extra-small">Inisiasi &amp; Komitmen</span>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Pencanangan Desa Cantik 2026</h6>
+                                        <p class="extra-small text-muted mb-0">Mempawah Command Center, Kantor Bupati Mempawah</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -302,18 +342,18 @@
 
                 <!-- FASE 2: DESIGN -->
                 <div class="tab-pane fade" id="pane-gsbpm-2" role="tabpanel">
-                    <div class="p-4 rounded-4 bg-light border border-info-subtle">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
                         <div class="row align-items-center g-4">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                                    <span class="badge bg-info text-dark px-3 py-1 rounded-pill extra-small">Fase 2: Design</span>
-                                    <span class="badge bg-white text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-info"></i> Awal Juni 2026</span>
+                                    <span class="badge bg-info-subtle text-info border border-info-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 2: Design</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-info"></i> Awal Juni 2026</span>
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Selesai (SDI Compliant)</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Desain Kuesioner &amp; Standardisasi Metadata Statistik (SDI)</h5>
                                 <p class="text-muted small mb-3">Perancangan instrumen pencacahan mikro berbasis agregat RT dan sarana fasilitas umum dengan mengacu pada standar Metadata Satu Data Indonesia (SDI).</p>
                                 
-                                <div class="bg-white p-3 rounded-3 border mb-3">
+                                <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-table-list text-info me-2"></i>Komponen Metadata &amp; Instrumen yang Disusun:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>MS-Kegiatan:</strong> Pendataan Potensi Kewilayahan RT dan Fasilitas Desa Cantik SBK 2026.</li>
@@ -328,14 +368,20 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-center">
-                                <div class="p-3 bg-white rounded-4 border shadow-sm">
-                                    <div class="rounded-3 p-3 bg-info-subtle text-info mb-3">
-                                        <i class="fas fa-drafting-compass fa-3x"></i>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}', 'Pemerintah Desa Sungai Bakau Kecil', 'Pusat koordinasi &amp; kesiapan posko pelayanan data Desa Cantik 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/sungaibakaukecil/kantor-desa.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" alt="Kantor Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="960" height="1280">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1">Standardisasi SDI</h6>
-                                    <p class="extra-small text-muted mb-2">26 Variabel RT &bull; 15 Variabel Sarpras &bull; 8 Rumus Indikator</p>
-                                    <span class="badge bg-info text-dark rounded-pill px-3 py-1 extra-small">MS-Kegiatan &amp; Variabel</span>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Standardisasi Metadata &amp; Instrumen</h6>
+                                        <p class="extra-small text-muted mb-0">Posko Desa Cantik Sungai Bakau Kecil 2026</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -344,18 +390,18 @@
 
                 <!-- FASE 3: BUILD -->
                 <div class="tab-pane fade" id="pane-gsbpm-3" role="tabpanel">
-                    <div class="p-4 rounded-4 bg-light border border-indigo-subtle">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
                         <div class="row align-items-center g-4">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                                    <span class="badge bg-secondary px-3 py-1 rounded-pill extra-small">Fase 3: Build</span>
-                                    <span class="badge bg-white text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-secondary"></i> Juni 2026</span>
+                                    <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 3: Build</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-secondary"></i> Juni 2026</span>
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Siap Pakai</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Pengembangan Aplikasi CAPI Mobile AppSheet &amp; Sinkronisasi Cloud</h5>
                                 <p class="text-muted small mb-3">Pembangunan aplikasi survei berbasis Android/iOS menggunakan AppSheet yang terhubung langsung secara idempoten ke basis data cloud Google Sheets.</p>
                                 
-                                <div class="bg-white p-3 rounded-3 border mb-3">
+                                <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-cogs text-secondary me-2"></i>Fitur Sistem CAPI yang Dikonfigurasi:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Logika Validasi Real-Time:</strong> Mencegah kesalahan input logika (contoh: Jumlah KTP tidak boleh melampaui jumlah penduduk dewasa).</li>
@@ -370,14 +416,20 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-center">
-                                <div class="p-3 bg-white rounded-4 border shadow-sm">
-                                    <div class="rounded-3 p-3 bg-secondary-subtle text-secondary mb-3">
-                                        <i class="fas fa-mobile-screen-button fa-3x"></i>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Workbook Data Excel SDI 2026', 'Struktur 5 Sheet Data Mentah &amp; Indikator SDI Desa Sungai Bakau Kecil 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px; background-color: #f8fafc;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/excel-sdi-cover.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/excel-sdi-cover.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/excel-sdi-cover.webp') }}" alt="Arsitektur Database Cloud & CAPI" class="img-fluid w-100 h-100 object-fit-contain p-2" loading="lazy" decoding="async" width="800" height="600">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1">Teknologi CAPI</h6>
-                                    <p class="extra-small text-muted mb-2">AppSheet Mobile Engine &bull; Google Sheets DB &bull; GPS Tagging</p>
-                                    <span class="badge bg-secondary rounded-pill px-3 py-1 extra-small">No-Code Survey App</span>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Arsitektur CAPI AppSheet &amp; Database</h6>
+                                        <p class="extra-small text-muted mb-0">Integrasi Cloud Google Sheets &amp; Geolocation GPS</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -386,18 +438,18 @@
 
                 <!-- FASE 4: COLLECT -->
                 <div class="tab-pane fade" id="pane-gsbpm-4" role="tabpanel">
-                    <div class="p-4 rounded-4 bg-light border border-success-subtle">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
                         <div class="row align-items-center g-4">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                                    <span class="badge bg-success px-3 py-1 rounded-pill extra-small">Fase 4: Collect</span>
-                                    <span class="badge bg-white text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-success"></i> Juni - Juli 2026</span>
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 4: Collect</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-success"></i> Juni - Juli 2026</span>
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> 100% Terdata (37 RT &amp; 49 Fasilitas)</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Pelatihan Agen Statistik &amp; Pendataan Terpusat Ketua RT via CAPI</h5>
                                 <p class="text-muted small mb-3">Pelatihan intensif bagi Agen Statistik Desa serta pencacahan terpusat di Kantor Desa terhadap seluruh 37 Ketua RT dan inventarisasi 49 fasilitas umum.</p>
                                 
-                                <div class="bg-white p-3 rounded-3 border mb-3">
+                                <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-users-viewfinder text-success me-2"></i>Pelaksanaan Lapangan:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Pelatihan Agen Statistik Desa:</strong> BPS Mempawah membekali agen statistik pengoperasian CAPI, konsep GSBPM, dan tata cara wawancara.</li>
@@ -406,19 +458,25 @@
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <a href="#dokumentasi" class="btn btn-sm btn-outline-success rounded-pill extra-small">
-                                        <i class="fas fa-camera me-1"></i> Foto Pelatihan &amp; Pendataan CAPI
-                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-1.webp') }}', 'Pelatihan Agen Statistik RT', 'Pembekalan metodologi CAPI AppSheet &amp; verifikasi indikator SDI oleh BPS Mempawah.')">
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Pelatihan
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-center">
-                                <div class="p-3 bg-white rounded-4 border shadow-sm">
-                                    <div class="rounded-3 p-3 bg-success-subtle text-success mb-3">
-                                        <i class="fas fa-people-arrows fa-3x"></i>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-1.webp') }}', 'Pelatihan Agen Statistik RT', 'Pembekalan metodologi CAPI AppSheet &amp; verifikasi indikator SDI oleh BPS Mempawah.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/sungaibakaukecil/dokum-1.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" alt="Pelatihan Agen Statistik RT" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1">Cakupan Pendataan</h6>
-                                    <p class="extra-small text-muted mb-2">37 Rukun Tetangga (RT) &bull; 8 Dusun &bull; 49 Fasilitas Umum</p>
-                                    <span class="badge bg-success rounded-pill px-3 py-1 extra-small">100% Response Rate</span>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Pelatihan &amp; Pencacahan CAPI</h6>
+                                        <p class="extra-small text-muted mb-0">Wawancara 37 Ketua RT &amp; Geotagging 49 Fasilitas</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -427,18 +485,18 @@
 
                 <!-- FASE 5: PROCESS -->
                 <div class="tab-pane fade" id="pane-gsbpm-5" role="tabpanel">
-                    <div class="p-4 rounded-4 bg-light border border-warning-subtle">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
                         <div class="row align-items-center g-4">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                                    <span class="badge bg-warning text-dark px-3 py-1 rounded-pill extra-small">Fase 5: Process</span>
-                                    <span class="badge bg-white text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-warning"></i> Juli 2026</span>
+                                    <span class="badge bg-warning-subtle text-dark border border-warning-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 5: Process</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-warning"></i> Juli 2026</span>
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Verifikasi AI Lulus</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Pengolahan &amp; Verifikasi Data Berbasis AI Gemini di Google Sheets</h5>
                                 <p class="text-muted small mb-3">Pembersihan data (*data cleaning*), rekonsiliasi anomali, dan pelatihan validasi otomatis memanfaatkan kecerdasan buatan (Gemini AI) yang terpasang di Google Sheets.</p>
                                 
-                                <div class="bg-white p-3 rounded-3 border mb-3">
+                                <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-wand-magic-sparkles text-warning me-2"></i>Inovasi Pengolahan Data:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Pembersihan &amp; Imputasi Data:</strong> Koreksi penulisan nama RT, penyesuaian spasi/format numerik, dan deteksi duplikasi ID.</li>
@@ -447,19 +505,25 @@
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <a href="#sop-layanan" class="btn btn-sm btn-outline-warning text-dark rounded-pill extra-small">
-                                        <i class="fas fa-file-excel me-1"></i> Cek Dataset Hasil Pengolahan
-                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-warning text-dark rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-2.webp') }}', 'Pelatihan Pengolahan Data CAPI', 'Proses verifikasi data, validasi anomali AI Gemini, dan pembekalan analitika data di Kantor BPS Mempawah 2026.')">
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Pengolahan AI
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-center">
-                                <div class="p-3 bg-white rounded-4 border shadow-sm">
-                                    <div class="rounded-3 p-3 bg-warning-subtle text-warning mb-3">
-                                        <i class="fas fa-robot fa-3x"></i>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-2.webp') }}', 'Pelatihan Pengolahan Data CAPI', 'Proses verifikasi data, validasi anomali AI Gemini, dan pembekalan analitika data di Kantor BPS Mempawah 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/sungaibakaukecil/dokum-2.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" alt="Pelatihan Pengolahan Data CAPI & AI" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1">AI-Powered Validation</h6>
-                                    <p class="extra-small text-muted mb-2">Gemini AI in Google Sheets &bull; Outlier Detection &bull; Auto-Aggregation</p>
-                                    <span class="badge bg-warning text-dark rounded-pill px-3 py-1 extra-small">Smart Data Processing</span>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Pengolahan &amp; Validasi AI Gemini</h6>
+                                        <p class="extra-small text-muted mb-0">Verifikasi Anomali di Google Sheets &bull; BPS Mempawah</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -468,18 +532,18 @@
 
                 <!-- FASE 6: ANALYZE -->
                 <div class="tab-pane fade" id="pane-gsbpm-6" role="tabpanel">
-                    <div class="p-4 rounded-4 bg-light border border-danger-subtle">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
                         <div class="row align-items-center g-4">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                                    <span class="badge bg-danger px-3 py-1 rounded-pill extra-small">Fase 6: Analyze</span>
-                                    <span class="badge bg-white text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-danger"></i> Akhir Juli 2026</span>
+                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 6: Analyze</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-danger"></i> Akhir Juli 2026</span>
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Analisis Tuntas</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Analisis 8 Indikator SDI &amp; Desain Infografis Visual Canva</h5>
                                 <p class="text-muted small mb-3">Kalkulasi 8 indikator statistik strategis Satu Data Indonesia serta pelatihan penyusunan poster infografis yang menarik dan mudah dipahami masyarakat menggunakan Canva.</p>
                                 
-                                <div class="bg-white p-3 rounded-3 border mb-3">
+                                <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-chart-pie text-danger me-2"></i>Hasil Analisis &amp; Desain:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Kalkulasi 8 Indikator SDI:</strong> Sex Ratio (104,49), ART (3,46), Lansia (7,80%), E-KTP (71,17%), Bansos (4,96%), Putus Sekolah (1,84%), Kepadatan (4,11 jiwa/rumah), dan Ibadah (4,53 per 1000).</li>
@@ -493,14 +557,20 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-center">
-                                <div class="p-3 bg-white rounded-4 border shadow-sm">
-                                    <div class="rounded-3 p-3 bg-danger-subtle text-danger mb-3">
-                                        <i class="fas fa-palette fa-3x"></i>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}', 'Infografis Profil Demografi 2026', 'Struktur kependudukan, piramida kelompok usia, rasio gender, sebaran RT per dusun, dan persentase kepemilikan E-KTP (71,17%).')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px; background-color: #f8fafc;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/sungaibakaukecil/infografis-demografi.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}" alt="Infografis Demografi Canva" class="img-fluid w-100 h-100 object-fit-contain p-2" loading="lazy" decoding="async" width="723" height="1024">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1">Visualisasi &amp; Analisis</h6>
-                                    <p class="extra-small text-muted mb-2">8 Indikator SDI &bull; Desain Canva &bull; Evidence-Based Policy</p>
-                                    <span class="badge bg-danger rounded-pill px-3 py-1 extra-small">Visual Data Storytelling</span>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Visualisasi Infografis Canva</h6>
+                                        <p class="extra-small text-muted mb-0">Storytelling 8 Indikator Statistik Prioritas SDI</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -509,18 +579,18 @@
 
                 <!-- FASE 7: DISSEMINATE -->
                 <div class="tab-pane fade" id="pane-gsbpm-7" role="tabpanel">
-                    <div class="p-4 rounded-4 bg-light border border-primary-subtle">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
                         <div class="row align-items-center g-4">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                                    <span class="badge bg-primary px-3 py-1 rounded-pill extra-small">Fase 7: Disseminate</span>
-                                    <span class="badge bg-white text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-primary"></i> Agustus 2026</span>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 7: Disseminate</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-primary"></i> Agustus 2026</span>
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Rilis Publik</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Penyusunan Publikasi Resmi &amp; Rilis Portal Web Desa Cantik</h5>
                                 <p class="text-muted small mb-3">Penyusunan 2 buku publikasi cetak/PDF serta perilisan portal web interaktif lengkap dengan peta geospasial Leaflet, grafik interaktif, dan unduhan Excel.</p>
                                 
-                                <div class="bg-white p-3 rounded-3 border mb-3">
+                                <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-book-open text-primary me-2"></i>Produk Diseminasi yang Dirilis:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Publikasi 1:</strong> <em>"Desa Sungai Bakau Kecil Dalam Angka 2026"</em> (Buku rilis resmi kompilasi data statistik makro &amp; mikro).</li>
@@ -534,14 +604,20 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-center">
-                                <div class="p-3 bg-white rounded-4 border shadow-sm">
-                                    <div class="rounded-3 p-3 bg-primary-subtle text-primary mb-3">
-                                        <i class="fas fa-globe-asia fa-3x"></i>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.webp') }}', 'Publikasi SBK Dalam Angka 2026', 'Publikasi resmi hasil pendataan lapangan Desa Cinta Statistik 2026 BPS Kabupaten Mempawah &amp; Pemdes SBK.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px; background-color: #fbf9f5;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.webp') }}" alt="Cover SBK Dalam Angka 2026" class="img-fluid w-100 h-100 object-fit-contain p-2" loading="lazy" decoding="async" width="726" height="1024">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1">Akses Data Terbuka</h6>
-                                    <p class="extra-small text-muted mb-2">2 Publikasi PDF &bull; Web GIS Leaflet &bull; Open Data Excel SDI</p>
-                                    <span class="badge bg-primary rounded-pill px-3 py-1 extra-small">Public Data Release</span>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Publikasi Resmi &amp; Web Portal</h6>
+                                        <p class="extra-small text-muted mb-0">Rilis Publikasi PDF &amp; Portal Desa Cantik</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -550,18 +626,18 @@
 
                 <!-- FASE 8: EVALUATE -->
                 <div class="tab-pane fade" id="pane-gsbpm-8" role="tabpanel">
-                    <div class="p-4 rounded-4 bg-light border border-success-subtle">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
                         <div class="row align-items-center g-4">
-                            <div class="col-lg-8">
+                            <div class="col-lg-7">
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                                    <span class="badge bg-success px-3 py-1 rounded-pill extra-small">Fase 8: Evaluate</span>
-                                    <span class="badge bg-white text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-success"></i> Berkelanjutan 2026+</span>
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 8: Evaluate</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-success"></i> Berkelanjutan 2026+</span>
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> SOP Aktif</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Evaluasi Kualitas, Penerapan SOP Permintaan Data &amp; Keberlanjutan</h5>
                                 <p class="text-muted small mb-3">Penilaian menyeluruh terhadap kualitas data, pembentukan mekanisme pelayanan data resmi melalui SOP desa, dan rencana pemutakhiran statistik mandiri berkala.</p>
                                 
-                                <div class="bg-white p-3 rounded-3 border mb-3">
+                                <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-clipboard-check text-success me-2"></i>Mekanisme Evaluasi &amp; Layanan Berkelanjutan:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>SOP Permintaan Data 2026:</strong> Standardisasi alur permohonan data statistik bagi akademisi, instansi pemerintah, dan masyarakat.</li>
@@ -575,14 +651,20 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 text-center">
-                                <div class="p-3 bg-white rounded-4 border shadow-sm">
-                                    <div class="rounded-3 p-3 bg-success-subtle text-success mb-3">
-                                        <i class="fas fa-award fa-3x"></i>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.webp') }}', 'SOP Permintaan Data Desa Sungai Bakau Kecil 2026', 'Standar Operasional Prosedur Pelayanan &amp; Permintaan Data Statistik Sektoral Desa Sungai Bakau Kecil 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px; background-color: #fbf9f5;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.webp') }}" alt="SOP Permintaan Data 2026" class="img-fluid w-100 h-100 object-fit-contain p-2" loading="lazy" decoding="async" width="726" height="1024">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
-                                    <h6 class="fw-bold text-dark mb-1">Kemandirian Statistik</h6>
-                                    <p class="extra-small text-muted mb-2">SOP Pelayanan Data &bull; Quality Review &bull; Update Berkala</p>
-                                    <span class="badge bg-success rounded-pill px-3 py-1 extra-small">Sustainable Descan</span>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">SOP Permintaan Data &amp; Evaluasi</h6>
+                                        <p class="extra-small text-muted mb-0">Standar Pelayanan Data Berkelanjutan 2026</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2993,6 +3075,58 @@
         function triggerExcelDownload(rows, filename) {
             downloadComprehensiveSDIWorkbook();
         }
+
+                // ==========================================
+        // GSBPM 8-PHASE AUTO-ROTATE (EVERY 3s)
+        // ==========================================
+        var gsbpmCurrentIndex = 0;
+        var gsbpmTotalTabs = 8;
+        var gsbpmAutoInterval = null;
+        var gsbpmIsPaused = false;
+
+        function startGsbpmAutoRotate() {
+            if (gsbpmAutoInterval) clearInterval(gsbpmAutoInterval);
+            gsbpmAutoInterval = setInterval(function() {
+                if (!gsbpmIsPaused) {
+                    gsbpmCurrentIndex = (gsbpmCurrentIndex + 1) % gsbpmTotalTabs;
+                    selectGsbpmTab(gsbpmCurrentIndex);
+                }
+            }, 3000);
+        }
+
+        function selectGsbpmTab(index) {
+            var tabBtn = document.getElementById('tab-gsbpm-' + (index + 1));
+            if (tabBtn && typeof bootstrap !== 'undefined') {
+                var tabInstance = bootstrap.Tab.getInstance(tabBtn) || new bootstrap.Tab(tabBtn);
+                tabInstance.show();
+                
+                // Keep active tab visible in horizontal scroll
+                var container = document.querySelector('#gsbpm-flow .overflow-x-auto');
+                if (container) {
+                    var tabOffset = tabBtn.offsetLeft - container.offsetLeft;
+                    container.scrollTo({ left: tabOffset - 20, behavior: 'smooth' });
+                }
+            }
+        }
+
+        function manualSelectGsbpmTab(index) {
+            gsbpmCurrentIndex = index;
+            startGsbpmAutoRotate();
+        }
+
+        // Pause on mouse hover, resume on mouse leave
+        document.addEventListener('DOMContentLoaded', function() {
+            var gsbpmContainer = document.getElementById('gsbpm-flow');
+            if (gsbpmContainer) {
+                gsbpmContainer.addEventListener('mouseenter', function() {
+                    gsbpmIsPaused = true;
+                });
+                gsbpmContainer.addEventListener('mouseleave', function() {
+                    gsbpmIsPaused = false;
+                });
+            }
+            startGsbpmAutoRotate();
+        });
 
         // ==========================================
         // FILTER & SEARCH APARAT DESA
