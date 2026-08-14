@@ -2725,29 +2725,70 @@
             rt.forEach(function(r) {
                 var tr = document.createElement('tr');
                 if (currentRTMode === 'indikator') {
-                    tr.innerHTML = '<td class="fw-bold">' + escHtml(r.Nama_RT) + '</td>'
-                        + '<td><span class="badge bg-primary-subtle text-primary fw-bold">' + (r._sexRatio || 0) + '</span></td>'
-                        + '<td><span class="badge bg-success-subtle text-success fw-bold">' + (r._artRata || 0) + '</span></td>'
+                    // #1 Sex ratio formatting
+                    var sexRatioBadge = (r._sexRatio >= 95 && r._sexRatio <= 110)
+                        ? '<span class="badge bg-primary-subtle text-primary fw-bold">' + (r._sexRatio || 0) + '</span>'
+                        : '<span class="badge bg-info-subtle text-dark fw-bold">' + (r._sexRatio || 0) + '</span>';
+
+                    // #2 ART rata-rata
+                    var artBadge = '<span class="badge bg-success-subtle text-success fw-bold">' + (r._artRata || 0) + '</span>';
+
+                    // #3 Lansia % formatting (Ageing: >=10%, high: >=15%)
+                    var lansiaPctBadge = (r._pctLansia >= 15)
+                        ? '<span class="badge bg-warning text-dark fw-bold border border-warning-subtle" title="Konsentrasi Lansia Tinggi: ≥15%"><i class="fas fa-user-clock me-1"></i>' + r._pctLansia + '%</span>'
+                        : (r._pctLansia >= 10
+                            ? '<span class="badge bg-warning-subtle text-dark fw-bold">' + r._pctLansia + '%</span>'
+                            : '<span class="badge bg-light text-muted border">' + r._pctLansia + '%</span>');
+
+                    // #4 KTP % formatting (Target: >=80% Hijau, 70-79% Info, <70% Merah)
+                    var ktpPctBadge = (r._pctKTP >= 80)
+                        ? '<span class="badge bg-success-subtle text-success fw-bold border border-success-subtle"><i class="fas fa-check-circle me-1"></i>' + r._pctKTP + '%</span>'
+                        : (r._pctKTP >= 70
+                            ? '<span class="badge bg-info-subtle text-info-emphasis fw-bold">' + r._pctKTP + '%</span>'
+                            : '<span class="badge bg-danger-subtle text-danger fw-bold border border-danger-subtle" title="Cakupan KTP Rendah (<70%): Perlu Jemput Bola Adminduk"><i class="fas fa-id-card me-1"></i>' + r._pctKTP + '%</span>');
+
+                    // #5 Bansos % formatting
+                    var bansosPctBadge = (r._pctBansos > 10)
+                        ? '<span class="badge bg-danger-subtle text-danger fw-bold border border-danger-subtle" title="Tingkat Kerentanan Sosial Tinggi: >10% penerima bansos">' + r._pctBansos + '%</span>'
+                        : (r._pctBansos > 0
+                            ? '<span class="badge bg-primary-subtle text-primary fw-bold">' + r._pctBansos + '%</span>'
+                            : '<span class="badge bg-light text-muted border">0%</span>');
+
+                    // #6 Putus Sekolah formatting
+                    var putusPctBadge = (r._pctPutus > 10)
+                        ? '<span class="badge bg-danger-subtle text-danger fw-bold border border-danger-subtle" title="Perlu Intervensi: >10% dari siswa di RT ini"><i class="fas fa-exclamation-circle me-1"></i>' + r._pctPutus + '%</span>'
+                        : (r._pctPutus > 0
+                            ? '<span class="badge bg-warning-subtle text-dark fw-bold border border-warning-subtle">' + r._pctPutus + '%</span>'
+                            : '<span class="badge bg-light text-muted border">0%</span>');
+
+                    // #7 Kepadatan hunian
+                    var kepadatanBadge = (r._kepadatan >= 5.0)
+                        ? '<span class="badge bg-warning-subtle text-dark fw-bold" title="Kepadatan Hunian Tinggi (≥5 Jiwa/Rumah)"><i class="fas fa-home me-1"></i>' + r._kepadatan + '</span>'
+                        : '<span class="badge bg-secondary-subtle text-secondary-emphasis fw-bold">' + (r._kepadatan || 0) + '</span>';
+
+                    // #8 Ibadah rasio
+                    var ibadahBadge = (r._ratioIbadah > 0)
+                        ? '<span class="badge bg-teal-subtle text-teal fw-bold" style="background:#ccfbf1;color:#0f766e;"><i class="fas fa-mosque me-1"></i>' + r._ratioIbadah + '</span>'
+                        : '<span class="badge bg-light text-muted border">0</span>';
+
+                    tr.innerHTML = '<td class="fw-bold text-nowrap">' + escHtml(r.Nama_RT) + '</td>'
+                        + '<td>' + sexRatioBadge + '</td>'
+                        + '<td>' + artBadge + '</td>'
                         + '<td class="fw-bold text-dark">' + (r.Jumlah_Penduduk_Lansia || 0) + '</td>'
-                        + '<td><span class="badge bg-warning-subtle text-dark fw-bold">' + (r._pctLansia || 0) + '%</span></td>'
+                        + '<td>' + lansiaPctBadge + '</td>'
                         + '<td class="fw-bold text-dark">' + (r.Jumlah_Memiliki_KTP || 0) + '</td>'
-                        + '<td><span class="badge bg-info-subtle text-info-emphasis fw-bold">' + (r._pctKTP || 0) + '%</span></td>'
+                        + '<td>' + ktpPctBadge + '</td>'
                         + '<td class="fw-bold text-dark">' + (r._cntBansos || 0) + '</td>'
+                        + '<td>' + bansosPctBadge + '</td>'
                         + '<td class="fw-bold ' + ((r.Jumlah_Penduduk_Putus_Sekolah || 0) > 0 ? 'text-danger' : 'text-muted') + '">' + (r.Jumlah_Penduduk_Putus_Sekolah || 0) + '</td>'
-                        + '<td>' + (
-                            (r._pctPutus || 0) > 10
-                                ? '<span class="badge bg-danger-subtle text-danger fw-bold border border-danger-subtle" title="Perlu Intervensi: >10% dari siswa di RT ini"><i class="fas fa-exclamation-circle me-1"></i>' + r._pctPutus + '%</span>'
-                                : ((r._pctPutus || 0) > 0
-                                    ? '<span class="badge bg-warning-subtle text-dark fw-bold border border-warning-subtle">' + r._pctPutus + '%</span>'
-                                    : '<span class="badge bg-light text-muted border">0%</span>')
-                        ) + '</td>'
-                        + '<td><span class="badge bg-secondary-subtle text-secondary-emphasis fw-bold">' + (r._kepadatan || 0) + '</span></td>'
+                        + '<td>' + putusPctBadge + '</td>'
+                        + '<td>' + kepadatanBadge + '</td>'
                         + '<td class="fw-bold text-dark">' + (r._cntIbadah || 0) + '</td>'
-                        + '<td><span class="badge bg-teal-subtle text-teal fw-bold" style="background:#ccfbf1;color:#0f766e;">' + (r._ratioIbadah || 0) + '</span></td>';
+                        + '<td>' + ibadahBadge + '</td>';
                 } else {
                     var total = parseInt(r.Jumlah_Penduduk_Laki_Laki||0) + parseInt(r.Jumlah_Penduduk_Perempuan||0);
-                    tr.innerHTML = '<td class="fw-bold">' + escHtml(r.Nama_RT) + '</td>'
-                        + '<td>' + escHtml(r.Nama_Ketua_RT) + '</td>'
+                    tr.innerHTML = '<td class="fw-bold text-nowrap">' + escHtml(r.Nama_RT) + '</td>'
+                        + '<td class="text-nowrap">' + escHtml(r.Nama_Ketua_RT) + '</td>'
                         + '<td>' + (r.Jumlah_Penduduk_Laki_Laki||0) + '</td>'
                         + '<td>' + (r.Jumlah_Penduduk_Perempuan||0) + '</td>'
                         + '<td class="fw-bold text-primary">' + total + '</td>'
@@ -2755,7 +2796,7 @@
                         + '<td>' + (r.Jumlah_Bumbung_Rumah||0) + '</td>'
                         + '<td>' + (r.Jumlah_Penduduk_Lansia||0) + '</td>'
                         + '<td>' + (r.Jumlah_Memiliki_KTP||0) + '</td>'
-                        + '<td><span class="badge bg-success">' + escHtml(r.Status_Pendataan||'Selesai') + '</span></td>';
+                        + '<td><span class="badge bg-success-subtle text-success fw-bold border border-success-subtle"><i class="fas fa-check-double me-1"></i>' + escHtml(r.Status_Pendataan||'Selesai') + '</span></td>';
                 }
                 tbody.appendChild(tr);
             });
@@ -2764,6 +2805,7 @@
 
         function renderTableFas(fas) {
             var tbody = document.querySelector('#table-fas tbody');
+            if (!tbody) return;
             tbody.innerHTML = '';
             fas.forEach(function(r) {
                 var dirBtn = '-';
@@ -2773,21 +2815,43 @@
                     var lng = p[1].trim();
                     if (!isNaN(parseFloat(lat)) && !isNaN(parseFloat(lng))) {
                         var dirUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + lat + ',' + lng;
-                        dirBtn = '<a href="' + dirUrl + '" target="_blank" class="btn btn-xs btn-primary rounded-pill px-2 py-1 text-white text-nowrap" style="font-size:11px;">'
-                            + '<i class="fas fa-directions me-1"></i> Rute'
+                        dirBtn = '<a href="' + dirUrl + '" target="_blank" class="btn btn-xs btn-outline-primary rounded-pill px-2 py-1 text-nowrap extra-small" style="font-size:11px;">'
+                            + '<i class="fas fa-location-arrow me-1"></i> Rute'
                             + '</a>';
                     }
                 }
 
+                // Badge Kategori Fasilitas
+                var kat = (r.Kategori_Fasilitas || '').toLowerCase();
+                var katBadge = '<span class="badge bg-secondary">' + escHtml(r.Kategori_Fasilitas) + '</span>';
+                if (kat.indexOf('ibadah') !== -1 || kat.indexOf('agama') !== -1) {
+                    katBadge = '<span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold"><i class="fas fa-mosque me-1"></i>' + escHtml(r.Kategori_Fasilitas) + '</span>';
+                } else if (kat.indexOf('pendidikan') !== -1 || kat.indexOf('sekolah') !== -1) {
+                    katBadge = '<span class="badge bg-primary-subtle text-primary border border-primary-subtle fw-semibold"><i class="fas fa-graduation-cap me-1"></i>' + escHtml(r.Kategori_Fasilitas) + '</span>';
+                } else if (kat.indexOf('kesehatan') !== -1 || kat.indexOf('posyandu') !== -1) {
+                    katBadge = '<span class="badge bg-danger-subtle text-danger border border-danger-subtle fw-semibold"><i class="fas fa-heart-pulse me-1"></i>' + escHtml(r.Kategori_Fasilitas) + '</span>';
+                } else if (kat.indexOf('pemerintah') !== -1 || kat.indexOf('kantor') !== -1) {
+                    katBadge = '<span class="badge bg-dark-subtle text-dark border fw-semibold"><i class="fas fa-landmark me-1"></i>' + escHtml(r.Kategori_Fasilitas) + '</span>';
+                }
+
+                // Badge Kondisi Bangunan
+                var kondisi = (r.Kondisi_Bangunan || 'Baik').toLowerCase();
+                var kondisiBadge = '<span class="badge bg-success-subtle text-success fw-bold border border-success-subtle"><i class="fas fa-check-circle me-1"></i>Baik</span>';
+                if (kondisi.indexOf('rusak berat') !== -1) {
+                    kondisiBadge = '<span class="badge bg-danger-subtle text-danger fw-bold border border-danger-subtle"><i class="fas fa-triangle-exclamation me-1"></i>Rusak Berat</span>';
+                } else if (kondisi.indexOf('rusak') !== -1 || kondisi.indexOf('sedang') !== -1 || kondisi.indexOf('ringan') !== -1) {
+                    kondisiBadge = '<span class="badge bg-warning-subtle text-dark fw-bold border border-warning-subtle"><i class="fas fa-wrench me-1"></i>' + escHtml(r.Kondisi_Bangunan) + '</span>';
+                }
+
                 var tr = document.createElement('tr');
                 tr.innerHTML = '<td><code>' + escHtml(r.ID_Fasilitas) + '</code></td>'
-                    + '<td class="fw-bold">' + escHtml(r.Nama_Fasilitas) + '</td>'
-                    + '<td><span class="badge bg-secondary">' + escHtml(r.Kategori_Fasilitas) + '</span></td>'
+                    + '<td class="fw-bold text-dark text-nowrap">' + escHtml(r.Nama_Fasilitas) + '</td>'
+                    + '<td>' + katBadge + '</td>'
                     + '<td>' + escHtml(r.Sub_Kategori) + '</td>'
-                    + '<td>' + escHtml(r.RT) + '</td>'
-                    + '<td><span class="badge bg-success">' + escHtml(r.Kondisi_Bangunan||'Baik') + '</span></td>'
-                    + '<td>' + escHtml(r.Sumber_Listrik) + '</td>'
-                    + '<td>' + escHtml(r.Sumber_Air_Bersih) + '</td>'
+                    + '<td class="fw-semibold text-nowrap">' + escHtml(r.RT) + '</td>'
+                    + '<td>' + kondisiBadge + '</td>'
+                    + '<td><span class="badge bg-light text-dark border">' + escHtml(r.Sumber_Listrik || 'PLN') + '</span></td>'
+                    + '<td><span class="badge bg-light text-dark border">' + escHtml(r.Sumber_Air_Bersih || '-') + '</span></td>'
                     + '<td>' + dirBtn + '</td>';
                 tbody.appendChild(tr);
             });
