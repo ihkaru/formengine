@@ -165,6 +165,7 @@
                         </table>
                     </div>
                 </div>
+            </div>{{-- /tab-content --}}
         </div>{{-- /Tables card --}}
 
         <!-- Dukungan Pemkab & Pembinaan Sektoral (Reusable Component) -->

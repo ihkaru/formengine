@@ -186,30 +186,53 @@
 
         /* Mobile Adjustments for Small Screens (< 576px) — iPhone SE, Galaxy A Series */
         @media (max-width: 575.98px) {
+            /* Viewport & Container */
+            main.container { padding-left: 10px !important; padding-right: 10px !important; margin-top: 1.5rem !important; margin-bottom: 2rem !important; }
+            .card.p-4 { padding: 1.2rem 1rem !important; margin-bottom: 1.5rem !important; }
+            .card.p-3 { padding: 0.85rem !important; }
+
             /* Hero Section */
-            .hero-section { padding: 60px 0 40px; min-height: 100svh; }
-            .hero-title { font-size: 2rem !important; margin-bottom: 12px; line-height: 1.2; }
-            .hero-subtitle { font-size: 0.9rem !important; margin-bottom: 16px; }
+            .hero-section { padding: 50px 0 35px; min-height: 100svh; }
+            .hero-title { font-size: 1.85rem !important; margin-bottom: 10px; line-height: 1.2; }
+            .hero-subtitle { font-size: 0.88rem !important; margin-bottom: 14px; line-height: 1.4; padding: 0 5px; }
             /* Hero CTA buttons */
-            .hero-section .btn { font-size: 0.78rem; padding: 0.3rem 0.75rem; }
-            .hero-section .d-flex.flex-wrap { gap: 6px !important; }
-            .hero-section .sync-wrap { font-size: 0.78rem; padding: 4px 12px; }
+            .hero-section .btn { font-size: 0.76rem !important; padding: 0.3rem 0.7rem !important; }
+            .hero-section .d-flex.flex-wrap { gap: 5px !important; }
+            .hero-section .sync-wrap { font-size: 0.76rem !important; padding: 4px 10px !important; }
 
-            /* General */
-            .page-header { padding: 45px 0 30px; }
-            .page-header h1 { font-size: 1.7rem; }
-            .page-header .lead { font-size: 0.9rem; }
-            .kpi-card { padding: 14px; }
-            .flashcard-container { height: 340px; }
-            .flashcard-front, .flashcard-back { padding: 14px; }
-            .flashcard-front h6 { font-size: 0.9rem; }
-            .flashcard-back p { font-size: 0.85rem; }
-            #map { height: 320px; }
+            /* General Headings & Texts */
+            .page-header { padding: 40px 0 25px; }
+            .page-header h1 { font-size: 1.6rem; }
+            .page-header .lead { font-size: 0.85rem; }
+            h3 { font-size: 1.35rem !important; }
+            h4 { font-size: 1.15rem !important; }
+            h5 { font-size: 1rem !important; }
+            h6 { font-size: 0.9rem !important; }
 
-            /* Badges & small text */
-            .badge { font-size: 0.72rem; }
-            h4 { font-size: 1.15rem; }
-            h5 { font-size: 1rem; }
+            /* KPI Cards */
+            .kpi-card { padding: 12px 10px !important; }
+            .kpi-card small.fw-bold { font-size: 0.68rem !important; }
+            .kpi-card h3 { font-size: 1.3rem !important; }
+            .kpi-icon { width: 38px !important; height: 38px !important; font-size: 1.1rem !important; }
+
+            /* Flashcards */
+            .flashcard-container { height: 320px !important; }
+            .flashcard-front, .flashcard-back { padding: 14px !important; }
+            .flashcard-front h6 { font-size: 0.88rem !important; }
+            .flashcard-back p { font-size: 0.82rem !important; }
+            .btn-fc-filter { font-size: 0.76rem !important; padding: 0.25rem 0.75rem !important; }
+
+            /* Map */
+            #map { height: 300px !important; }
+
+            /* Badges & Buttons */
+            .badge { font-size: 0.72rem !important; white-space: normal !important; text-align: left; }
+            .btn-sm { font-size: 0.78rem !important; padding: 0.28rem 0.75rem !important; }
+
+            /* GSBPM Stepper */
+            .gsbpm-nav-btn { padding: 6px 10px !important; }
+            .gsbpm-nav-btn span { font-size: 0.72rem !important; }
+            .gsbpm-nav-btn span.fw-bold { font-size: 0.8rem !important; }
         }
 
         /* Mid-Range: Phablets & Small Tablets (576px–767px) */
