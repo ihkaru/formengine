@@ -47,8 +47,8 @@
             <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" delay="200" aos="fade-up" />
             <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" delay="300" aos="fade-up" />
             <x-ui.kpi-card title="Penduduk Lansia" icon="fa-user-clock" id="kpi-lansia" sub-id="kpi-pct-lansia" sub-label="Proporsi" sub-color="text-warning" delay="400" aos="fade-up" />
-            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH/BPNT/BLT" delay="500" aos="fade-up" />
-            <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terinventarisasi" delay="600" aos="fade-up" />
+            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-id="kpi-pct-bansos" sub-label="Proporsi" sub-color="text-danger" delay="500" aos="fade-up" />
+            <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-id="kpi-ratio-ibadah" sub-label="Ibadah/1k" sub-color="text-success" delay="600" aos="fade-up" />
         </div>
 
         <!-- Metadata SDI 2026 (Reusable Component) -->
@@ -2229,7 +2229,9 @@
             document.getElementById('kpi-lansia').innerText    = totalLansia.toLocaleString('id-ID');
             document.getElementById('kpi-pct-lansia').innerText = pctLansia + '%';
             document.getElementById('kpi-bansos').innerText    = totalBansos.toLocaleString('id-ID');
+            if (document.getElementById('kpi-pct-bansos')) document.getElementById('kpi-pct-bansos').innerText = pctBansos + '%';
             document.getElementById('kpi-fasilitas').innerText = fas.length;
+            if (document.getElementById('kpi-ratio-ibadah')) document.getElementById('kpi-ratio-ibadah').innerText = ratioIbadah;
 
             // Metadata Indikator Tab elements (Modern Typography Format)
             if (document.getElementById('ind-val-sexratio')) document.getElementById('ind-val-sexratio').innerText = sexRatio;
