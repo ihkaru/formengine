@@ -29,6 +29,9 @@
             --secondary: #0D9488;
             --accent: #F59E0B;
         }
+        html {
+            overflow-x: clip; /* clip = no horizontal scroll, tapi TIDAK mengubah scroll context (AOS tetap berjalan via window) */
+        }
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #F8FAFC;
