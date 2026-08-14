@@ -253,27 +253,9 @@
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
         }
 
-        /* Anti-Jitter & Hardware Acceleration for AOS */
-        [data-aos] {
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-        }
-
-        /* Banner Word-by-Word Slide Up Animation */
-        .word-wrapper {
-            display: inline-block;
-            overflow: hidden;
-            vertical-align: bottom;
-        }
-        .word {
-            display: inline-block;
-            transform: translateY(110%);
-            animation: word-slide-up 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-        @keyframes word-slide-up {
-            to { transform: translateY(0); }
+        /* GPU hint for parallax only, NOT for [data-aos] elements */
+        .hero-section {
+            will-change: background-position;
         }
 
         </style>
