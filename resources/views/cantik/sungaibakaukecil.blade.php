@@ -93,6 +93,7 @@
         </div>
 
         <!-- Tables -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-table me-2 text-primary"></i>Daftar Potensi RT &amp; Fasilitas Desa</h4>
@@ -164,9 +165,10 @@
                         </table>
                     </div>
                 </div>
-            </div>
+        </div>{{-- /Tables card --}}
+
         <!-- Dukungan Pemkab & Pembinaan Sektoral (Reusable Component) -->
-        <x-ui.dukungan-pemkab village-name="Desa Sungai Bakau Kecil" year="2026" />
+        <x-ui.dukungan-pemkab village-name="Desa Sungai Bakau Kecil" year="2026" aos="fade-up" />
 
         <!-- ============================================================== -->
         <!--  ALUR PENYELENGGARAAN PEMBINAAN DESA CINTA STATISTIK (GSBPM)   -->

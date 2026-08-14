@@ -6,11 +6,12 @@
     'title' => 'Dukungan Penuh Pemerintah Kabupaten Mempawah',
     'quote' => '"Kedepan kiranya program Desa Cantik ini dapat lebih dimasifkan untuk seluruh desa dan kelurahan, serta dikolaborasikan dengan kebutuhan data di tingkat daerah yang dikelola perangkat daerah."',
     'quoteAuthor' => 'Ismail, S.MM. — Sekretaris Daerah Kabupaten Mempawah',
-    'description' => null
+    'description' => null,
+    'aos' => 'fade-up'
 ])
-<div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dukungan-pemkab">
+<div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dukungan-pemkab" data-aos="{{ $aos }}" data-aos-duration="1000">
     <div class="row align-items-center">
-        <div class="col-lg-5 mb-4 mb-lg-0">
+        <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right" data-aos-delay="150" data-aos-duration="900">
             <div class="rounded-4 overflow-hidden shadow-sm border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ $imageWebp }}', 'Dukungan Pemkab Mempawah &amp; BPS', 'Dokumentasi Komitmen Pemkab Mempawah &amp; BPS Kabupaten Mempawah dalam Pembinaan Sektoral Desa Cantik {{ $year }}')">
                 <img src="{{ $imageWebp }}" alt="Dukungan Pemkab Mempawah &amp; BPS" class="img-fluid w-100" style="height: auto; width: 100%; max-height: 460px; object-fit: contain;" onerror="this.onerror=null;this.src='{{ $imageJpg }}';">
                 <div class="zoom-overlay">
@@ -18,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-7" data-aos="fade-left" data-aos-delay="300" data-aos-duration="900">
             <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
                 <span class="badge bg-primary-subtle text-primary fw-bold text-uppercase px-3 py-2 rounded-pill small text-nowrap">Bukti Pembinaan Sektoral {{ $year }}</span>
                 <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill small text-nowrap">Pemkab Mempawah x BPS</span>
