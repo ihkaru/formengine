@@ -175,123 +175,260 @@
         <!--  ALUR PENYELENGGARAAN PEMBINAAN DESA CINTA STATISTIK (GSBPM)   -->
         <!-- ============================================================== -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="gsbpm-flow" data-aos="fade-up" data-aos-duration="1000" style="overflow: hidden;">
-            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
+            
+            <!-- Header Section -->
+            <div class="d-flex justify-content-between align-items-start align-items-md-center mb-3 flex-wrap gap-3">
                 <div>
-                    <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                    <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
                         <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 fw-bold extra-small">
                             <i class="fas fa-certificate me-1"></i> Standar Internasional BPS &amp; UNECE
                         </span>
                         <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1 fw-bold extra-small">
-                            Satu Data Indonesia (SDI)
+                            <i class="fas fa-database me-1"></i> Satu Data Indonesia (SDI)
                         </span>
                     </div>
                     <h4 class="fw-bold text-dark mb-1">
                         <i class="fas fa-project-diagram me-2 text-primary"></i>Alur Penyelenggaraan Pembinaan Desa Cinta Statistik
                     </h4>
-                    <p class="text-muted small mb-0">Rangkaian pembinaan Desa Cantik Sungai Bakau Kecil 2026 mengadopsi 8 fase <em>Generic Statistical Business Process Model</em> (GSBPM v5.1).</p>
+                    <p class="text-muted small mb-0">Rangkaian 8 fase pembinaan statistik sektoral Desa Sungai Bakau Kecil 2026 mengadopsi standar <em>Generic Statistical Business Process Model</em> (GSBPM v5.1).</p>
                 </div>
                 <div class="d-flex gap-2 align-items-center flex-wrap">
-                    <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#modalMetadataSDI">
+                    <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#modalMetadataSDI">
                         <i class="fas fa-database me-1"></i> Buka Metadata SDI
                     </button>
-                    <span class="badge bg-dark text-white rounded-pill px-3 py-2 font-monospace fw-bold" id="gsbpm-timer-badge">
-                        <i class="fas fa-play fa-xs text-warning me-1"></i> 8 Fase Terpenuhi
-                    </span>
+                    <button type="button" class="btn btn-sm btn-dark rounded-pill px-3 fw-semibold font-monospace" id="gsbpm-play-btn" onclick="toggleGsbpmAutoPlay()" title="Klik untuk Jeda/Lanjut Rotasi Otomatis">
+                        <i class="fas fa-pause fa-xs text-warning me-1" id="gsbpm-play-icon"></i>
+                        <span id="gsbpm-timer-badge">Auto: ON (6s)</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- Custom CSS for GSBPM Soft Active Tabs -->
+            <!-- Progress Track Bar -->
+            <div class="gsbpm-progress-container mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="extra-small fw-bold text-primary" id="gsbpm-step-label">
+                        <i class="fas fa-spinner fa-spin me-1 text-primary"></i> Fase 1 dari 8: Specify Needs (Identifikasi Kebutuhan)
+                    </span>
+                    <span class="extra-small text-muted fw-bold font-monospace" id="gsbpm-progress-pct">12.5% Selesai</span>
+                </div>
+                <div class="progress rounded-pill bg-light border" style="height: 6px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="gsbpm-progress-bar" role="progressbar" style="width: 12.5%; transition: width 0.4s ease;"></div>
+                </div>
+            </div>
+
+            <!-- Custom Modern Stepper CSS -->
             <style>
+                /* Hide native ugly scrollbars */
+                .gsbpm-scroll-track {
+                    overflow-x: auto !important;
+                    overflow-y: hidden !important;
+                    scrollbar-width: none !important; /* Firefox */
+                    -ms-overflow-style: none !important;  /* IE/Edge */
+                    scroll-behavior: smooth;
+                    padding: 4px 2px 10px 2px;
+                }
+                .gsbpm-scroll-track::-webkit-scrollbar {
+                    display: none !important; /* Chrome/Safari */
+                }
+
                 .gsbpm-nav-btn {
                     background: #f8fafc;
-                    border: 1px solid #e2e8f0 !important;
-                    transition: all 0.25s ease-in-out;
-                    color: #475569 !important;
+                    border: 1.5px solid #e2e8f0 !important;
+                    border-radius: 16px !important;
+                    padding: 10px 14px !important;
+                    min-width: 135px;
+                    max-width: 160px;
+                    height: 100%;
+                    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                    text-align: left;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
                     position: relative;
+                    cursor: pointer;
                 }
                 .gsbpm-nav-btn:hover {
-                    background: #f1f5f9;
+                    background: #ffffff;
                     border-color: #cbd5e1 !important;
-                    transform: translateY(-2px);
+                    transform: translateY(-3px);
+                    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
                 }
                 .gsbpm-nav-btn.active {
                     background: #ffffff !important;
-                    border-color: #3b82f6 !important;
-                    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
-                    color: #1e293b !important;
+                    border-color: var(--primary, #064E3B) !important;
+                    box-shadow: 0 6px 20px rgba(6, 78, 59, 0.16) !important;
+                    transform: translateY(-2px);
                 }
                 .gsbpm-nav-btn.active::after {
                     content: '';
                     position: absolute;
-                    bottom: 0;
-                    left: 12px;
-                    right: 12px;
-                    height: 3px;
-                    background: #3b82f6;
-                    border-radius: 3px 3px 0 0;
+                    bottom: -1px;
+                    left: 14px;
+                    right: 14px;
+                    height: 3.5px;
+                    background: var(--primary, #064E3B);
+                    border-radius: 4px 4px 0 0;
+                }
+                .gsbpm-num-badge {
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 50%;
+                    background: #e2e8f0;
+                    color: #475569;
+                    font-size: 0.72rem;
+                    font-weight: 800;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.2s ease;
+                }
+                .gsbpm-nav-btn.active .gsbpm-num-badge {
+                    background: var(--primary, #064E3B);
+                    color: #ffffff;
+                    box-shadow: 0 2px 8px rgba(6, 78, 59, 0.35);
+                }
+                .gsbpm-nav-btn .phase-title {
+                    font-size: 0.88rem;
+                    font-weight: 700;
+                    color: #1e293b;
+                    margin-top: 6px;
+                    margin-bottom: 2px;
+                    line-height: 1.2;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .gsbpm-nav-btn.active .phase-title {
+                    color: var(--primary, #064E3B);
+                }
+                .gsbpm-nav-btn .phase-desc {
+                    font-size: 0.72rem;
+                    color: #64748b;
+                    line-height: 1.2;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .gsbpm-nav-arrow {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    background: #ffffff;
+                    border: 1px solid #e2e8f0;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                    color: var(--primary, #064E3B);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    flex-shrink: 0;
+                }
+                .gsbpm-nav-arrow:hover {
+                    background: var(--primary, #064E3B);
+                    color: #ffffff;
+                    border-color: var(--primary, #064E3B);
+                    transform: scale(1.08);
                 }
             </style>
 
-            <!-- GSBPM Stepper / Horizontal Nav Pills -->
-            <div class="overflow-x-auto pb-2 mb-4" style="overflow-x: auto !important; overflow-y: hidden;">
-                <ul class="nav nav-pills flex-nowrap gap-2" id="gsbpm-tabs" role="tablist" style="min-width: 680px;">
-                    <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link active gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-1" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-1" type="button" role="tab" aria-selected="true" onclick="manualSelectGsbpmTab(0)">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-clipboard-check text-primary me-1"></i> Fase 1</span>
-                            <span class="fw-bold small text-dark d-block text-truncate">Specify Needs</span>
-                            <span class="extra-small text-muted">Identifikasi Kebutuhan</span>
-                        </button>
-                    </li>
-                    <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-2" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-2" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(1)">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-drafting-compass text-info me-1"></i> Fase 2</span>
-                            <span class="fw-bold small text-dark d-block text-truncate">Design</span>
-                            <span class="extra-small text-muted">Metadata &amp; Kuesioner</span>
-                        </button>
-                    </li>
-                    <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-3" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-3" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(2)">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-cubes text-secondary me-1"></i> Fase 3</span>
-                            <span class="fw-bold small text-dark d-block text-truncate">Build</span>
-                            <span class="extra-small text-muted">CAPI &amp; Database</span>
-                        </button>
-                    </li>
-                    <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-4" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-4" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(3)">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-mobile-alt text-success me-1"></i> Fase 4</span>
-                            <span class="fw-bold small text-dark d-block text-truncate">Collect</span>
-                            <span class="extra-small text-muted">Pelatihan &amp; CAPI RT</span>
-                        </button>
-                    </li>
-                    <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-5" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-5" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(4)">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-brain text-warning me-1"></i> Fase 5</span>
-                            <span class="fw-bold small text-dark d-block text-truncate">Process</span>
-                            <span class="extra-small text-muted">AI Gemini &amp; Validasi</span>
-                        </button>
-                    </li>
-                    <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-6" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-6" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(5)">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-chart-line text-danger me-1"></i> Fase 6</span>
-                            <span class="fw-bold small text-dark d-block text-truncate">Analyze</span>
-                            <span class="extra-small text-muted">8 Indikator &amp; Canva</span>
-                        </button>
-                    </li>
-                    <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-7" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-7" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(6)">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-globe text-primary me-1"></i> Fase 7</span>
-                            <span class="fw-bold small text-dark d-block text-truncate">Disseminate</span>
-                            <span class="extra-small text-muted">Publikasi &amp; Web</span>
-                        </button>
-                    </li>
-                    <li class="nav-item flex-fill" role="presentation">
-                        <button class="nav-link gsbpm-nav-btn w-100 rounded-3 py-2 px-3 text-start d-flex flex-column h-100" id="tab-gsbpm-8" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-8" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(7)">
-                            <span class="extra-small text-muted fw-bold text-uppercase d-block mb-1"><i class="fas fa-sync-alt text-success me-1"></i> Fase 8</span>
-                            <span class="fw-bold small text-dark d-block text-truncate">Evaluate</span>
-                            <span class="extra-small text-muted">SOP Permintaan Data</span>
-                        </button>
-                    </li>
-                </ul>
+            <!-- Modern Stepper Carousel with Arrow Navs -->
+            <div class="position-relative mb-4">
+                <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="gsbpm-nav-arrow d-none d-md-flex" onclick="scrollGsbpmTrack('left')" title="Geser Kiri">
+                        <i class="fas fa-chevron-left fa-xs"></i>
+                    </button>
+                    
+                    <div class="gsbpm-scroll-track flex-grow-1" id="gsbpm-scroll-track">
+                        <ul class="nav nav-pills flex-nowrap gap-2" id="gsbpm-tabs" role="tablist">
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link active gsbpm-nav-btn" id="tab-gsbpm-1" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-1" type="button" role="tab" aria-selected="true" onclick="manualSelectGsbpmTab(0)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">01</span>
+                                        <i class="fas fa-clipboard-check text-primary extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Specify Needs</div>
+                                    <div class="phase-desc">Identifikasi Kebutuhan</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-2" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-2" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(1)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">02</span>
+                                        <i class="fas fa-drafting-compass text-info extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Design</div>
+                                    <div class="phase-desc">Metadata &amp; Kuesioner</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-3" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-3" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(2)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">03</span>
+                                        <i class="fas fa-cubes text-secondary extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Build</div>
+                                    <div class="phase-desc">CAPI &amp; Database</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-4" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-4" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(3)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">04</span>
+                                        <i class="fas fa-mobile-alt text-success extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Collect</div>
+                                    <div class="phase-desc">Pelatihan &amp; Survei RT</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-5" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-5" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(4)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">05</span>
+                                        <i class="fas fa-brain text-warning extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Process</div>
+                                    <div class="phase-desc">AI Gemini &amp; Validasi</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-6" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-6" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(5)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">06</span>
+                                        <i class="fas fa-chart-line text-danger extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Analyze</div>
+                                    <div class="phase-desc">8 Indikator &amp; Canva</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-7" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-7" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(6)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">07</span>
+                                        <i class="fas fa-globe text-primary extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Disseminate</div>
+                                    <div class="phase-desc">Publikasi &amp; Web</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-8" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-8" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(7)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">08</span>
+                                        <i class="fas fa-sync-alt text-success extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Evaluate</div>
+                                    <div class="phase-desc">SOP Permintaan Data</div>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="gsbpm-nav-arrow d-none d-md-flex" onclick="scrollGsbpmTrack('right')" title="Geser Kanan">
+                        <i class="fas fa-chevron-right fa-xs"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Tab Content Panes -->
@@ -3080,42 +3217,103 @@
             downloadComprehensiveSDIWorkbook();
         }
 
-                // ==========================================
-        // GSBPM 8-PHASE AUTO-ROTATE (EVERY 3s)
+        // ==========================================
+        // GSBPM 8-PHASE SMART CONTROLLER (6.5s Timer + Progress Track)
         // ==========================================
         var gsbpmCurrentIndex = 0;
         var gsbpmTotalTabs = 8;
         var gsbpmAutoInterval = null;
         var gsbpmIsPaused = false;
+        var gsbpmAutoDuration = 6500; // 6.5 detik per fase
+
+        var gsbpmPhaseMeta = [
+            { num: 1, title: 'Specify Needs', desc: 'Identifikasi Kebutuhan & Pencanangan Desa Cantik' },
+            { num: 2, title: 'Design', desc: 'Desain Kuesioner & Metadata SDI (MS-Kegiatan/Variabel/Indikator)' },
+            { num: 3, title: 'Build', desc: 'Pembangunan CAPI AppSheet & Database Sektoral' },
+            { num: 4, title: 'Collect', desc: 'Pelatihan Agen Statistik & Survei CAPI RT' },
+            { num: 5, title: 'Process', desc: 'Pemrosesan Data, AI Gemini & Validasi Sektoral' },
+            { num: 6, title: 'Analyze', desc: 'Analisis 8 Indikator Prioritas SDI & Infografis Canva' },
+            { num: 7, title: 'Disseminate', desc: 'Diseminasi Hasil & Publikasi Web Portal Desa' },
+            { num: 8, title: 'Evaluate', desc: 'Evaluasi Pembinaan & SOP Layanan Permintaan Data' }
+        ];
 
         function startGsbpmAutoRotate() {
             if (gsbpmAutoInterval) clearInterval(gsbpmAutoInterval);
             gsbpmAutoInterval = setInterval(function() {
                 if (!gsbpmIsPaused) {
                     gsbpmCurrentIndex = (gsbpmCurrentIndex + 1) % gsbpmTotalTabs;
-                    selectGsbpmTab(gsbpmCurrentIndex);
+                    selectGsbpmTab(gsbpmCurrentIndex, false);
                 }
-            }, 3000);
+            }, gsbpmAutoDuration);
         }
 
-        function selectGsbpmTab(index) {
+        function selectGsbpmTab(index, isManual) {
+            gsbpmCurrentIndex = index;
             var tabBtn = document.getElementById('tab-gsbpm-' + (index + 1));
             if (tabBtn && typeof bootstrap !== 'undefined') {
                 var tabInstance = bootstrap.Tab.getInstance(tabBtn) || new bootstrap.Tab(tabBtn);
                 tabInstance.show();
                 
-                // Keep active tab visible in horizontal scroll
-                var container = document.querySelector('#gsbpm-flow .overflow-x-auto');
-                if (container) {
-                    var tabOffset = tabBtn.offsetLeft - container.offsetLeft;
-                    container.scrollTo({ left: tabOffset - 20, behavior: 'smooth' });
+                // Update Progress bar & Label
+                var pct = Math.round(((index + 1) / gsbpmTotalTabs) * 100);
+                var pBar = document.getElementById('gsbpm-progress-bar');
+                var pPct = document.getElementById('gsbpm-progress-pct');
+                var sLabel = document.getElementById('gsbpm-step-label');
+
+                if (pBar) pBar.style.width = pct + '%';
+                if (pPct) pPct.innerText = pct + '% Selesai (Fase ' + (index + 1) + '/8)';
+                if (sLabel && gsbpmPhaseMeta[index]) {
+                    sLabel.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Fase ' + (index + 1) + ' dari 8: <strong>' + gsbpmPhaseMeta[index].title + '</strong> — ' + gsbpmPhaseMeta[index].desc;
+                }
+
+                // Smooth Scroll Track to center active tab
+                var track = document.getElementById('gsbpm-scroll-track');
+                if (track) {
+                    var tabLeft = tabBtn.offsetLeft;
+                    var tabWidth = tabBtn.offsetWidth;
+                    var trackWidth = track.offsetWidth;
+                    var scrollPos = tabLeft - (trackWidth / 2) + (tabWidth / 2);
+                    track.scrollTo({ left: Math.max(0, scrollPos), behavior: 'smooth' });
                 }
             }
         }
 
         function manualSelectGsbpmTab(index) {
-            gsbpmCurrentIndex = index;
+            selectGsbpmTab(index, true);
+            // Saat user klik manual, reset timer rotasi agar punya waktu 6.5s untuk membaca
             startGsbpmAutoRotate();
+        }
+
+        function scrollGsbpmTrack(direction) {
+            var track = document.getElementById('gsbpm-scroll-track');
+            if (track) {
+                var scrollAmount = 280;
+                track.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        function toggleGsbpmAutoPlay() {
+            gsbpmIsPaused = !gsbpmIsPaused;
+            var pIcon = document.getElementById('gsbpm-play-icon');
+            var tBadge = document.getElementById('gsbpm-timer-badge');
+            var btn = document.getElementById('gsbpm-play-btn');
+
+            if (gsbpmIsPaused) {
+                if (pIcon) pIcon.className = 'fas fa-play fa-xs text-success me-1';
+                if (tBadge) tBadge.innerText = 'Auto: PAUSED';
+                if (btn) {
+                    btn.classList.remove('btn-dark');
+                    btn.classList.add('btn-outline-dark');
+                }
+            } else {
+                if (pIcon) pIcon.className = 'fas fa-pause fa-xs text-warning me-1';
+                if (tBadge) tBadge.innerText = 'Auto: ON (6.5s)';
+                if (btn) {
+                    btn.classList.remove('btn-outline-dark');
+                    btn.classList.add('btn-dark');
+                }
+                startGsbpmAutoRotate();
+            }
         }
 
         // Pause on mouse hover, resume on mouse leave
@@ -3124,11 +3322,21 @@
             if (gsbpmContainer) {
                 gsbpmContainer.addEventListener('mouseenter', function() {
                     gsbpmIsPaused = true;
+                    var tBadge = document.getElementById('gsbpm-timer-badge');
+                    if (tBadge && !document.getElementById('gsbpm-play-btn').classList.contains('btn-outline-dark')) {
+                        tBadge.innerText = 'Auto: PAUSED (Hover)';
+                    }
                 });
                 gsbpmContainer.addEventListener('mouseleave', function() {
-                    gsbpmIsPaused = false;
+                    if (!document.getElementById('gsbpm-play-btn').classList.contains('btn-outline-dark')) {
+                        gsbpmIsPaused = false;
+                        var tBadge = document.getElementById('gsbpm-timer-badge');
+                        if (tBadge) tBadge.innerText = 'Auto: ON (6.5s)';
+                    }
                 });
             }
+            // Inisialisasi awal Fase 1
+            selectGsbpmTab(0, false);
             startGsbpmAutoRotate();
         });
 
