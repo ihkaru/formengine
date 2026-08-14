@@ -29,13 +29,11 @@
             --secondary: #0D9488;
             --accent: #F59E0B;
         }
-        html, body {
-            overflow-x: hidden !important;
-            width: 100% !important;
-            max-width: 100% !important;
+        body {
             font-family: 'Poppins', sans-serif;
             background-color: #F8FAFC;
             color: #1E293B;
+            overflow-x: hidden;
         }
         .navbar { background-color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
         .page-header {
@@ -295,15 +293,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Inisialisasi AOS standar murni persis seperti Desa Sejegi
+        function initAOS() {
             if (typeof AOS !== "undefined") {
                 AOS.init({
-                    once: true,
-                    duration: 1000,
-                    offset: 100
+                    once: false,
+                    duration: 800,
+                    offset: 120,
+                    easing: "ease-out-cubic",
+                    mirror: false
                 });
+                setTimeout(function() {
+                    AOS.refresh();
+                }, 500);
             }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            initAOS();
 
             // Animasi teks per kata (data-animate-text) persis seperti Desa Sejegi
             const textElements = document.querySelectorAll('[data-animate-text]');
@@ -325,6 +331,12 @@
                     const scrollPos = window.pageYOffset;
                     heroSection.style.backgroundPositionY = `calc(50% + ${scrollPos * 0.4}px)`;
                 }, { passive: true });
+            }
+        });
+
+        window.addEventListener("load", function() {
+            if (typeof AOS !== "undefined") {
+                AOS.refresh();
             }
         });
     </script>
