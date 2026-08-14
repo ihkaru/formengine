@@ -34,31 +34,103 @@
             </div>
         </div>
         <div class="tab-pane fade" id="variabel">
-            <div class="row">
-                <div class="col-md-6">
-                    <h6 class="fw-bold mb-2"><i class="fas fa-list-ol me-2 text-primary"></i>Variabel RT (Daftar_RT) — {{ $varRtCount }} Variabel</h6>
-                    <ul class="list-group list-group-flush small">
-                        <li class="list-group-item">1. Nama_RT / Dusun / RW</li>
-                        <li class="list-group-item">2. Nama_Ketua_RT &amp; No_HP</li>
-                        <li class="list-group-item">3. Jumlah_Penduduk_Laki_Laki &amp; Perempuan</li>
-                        <li class="list-group-item">4. Jumlah_KK &amp; Jumlah_Bumbung_Rumah</li>
-                        <li class="list-group-item">5. Jumlah_Penduduk_Lansia &amp; Balita</li>
-                        <li class="list-group-item">6. Jumlah_Memiliki_KTP &amp; Akta_Kelahiran</li>
-                        <li class="list-group-item">7. Jumlah_Penerima_PKH, BPNT, BLT, BST</li>
-                        <li class="list-group-item">8. Jumlah_Penduduk_Putus_Sekolah (TK, SD, SMP, SMA)</li>
-                    </ul>
+            <!-- Sub-Tabs Switcher for Variabel RT vs Fasilitas -->
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <ul class="nav nav-pills nav-pills-sm gap-2" id="metaVarSubTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active rounded-pill px-3 py-1 fw-bold small" id="subtab-var-rt" data-bs-toggle="pill" data-bs-target="#subpane-var-rt" type="button" role="tab">
+                            <i class="fas fa-users me-1 text-primary"></i> Variabel Potensi RT ({{ $varRtCount }})
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill px-3 py-1 fw-bold small" id="subtab-var-fas" data-bs-toggle="pill" data-bs-target="#subpane-var-fas" type="button" role="tab">
+                            <i class="fas fa-building me-1 text-success"></i> Variabel Sarana Fasilitas ({{ $varFasCount }})
+                        </button>
+                    </li>
+                </ul>
+                <span class="badge bg-light text-muted border rounded-pill px-3 py-1 extra-small">
+                    <i class="fas fa-info-circle me-1 text-primary"></i> Standar MS-Variabel Satu Data Indonesia
+                </span>
+            </div>
+
+            <div class="tab-content" id="metaVarSubTabsContent">
+                <!-- Subpane: Variabel RT (26 Variabel) -->
+                <div class="tab-pane fade show active" id="subpane-var-rt" role="tabpanel">
+                    <div class="table-responsive border rounded-3" style="max-height: 420px;">
+                        <table class="table table-hover table-striped align-middle mb-0 small">
+                            <thead class="table-dark sticky-top">
+                                <tr>
+                                    <th style="width: 5%;">No</th>
+                                    <th style="width: 25%;">Nama Variabel</th>
+                                    <th style="width: 15%;">Konsep</th>
+                                    <th style="width: 40%;">Definisi Operasional (SDI)</th>
+                                    <th style="width: 15%;">Satuan &amp; Tipe</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="text-center fw-bold">1</td><td><code>Nama_RT</code></td><td>Wilayah</td><td>Nama satuan rukun tetangga dan dusun tempat pengumpulan data CAPI.</td><td><span class="badge bg-secondary-subtle text-secondary">String</span></td></tr>
+                                <tr><td class="text-center fw-bold">2</td><td><code>Nama_Petugas</code></td><td>Petugas</td><td>Nama agen statistik desa yang melakukan wawancara &amp; input data.</td><td><span class="badge bg-secondary-subtle text-secondary">String</span></td></tr>
+                                <tr><td class="text-center fw-bold">3</td><td><code>Tanggal_Waktu</code></td><td>Waktu</td><td>Tanggal dan waktu pelaksanaan pencacahan lapangan.</td><td><span class="badge bg-info-subtle text-info">DateTime</span></td></tr>
+                                <tr><td class="text-center fw-bold">4</td><td><code>Nama_Ketua_RT</code></td><td>Narasumber</td><td>Nama Ketua RT aktif yang bertindak sebagai responden utama.</td><td><span class="badge bg-secondary-subtle text-secondary">String</span></td></tr>
+                                <tr><td class="text-center fw-bold">5</td><td><code>Jumlah_Penduduk_Laki_Laki</code></td><td>Demografi</td><td>Banyaknya penduduk berjenis kelamin laki-laki di wilayah RT.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">6</td><td><code>Jumlah_Penduduk_Perempuan</code></td><td>Demografi</td><td>Banyaknya penduduk berjenis kelamin perempuan di wilayah RT.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">7</td><td><code>Jumlah_Bumbung_Rumah</code></td><td>Fisik</td><td>Banyaknya bangunan fisik/atap tempat tinggal keluarga di wilayah RT.</td><td>Unit (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">8</td><td><code>Jumlah_KK</code></td><td>Keluarga</td><td>Banyaknya kepala keluarga (Kartu Keluarga) yang berdomisili di RT.</td><td>KK (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">9</td><td><code>Jumlah_Penduduk_Lansia</code></td><td>Kelompok Rentan</td><td>Banyaknya penduduk yang telah mencapai usia 60 tahun ke atas.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">10</td><td><code>Jumlah_Kelahiran_Bayi</code></td><td>Kelahiran</td><td>Banyaknya kelahiran bayi hidup dalam periode 1 tahun terakhir di RT.</td><td>Bayi (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">11</td><td><code>Jumlah_Kematian</code></td><td>Kematian</td><td>Banyaknya kejadian kematian penduduk dalam periode 1 tahun terakhir.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">12</td><td><code>Jumlah_Penerima_PKH</code></td><td>Bantuan Sosial</td><td>Banyaknya keluarga terdaftar penerima Program Keluarga Harapan Kemensos.</td><td>KK (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">13</td><td><code>Jumlah_Penerima_BPNT</code></td><td>Bantuan Sosial</td><td>Banyaknya keluarga penerima Bantuan Pangan Non-Tunai / Kartu Sembako.</td><td>KK (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">14</td><td><code>Jumlah_Penerima_BST</code></td><td>Bantuan Sosial</td><td>Banyaknya penerima manfaat Bantuan Sosial Tunai.</td><td>KK (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">15</td><td><code>Jumlah_Penerima_BLT</code></td><td>Bantuan Sosial</td><td>Banyaknya keluarga penerima Bantuan Langsung Tunai bersumber Dana Desa.</td><td>KK (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">16</td><td><code>Jumlah_Memiliki_KTP</code></td><td>Adminduk</td><td>Banyaknya penduduk wajib KTP (usia 17+ / sudah menikah) yang memiliki KTP-el.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">17</td><td><code>Jumlah_Sekolah_TK</code></td><td>Pendidikan</td><td>Banyaknya penduduk yang sedang mengenyam jenjang TK / PAUD.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">18</td><td><code>Jumlah_Sekolah_SD</code></td><td>Pendidikan</td><td>Banyaknya penduduk yang sedang mengenyam jenjang SD / MI / sederajat.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">19</td><td><code>Jumlah_Sekolah_SMP</code></td><td>Pendidikan</td><td>Banyaknya penduduk yang sedang mengenyam jenjang SMP / MTs / sederajat.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">20</td><td><code>Jumlah_Sekolah_SMA</code></td><td>Pendidikan</td><td>Banyaknya penduduk yang sedang mengenyam jenjang SMA / SMK / MA / sederajat.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">21</td><td><code>Jumlah_Sekolah_Sarjana</code></td><td>Pendidikan</td><td>Banyaknya penduduk yang telah menyelesaikan pendidikan D1-D4 / S1 / S2 / S3.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">22</td><td><code>Jumlah_Penduduk_Putus_Sekolah</code></td><td>Pendidikan</td><td>Banyaknya anak usia wajib belajar (7-18 tahun) yang tidak bersekolah/putus sekolah.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">23</td><td><code>Jumlah_Anak_Usia_0_1_Tahun</code></td><td>Balita</td><td>Banyaknya bayi berusia di bawah 1 tahun (0–11 bulan).</td><td>Anak (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">24</td><td><code>Jumlah_Anak_Usia_2_5_Tahun</code></td><td>Balita</td><td>Banyaknya anak berusia 2 s.d. 5 tahun (usia prasekolah).</td><td>Anak (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">25</td><td><code>Jumlah_Pendatang</code></td><td>Migrasi</td><td>Banyaknya penduduk baru yang pindah masuk ke wilayah RT dalam 1 tahun terakhir.</td><td>Orang (<span class="badge bg-primary-subtle text-primary">Integer</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">26</td><td><code>Status_Pendataan</code></td><td>Metodologi</td><td>Status kelengkapan dan verifikasi kuesioner CAPI tingkat RT (Selesai/Proses).</td><td><span class="badge bg-success-subtle text-success">Kategori</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h6 class="fw-bold mb-2"><i class="fas fa-building me-2 text-success"></i>Variabel Fasilitas — {{ $varFasCount }} Variabel</h6>
-                    <ul class="list-group list-group-flush small">
-                        <li class="list-group-item">1. ID_Fasilitas &amp; Nama_Fasilitas</li>
-                        <li class="list-group-item">2. Kategori_Fasilitas &amp; Sub_Kategori</li>
-                        <li class="list-group-item">3. Lokasi_GPS (Latitude, Longitude)</li>
-                        <li class="list-group-item">4. Alamat_Lengkap &amp; RT</li>
-                        <li class="list-group-item">5. Kondisi_Bangunan (Baik / Rusak)</li>
-                        <li class="list-group-item">6. Sumber_Listrik &amp; Sumber_Air_Bersih</li>
-                        <li class="list-group-item">7. Foto_Fasilitas &amp; Catatan_Tambahan</li>
-                    </ul>
+
+                <!-- Subpane: Variabel Fasilitas (15 Variabel) -->
+                <div class="tab-pane fade" id="subpane-var-fas" role="tabpanel">
+                    <div class="table-responsive border rounded-3" style="max-height: 420px;">
+                        <table class="table table-hover table-striped align-middle mb-0 small">
+                            <thead class="table-dark sticky-top">
+                                <tr>
+                                    <th style="width: 5%;">No</th>
+                                    <th style="width: 25%;">Nama Variabel</th>
+                                    <th style="width: 15%;">Konsep</th>
+                                    <th style="width: 40%;">Definisi Operasional (SDI)</th>
+                                    <th style="width: 15%;">Satuan &amp; Tipe</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="text-center fw-bold">1</td><td><code>ID_Fasilitas</code></td><td>Identitas</td><td>Kode unik alfanumerik pengenal sarana prasarana fisik desa.</td><td><span class="badge bg-secondary-subtle text-secondary">Alfanumerik</span></td></tr>
+                                <tr><td class="text-center fw-bold">2</td><td><code>Nama_Petugas</code></td><td>Petugas</td><td>Nama agen statistik desa yang melakukan tagging &amp; pencatatan sarana.</td><td><span class="badge bg-secondary-subtle text-secondary">String</span></td></tr>
+                                <tr><td class="text-center fw-bold">3</td><td><code>Tanggal_Waktu</code></td><td>Waktu</td><td>Waktu pengambilan data koordinat GPS dan atribut fasilitas di lapangan.</td><td><span class="badge bg-info-subtle text-info">DateTime</span></td></tr>
+                                <tr><td class="text-center fw-bold">4</td><td><code>Lokasi_GPS</code></td><td>Geospasial</td><td>Titik koordinat lintang dan bujur (Latitude, Longitude WGS84) lokasi sarana.</td><td>Koordinat (<span class="badge bg-primary-subtle text-primary">Decimal</span>)</td></tr>
+                                <tr><td class="text-center fw-bold">5</td><td><code>Foto_Fasilitas</code></td><td>Dokumentasi</td><td>Berkas gambar/foto fisik tampak depan sarana prasarana desa.</td><td><span class="badge bg-secondary-subtle text-secondary">URI Image</span></td></tr>
+                                <tr><td class="text-center fw-bold">6</td><td><code>RT</code></td><td>Wilayah</td><td>Nama wilayah RT tempat fasilitas umum tersebut berada.</td><td><span class="badge bg-secondary-subtle text-secondary">String</span></td></tr>
+                                <tr><td class="text-center fw-bold">7</td><td><code>Nama_Fasilitas</code></td><td>Identitas</td><td>Nama resmi atau sebutan umum sarana prasarana publik di desa.</td><td><span class="badge bg-secondary-subtle text-secondary">String</span></td></tr>
+                                <tr><td class="text-center fw-bold">8</td><td><code>Kategori_Fasilitas</code></td><td>Klasifikasi</td><td>Pengelompokan utama sarana (Pemerintahan, Pendidikan, Kesehatan, Ibadah, Ekonomi, dll).</td><td><span class="badge bg-success-subtle text-success">Kategori</span></td></tr>
+                                <tr><td class="text-center fw-bold">9</td><td><code>Sub_Kategori</code></td><td>Klasifikasi</td><td>Rincian jenis sarana (misal: SD, SMP, Masjid, Surau, Posyandu, Kantor Desa).</td><td><span class="badge bg-success-subtle text-success">Kategori</span></td></tr>
+                                <tr><td class="text-center fw-bold">10</td><td><code>Kondisi_Bangunan</code></td><td>Kelayakan Fisik</td><td>Tingkat kelayakan struktur fisik gedung sarana (Baik / Rusak Sedang / Rusak Berat).</td><td><span class="badge bg-warning-subtle text-warning">Ordinal</span></td></tr>
+                                <tr><td class="text-center fw-bold">11</td><td><code>Sumber_Listrik</code></td><td>Utilitas</td><td>Ketersediaan dan keandalan daya listrik pada fasilitas (PLN 24 Jam / Non-PLN).</td><td><span class="badge bg-success-subtle text-success">Kategori</span></td></tr>
+                                <tr><td class="text-center fw-bold">12</td><td><code>Sumber_Air_Bersih</code></td><td>Sanitasi</td><td>Sumber pemenuhan air bersih utama (PDAM / Sumur Bor / Mata Air / Sungai).</td><td><span class="badge bg-success-subtle text-success">Kategori</span></td></tr>
+                                <tr><td class="text-center fw-bold">13</td><td><code>Akses_Jalan</code></td><td>Aksesibilitas</td><td>Kondisi permukaan jalan menuju lokasi (Aspal/Beton R4, Perkerasan, Jalan Tanah).</td><td><span class="badge bg-success-subtle text-success">Kategori</span></td></tr>
+                                <tr><td class="text-center fw-bold">14</td><td><code>Sinyal_Seluler</code></td><td>Konektivitas</td><td>Kekuatan sinyal telekomunikasi di titik fasilitas (Sangat Baik 4G / Cukup 3G / Lemah).</td><td><span class="badge bg-info-subtle text-info">Kategori</span></td></tr>
+                                <tr><td class="text-center fw-bold">15</td><td><code>Catatan</code></td><td>Keterangan</td><td>Catatan deskriptif tambahan mengenai operasional atau fungsi spesifik sarana.</td><td><span class="badge bg-secondary-subtle text-secondary">Text</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
