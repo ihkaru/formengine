@@ -451,7 +451,7 @@
                                     <small class="text-muted">AppSheet</small>
                                 </div>
                                 <h4 class="card-title fw-bold">Desa Sungai Bakau Kecil</h4>
-                                <p class="card-text text-muted small">Kecamatan Mempawah Hilir</p>
+                                <p class="card-text text-muted small">Kecamatan Mempawah Timur</p>
                                 <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
                                     <span class="badge bg-light text-dark">Data Mikro</span>
                                     <span class="text-primary fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>

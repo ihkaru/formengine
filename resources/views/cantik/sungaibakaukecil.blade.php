@@ -1,4 +1,4 @@
-<x-layouts.app title="Desa Sungai Bakau Kecil - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Sungai Bakau Kecil - BPS Kabupaten Mempawah">
+<x-layouts.app title="Desa Sungai Bakau Kecil - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Sungai Bakau Kecil - BPS Kabupaten Mempawah" district-name="Kecamatan Mempawah Timur">
 
         <!-- Hero Section with Sejegi-style Parallax & Overlay -->
     <header class="hero-section text-center" id="beranda">
@@ -10,7 +10,7 @@
             </div>
             <h1 class="hero-title" data-animate-text>Desa Sungai Bakau Kecil</h1>
             <p class="hero-subtitle lead mx-auto text-white mb-4" style="max-width:820px;" data-animate-text>
-                Kecamatan Mempawah Hilir, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
+                Kecamatan Mempawah Timur, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
             </p>
             <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
                 <div class="sync-wrap text-white small fw-semibold" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-duration="800">

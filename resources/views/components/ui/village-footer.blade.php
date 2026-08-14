@@ -1,6 +1,6 @@
 @props([
     'villageName' => 'Desa Sungai Bakau Kecil',
-    'districtName' => 'Kecamatan Mempawah Hilir',
+    'districtName' => 'Kecamatan Mempawah Timur',
     'regencyName' => 'Kabupaten Mempawah',
     'address' => 'Jl. Raya Senggiring RT.003 RW.001, Kode Pos 78919',
     'email' => 'desasungaibakaukecil2019@gmail.com',

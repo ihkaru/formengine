@@ -3,7 +3,7 @@
     'description' => 'Portal Resmi Desa Cantik 2026 - BPS Kabupaten Mempawah',
     'extraHead' => '',
     'villageName' => 'Desa Sungai Bakau Kecil',
-    'districtName' => 'Kecamatan Mempawah Hilir',
+    'districtName' => 'Kecamatan Mempawah Timur',
     'address' => 'Jl. Raya Senggiring RT.003 RW.001, Kode Pos 78919',
     'email' => 'desasungaibakaukecil2019@gmail.com'
 ])
