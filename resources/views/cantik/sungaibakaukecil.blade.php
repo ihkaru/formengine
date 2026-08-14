@@ -2325,6 +2325,58 @@
         }
 
         // ==========================================
+        // FILTER & SEARCH APARAT DESA
+        // ==========================================
+        var currentAparatCat = 'all';
+        function filterAparatCards(cat, btn) {
+            currentAparatCat = cat;
+            var buttons = document.querySelectorAll('#aparat-filter-buttons button');
+            buttons.forEach(function(b) {
+                b.classList.remove('active', 'btn-primary');
+                if (!b.classList.contains('btn-outline-primary') && !b.classList.contains('btn-outline-info') && !b.classList.contains('btn-outline-warning') && !b.classList.contains('btn-outline-secondary')) {
+                    b.classList.add('btn-outline-primary');
+                }
+            });
+            btn.classList.add('active', 'btn-primary');
+            btn.classList.remove('btn-outline-primary', 'btn-outline-info', 'btn-outline-warning', 'btn-outline-secondary');
+            applyAparatFilter();
+        }
+
+        function searchAparatCards(query) {
+            applyAparatFilter(query ? query.trim().toLowerCase() : '');
+        }
+
+        function applyAparatFilter(searchQuery) {
+            if (searchQuery === undefined) {
+                var searchInput = document.getElementById('search-aparat');
+                searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
+            }
+            var items = document.querySelectorAll('.aparat-card-item');
+            var visibleCount = 0;
+            items.forEach(function(el) {
+                var cat = el.getAttribute('data-cat');
+                var name = el.getAttribute('data-name') || '';
+                var role = el.getAttribute('data-role') || '';
+                var matchCat = (currentAparatCat === 'all' || cat === currentAparatCat);
+                var matchSearch = (!searchQuery || name.indexOf(searchQuery) !== -1 || role.indexOf(searchQuery) !== -1);
+                if (matchCat && matchSearch) {
+                    el.classList.remove('d-none');
+                    visibleCount++;
+                } else {
+                    el.classList.add('d-none');
+                }
+            });
+            var noFound = document.getElementById('no-aparat-found');
+            if (noFound) {
+                if (visibleCount === 0) {
+                    noFound.classList.remove('d-none');
+                } else {
+                    noFound.classList.add('d-none');
+                }
+            }
+        }
+
+        // ==========================================
         // IMAGE PREVIEW MODAL HANDLER
         // ==========================================
         function openImagePreviewModal(imageSrc, title, caption) {
