@@ -1,7 +1,11 @@
 @props([
     'title' => 'Portal Desa Cantik 2026 - BPS Kabupaten Mempawah',
     'description' => 'Portal Resmi Desa Cantik 2026 - BPS Kabupaten Mempawah',
-    'extraHead' => ''
+    'extraHead' => '',
+    'villageName' => 'Desa Sungai Bakau Kecil',
+    'districtName' => 'Kecamatan Mempawah Hilir',
+    'address' => 'Jl. Raya Senggiring RT.003 RW.001, Kode Pos 78919',
+    'email' => 'desasungaibakaukecil2019@gmail.com'
 ])
 <!DOCTYPE html>
 <html lang="id">
@@ -315,11 +319,12 @@
 
     {{ $slot }}
 
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <p class="mb-0 text-muted small">&copy; 2026 BPS Kabupaten Mempawah &amp; Pemerintah Desa — Portal Desa Cantik.</p>
-        </div>
-    </footer>
+    <x-ui.village-footer 
+        :village-name="$villageName"
+        :district-name="$districtName"
+        :address="$address"
+        :email="$email"
+    />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
