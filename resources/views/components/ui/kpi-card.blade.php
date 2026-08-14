@@ -4,9 +4,12 @@
     'id' => 'kpi-val',
     'subId' => '',
     'subLabel' => '',
-    'subColor' => 'text-primary'
+    'subColor' => 'text-primary',
+    'delay' => 0,
+    'aos' => 'fade-up',
+    'duration' => 800
 ])
-<div class="col-6 col-md-4 col-lg-2">
+<div class="col-6 col-md-4 col-lg-2" data-aos="{{ $aos }}" data-aos-delay="{{ $delay }}" data-aos-duration="{{ $duration }}">
     <div class="kpi-card">
         <div class="d-flex justify-content-between align-items-center mb-2">
             <small class="text-muted fw-bold text-uppercase">{{ $title }}</small>

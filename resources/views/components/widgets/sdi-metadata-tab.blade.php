@@ -5,7 +5,7 @@
     'varFasCount' => 15,
     'hideLansia' => false
 ])
-<div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white">
+<div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" data-aos="fade-up" data-aos-duration="850">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
         <h4 class="fw-bold text-primary mb-0"><i class="fas fa-file-contract me-2"></i>Metadata Statistik Sektoral (SDI 2026)</h4>
         <span class="badge bg-success">Satu Data Indonesia Compliant</span>

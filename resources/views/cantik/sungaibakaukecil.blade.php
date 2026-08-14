@@ -41,14 +41,14 @@
 
     <main class="container my-5">
 
-        <!-- KPI Cards (Reusable Component) -->
-        <div class="row g-4 mb-5" data-aos="fade-up" data-aos-duration="800">
-            <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" />
-            <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" />
-            <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" />
-            <x-ui.kpi-card title="Penduduk Lansia" icon="fa-user-clock" id="kpi-lansia" sub-id="kpi-pct-lansia" sub-label="Proporsi" sub-color="text-warning" />
-            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH/BPNT/BLT" />
-            <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terinventarisasi" />
+        <!-- KPI Cards (Reusable Component with Staggered Delays) -->
+        <div class="row g-4 mb-5">
+            <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" delay="100" aos="fade-up" />
+            <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" delay="200" aos="fade-up" />
+            <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" delay="300" aos="fade-up" />
+            <x-ui.kpi-card title="Penduduk Lansia" icon="fa-user-clock" id="kpi-lansia" sub-id="kpi-pct-lansia" sub-label="Proporsi" sub-color="text-warning" delay="400" aos="fade-up" />
+            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH/BPNT/BLT" delay="500" aos="fade-up" />
+            <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terinventarisasi" delay="600" aos="fade-up" />
         </div>
 
         <!-- Metadata SDI 2026 (Reusable Component) -->
@@ -57,9 +57,9 @@
         <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
         <x-widgets.flashcard-deck village-name="Desa Sungai Bakau Kecil" title="Flashcard Trivia & Insights Data Desa" />
 
-        <!-- Charts -->
+        <!-- Charts (Staggered Slide Left & Right) -->
         <div class="row g-4 mb-5">
-            <div class="col-lg-8">
+            <div class="col-lg-8" data-aos="fade-right" data-aos-delay="150" data-aos-duration="900">
                 <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
                     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                         <div>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4" data-aos="fade-left" data-aos-delay="300" data-aos-duration="900">
                 <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
                     <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-pie me-2 text-success"></i>Kategori Fasilitas Desa</h5>
                     <canvas id="chartFasilitas" style="max-height:350px;"></canvas>
