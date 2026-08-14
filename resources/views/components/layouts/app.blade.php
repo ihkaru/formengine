@@ -278,35 +278,7 @@
             to { transform: translateY(0); }
         }
 
-        /* Smooth Slide Animations */
-        [data-aos="slide-up"] {
-            transform: translateY(50px);
-            opacity: 0;
-            transition-property: transform, opacity;
-        }
-        [data-aos="slide-up"].aos-animate {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        [data-aos="slide-right"] {
-            transform: translateX(-50px);
-            opacity: 0;
-            transition-property: transform, opacity;
-        }
-        [data-aos="slide-right"].aos-animate {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        [data-aos="slide-left"] {
-            transform: translateX(50px);
-            opacity: 0;
-            transition-property: transform, opacity;
-        }
-        [data-aos="slide-left"].aos-animate {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    </style>
+        </style>
     {{ $extraHead }}
 </head>
 <body>
@@ -324,19 +296,16 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Inisialisasi AOS Anti-Jitter (once: true, debounceDelay, throttleDelay, offset terkalibrasi)
+            // Inisialisasi AOS standar murni persis seperti Desa Sejegi
             if (typeof AOS !== "undefined") {
                 AOS.init({
                     once: true,
-                    duration: 900,
-                    offset: 90,
-                    easing: "ease-out-cubic",
-                    debounceDelay: 50,
-                    throttleDelay: 99
+                    duration: 1000,
+                    offset: 100
                 });
             }
 
-            // Animasi teks per kata (data-animate-text)
+            // Animasi teks per kata (data-animate-text) persis seperti Desa Sejegi
             const textElements = document.querySelectorAll('[data-animate-text]');
             textElements.forEach(textEl => {
                 const text = textEl.textContent.trim();
@@ -349,20 +318,12 @@
                 textEl.innerHTML = newContent.trim();
             });
 
-            // Efek Parallax Presisi Seamless (Mencegah Shift/Lompat Background)
+            // Efek Parallax Persis seperti Desa Sejegi
             const heroSection = document.querySelector('.hero-section');
             if (heroSection) {
-                let ticking = false;
                 window.addEventListener('scroll', function() {
-                    if (!ticking) {
-                        window.requestAnimationFrame(function() {
-                            const scrollPos = window.pageYOffset;
-                            // Menjaga titik jangkar tetap di 50% (tengah) dan menggeser relatif secara mulus
-                            heroSection.style.backgroundPositionY = `calc(50% + ${scrollPos * 0.35}px)`;
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
+                    const scrollPos = window.pageYOffset;
+                    heroSection.style.backgroundPositionY = `calc(50% + ${scrollPos * 0.4}px)`;
                 }, { passive: true });
             }
         });
