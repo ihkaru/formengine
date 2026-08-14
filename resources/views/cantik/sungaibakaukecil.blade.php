@@ -506,8 +506,11 @@
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
                                     <button type="button" class="btn btn-sm btn-info text-dark rounded-pill extra-small fw-bold" data-bs-toggle="modal" data-bs-target="#modalMetadataSDI">
-                                        <i class="fas fa-eye me-1"></i> Pratinjau Metadata Lengkap (3 Tab)
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Metadata (3 Tab)
                                     </button>
+                                    <a href="https://drive.google.com/file/d/1AS3gtBHXqqZv0K-rglbR5aHlAg1Y8FD4/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success rounded-pill extra-small fw-bold">
+                                        <i class="fas fa-file-pdf me-1"></i> Unduh PDF Dokumen Metadata
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-lg-5">
@@ -1742,7 +1745,12 @@
                         </h5>
                         <p class="text-muted extra-small mb-0">Dokumen standardisasi penyelenggaraan statistik sektoral sesuai kaidah Satu Data Indonesia &amp; BPS.</p>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="https://drive.google.com/file/d/1AS3gtBHXqqZv0K-rglbR5aHlAg1Y8FD4/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill px-3 fw-bold shadow-sm d-none d-sm-inline-flex align-items-center">
+                            <i class="fas fa-file-pdf me-1"></i> Unduh PDF Resmi
+                        </a>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
                 </div>
                 <div class="modal-body p-4">
                     <!-- Nav Tabs for Metadata Types -->
@@ -1951,9 +1959,14 @@
 
                     </div>
                 </div>
-                <div class="modal-footer border-top bg-light px-4 py-2 justify-content-between">
+                <div class="modal-footer border-top bg-light px-4 py-2 justify-content-between flex-wrap gap-2">
                     <span class="text-muted extra-small"><i class="fas fa-shield-alt text-success me-1"></i> Standar Metadata Satu Data Indonesia (SDI) BPS Kab. Mempawah &bull; 100% Privacy Compliant</span>
-                    <button type="button" class="btn btn-sm btn-secondary rounded-pill px-4 fw-semibold" data-bs-dismiss="modal">Tutup</button>
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="https://drive.google.com/file/d/1AS3gtBHXqqZv0K-rglbR5aHlAg1Y8FD4/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill px-3 fw-bold shadow-sm">
+                            <i class="fas fa-download me-1"></i> Unduh Dokumen PDF
+                        </a>
+                        <button type="button" class="btn btn-sm btn-secondary rounded-pill px-4 fw-semibold" data-bs-dismiss="modal">Tutup</button>
+                    </div>
                 </div>
             </div>
         </div>

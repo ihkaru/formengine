@@ -3,12 +3,21 @@
     'rtCount' => 37,
     'varRtCount' => 26,
     'varFasCount' => 15,
-    'hideLansia' => false
+    'hideLansia' => false,
+    'pdfUrl' => 'https://drive.google.com/file/d/1AS3gtBHXqqZv0K-rglbR5aHlAg1Y8FD4/view?usp=sharing'
 ])
 <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" data-aos="fade-up" data-aos-duration="1000" data-aos-duration="850">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-        <h4 class="fw-bold text-primary mb-0"><i class="fas fa-file-contract me-2"></i>Metadata Statistik Sektoral (SDI 2026)</h4>
-        <span class="badge bg-success">Satu Data Indonesia Compliant</span>
+        <div>
+            <h4 class="fw-bold text-primary mb-1"><i class="fas fa-file-contract me-2"></i>Metadata Statistik Sektoral (SDI 2026)</h4>
+            <p class="text-muted small mb-0">Standardisasi Satu Data Indonesia: MS-Kegiatan, MS-Variabel, dan MS-Indikator {{ $villageName }}.</p>
+        </div>
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <a href="{{ $pdfUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill px-3 fw-bold shadow-sm">
+                <i class="fas fa-file-pdf me-1 text-white"></i> Unduh Dokumen Metadata (PDF)
+            </a>
+            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 fw-semibold">Satu Data Indonesia Compliant</span>
+        </div>
     </div>
     <ul class="nav nav-tabs border-bottom mb-4 flex-nowrap overflow-x-auto text-nowrap" id="metadataTab" role="tablist">
         <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#kegiatan" type="button">I. Metadata Kegiatan</button></li>
