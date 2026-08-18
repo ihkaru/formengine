@@ -59,7 +59,7 @@
         <x-widgets.sdi-metadata-tab village-name="Desa Pasir Palembang" :rt-count="14" :var-rt-count="26" :var-fas-count="15" :hide-lansia="true" />
 
         <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
-        <x-widgets.flashcard-deck village-name="Desa Pasir Palembang" title="Flashcard Trivia &amp; Insights Data Desa Pasir Palembang" />
+        <x-widgets.flashcard-deck village-name="Desa Pasir Palembang" title="Flashcard Trivia & Insights Data Desa Pasir Palembang" />
 
         <!-- Dukungan Pemkab & Pembinaan Sektoral (Reusable Component) -->
         <x-ui.dukungan-pemkab village-name="Desa Pasir Palembang" year="2026" aos="fade-up" />
@@ -755,21 +755,23 @@
                     <p class="text-muted small mb-0">Rincian data agregat 14 RT dan perhitungan 8 Indikator Statistik Sektoral (SDI 2026).</p>
                 </div>
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <div class="btn-group" role="group" aria-label="Mode Tabel RT">
-                        <button type="button" class="btn btn-primary rounded-pill px-3 fw-semibold active" id="btn-mode-variabel" onclick="switchRTTableMode('variabel')">
-                            <i class="fas fa-list me-1"></i> Mode Variabel Mentah
-                        </button>
-                        <button type="button" class="btn btn-outline-success rounded-pill px-3 fw-semibold" id="btn-mode-indikator" onclick="switchRTTableMode('indikator')">
-                            <i class="fas fa-chart-line me-1"></i> Mode 8 Indikator SDI
-                        </button>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="exportRTToExcel()">
+                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 py-2 fw-bold shadow-sm" onclick="exportRTToExcel()">
                         <i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)
                     </button>
-                    <div class="input-group input-group-sm" style="width: 220px;">
-                        <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
-                        <input type="text" id="search-rt" class="form-control border-start-0 bg-light" placeholder="Cari Nama RT..." onkeyup="filterRTTable()">
-                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <div class="col-md-4 col-12">
+                    <input type="text" id="search-rt" class="form-control form-control-sm rounded-pill" placeholder="Cari Nama RT / Ketua RT..." onkeyup="filterRTTable()">
+                </div>
+                <div class="btn-group btn-group-sm rounded-pill p-1 bg-light border text-nowrap flex-wrap flex-sm-nowrap" role="group">
+                    <button type="button" class="btn btn-primary rounded-pill px-3 fw-semibold active" id="btn-mode-variabel" onclick="switchRTTableMode('variabel')">
+                        <i class="fas fa-list me-1"></i> Variabel Mentah
+                    </button>
+                    <button type="button" class="btn btn-outline-success rounded-pill px-3 fw-semibold" id="btn-mode-indikator" onclick="switchRTTableMode('indikator')">
+                        <i class="fas fa-chart-line me-1"></i> 8 Indikator SDI Per RT
+                    </button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -802,14 +804,13 @@
                     <p class="text-muted small mb-0">Daftar sarana ibadah, sekolah, posyandu, dan kantor pemerintahan di Pasir Palembang.</p>
                 </div>
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold shadow-sm" onclick="exportFasToExcel()">
+                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 py-2 fw-bold shadow-sm" onclick="exportFasToExcel()">
                         <i class="fas fa-file-excel me-1"></i> Unduh Data Excel (.xlsx)
                     </button>
-                    <div class="input-group input-group-sm" style="width: 240px;">
-                        <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
-                        <input type="text" id="search-fas" class="form-control border-start-0 bg-light" placeholder="Cari Fasilitas / Kategori..." onkeyup="filterFasTable()">
-                    </div>
                 </div>
+            </div>
+            <div class="mb-3 col-md-4 col-12">
+                <input type="text" id="search-fas" class="form-control form-control-sm rounded-pill" placeholder="Cari Nama Fasilitas / Kategori..." onkeyup="filterFasTable()">
             </div>
             <div class="table-responsive">
                 <table class="table table-hover align-middle small text-nowrap" id="table-fas">

@@ -107,11 +107,11 @@
 
         /* 3D Flip Flashcards & Swiper Styling */
         .swiper-flashcards {
-            padding: 10px 5px 45px 5px !important;
+            padding: 8px 4px 38px 4px !important;
         }
         .flashcard-container {
             perspective: 1000px;
-            height: 330px;
+            height: 260px;
             cursor: pointer;
             user-select: none;
         }
@@ -119,9 +119,9 @@
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
-            border-radius: 20px;
+            border-radius: 18px;
         }
         .flashcard-container.flipped .flashcard-inner {
             transform: rotateY(180deg);
@@ -132,12 +132,12 @@
             height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            border-radius: 20px;
-            padding: 22px;
+            border-radius: 18px;
+            padding: 18px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
             border: 1px solid rgba(0,0,0,0.08);
             overflow-y: auto;
         }
@@ -158,20 +158,24 @@
             background: linear-gradient(145deg, #991b1b 0%, #b91c1c 100%);
         }
         .flashcard-badge {
-            font-size: 0.72rem;
+            font-size: 0.70rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 50px;
         }
         .btn-fc-filter {
             white-space: nowrap !important;
             flex-shrink: 0 !important;
+            font-size: 0.80rem;
+            padding: 5px 14px;
+            border-radius: 50px;
+            transition: all 0.2s ease;
         }
         .swiper-nav-btn {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: white;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -186,6 +190,72 @@
             background: var(--primary);
             color: white;
             transform: scale(1.05);
+        }
+
+        /* Modern SDI Table & Container Responsiveness */
+        .table-responsive {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            overflow-y: auto !important;
+            max-height: 520px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            -webkit-overflow-scrolling: touch;
+        }
+        .table-responsive table {
+            margin-bottom: 0 !important;
+            width: 100%;
+        }
+        .table th {
+            font-size: 0.80rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            background-color: #f8fafc !important;
+            color: #334155;
+            padding: 11px 14px;
+            vertical-align: middle;
+            border-bottom: 2px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .table td {
+            font-size: 0.83rem;
+            padding: 10px 14px;
+            vertical-align: middle;
+            color: #1e293b;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .table tbody tr {
+            transition: background-color 0.15s ease;
+        }
+        .table tbody tr:hover {
+            background-color: #f8fafc !important;
+        }
+        .table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Sleek scrollbar styling for tables & pills */
+        .table-responsive::-webkit-scrollbar,
+        #flashcard-filter-container::-webkit-scrollbar,
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 5px;
+            width: 5px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb,
+        #flashcard-filter-container::-webkit-scrollbar-thumb,
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .table-responsive::-webkit-scrollbar-track,
+        #flashcard-filter-container::-webkit-scrollbar-track,
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f8fafc;
         }
 
         /* Mobile Adjustments for Small Screens (< 576px) — iPhone SE, Galaxy A Series */
@@ -219,12 +289,19 @@
             .kpi-card h3 { font-size: 1.3rem !important; }
             .kpi-icon { width: 38px !important; height: 38px !important; font-size: 1.1rem !important; }
 
-            /* Flashcards */
-            .flashcard-container { height: 320px !important; }
-            .flashcard-front, .flashcard-back { padding: 14px !important; }
-            .flashcard-front h6 { font-size: 0.88rem !important; }
-            .flashcard-back p { font-size: 0.82rem !important; }
-            .btn-fc-filter { font-size: 0.76rem !important; padding: 0.25rem 0.75rem !important; }
+            /* Flashcards Mobile */
+            .flashcard-container { height: 230px !important; }
+            .flashcard-front, .flashcard-back { padding: 13px 14px !important; border-radius: 14px !important; }
+            .flashcard-front h6 { font-size: 0.85rem !important; line-height: 1.35 !important; }
+            .flashcard-back p { font-size: 0.78rem !important; line-height: 1.4 !important; }
+            .flashcard-badge { font-size: 0.65rem !important; padding: 3px 8px !important; }
+            .btn-fc-filter { font-size: 0.72rem !important; padding: 4px 10px !important; }
+            .swiper-flashcards { padding-bottom: 25px !important; }
+
+            /* Table Mobile */
+            .table-responsive { max-height: 420px !important; border-radius: 10px !important; }
+            .table th { font-size: 0.70rem !important; padding: 8px 10px !important; }
+            .table td { font-size: 0.75rem !important; padding: 8px 10px !important; }
 
             /* Map */
             #map { height: 300px !important; }

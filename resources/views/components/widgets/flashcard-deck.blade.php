@@ -4,23 +4,23 @@
     'badgeText' => 'Interactive Gimmick'
 ])
 <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white overflow-hidden" data-aos="fade-up" data-aos-duration="1000" data-aos-duration="850">
-    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <div class="d-flex justify-content-between align-items-start align-items-md-center mb-3 flex-wrap gap-2">
         <div>
             <div class="d-flex align-items-center gap-2 mb-1">
                 <span class="badge bg-warning text-dark rounded-pill fw-bold"><i class="fas fa-gamepad me-1"></i> {{ $badgeText }}</span>
                 <span class="badge bg-primary-subtle text-primary rounded-pill fw-bold" id="flashcards-count-badge">20 Flashcard</span>
             </div>
-            <h4 class="fw-bold text-dark mb-1"><i class="fas fa-clone me-2 text-primary"></i>{{ $title }}</h4>
+            <h4 class="fw-bold text-dark mb-1"><i class="fas fa-clone me-2 text-primary"></i>{!! $title !!}</h4>
             <p class="text-muted small mb-0">Uji pemahaman Anda mengenai 20 fakta &amp; rekomendasi perbaikan {{ $villageName }} berbasis data live terkini.</p>
         </div>
-        <div class="d-flex align-items-center gap-2 flex-wrap">
-            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-bold" onclick="shuffleFlashcards()">
+        <div class="d-flex align-items-center gap-2 flex-wrap w-100 w-md-auto justify-content-start justify-content-md-end mt-2 mt-md-0">
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-bold flex-fill flex-md-grow-0" style="font-size: 0.76rem;" onclick="shuffleFlashcards()">
                 <i class="fas fa-random me-1"></i> Acak Kartu
             </button>
-            <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold" onclick="flipAllFlashcards(true)">
+            <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold flex-fill flex-md-grow-0" style="font-size: 0.76rem;" onclick="flipAllFlashcards(true)">
                 <i class="fas fa-eye me-1"></i> Buka Semua
             </button>
-            <button class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-bold" onclick="resetFlashcards()">
+            <button class="btn btn-sm btn-outline-dark rounded-pill px-3 fw-bold flex-fill flex-md-grow-0" style="font-size: 0.76rem;" onclick="resetFlashcards()">
                 <i class="fas fa-undo me-1"></i> Reset
             </button>
         </div>
