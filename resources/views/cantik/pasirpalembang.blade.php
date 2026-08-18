@@ -7,9 +7,9 @@
     email="pasirpalembang@mempawahkab.go.id"
 >
 
-    <!-- Hero Section with Sejegi-style Parallax & Overlay -->
-    <header class="hero-section text-center" id="beranda" style="background: linear-gradient(135deg, rgba(6,78,59,0.92) 0%, rgba(13,148,136,0.88) 100%), url('{{ asset('images/pasirpalembang/kantor-desa.webp') }}') center/cover no-repeat;">
-        <div class="hero-overlay"></div>
+    <!-- Hero Section with Parallax & Overlay (Foto Kantor Desa Pasir Palembang) -->
+    <header class="hero-section text-center position-relative overflow-hidden" id="beranda" style="background-image: url('{{ asset('images/pasirpalembang/kantor-desa.webp') }}'); background-position: center; background-size: cover; background-repeat: no-repeat;">
+        <div class="hero-overlay" style="background: linear-gradient(135deg, rgba(6, 40, 32, 0.72) 0%, rgba(13, 100, 90, 0.68) 100%);"></div>
         <div class="container hero-content">
             <div class="d-flex justify-content-center gap-2 mb-3" data-aos="fade-down" data-aos-duration="900">
                 <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold shadow-sm"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
