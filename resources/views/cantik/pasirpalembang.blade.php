@@ -164,6 +164,7 @@
                     <div class="input-group input-group-sm" style="width: 240px;">
                         <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
                         <input type="text" id="search-fas" class="form-control border-start-0 bg-light" placeholder="Cari Fasilitas / Kategori..." onkeyup="filterFasTable()">
+                    </div>
                 </div>
             </div>
             <div class="table-responsive">
@@ -242,6 +243,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+
         <!-- Produk Statistik & SOP Permintaan Data -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-primary" id="sop-layanan" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
