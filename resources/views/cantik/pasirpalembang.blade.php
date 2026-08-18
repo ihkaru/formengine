@@ -65,7 +65,7 @@
         <x-ui.dukungan-pemkab village-name="Desa Pasir Palembang" year="2026" aos="fade-up" />
 
         <!-- Visualisasi Grafik Demografi & Fasilitas -->
-        <div class="row g-4 mb-5">
+        <div class="row g-4 mb-5" data-aos="fade-up" data-aos-duration="1000">
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
                     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
@@ -90,7 +90,7 @@
         </div>
 
         <!-- Map Section -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="peta">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="peta" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-map-marked-alt me-2 text-primary"></i>Peta Persebaran Sarana &amp; Fasilitas Desa</h4>
@@ -104,7 +104,7 @@
         </div>
 
         <!-- Tabel Potensi RT & Indikator SDI -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="tabel-rt">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="tabel-rt" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-table me-2 text-primary"></i>Tabel Potensi Kewilayahan RT</h4>
@@ -151,7 +151,7 @@
         </div>
 
         <!-- Tabel Fasilitas Umum -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="tabel-fasilitas">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="tabel-fasilitas" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-building me-2 text-primary"></i>Inventarisasi Fasilitas Umum &amp; Infrastruktur</h4>
@@ -186,11 +186,8 @@
             </div>
         </div>
 
-        <!-- Dukungan Pemkab (Reusable Component) -->
-        <x-ui.dukungan-pemkab village-name="Desa Pasir Palembang" year="2026" />
-
         <!-- Publikasi Resmi & Booklet -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="publikasi">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="publikasi" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-book-open me-2 text-primary"></i>Publikasi Resmi &amp; Booklet Profil Desa 2026</h4>
@@ -246,7 +243,7 @@
                 </div>
             </div>
         <!-- Produk Statistik & SOP Permintaan Data -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-primary" id="sop-layanan">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-primary" id="sop-layanan" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-concierge-bell me-2 text-primary"></i>Produk Statistik &amp; SOP Layanan Data Publik</h4>
@@ -352,7 +349,7 @@
         </div>
 
         <!-- Section: Infografis Tematik Desa Pasir Palembang 2026 -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="infografis">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="infografis" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-chart-pie me-2 text-success"></i>Infografis Tematik Desa Pasir Palembang 2026</h4>
@@ -492,7 +489,7 @@
         </div>
 
         <!-- Section: Galeri Dokumentasi Kegiatan Pendataan -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-warning" id="dokumentasi">
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-warning" id="dokumentasi" data-aos="fade-up" data-aos-duration="1000">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan</h4>
