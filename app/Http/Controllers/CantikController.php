@@ -181,11 +181,15 @@ class CantikController extends Controller
 
             $l = (int)($row['Jumlah Orang Laki-Laki di Rumah'] ?? $row['Jumlah_Penduduk_Laki_Laki'] ?? $row['Jumlah_Orang_Laki_Dirumah'] ?? 0);
             $p = (int)($row['Jumlah Orang Perempuan di Rumah'] ?? $row['Jumlah_Penduduk_Perempuan'] ?? $row['Jumlah_Orang_Perempuan_Dirumah'] ?? 0);
-            $kk = (int)($row['Jumlah Kartu Keluarga'] ?? $row['Jumlah_Kartu_Keluarga'] ?? $row['Jumlah_KK'] ?? 1);
+            $kk = (int)($row['Jumlah Kartu Keluarga'] ?? $row['Jumlah_Kartu_Keluarga'] ?? $row['Jumlah_KK'] ?? 0);
 
             $aggregated[$rtName]['Jumlah_Penduduk_Laki_Laki'] += $l;
             $aggregated[$rtName]['Jumlah_Penduduk_Perempuan'] += $p;
-            $aggregated[$rtName]['Jumlah_KK'] += ($kk > 0 ? $kk : 1);
+            if (($l + $p) > 0) {
+                $aggregated[$rtName]['Jumlah_KK'] += ($kk > 0 ? $kk : 1);
+            } else {
+                $aggregated[$rtName]['Jumlah_KK'] += ($kk > 0 ? $kk : 0);
+            }
 
             $lansia = (int)($row['Jumlah Penduduk Berusia 65-74'] ?? $row['Jumlah_Penduduk_Lansia'] ?? 0)
                     + (int)($row['Jumlah Penduduk Berusia 75+'] ?? 0);
