@@ -866,64 +866,137 @@
             </div>
         </div>
 
-        <!-- Galeri Dokumentasi Lapangan -->
-        <section class="container mb-5" id="dokumentasi" data-aos="fade-up" data-aos-duration="1000">
-            <div class="text-center mb-4">
-                <span class="badge bg-primary-subtle text-primary fw-semibold mb-2 px-3 py-2" style="font-size:0.78rem; border-radius:20px;"><i class="fas fa-camera me-1"></i> Dokumentasi Kegiatan</span>
-                <h3 class="fw-bold">Foto Kegiatan Pendataan Kelurahan Cantik 2026</h3>
-                <p class="text-muted small">Rangkaian kegiatan pendataan potensi wilayah dan inventarisasi fasilitas di Kelurahan Pasir Wan Salim.</p>
+        <!-- Galeri Dokumentasi Kegiatan (Bukti Proses Pembinaan & Pencacahan Agen Statistik) -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="dokumentasi" data-aos="fade-up" data-aos-duration="1000">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan</h4>
+                    <p class="text-muted small mb-0">Rangkaian pelatihan, pengumpulan data CAPI di lapangan, verifikasi data, dan deklarasi Agen Statistik Kelurahan Pasir Wan Salim.</p>
+                </div>
+                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 font-monospace fw-bold">6 Foto Dokumentasi 2026</span>
             </div>
             <div class="row g-3">
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}', 'Kantor Kelurahan Pasir Wan Salim', 'Tampak depan Kantor Kelurahan Pasir Wan Salim sebagai pusat koordinasi kegiatan Desa Cantik 2026.')">
-                        <div style="height:120px; overflow:hidden; border-radius:10px;">
-                            <picture><source srcset="{{{ asset('images/pasirwansalim/kantor-kelurahan.avif') }}}" type="image/avif"><source srcset="{{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}}" type="image/webp"><img src="{{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}}" class="w-100 h-100 object-fit-cover" alt="Kantor Kelurahan Pasir Wan Salim" loading="lazy" decoding="async" width="1000" height="750"></picture>
+                <!-- Foto 1: Kantor Kelurahan -->
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}', 'Kantor Kelurahan Pasir Wan Salim', 'Pusat koordinasi, sekretariat, dan posko pelayanan data Kelurahan Cantik Pasir Wan Salim 2026.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirwansalim/kantor-kelurahan.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" alt="Kantor Kelurahan Pasir Wan Salim" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
                         </div>
-                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Kantor Kelurahan</div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Kantor Kelurahan Pasir Wan Salim</h6>
+                            <p class="extra-small text-muted mb-0">Pusat koordinasi, sekretariat, dan posko pelayanan data Kelurahan Cantik 2026.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-left" data-aos-delay="150" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}', 'Wawancara CAPI Lapangan #1', 'Proses wawancara CAPI potensi keluarga di lapangan Kelurahan Pasir Wan Salim 2026.')">
-                        <div style="height:120px; overflow:hidden; border-radius:10px;">
-                            <picture><source srcset="{{{ asset('images/pasirwansalim/pendataan-capi-1.avif') }}}" type="image/avif"><source srcset="{{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}}" type="image/webp"><img src="{{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan" loading="lazy" decoding="async" width="1000" height="750"></picture>
+
+                <!-- Foto 2: Wawancara CAPI 1 -->
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="150" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}', 'Wawancara CAPI Lapangan #1', 'Pencacahan potensi keluarga dan pendataan karakteristik bangunan rumah tangga oleh Agen Statistik.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-1.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}" alt="Wawancara CAPI Lapangan #1" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
                         </div>
-                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Wawancara CAPI #1</div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Wawancara CAPI Lapangan #1</h6>
+                            <p class="extra-small text-muted mb-0">Pencacahan potensi keluarga dan karakteristik bangunan rumah tangga.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}', 'Wawancara CAPI Lapangan #2', 'Pengisian formulir potensi kewilayahan berbasis AppSheet secara langsung bersama responden.')">
-                        <div style="height:120px; overflow:hidden; border-radius:10px;">
-                            <picture><source srcset="{{{ asset('images/pasirwansalim/pendataan-capi-2.avif') }}}" type="image/avif"><source srcset="{{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}}" type="image/webp"><img src="{{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan #2" loading="lazy" decoding="async" width="1000" height="750"></picture>
+
+                <!-- Foto 3: Wawancara CAPI 2 -->
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}', 'Wawancara CAPI Lapangan #2', 'Wawancara langsung bersama warga menggunakan aplikasi CAPI AppSheet terintegrasi cloud Google Sheets.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-2.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}" alt="Wawancara CAPI Lapangan #2" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
                         </div>
-                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Wawancara CAPI #2</div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Wawancara CAPI Lapangan #2</h6>
+                            <p class="extra-small text-muted mb-0">Pengisian formulir potensi kewilayahan berbasis AppSheet bersama warga.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-left" data-aos-delay="250" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}', 'Wawancara CAPI Lapangan #3', 'Verifikasi data lapangan bersama aparatur RT Kelurahan Pasir Wan Salim.')">
-                        <div style="height:120px; overflow:hidden; border-radius:10px;">
-                            <picture><source srcset="{{{ asset('images/pasirwansalim/pendataan-capi-3.avif') }}}" type="image/avif"><source srcset="{{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}}" type="image/webp"><img src="{{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan #3" loading="lazy" decoding="async" width="1000" height="750"></picture>
+
+                <!-- Foto 4: Verifikasi Lapangan -->
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="250" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}', 'Verifikasi Data & Ground Check', 'Pemeriksaan ulang akurasi data dan konfirmasi karakteristik sosial-ekonomi bersama warga kelurahan.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-3.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}" alt="Verifikasi Data & Ground Check" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
                         </div>
-                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Verifikasi Lapangan</div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Verifikasi Data &amp; Ground Check</h6>
+                            <p class="extra-small text-muted mb-0">Pemeriksaan ulang akurasi data karakteristik sosial bersama warga.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}', 'Wawancara CAPI Lapangan #4', 'Dokumentasi kegiatan pendataan potensi kewilayahan menggunakan AppSheet Desa Cantik 2026.')">
-                        <div style="height:120px; overflow:hidden; border-radius:10px;">
-                            <picture><source srcset="{{{ asset('images/pasirwansalim/pendataan-capi-4.avif') }}}" type="image/avif"><source srcset="{{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}}" type="image/webp"><img src="{{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan #4" loading="lazy" decoding="async" width="1000" height="750"></picture>
+
+                <!-- Foto 5: Pendataan AppSheet -->
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}', 'Pendataan Mandiri AppSheet', 'Perekaman data potensi keluarga, kepemilikan BPJS, bansos, dan UMKM berbasis smartphone CAPI.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-4.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}" alt="Pendataan Mandiri AppSheet" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
                         </div>
-                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Pendataan AppSheet</div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Pendataan Mandiri AppSheet</h6>
+                            <p class="extra-small text-muted mb-0">Perekaman data potensi keluarga, BPJS, bansos, dan UMKM via CAPI.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-left" data-aos-delay="350" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Kelurahan Cantik 2026', 'Deklarasi resmi program Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026.')">
-                        <div style="height:120px; overflow:hidden; border-radius:10px;">
-                            <picture><source srcset="{{{ asset('images/pencanangan-2026.avif') }}}" type="image/avif"><source srcset="{{{ asset('images/pencanangan-2026.webp') }}}" type="image/webp"><img src="{{{ asset('images/pencanangan-2026.webp') }}}" class="w-100 h-100 object-fit-cover" alt="Pencanangan Kelurahan Cantik 2026" loading="lazy" decoding="async" width="1000" height="750"></picture>
+
+                <!-- Foto 6: Pencanangan 2026 -->
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="350" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Kelurahan Cantik 2026', 'Deklarasi resmi program Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 di Kantor Bupati.')">
+                        <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
+                            <picture>
+                                <source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pencanangan-2026.webp') }}" alt="Pencanangan Kelurahan Cantik 2026" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Klik Tampilan Besar
+                            </div>
                         </div>
-                        <div class="small fw-semibold mt-2 text-center text-dark text-truncate">Pencanangan 2026</div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-1">Pencanangan Kelurahan Cantik 2026</h6>
+                            <p class="extra-small text-muted mb-0">Deklarasi resmi Desa &amp; Kelurahan Cinta Statistik Kab. Mempawah 2026.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
     </main>
 
