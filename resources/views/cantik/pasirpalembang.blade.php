@@ -1,28 +1,36 @@
-<x-layouts.app title="Desa Pasir Palembang - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Pasir Palembang - BPS Kabupaten Mempawah">
+<x-layouts.app title="Desa Pasir Palembang - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Pasir Palembang - BPS Kabupaten Mempawah" district-name="Kecamatan Mempawah Timur">
 
-    <header class="page-header text-center position-relative overflow-hidden" style="background: linear-gradient(135deg, rgba(6,78,59,0.92) 0%, rgba(13,148,136,0.88) 100%), url('{{ asset('images/pasirpalembang/kantor-desa.webp') }}') center/cover no-repeat; padding: 70px 0;">
-        <div class="container">
-            <div class="d-flex justify-content-center gap-2 mb-3">
-                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
-                <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
+    <!-- Hero Section with Sejegi-style Parallax & Overlay -->
+    <header class="hero-section text-center" id="beranda" style="background: linear-gradient(135deg, rgba(6,78,59,0.92) 0%, rgba(13,148,136,0.88) 100%), url('{{ asset('images/pasirpalembang/kantor-desa.webp') }}') center/cover no-repeat;">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="d-flex justify-content-center gap-2 mb-3" data-aos="fade-down" data-aos-duration="900">
+                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold shadow-sm"><i class="fas fa-star me-1"></i> Desa Cantik 2026</span>
+                <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-bold shadow-sm"><i class="fas fa-database me-1"></i> AppSheet Live Data</span>
             </div>
-            <h1 class="fw-bold display-5 mb-2 text-white">Desa Pasir Palembang</h1>
-            <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;">
+            <h1 class="hero-title" data-animate-text>Desa Pasir Palembang</h1>
+            <p class="hero-subtitle lead mx-auto text-white mb-4" style="max-width:820px;" data-animate-text>
                 Kecamatan Mempawah Timur, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
             </p>
             <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
-                <div class="sync-wrap text-white small fw-semibold">
+                <div class="sync-wrap text-white small fw-semibold" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                     <i class="fas fa-sync fa-spin text-success" id="sync-icon"></i>
                     <span id="sync-status">Menghubungkan ke Google Sheets...</span>
                 </div>
-                <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold" onclick="loadDataFromSheets(true)">
+                <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold shadow-sm" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" onclick="loadDataFromSheets(true)">
                     <i class="fas fa-redo me-1"></i> Sync Sekarang
                 </button>
-                <a href="#sop-layanan" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                <a href="#infografis" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <i class="fas fa-chart-pie me-1"></i> Galeri Infografis
+                </a>
+                <a href="#sop-layanan" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                     <i class="fas fa-envelope me-1"></i> Permintaan Data
                 </a>
-                <a href="#publikasi" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                <a href="#publikasi" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
                     <i class="fas fa-book me-1"></i> Bukti Dukung 2026
+                </a>
+                <a href="#map" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">
+                    <i class="fas fa-map-marker-alt me-1"></i> Peta Fasilitas
                 </a>
             </div>
         </div>
@@ -30,14 +38,14 @@
 
     <main class="container my-5">
 
-        <!-- KPI Cards (Reusable Component) -->
+        <!-- KPI Cards (Reusable Component with Staggered Delays) -->
         <div class="row g-4 mb-5">
-            <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" />
-            <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" />
-            <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" />
-            <x-ui.kpi-card title="Putus Sekolah" icon="fa-user-graduate" id="kpi-putus" sub-label="Usia 7-18 Thn" sub-color="text-danger" />
-            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH/BPNT/BLT" />
-            <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terinventarisasi" />
+            <x-ui.kpi-card title="Total Penduduk" icon="fa-users" id="kpi-penduduk" sub-id="kpi-sexratio" sub-label="Sex Ratio" sub-color="text-primary" delay="100" aos="fade-up" />
+            <x-ui.kpi-card title="Rumah Tangga / KK" icon="fa-home" id="kpi-kk" sub-id="kpi-art" sub-label="ART Rata-rata" sub-color="text-success" delay="200" aos="fade-up" />
+            <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" delay="300" aos="fade-up" />
+            <x-ui.kpi-card title="Putus Sekolah" icon="fa-user-graduate" id="kpi-putus" sub-label="Usia 7-18 Thn" sub-color="text-danger" delay="400" aos="fade-up" />
+            <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH/BPNT/BLT" delay="500" aos="fade-up" />
+            <x-ui.kpi-card title="Fasilitas Umum" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terinventarisasi" delay="600" aos="fade-up" />
         </div>
 
         <!-- Metadata SDI 2026 (Reusable Component) -->
@@ -45,6 +53,9 @@
 
         <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
         <x-widgets.flashcard-deck village-name="Desa Pasir Palembang" title="Flashcard Trivia &amp; Insights Data Desa Pasir Palembang" />
+
+        <!-- Dukungan Pemkab & Pembinaan Sektoral (Reusable Component) -->
+        <x-ui.dukungan-pemkab village-name="Desa Pasir Palembang" year="2026" aos="fade-up" />
 
         <!-- Visualisasi Grafik Demografi & Fasilitas -->
         <div class="row g-4 mb-5">
@@ -527,8 +538,22 @@
             </div>
         </div>
 
+    </main>
+
     <!-- Modal Preview Foto Tampilan Besar (Lightbox Reusable Component) -->
     <x-ui.image-modal />
+
+    <!-- Full-Width 100% Screen Footer Component -->
+    <x-ui.village-footer
+        village-name="Desa Pasir Palembang"
+        district-name="Kecamatan Mempawah Timur"
+        regency-name="Kabupaten Mempawah"
+        address="Jl. Pelai - Pasir Palembang, Kode Pos 78919"
+        email="pasirpalembang@mempawahkab.go.id"
+        bps-url="https://mempawahkab.bps.go.id"
+        instagram-url="https://www.instagram.com/bpsmempawah"
+        youtube-url="https://www.youtube.com/@bpskabupatenmempawah"
+    />
 
     <!-- Script Logic -->
     <script>
