@@ -1,4 +1,11 @@
-<x-layouts.app title="Kelurahan Pasir Wan Salim - Desa Cinta Statistik 2026" description="Portal Resmi Kelurahan Cantik 2026 Pasir Wan Salim - BPS Kabupaten Mempawah">
+<x-layouts.app 
+    title="Kelurahan Pasir Wan Salim - Desa Cinta Statistik 2026" 
+    description="Portal Resmi Kelurahan Cantik 2026 Pasir Wan Salim - BPS Kabupaten Mempawah"
+    village-name="Kelurahan Pasir Wan Salim"
+    district-name="Kecamatan Mempawah Timur"
+    address="Jl. Pasir Wan Salim, Kode Pos 78919"
+    email="pasirwansalim@mempawahkab.go.id"
+>
 
     <header class="page-header text-center">
         <div class="container">

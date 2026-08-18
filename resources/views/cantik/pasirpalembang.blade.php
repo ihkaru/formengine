@@ -1,4 +1,11 @@
-<x-layouts.app title="Desa Pasir Palembang - Desa Cinta Statistik 2026" description="Portal Resmi Desa Cantik 2026 Desa Pasir Palembang - BPS Kabupaten Mempawah" district-name="Kecamatan Mempawah Timur">
+<x-layouts.app 
+    title="Desa Pasir Palembang - Desa Cinta Statistik 2026" 
+    description="Portal Resmi Desa Cantik 2026 Desa Pasir Palembang - BPS Kabupaten Mempawah" 
+    village-name="Desa Pasir Palembang"
+    district-name="Kecamatan Mempawah Timur"
+    address="Jl. Pelai - Pasir Palembang, Kode Pos 78919"
+    email="pasirpalembang@mempawahkab.go.id"
+>
 
     <!-- Hero Section with Sejegi-style Parallax & Overlay -->
     <header class="hero-section text-center" id="beranda" style="background: linear-gradient(135deg, rgba(6,78,59,0.92) 0%, rgba(13,148,136,0.88) 100%), url('{{ asset('images/pasirpalembang/kantor-desa.webp') }}') center/cover no-repeat;">
@@ -542,18 +549,6 @@
 
     <!-- Modal Preview Foto Tampilan Besar (Lightbox Reusable Component) -->
     <x-ui.image-modal />
-
-    <!-- Full-Width 100% Screen Footer Component -->
-    <x-ui.village-footer
-        village-name="Desa Pasir Palembang"
-        district-name="Kecamatan Mempawah Timur"
-        regency-name="Kabupaten Mempawah"
-        address="Jl. Pelai - Pasir Palembang, Kode Pos 78919"
-        email="pasirpalembang@mempawahkab.go.id"
-        bps-url="https://mempawahkab.bps.go.id"
-        instagram-url="https://www.instagram.com/bpsmempawah"
-        youtube-url="https://www.youtube.com/@bpskabupatenmempawah"
-    />
 
     <!-- Script Logic -->
     <script>
