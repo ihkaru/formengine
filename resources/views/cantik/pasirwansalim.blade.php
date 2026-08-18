@@ -57,7 +57,7 @@
         <x-widgets.sdi-metadata-tab village-name="Kelurahan Pasir Wan Salim" :rt-count="17" :var-rt-count="26" :var-fas-count="0" />
 
         <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
-        <x-widgets.flashcard-deck village-name="Kelurahan Pasir Wan Salim" title="Flashcard Trivia &amp; Wawasan Data Kelurahan" />
+        <x-widgets.flashcard-deck village-name="Kelurahan Pasir Wan Salim" title="Flashcard Trivia & Wawasan Data Kelurahan" />
 
         <!-- Charts Section -->
         <div class="row g-4 mb-5">
@@ -938,6 +938,9 @@
         var currentRTMode = 'variabel';
         var chartDemografiInstance = null;
         var chartBpjsInstance = null;
+        var flashcardsData = [];
+        var activeFcFilter = 'all';
+        var swiperFlashcards = null;
 
         document.addEventListener('DOMContentLoaded', function() {
             loadDataFromSheets();
@@ -1041,6 +1044,286 @@
 
             renderTableRT();
             renderCharts();
+            generateFlashcardsPasirWanSalim();
+        }
+
+        // ==========================================
+        // 3D FLIP FLASHCARDS GENERATOR (20 FAKTA KELURAHAN)
+        // ==========================================
+        function generateFlashcardsPasirWanSalim() {
+            if (!rawRTData || !rawRTData.length) return;
+
+            var totalL = 0, totalP = 0, totalKK = 0, totalBumbung = 0;
+            var totalLansia = 0, totalBansos = 0, totalUMKM = 0, totalBPJS = 0;
+            var totalPutusSekolah = 0;
+
+            var rtList = rawRTData.map(function(r) {
+                var l = parseInt(r.Jumlah_Penduduk_Laki_Laki || 0) || 0;
+                var p = parseInt(r.Jumlah_Penduduk_Perempuan || 0) || 0;
+                var kk = parseInt(r.Jumlah_KK || 0) || 0;
+                var bumbung = parseInt(r.Jumlah_Bumbung_Rumah || 0) || 0;
+                var lansia = parseInt(r.Jumlah_Penduduk_Lansia || 0) || 0;
+                var pkh = parseInt(r.Jumlah_Penerima_PKH || 0) || 0;
+                var bpnt = parseInt(r.Jumlah_Penerima_BPNT || 0) || 0;
+                var bansos = pkh + bpnt;
+                var umkm = parseInt(r.Jumlah_UMKM || 0) || 0;
+                var bpjs = parseInt(r.Jumlah_BPJS || 0) || 0;
+                var putus = parseInt(r.Jumlah_Penduduk_Putus_Sekolah || 0) || 0;
+
+                totalL += l;
+                totalP += p;
+                totalKK += kk;
+                totalBumbung += bumbung;
+                totalLansia += lansia;
+                totalBansos += bansos;
+                totalUMKM += umkm;
+                totalBPJS += bpjs;
+                totalPutusSekolah += putus;
+
+                return {
+                    Nama_RT: r.Nama_RT || '',
+                    Nama_Ketua_RT: r.Nama_Ketua_RT || ('Ketua ' + (r.Nama_RT || 'RT')),
+                    _totalPop: l + p,
+                    _l: l,
+                    _p: p,
+                    _kk: kk,
+                    _bumbung: bumbung,
+                    _lansia: lansia,
+                    _bansos: bansos,
+                    _umkm: umkm,
+                    _bpjs: bpjs,
+                    _putus: putus,
+                    _kepadatan: bumbung > 0 ? ((l + p) / bumbung) : 0
+                };
+            });
+
+            var totalPenduduk = totalL + totalP;
+            var sexRatio = totalP > 0 ? ((totalL / totalP) * 100).toFixed(2) : '104.30';
+            var artRata = totalKK > 0 ? (totalPenduduk / totalKK).toFixed(2) : '3.17';
+            var kepadatan = totalBumbung > 0 ? (totalPenduduk / totalBumbung).toFixed(2) : '3.85';
+            var pctLansia = totalPenduduk > 0 ? ((totalLansia / totalPenduduk) * 100).toFixed(2) : '7.62';
+            var pctBPJS = totalPenduduk > 0 ? ((totalBPJS / totalPenduduk) * 100).toFixed(1) : '86.1';
+
+            // Sorting for RT Rekor
+            var rtMaxPop = rtList.slice().sort(function(a,b) { return (b._totalPop||0) - (a._totalPop||0); })[0] || {};
+            var rtMinPop = rtList.slice().filter(function(r){ return (r._totalPop||0) > 0; }).sort(function(a,b) { return (a._totalPop||0) - (b._totalPop||0); })[0] || {};
+            var rtMaxKK = rtList.slice().sort(function(a,b) { return (b._kk||0) - (a._kk||0); })[0] || {};
+            var rtMaxPutus = rtList.slice().sort(function(a,b) { return (b._putus||0) - (a._putus||0); })[0] || {};
+            var rtMaxUMKM = rtList.slice().sort(function(a,b) { return (b._umkm||0) - (a._umkm||0); })[0] || {};
+            var rtMaxLansia = rtList.slice().sort(function(a,b) { return (b._lansia||0) - (a._lansia||0); })[0] || {};
+            var rtMaxBansos = rtList.slice().sort(function(a,b) { return (b._bansos||0) - (a._bansos||0); })[0] || {};
+            var rtMaxKepadatan = rtList.slice().filter(function(r){ return (r._bumbung||0) > 0; }).sort(function(a,b) { return (b._kepadatan||0) - (a._kepadatan||0); })[0] || {};
+            var rtZeroPutusCount = rtList.filter(function(r) { return (r._putus || 0) === 0; }).length;
+
+            flashcardsData = [
+                {
+                    id: 1, cat: 'demografi', tag: 'Total Populasi & Rasio', isPerbaikan: false,
+                    q: 'Berapa total populasi penduduk terdaftar & rasio jenis kelamin (Sex Ratio) di Kelurahan Pasir Wan Salim?',
+                    a: 'Total Penduduk: <strong>' + totalPenduduk.toLocaleString('id-ID') + ' Jiwa</strong> (' + totalL.toLocaleString('id-ID') + ' L & ' + totalP.toLocaleString('id-ID') + ' P). Sex Ratio kelurahan adalah <strong>' + sexRatio + '</strong> (ada ~' + sexRatio + ' Laki-laki per 100 Perempuan).'
+                },
+                {
+                    id: 2, cat: 'perbaikan', tag: '⚠️ Indikator #6 Putus Sekolah', isPerbaikan: true,
+                    q: 'Berapa jumlah anak usia sekolah (7-18 thn) yang teridentifikasi putus sekolah di Pasir Wan Salim?',
+                    a: '⚠️ Teridentifikasi total <strong>' + totalPutusSekolah + ' anak putus sekolah</strong> yang tersebar di 4 RT (RT 005, RT 007, RT 008, dan RT 009). Pemkel & BPS merekomendasikan intervensi Beasiswa Daerah & Program Kejar Paket A/B/C.'
+                },
+                {
+                    id: 3, cat: 'perbaikan', tag: '⚠️ Sebaran Kasus Putus Sekolah', isPerbaikan: true,
+                    q: 'Di manakah wilayah RT dengan konsentrasi anak putus sekolah tertinggi di kelurahan?',
+                    a: '⚠️ Kasus putus sekolah tertinggi berada di <strong>' + (rtMaxPutus.Nama_RT || 'RT 007 RW 04') + '</strong> dengan <strong>' + (rtMaxPutus._putus || 0) + ' anak</strong>, sementara <strong>' + rtZeroPutusCount + ' RT lainnya</strong> tercatat 0 kasus.'
+                },
+                {
+                    id: 4, cat: 'demografi', tag: 'Bumbung Rumah & Kepadatan', isPerbaikan: false,
+                    q: 'Berapa total fisik bumbung rumah di Pasir Wan Salim & rata-rata kepadatan huniannya?',
+                    a: 'Terdata sebanyak <strong>' + totalBumbung.toLocaleString('id-ID') + ' unit bumbung rumah</strong> dengan rata-rata kepadatan hunian <strong>' + kepadatan + ' jiwa per rumah</strong> di seluruh 17 RT.'
+                },
+                {
+                    id: 5, cat: 'perbaikan', tag: '⚠️ Solusi Intervensi Pendidikan', isPerbaikan: true,
+                    q: 'Bagaimana rekomendasi solusi strategis penanganan ' + totalPutusSekolah + ' anak putus sekolah di tingkat kelurahan?',
+                    a: '⚠️ Pemkab Mempawah & BPS merekomendasikan <strong>Program Gerakan Kembali Sekolah (GKS)</strong>, bantuan alat tulis, dan pendampingan orang tua penerima Bansos.'
+                },
+                {
+                    id: 6, cat: 'fasilitas', tag: 'UMKM Produktif', isPerbaikan: false,
+                    q: 'Berapa banyak pelaku UMKM produktif yang terdata aktif di Kelurahan Pasir Wan Salim?',
+                    a: 'Terdata sebanyak <strong>' + totalUMKM.toLocaleString('id-ID') + ' unit usaha UMKM produktif keluarga</strong> (kuliner pesisir, warung kelontong, dan industri rumahan hasil laut).'
+                },
+                {
+                    id: 7, cat: 'rekor', tag: 'RT Populasi Terbanyak', isPerbaikan: false,
+                    q: 'RT manakah yang memiliki jumlah penduduk terbanyak di Kelurahan Pasir Wan Salim?',
+                    a: '🏆 <strong>' + (rtMaxPop.Nama_RT || 'RT 007 RW 04') + '</strong> memiliki populasi tertinggi dengan <strong>' + (rtMaxPop._totalPop || 0) + ' jiwa penduduk</strong> (' + (rtMaxPop._kk || 0) + ' KK) dalam ' + (rtMaxPop._bumbung || 0) + ' rumah.'
+                },
+                {
+                    id: 8, cat: 'lansia', tag: 'Bantuan Sosial (Bansos)', isPerbaikan: false,
+                    q: 'Berapa total keluarga penerima bantuan sosial (Bansos) di Pasir Wan Salim?',
+                    a: 'Terdata sebanyak <strong>' + totalBansos.toLocaleString('id-ID') + ' kasus penerima Bansos</strong> (PKH & BPNT) yang tersaring secara tepat sasaran berbasis data terpadu SDI.'
+                },
+                {
+                    id: 9, cat: 'perbaikan', tag: '⚠️ Jaminan BPJS Kesehatan', isPerbaikan: true,
+                    q: 'Berapa capaian cakupan jaminan kesehatan BPJS masyarakat Pasir Wan Salim?',
+                    a: '⚠️ Sebanyak <strong>' + totalBPJS.toLocaleString('id-ID') + ' jiwa (' + pctBPJS + '%)</strong> telah memiliki jaminan BPJS. Pemkel mendorong Universal Health Coverage (UHC) bagi sisa warga yang belum terdata.'
+                },
+                {
+                    id: 10, cat: 'fasilitas', tag: 'Sentra UMKM Terbanyak', isPerbaikan: false,
+                    q: 'RT manakah yang memiliki konsentrasi unit usaha UMKM produktif terbanyak?',
+                    a: '🏆 <strong>' + (rtMaxUMKM.Nama_RT || 'RT 004 RW 02') + '</strong> mencatatkan konsentrasi UMKM terbanyak dengan <strong>' + (rtMaxUMKM._umkm || 0) + ' unit usaha</strong>, disusul RT 010 RW 05 (17 unit) dan RT 009 RW 05 (13 unit).'
+                },
+                {
+                    id: 11, cat: 'demografi', tag: 'Ukuran Keluarga (ART)', isPerbaikan: false,
+                    q: 'Berapa rata-rata Anggota Rumah Tangga (ART) per Kepala Keluarga (KK)?',
+                    a: 'Setiap Kartu Keluarga di Pasir Wan Salim rata-rata memiliki <strong>' + artRata + ' Anggota Rumah Tangga</strong> dari total <strong>' + totalKK.toLocaleString('id-ID') + ' KK</strong> terdaftar.'
+                },
+                {
+                    id: 12, cat: 'rekor', tag: 'KK Terbanyak', isPerbaikan: false,
+                    q: 'RT manakah yang mencatatkan jumlah Kepala Keluarga (KK) terbanyak di kelurahan?',
+                    a: '🏆 <strong>' + (rtMaxKK.Nama_RT || 'RT 009 RW 05') + '</strong> mencatatkan KK terbanyak dengan <strong>' + (rtMaxKK._kk || 0) + ' Kartu Keluarga</strong> (' + (rtMaxKK._totalPop || 0) + ' jiwa).'
+                },
+                {
+                    id: 13, cat: 'lansia', tag: 'Populasi Lansia (65+ Thn)', isPerbaikan: false,
+                    q: 'Berapa proporsi penduduk lanjut usia (Lansia usia 65+ tahun) di kelurahan?',
+                    a: 'Terdapat <strong>' + totalLansia.toLocaleString('id-ID') + ' jiwa lansia (' + pctLansia + '%)</strong> dari total populasi. RT dengan lansia terbanyak adalah <strong>' + (rtMaxLansia.Nama_RT || 'RT 017 RW 08') + '</strong> dengan <strong>' + (rtMaxLansia._lansia || 0) + ' jiwa</strong>.'
+                },
+                {
+                    id: 14, cat: 'perbaikan', tag: '⚠️ Akurasi Penyaluran Bansos', isPerbaikan: true,
+                    q: 'Bagaimana data mikro kewilayahan SDI membantu peningkatan efektivitas penyaluran Bansos?',
+                    a: '⚠️ Peta data mikro RT mempermudah rekonsiliasi faktual keluarga rentan, mencegah anomali data ganda, dan memastikan bantuan PKH/BPNT diterima oleh yang berhak.'
+                },
+                {
+                    id: 15, cat: 'lansia', tag: 'Bansos Tertinggi Per RT', isPerbaikan: false,
+                    q: 'Wilayah RT manakah yang memiliki jumlah penerima Bansos terbanyak?',
+                    a: '<strong>' + (rtMaxBansos.Nama_RT || 'RT 012 RW 06') + '</strong> mencatatkan penerima bantuan terbanyak dengan <strong>' + (rtMaxBansos._bansos || 0) + ' kasus</strong>, disusul RT 015 RW 08 (11 kasus).'
+                },
+                {
+                    id: 16, cat: 'rekor', tag: 'Kepadatan Hunian Tertinggi', isPerbaikan: false,
+                    q: 'RT manakah yang memiliki rata-rata kepadatan hunian per rumah tertinggi?',
+                    a: '🏆 <strong>' + (rtMaxKepadatan.Nama_RT || 'RT 005 RW 03') + '</strong> mencatatkan kepadatan tertinggi dengan <strong>' + (rtMaxKepadatan._kepadatan ? rtMaxKepadatan._kepadatan.toFixed(2) : '4.12') + ' jiwa per bumbung rumah</strong>.'
+                },
+                {
+                    id: 17, cat: 'demografi', tag: 'Struktur Kewilayahan', isPerbaikan: false,
+                    q: 'Bagaimana pembagian struktur kewilayahan administratif di Kelurahan Pasir Wan Salim?',
+                    a: 'Kelurahan Pasir Wan Salim terbagi ke dalam <strong>8 Rukun Warga (RW)</strong> yang menaungi total <strong>17 Rukun Tetangga (RT)</strong> dari pesisir hingga pusat kelurahan.'
+                },
+                {
+                    id: 18, cat: 'rekor', tag: 'Populasi Terendah', isPerbaikan: false,
+                    q: 'RT manakah yang memiliki jumlah penduduk paling sedikit di Pasir Wan Salim?',
+                    a: '<strong>' + (rtMinPop.Nama_RT || 'RT 003 RW 02') + '</strong> mencatatkan populasi terendah dengan <strong>' + (rtMinPop._totalPop || 0) + ' jiwa penduduk</strong> (' + (rtMinPop._kk || 0) + ' KK dalam ' + (rtMinPop._bumbung || 0) + ' rumah).'
+                },
+                {
+                    id: 19, cat: 'perbaikan', tag: '⚠️ Standar Layanan SOP Data', isPerbaikan: true,
+                    q: 'Bagaimana alur pengajuan permohonan data statistik agregat bagi masyarakat dan akademisi?',
+                    a: '⚠️ Melalui <strong>SOP Permintaan Data 2026</strong> yang terintegrasi pada portal ini, pemohon dapat mengajukan surat permohonan data agregat resmi secara cepat dan transparan.'
+                },
+                {
+                    id: 20, cat: 'fasilitas', tag: 'Digitalisasi Desa Cantik', isPerbaikan: false,
+                    q: 'Apa manfaat utama penerapan sistem CAPI & Google Sheets terpadu bagi Kelurahan Pasir Wan Salim?',
+                    a: 'Pemutakhiran data statistik kewilayahan kini dapat diperbarui secara mandiri (real-time), tersimpan aman di cloud SDI, dan mudah diakses oleh aparatur kelurahan.'
+                }
+            ];
+
+            filterFlashcards('all');
+        }
+
+        function filterFlashcards(cat, btnEl) {
+            activeFcFilter = cat || 'all';
+            if (btnEl) {
+                document.querySelectorAll('#flashcard-filter-container .btn-fc-filter').forEach(function(b) {
+                    b.classList.remove('btn-primary', 'active');
+                    b.classList.add('btn-outline-secondary');
+                });
+                btnEl.classList.remove('btn-outline-secondary');
+                btnEl.classList.add('btn-primary', 'active');
+            }
+
+            var filtered = flashcardsData.filter(function(item) {
+                return activeFcFilter === 'all' || item.cat === activeFcFilter;
+            });
+
+            var countBadge = document.getElementById('flashcards-count-badge');
+            if (countBadge) countBadge.innerText = filtered.length + ' Flashcard';
+
+            var wrapper = document.getElementById('flashcards-swiper-wrapper');
+            if (!wrapper) return;
+
+            var html = '';
+            filtered.forEach(function(card) {
+                var perbaikanClass = card.isPerbaikan ? 'is-perbaikan' : '';
+                var badgeBg = card.isPerbaikan ? 'bg-danger text-white' : 'bg-primary text-white';
+
+                html += '<div class="swiper-slide">'
+                    + '<div class="flashcard-container ' + perbaikanClass + '" onclick="this.classList.toggle(\'flipped\')">'
+                    + '<div class="flashcard-inner">'
+                    + '<div class="flashcard-front">'
+                    + '<div>'
+                    + '<div class="d-flex justify-content-between align-items-center mb-2">'
+                    + '<span class="flashcard-badge ' + badgeBg + '">' + card.tag + '</span>'
+                    + '<small class="text-muted"><i class="fas fa-sync-alt me-1"></i>Klik Flip</small>'
+                    + '</div>'
+                    + '<h6 class="fw-bold text-dark mt-2 mb-0" style="line-height: 1.4;">' + card.q + '</h6>'
+                    + '</div>'
+                    + '<div class="pt-2 border-top d-flex justify-content-between align-items-center text-muted extra-small">'
+                    + '<span><i class="fas fa-question-circle me-1 text-primary"></i>Pertanyaan Trivia</span>'
+                    + '<span class="fw-bold text-primary">Buka Jawaban &rarr;</span>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="flashcard-back">'
+                    + '<div>'
+                    + '<div class="d-flex justify-content-between align-items-center mb-2">'
+                    + '<span class="flashcard-badge bg-white text-dark">' + card.tag + '</span>'
+                    + '<small class="text-white-50"><i class="fas fa-check-circle me-1"></i>Fakta Data</small>'
+                    + '</div>'
+                    + '<p class="small text-white mb-0" style="line-height: 1.5;">' + card.a + '</p>'
+                    + '</div>'
+                    + '<div class="pt-2 border-top border-white-50 d-flex justify-content-between align-items-center extra-small text-white-50">'
+                    + '<span>SDI Pasir Wan Salim 2026</span>'
+                    + '<span>&larr; Putar Kembali</span>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>';
+            });
+            wrapper.innerHTML = html;
+            initSwiperFlashcards();
+        }
+
+        function initSwiperFlashcards() {
+            if (swiperFlashcards) swiperFlashcards.destroy(true, true);
+            swiperFlashcards = new Swiper('.swiper-flashcards', {
+                slidesPerView: 1,
+                spaceBetween: 16,
+                navigation: {
+                    nextEl: '.swiper-button-next-flashcard',
+                    prevEl: '.swiper-button-prev-flashcard',
+                },
+                pagination: {
+                    el: '.swiper-pagination-flashcards',
+                    type: 'fraction',
+                },
+                breakpoints: {
+                    640: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 3, spaceBetween: 24 }
+                }
+            });
+        }
+
+        function shuffleFlashcards() {
+            for (var i = flashcardsData.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = flashcardsData[i];
+                flashcardsData[i] = flashcardsData[j];
+                flashcardsData[j] = temp;
+            }
+            filterFlashcards(activeFcFilter);
+        }
+
+        function flipAllFlashcards(shouldFlip) {
+            document.querySelectorAll('.flashcard-container').forEach(function(card) {
+                if (shouldFlip) card.classList.add('flipped');
+                else card.classList.remove('flipped');
+            });
+        }
+
+        function resetFlashcards() {
+            flipAllFlashcards(false);
+            filterFlashcards('all');
         }
 
         function switchRTTableMode(mode) {
