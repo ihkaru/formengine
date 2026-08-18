@@ -492,24 +492,24 @@
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}', 'Pelatihan Agen Statistik CAPI', 'Pembekalan CAPI AppSheet bagi Agen Statistik Desa Pasir Palembang di Kantor BPS Mempawah 2026.')">
-                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Pelatihan
+                                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pengumpulan-data-1.webp') }}', 'Pengumpulan Data Lapangan CAPI', 'Wawancara CAPI potensi keluarga dan bangunan warga di Desa Pasir Palembang 2026.')">
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Lapangan
                                     </button>
                                 </div>
                             </div>
                             <div class="col-lg-5">
-                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}', 'Pelatihan Agen Statistik CAPI', 'Pembekalan CAPI AppSheet bagi Agen Statistik Desa Pasir Palembang di Kantor BPS Mempawah 2026.')">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pengumpulan-data-1.webp') }}', 'Pengumpulan Data Lapangan CAPI', 'Wawancara CAPI potensi keluarga dan bangunan warga di Desa Pasir Palembang 2026.')">
                                     <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
                                         <picture>
-                                            <source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.avif') }}" type="image/avif">
-                                            <source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" type="image/webp">
-                                            <img src="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" alt="Pelatihan Agen Statistik RT" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                            <source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-1.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-1.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirpalembang/pengumpulan-data-1.webp') }}" alt="Pengumpulan Data Lapangan CAPI" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1200" height="900">
                                         </picture>
                                         <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
                                     <div class="p-3 bg-light text-center">
-                                        <h6 class="fw-bold text-dark mb-1 small">Pelatihan &amp; Pencacahan CAPI</h6>
-                                        <p class="extra-small text-muted mb-0">Wawancara 14 Ketua RT &amp; Geotagging 28 Fasilitas</p>
+                                        <h6 class="fw-bold text-dark mb-1 small">Pengumpulan Data Lapangan CAPI</h6>
+                                        <p class="extra-small text-muted mb-0">Wawancara 14 Ketua RT &amp; Geotagging Fasilitas</p>
                                     </div>
                                 </div>
                             </div>
@@ -622,35 +622,39 @@
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Rilis Publik</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Penyusunan Publikasi Resmi &amp; Rilis Portal Web Desa Cantik</h5>
-                                <p class="text-muted small mb-3">Penyusunan 2 buku publikasi resmi (*Pasir Palembang Dalam Angka 2026* dan *Potensi Desa 2026*) serta perilisan portal web interaktif lengkap dengan peta geospasial Leaflet, grafik interaktif, dan unduhan Excel.</p>
+                                <p class="text-muted small mb-3">Penyusunan 2 buku publikasi resmi (*Pasir Palembang Dalam Angka 2026* dan *Potensi Desa 2026*), pemasangan poster statistik di Kantor Desa, serta perilisan portal web interaktif Desa Cantik.</p>
                                 
                                 <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-book-open text-primary me-2"></i>Produk Diseminasi yang Dirilis:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Publikasi 1:</strong> <em>"Desa Pasir Palembang Dalam Angka 2026"</em> (Buku rilis resmi kompilasi data statistik makro &amp; mikro).</li>
                                         <li class="mb-1"><strong>Publikasi 2:</strong> <em>"Potensi Desa Pasir Palembang 2026"</em> (Pemetaan potensi kewilayahan &amp; sarana prasarana 14 RT).</li>
+                                        <li class="mb-1"><strong>Pemasangan Poster Statistik:</strong> Diseminasi fisik poster data statistik di papan pengumuman Kantor Desa Pasir Palembang.</li>
                                         <li><strong>Portal Web Desa Cantik:</strong> Dashboard live dengan pencarian realtime, Leaflet Hybrid GPS Map, Chart.js, dan export multi-sheet Excel.</li>
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <a href="#publikasi" class="btn btn-sm btn-outline-primary rounded-pill extra-small">
+                                    <button type="button" class="btn btn-sm btn-outline-primary rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}', 'Pemasangan Poster Statistik di Kantor Desa', 'Publikasi dan pemasangan poster data statistik di papan informasi Kantor Desa Pasir Palembang 2026.')">
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Pemasangan
+                                    </button>
+                                    <a href="#publikasi" class="btn btn-sm btn-primary rounded-pill extra-small">
                                         <i class="fas fa-book me-1"></i> Buka Buku Publikasi 2026
                                     </a>
                                 </div>
                             </div>
                             <div class="col-lg-5">
-                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}', 'Publikasi Pasir Palembang Dalam Angka 2026', 'Publikasi resmi hasil pendataan lapangan Desa Cinta Statistik 2026 BPS Kabupaten Mempawah &amp; Pemdes Pasir Palembang.')">
-                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px; background-color: #fbf9f5;">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}', 'Pemasangan Poster Statistik di Kantor Desa', 'Publikasi dan pemasangan poster data statistik di papan informasi Kantor Desa Pasir Palembang 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
                                         <picture>
-                                            <source srcset="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.avif') }}" type="image/avif">
-                                            <source srcset="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}" type="image/webp">
-                                            <img src="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}" alt="Cover Pasir Palembang Dalam Angka 2026" class="img-fluid w-100 h-100 object-fit-contain p-2" loading="lazy" decoding="async" width="744" height="1024">
+                                            <source srcset="{{ asset('images/pasirpalembang/pemasangan-poster.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}" alt="Pemasangan Poster di Kantor Desa Pasir Palembang" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1200" height="900">
                                         </picture>
                                         <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
                                     <div class="p-3 bg-light text-center">
-                                        <h6 class="fw-bold text-dark mb-1 small">Publikasi Resmi &amp; Web Portal</h6>
-                                        <p class="extra-small text-muted mb-0">Rilis Publikasi PDF &amp; Portal Desa Cantik</p>
+                                        <h6 class="fw-bold text-dark mb-1 small">Publikasi &amp; Pemasangan Poster</h6>
+                                        <p class="extra-small text-muted mb-0">Papan Informasi Kantor Desa Pasir Palembang 2026</p>
                                     </div>
                                 </div>
                             </div>
@@ -1140,50 +1144,113 @@
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-camera me-2 text-primary"></i>Dokumentasi Kegiatan Pendataan</h4>
-                    <p class="text-muted small mb-0">Proses pembekalan, pelatihan CAPI, dan pendataan Agen Statistik Pasir Palembang.</p>
+                    <p class="text-muted small mb-0">Rangkaian pelatihan, pengumpulan data CAPI di lapangan, pemasangan publikasi, dan diseminasi Agen Statistik Desa Pasir Palembang.</p>
                 </div>
-                <span class="badge bg-success text-white font-monospace px-3 py-2 rounded-pill"><i class="fas fa-camera me-1"></i> Dokumentasi Kegiatan 2026</span>
+                <span class="badge bg-success-subtle text-success border border-success-subtle font-monospace px-3 py-2 rounded-pill fw-bold"><i class="fas fa-camera me-1"></i> 8 Foto Dokumentasi 2026</span>
             </div>
 
             <div class="row g-3">
+                <!-- Foto 1: Kantor Desa -->
                 <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/kantor-desa.webp') }}', 'Kantor Desa Pasir Palembang', 'Tampak depan posko &amp; kantor Desa Cantik Pasir Palembang 2026.')" style="cursor: pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
-                            <picture><source srcset="{{ asset('images/pasirpalembang/kantor-desa.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" class="w-100 h-100 object-fit-cover hover-zoom" alt="Kantor Desa Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/kantor-desa.webp') }}', 'Kantor Desa Pasir Palembang', 'Tampak depan posko &amp; kantor Desa Cantik Pasir Palembang 2026.')">
+                        <div class="overflow-hidden rounded-3 mb-2 img-zoom-wrapper" style="height: 140px;">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/kantor-desa.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" class="w-100 h-100 object-fit-cover" alt="Kantor Desa Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">Kantor Desa Pasir Palembang</h6>
+                        <h6 class="fw-bold text-dark mb-1 small">Kantor Desa Pasir Palembang</h6>
                         <span class="badge bg-success-subtle text-success extra-small">Tampak Depan</span>
                         <p class="extra-small text-muted mt-1 mb-0">Posko data &amp; sekretariat Desa Cantik Pasir Palembang 2026.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}', 'Pelatihan CAPI AppSheet', 'Pembekalan CAPI AppSheet bagi Agen Statistik Desa Pasir Palembang di Kantor BPS Mempawah 2026.')" style="cursor: pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
-                            <picture><source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pelatihan CAPI Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
+
+                <!-- Foto 2: Pemasangan Poster di Kantor Desa -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="150" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}', 'Pemasangan Poster Statistik di Kantor Desa', 'Publikasi dan pemasangan poster data statistik di papan informasi Kantor Desa Pasir Palembang 2026.')">
+                        <div class="overflow-hidden rounded-3 mb-2 img-zoom-wrapper" style="height: 140px;">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/pemasangan-poster.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pemasangan Poster Statistik" loading="lazy" decoding="async" width="1200" height="900"></picture>
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">Pelatihan CAPI AppSheet</h6>
+                        <h6 class="fw-bold text-dark mb-1 small">Publikasi Poster Statistik</h6>
+                        <span class="badge bg-primary-subtle text-primary extra-small">Kantor Desa</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Pemasangan poster data statistik di papan informasi desa.</p>
+                    </div>
+                </div>
+
+                <!-- Foto 3: Pelatihan CAPI di BPS -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}', 'Pelatihan CAPI AppSheet', 'Pembekalan CAPI AppSheet bagi Agen Statistik Desa Pasir Palembang di Kantor BPS Mempawah 2026.')">
+                        <div class="overflow-hidden rounded-3 mb-2 img-zoom-wrapper" style="height: 140px;">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pelatihan CAPI Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 small">Pelatihan CAPI AppSheet</h6>
                         <span class="badge bg-success-subtle text-success extra-small">BPS Mempawah</span>
                         <p class="extra-small text-muted mt-1 mb-0">Pembekalan CAPI AppSheet bagi Agen Statistik Desa.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}', 'Diseminasi Hasil CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Pasir Palembang di Kantor BPS Mempawah 2026.')" style="cursor: pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
-                            <picture><source srcset="{{ asset('images/pasirpalembang/diseminasi-capi.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Diseminasi CAPI Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
+
+                <!-- Foto 4: Pengumpulan Data Lapangan 1 -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="250" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pengumpulan-data-1.webp') }}', 'Wawancara CAPI Lapangan #1', 'Wawancara langsung potensi keluarga dan bangunan warga oleh Agen Statistik Desa Pasir Palembang.')">
+                        <div class="overflow-hidden rounded-3 mb-2 img-zoom-wrapper" style="height: 140px;">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-1.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-1.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pengumpulan-data-1.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan 1" loading="lazy" decoding="async" width="1200" height="900"></picture>
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">Diseminasi Hasil CAPI</h6>
-                        <span class="badge bg-success-subtle text-success extra-small">BPS Mempawah</span>
-                        <p class="extra-small text-muted mt-1 mb-0">Pelatihan diseminasi hasil wawancara CAPI mikro bangunan &amp; rumah tangga.</p>
+                        <h6 class="fw-bold text-dark mb-1 small">Wawancara CAPI Lapangan #1</h6>
+                        <span class="badge bg-warning-subtle text-dark extra-small">Survei Warga</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Pencacahan potensi keluarga &amp; bangunan rumah tangga.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
-                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah Tahun 2026.')" style="cursor: pointer;">
-                        <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
-                            <picture><source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif"><source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp"><img src="{{ asset('images/pencanangan-2026.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pencanangan Desa Cantik 2026" loading="lazy" decoding="async" width="1000" height="750"></picture>
+
+                <!-- Foto 5: Pengumpulan Data Lapangan 2 -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pengumpulan-data-2.webp') }}', 'Wawancara CAPI Lapangan #2', 'Verifikasi data indikator sektoral berbasis smartphone CAPI di wilayah RT Pasir Palembang.')">
+                        <div class="overflow-hidden rounded-3 mb-2 img-zoom-wrapper" style="height: 140px;">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-2.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-2.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pengumpulan-data-2.webp') }}" class="w-100 h-100 object-fit-cover" alt="Wawancara CAPI Lapangan 2" loading="lazy" decoding="async" width="1200" height="900"></picture>
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">Pencanangan Descan 2026</h6>
-                        <span class="badge bg-primary-subtle text-primary extra-small">Pemkab &amp; BPS</span>
-                        <p class="extra-small text-muted mt-1 mb-0">Deklarasi pencanangan resmi Desa &amp; Kelurahan Cantik 2026.</p>
+                        <h6 class="fw-bold text-dark mb-1 small">Wawancara CAPI Lapangan #2</h6>
+                        <span class="badge bg-warning-subtle text-dark extra-small">CAPI Smartphone</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Verifikasi data indikator statistik mikro secara langsung.</p>
+                    </div>
+                </div>
+
+                <!-- Foto 6: Koordinasi Lapangan 3 -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="350" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pengumpulan-data-3.webp') }}', 'Koordinasi Pendataan Bersama RT', 'Koordinasi konfirmasi register kependudukan bersama Ketua RT di Desa Pasir Palembang.')">
+                        <div class="overflow-hidden rounded-3 mb-2 img-zoom-wrapper" style="height: 140px;">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-3.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-3.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pengumpulan-data-3.webp') }}" class="w-100 h-100 object-fit-cover" alt="Koordinasi Pendataan RT" loading="lazy" decoding="async" width="1200" height="900"></picture>
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 small">Koordinasi Register RT</h6>
+                        <span class="badge bg-info-subtle text-info-emphasis extra-small">Koordinasi RT</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Konfirmasi data register kependudukan bersama Ketua RT.</p>
+                    </div>
+                </div>
+
+                <!-- Foto 7: Observasi Fasilitas 4 -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pengumpulan-data-4.webp') }}', 'Observasi &amp; Geotagging Fasilitas', 'Pemeriksaan lapangan dan geotagging koordinat GPS fasilitas umum Desa Pasir Palembang.')">
+                        <div class="overflow-hidden rounded-3 mb-2 img-zoom-wrapper" style="height: 140px;">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-4.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pengumpulan-data-4.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pengumpulan-data-4.webp') }}" class="w-100 h-100 object-fit-cover" alt="Observasi Fasilitas Desa" loading="lazy" decoding="async" width="1200" height="900"></picture>
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 small">Observasi &amp; Geotagging GPS</h6>
+                        <span class="badge bg-secondary-subtle text-secondary extra-small">Fasilitas Desa</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Ground check dan tagging titik koordinat GPS sarana desa.</p>
+                    </div>
+                </div>
+
+                <!-- Foto 8: Diseminasi di BPS -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="450" data-aos-duration="800">
+                    <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}', 'Diseminasi Hasil CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Pasir Palembang di Kantor BPS Mempawah 2026.')">
+                        <div class="overflow-hidden rounded-3 mb-2 img-zoom-wrapper" style="height: 140px;">
+                            <picture><source srcset="{{ asset('images/pasirpalembang/diseminasi-capi.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Diseminasi CAPI Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
+                            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1 small">Diseminasi Hasil CAPI</h6>
+                        <span class="badge bg-success-subtle text-success extra-small">BPS Mempawah</span>
+                        <p class="extra-small text-muted mt-1 mb-0">Pelatihan diseminasi hasil pengolahan &amp; validasi CAPI.</p>
                     </div>
                 </div>
             </div>
