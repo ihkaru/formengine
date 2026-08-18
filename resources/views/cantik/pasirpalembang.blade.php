@@ -181,87 +181,106 @@
                 <span class="badge bg-primary px-3 py-2 rounded-pill">SDI Compliant</span>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
-                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-file-pdf text-danger display-4"></i>
+                <!-- Publikasi 1: Desa Pasir Palembang Dalam Angka 2026 -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center d-flex flex-column img-hover-card">
+                        <div class="overflow-hidden rounded-3 border mb-3 img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}', 'Cover Publikasi Desa Pasir Palembang Dalam Angka 2026', 'Publikasi resmi hasil pendataan lapangan Desa Cinta Statistik 2026 BPS Kabupaten Mempawah &amp; Pemerintah Desa Pasir Palembang.')" style="height: 260px; background-color: #fbf9f5; cursor: pointer;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}" alt="Cover Desa Pasir Palembang Dalam Angka 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="719" height="1024">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Cover
+                            </div>
                         </div>
+                        <span class="badge bg-primary-subtle text-primary mb-2 align-self-center px-3 py-1 rounded-pill">Publikasi Utama 2026</span>
                         <h5 class="fw-bold text-dark mb-1">Desa Pasir Palembang Dalam Angka 2026</h5>
                         <p class="text-muted small mb-3">Publikasi komprehensif data sosial, ekonomi, kependudukan, dan potensi desa.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
-                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF Publikasi</a>
+                            <a href="https://drive.google.com/file/d/1MtmPxxJfUdfGTfq-a1-4IND2aQ_VvKWt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive)</a>
+                            <a href="https://drive.google.com/file/d/1MtmPxxJfUdfGTfq-a1-4IND2aQ_VvKWt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF Publikasi</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
-                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-atlas text-success display-4"></i>
+
+                <!-- Publikasi 2: Potensi Desa (Podes) 2026 -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center d-flex flex-column img-hover-card">
+                        <div class="overflow-hidden rounded-3 border mb-3 img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-podes-pasirpalembang-2026.webp') }}', 'Cover Publikasi Potensi Desa Pasir Palembang 2026', 'Publikasi resmi potensi kewilayahan, sarana dan prasarana fasilitas umum Desa Pasir Palembang 2026.')" style="height: 260px; background-color: #fbf9f5; cursor: pointer;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/cover-podes-pasirpalembang-2026.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/cover-podes-pasirpalembang-2026.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/cover-podes-pasirpalembang-2026.webp') }}" alt="Cover Potensi Desa Pasir Palembang 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="720" height="1024">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Cover
+                            </div>
                         </div>
-                        <h5 class="fw-bold text-dark mb-1">Booklet Potensi RT &amp; Fasilitas Desa 2026</h5>
-                        <p class="text-muted small mb-3">Ringkasan grafis dan peta persebaran fasilitas umum di Pasir Palembang.</p>
+                        <span class="badge bg-success-subtle text-success mb-2 align-self-center px-3 py-1 rounded-pill">Potensi Wilayah (Podes)</span>
+                        <h5 class="fw-bold text-dark mb-1">Potensi Desa Pasir Palembang 2026</h5>
+                        <p class="text-muted small mb-3">Ringkasan grafis dan publikasi potensi kewilayahan serta persebaran fasilitas umum di Pasir Palembang.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
-                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh Booklet PDF</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border rounded-4 shadow-sm p-3 text-center">
-                        <div class="bg-light rounded-3 p-4 mb-3 d-flex align-items-center justify-content-center" style="height: 180px;">
-                            <i class="fas fa-chart-line text-warning display-4"></i>
-                        </div>
-                        <h5 class="fw-bold text-dark mb-1">Laporan Analisis Indikator SDI 2026</h5>
-                        <p class="text-muted small mb-3">Kajian indikator rasio gender, ART, lansia, bansos, dan sarana ibadah.</p>
-                        <div class="mt-auto d-grid gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive/Link)</a>
-                            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh Laporan PDF</a>
+                            <a href="https://drive.google.com/file/d/1teXqDMfRdxKsDI5_5Py3FZdk_5sSOhzv/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success rounded-pill"><i class="fas fa-eye me-1"></i> Lihat Online (Drive)</a>
+                            <a href="https://drive.google.com/file/d/1teXqDMfRdxKsDI5_5Py3FZdk_5sSOhzv/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill"><i class="fas fa-download me-1"></i> Unduh Publikasi Podes</a>
                         </div>
                     </div>
                 </div>
             </div>
-        <!-- Section Placeholder 1: Produk Statistik & SOP Permintaan Data -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-warning" id="sop-layanan">
+        <!-- Produk Statistik & SOP Permintaan Data -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white border-start border-4 border-primary" id="sop-layanan">
             <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-3 flex-wrap gap-2">
                 <div>
                     <h4 class="fw-bold text-dark mb-1"><i class="fas fa-concierge-bell me-2 text-primary"></i>Produk Statistik &amp; SOP Layanan Data Publik</h4>
                     <p class="text-muted small mb-0">Layanan aksesibilitas data bagi masyarakat, akademisi, dan perangkat daerah Kabupaten Mempawah.</p>
                 </div>
-                <span class="badge bg-warning text-dark font-monospace px-3 py-2 rounded-pill"><i class="fas fa-exclamation-triangle me-1"></i> PLACEHOLDER — Dalam Penyusunan Dokumen</span>
-            </div>
-
-            <div class="alert alert-warning border-0 bg-warning-subtle text-dark rounded-4 p-3 mb-4 d-flex align-items-center gap-3">
-                <i class="fas fa-info-circle fa-2x text-warning flex-shrink-0"></i>
-                <div class="small">
-                    <strong>Catatan Status Section:</strong> File fisik Monografi, Infografis, dan SOP Layanan Data Desa Pasir Palembang saat ini dalam tahap finalisasi penyusunan oleh Tim Desa Cantik &amp; BPS Mempawah.
-                </div>
+                <span class="badge bg-primary px-3 py-2 rounded-pill"><i class="fas fa-check-circle me-1"></i> Terverifikasi Layanan Data 2026</span>
             </div>
 
             <div class="row g-4">
-                <!-- Monografi Placeholder -->
+                <!-- Monografi Desa Pasir Palembang 2026 -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="p-3 border border-warning border-dashed rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-warning d-flex align-items-center justify-content-center bg-white rounded-3 border" style="height: 130px;">
-                            <i class="fas fa-file-invoice fa-3x"></i>
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/monografi.webp') }}', 'Monografi Desa Pasir Palembang 2026', 'Profil Monografi Kependudukan, Potensi Peternakan, Perikanan, Sumber Daya Air &amp; Sarana Infrastruktur Desa Pasir Palembang 2026.')" style="height: 130px; background-color: #fbf9f5;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/monografi.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/monografi.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/monografi.webp') }}" alt="Monografi Desa Pasir Palembang 2026" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="554" height="981">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Perbesar
+                            </div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">Monografi Pasir Palembang</h6>
-                        <p class="extra-small text-muted mb-3">Profil umum kependudukan &amp; infrastruktur desa (Tahap Draf).</p>
+                        <h6 class="fw-bold text-dark mb-1">Monografi Desa 2026</h6>
+                        <p class="extra-small text-muted mb-3">Profil kependudukan, potensi peternakan, perikanan &amp; infrastruktur desa.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <button class="btn btn-sm btn-outline-warning text-dark rounded-pill disabled" disabled><i class="fas fa-clock me-1"></i> Belum Tersedia</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/monografi.webp') }}', 'Monografi Desa Pasir Palembang 2026', 'Profil Monografi Kependudukan, Potensi Peternakan, Perikanan, Sumber Daya Air &amp; Sarana Infrastruktur Desa Pasir Palembang 2026.')">
+                                <i class="fas fa-eye me-1"></i> Pratinjau Foto
+                            </button>
+                            <a href="https://drive.google.com/file/d/1rLv1ugc02fp_cwTzKVCYPEMwncVZy6DI/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh Monografi</a>
                         </div>
                     </div>
                 </div>
-                <!-- Infografis Placeholder -->
+                <!-- Infografis Demografi Card -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="p-3 border border-warning border-dashed rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-warning d-flex align-items-center justify-content-center bg-white rounded-3 border" style="height: 130px;">
-                            <i class="fas fa-chart-pie fa-3x"></i>
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-demografi.webp') }}', 'Infografis Demografi Desa Pasir Palembang 2026', 'Visualisasi data statistik demografi dalam bentuk poster ringkas dan komunikatif.')" style="height: 130px; background-color: #f8fafc;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-demografi.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-demografi.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/infografis-demografi.webp') }}" alt="Infografis Demografi Desa Pasir Palembang" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="744" height="931">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Perbesar
+                            </div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">Infografis Demografi</h6>
-                        <p class="extra-small text-muted mb-3">Visualisasi ringkas poster statistik desa (Tahap Desain).</p>
+                        <h6 class="fw-bold text-dark mb-1">Infografis Demografi 2026</h6>
+                        <p class="extra-small text-muted mb-3">Visualisasi 5 poster statistik desa yang komunikatif.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <button class="btn btn-sm btn-outline-warning text-dark rounded-pill disabled" disabled><i class="fas fa-clock me-1"></i> Belum Tersedia</button>
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-demografi.webp') }}', 'Infografis Demografi Desa Pasir Palembang 2026', 'Visualisasi data statistik demografi dalam bentuk poster ringkas dan komunikatif.')">
+                                <i class="fas fa-eye me-1"></i> Pratinjau Poster
+                            </button>
+                            <a href="https://drive.google.com/file/d/1aPTF7MyQUsF8pX92mqjyGb5zKjJWbAor/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill"><i class="fas fa-download me-1"></i> Unduh Versi HD (PDF)</a>
                         </div>
                     </div>
                 </div>
@@ -288,16 +307,166 @@
                         </div>
                     </div>
                 </div>
-                <!-- SOP Permintaan Data Placeholder -->
+                <!-- SOP Permintaan Data 2026 Card -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="p-3 border border-warning border-dashed rounded-4 h-100 bg-light text-center d-flex flex-column">
-                        <div class="mb-3 text-warning d-flex align-items-center justify-content-center bg-white rounded-3 border" style="height: 130px;">
-                            <i class="fas fa-clipboard-list fa-3x"></i>
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-sop-pasirpalembang-2026.webp') }}', 'SOP Permintaan Data Desa Pasir Palembang 2026', 'Standar Operasional Prosedur Pelayanan &amp; Permintaan Data Statistik Sektoral Desa Pasir Palembang 2026.')" style="height: 130px; background-color: #fbf9f5;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/cover-sop-pasirpalembang-2026.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/cover-sop-pasirpalembang-2026.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/cover-sop-pasirpalembang-2026.webp') }}" alt="SOP Permintaan Data Desa Pasir Palembang 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="720" height="1024">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Perbesar
+                            </div>
                         </div>
-                        <h6 class="fw-bold text-dark mb-1">SOP Permintaan Data</h6>
-                        <p class="extra-small text-muted mb-3">Formulir SOP &amp; pengajuan data publik resmi.</p>
+                        <h6 class="fw-bold text-dark mb-1">SOP Permintaan Data 2026</h6>
+                        <p class="extra-small text-muted mb-3">Standar operasional prosedur pengajuan &amp; layanan data publik.</p>
                         <div class="mt-auto d-grid gap-2">
-                            <button class="btn btn-sm btn-outline-warning text-dark rounded-pill disabled" disabled><i class="fas fa-clock me-1"></i> Belum Tersedia</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-sop-pasirpalembang-2026.webp') }}', 'SOP Permintaan Data Desa Pasir Palembang 2026', 'Standar Operasional Prosedur Pelayanan &amp; Permintaan Data Statistik Sektoral Desa Pasir Palembang 2026.')">
+                                <i class="fas fa-eye me-1"></i> Pratinjau Cover
+                            </button>
+                            <a href="https://drive.google.com/file/d/1uoSQYqSPSnECN_2XpTggvBkcgfSIR_H_/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh SOP PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Infografis Tematik Desa Pasir Palembang 2026 -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="infografis">
+            <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-chart-pie me-2 text-success"></i>Infografis Tematik Desa Pasir Palembang 2026</h4>
+                    <p class="text-muted small mb-0">Visualisasi poster data statistik hasil Pendataan Lapangan Desa Cinta Statistik 2026.</p>
+                </div>
+                <a href="https://drive.google.com/file/d/1aPTF7MyQUsF8pX92mqjyGb5zKjJWbAor/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill px-3">
+                    <i class="fas fa-file-pdf me-1"></i> Unduh Semua Poster HD (PDF)
+                </a>
+            </div>
+
+            <div class="row g-4">
+                <!-- Poster 1: Demografi -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-demografi.webp') }}', 'Infografis Profil Demografi Desa Pasir Palembang 2026', 'Visualisasi data rasio gender 50.7% Laki-laki vs 49.3% Perempuan, total 3.680 jiwa, serta komposisi per RT.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-demografi.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-demografi.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/infografis-demografi.webp') }}" alt="Infografis Demografi Pasir Palembang" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="744" height="931">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Poster
+                            </div>
+                        </div>
+                        <span class="badge bg-primary-subtle text-primary mb-2 align-self-center px-3 py-1 rounded-pill">Poster #1</span>
+                        <h6 class="fw-bold text-dark mb-1">Profil Demografi Desa</h6>
+                        <p class="extra-small text-muted mb-3">Struktur gender, 3.680 jiwa penduduk, dan sebaran per RT.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-demografi.webp') }}', 'Infografis Profil Demografi Desa Pasir Palembang 2026', 'Visualisasi data rasio gender 50.7% Laki-laki vs 49.3% Perempuan, total 3.680 jiwa, serta komposisi per RT.')">
+                                <i class="fas fa-eye me-1"></i> Lihat Poster
+                            </button>
+                            <a href="https://drive.google.com/file/d/1aPTF7MyQUsF8pX92mqjyGb5zKjJWbAor/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF HD</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poster 2: Pekerjaan & Pendidikan -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-pekerjaan-pendidikan.webp') }}', 'Infografis Pekerjaan &amp; Pendidikan Pasir Palembang 2026', 'Data 56.8% sektor pertanian/perkebunan utama, serta 18 anak putus sekolah di 5 dusun.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-pekerjaan-pendidikan.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-pekerjaan-pendidikan.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/infografis-pekerjaan-pendidikan.webp') }}" alt="Infografis Pekerjaan & Pendidikan" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="744" height="933">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Poster
+                            </div>
+                        </div>
+                        <span class="badge bg-warning-subtle text-dark mb-2 align-self-center px-3 py-1 rounded-pill">Poster #2</span>
+                        <h6 class="fw-bold text-dark mb-1">Pekerjaan &amp; Isu Pendidikan</h6>
+                        <p class="extra-small text-muted mb-3">56,8% sektor pertanian/perkebunan &amp; 18 anak putus sekolah.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-warning text-dark rounded-pill" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-pekerjaan-pendidikan.webp') }}', 'Infografis Pekerjaan &amp; Pendidikan Pasir Palembang 2026', 'Data 56.8% sektor pertanian/perkebunan utama, serta 18 anak putus sekolah di 5 dusun.')">
+                                <i class="fas fa-eye me-1"></i> Lihat Poster
+                            </button>
+                            <a href="https://drive.google.com/file/d/1aPTF7MyQUsF8pX92mqjyGb5zKjJWbAor/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-warning text-dark rounded-pill fw-bold"><i class="fas fa-download me-1"></i> Unduh PDF HD</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poster 3: Hunian Warga -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-hunian.webp') }}', 'Infografis Kondisi Hunian Warga Pasir Palembang 2026', '865 rumah berpenghuni, struktur atap seng 94.8%, lantai semen 52%, dinding tembok 70.7%, fasilitas BAB &amp; pembakaran sampah.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-hunian.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-hunian.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/infografis-hunian.webp') }}" alt="Infografis Kondisi Hunian" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="744" height="931">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Poster
+                            </div>
+                        </div>
+                        <span class="badge bg-success-subtle text-success mb-2 align-self-center px-3 py-1 rounded-pill">Poster #3</span>
+                        <h6 class="fw-bold text-dark mb-1">Kondisi Hunian Warga</h6>
+                        <p class="extra-small text-muted mb-3">865 rumah berpenghuni, material bangunan &amp; akses sanitasi.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-hunian.webp') }}', 'Infografis Kondisi Hunian Warga Pasir Palembang 2026', '865 rumah berpenghuni, struktur atap seng 94.8%, lantai semen 52%, dinding tembok 70.7%, fasilitas BAB &amp; pembakaran sampah.')">
+                                <i class="fas fa-eye me-1"></i> Lihat Poster
+                            </button>
+                            <a href="https://drive.google.com/file/d/1aPTF7MyQUsF8pX92mqjyGb5zKjJWbAor/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-success rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF HD</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poster 4: Distribusi Bansos -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-bansos.webp') }}', 'Infografis Distribusi Bantuan Sosial Pasir Palembang 2026', '58.3% (494 keluarga) penerima bantuan sosial, didominasi BPJS PBI (449) &amp; BPNT (227), serta sebaran per RT.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-bansos.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-bansos.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/infografis-bansos.webp') }}" alt="Infografis Distribusi Bansos" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="744" height="932">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Poster
+                            </div>
+                        </div>
+                        <span class="badge bg-info-subtle text-info-emphasis mb-2 align-self-center px-3 py-1 rounded-pill">Poster #4</span>
+                        <h6 class="fw-bold text-dark mb-1">Distribusi Bantuan Sosial</h6>
+                        <p class="extra-small text-muted mb-3">58,3% penerima bansos (494 KPM), jenis program &amp; sebaran RT.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-info rounded-pill" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-bansos.webp') }}', 'Infografis Distribusi Bantuan Sosial Pasir Palembang 2026', '58.3% (494 keluarga) penerima bantuan sosial, didominasi BPJS PBI (449) &amp; BPNT (227), serta sebaran per RT.')">
+                                <i class="fas fa-eye me-1"></i> Lihat Poster
+                            </button>
+                            <a href="https://drive.google.com/file/d/1aPTF7MyQUsF8pX92mqjyGb5zKjJWbAor/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-info text-white rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF HD</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poster 5: Fasilitas Publik -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
+                        <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-fasilitas.webp') }}', 'Infografis Fasilitas Publik Pasir Palembang 2026', 'Kondisi 30 jalan/gang, 28 fasilitas ibadah, 60% jalan aspal/beton, 41.4% sinyal 4G/LTE sangat baik.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
+                            <picture>
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-fasilitas.avif') }}" type="image/avif">
+                                <source srcset="{{ asset('images/pasirpalembang/infografis-fasilitas.webp') }}" type="image/webp">
+                                <img src="{{ asset('images/pasirpalembang/infografis-fasilitas.webp') }}" alt="Infografis Fasilitas Publik" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="742" height="931">
+                            </picture>
+                            <div class="zoom-overlay">
+                                <i class="fas fa-search-plus"></i> Pratinjau Poster
+                            </div>
+                        </div>
+                        <span class="badge bg-secondary-subtle text-secondary mb-2 align-self-center px-3 py-1 rounded-pill">Poster #5</span>
+                        <h6 class="fw-bold text-dark mb-1">Fasilitas Publik &amp; Infrastruktur</h6>
+                        <p class="extra-small text-muted mb-3">60% jalan beton/aspal, sarana ibadah, air bersih &amp; sinyal 4G.</p>
+                        <div class="mt-auto d-grid gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-fasilitas.webp') }}', 'Infografis Fasilitas Publik Pasir Palembang 2026', 'Kondisi 30 jalan/gang, 28 fasilitas ibadah, 60% jalan aspal/beton, 41.4% sinyal 4G/LTE sangat baik.')">
+                                <i class="fas fa-eye me-1"></i> Lihat Poster
+                            </button>
+                            <a href="https://drive.google.com/file/d/1aPTF7MyQUsF8pX92mqjyGb5zKjJWbAor/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary rounded-pill"><i class="fas fa-download me-1"></i> Unduh PDF HD</a>
                         </div>
                     </div>
                 </div>

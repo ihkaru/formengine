@@ -331,6 +331,31 @@
                     border-color: var(--primary, #064E3B);
                     transform: scale(1.08);
                 }
+
+                /* Aparat Desa Fade Slide From Right Animation */
+                @keyframes aparatFadeSlideRight {
+                    0% {
+                        opacity: 0;
+                        transform: translate3d(40px, 0, 0);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: translate3d(0, 0, 0);
+                    }
+                }
+
+                .aparat-card-item {
+                    transition: transform 0.25s ease, box-shadow 0.25s ease;
+                }
+
+                .aparat-card-item .card {
+                    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .aparat-card-item .card:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+                }
             </style>
 
             <!-- Modern Stepper Carousel with Arrow Navs -->
@@ -1219,12 +1244,10 @@
                         <input type="text" id="search-aparat" class="form-control border-start-0 rounded-end-pill" placeholder="Cari nama atau jabatan aparatur..." oninput="searchAparatCards(this.value)">
                     </div>
                 </div>
-            </div>
-
-            <!-- Grid Kartu Aparat -->
+            </div>            <!-- Grid Kartu Aparat -->
             <div class="row g-3" id="aparat-grid-container">
                 <!-- SANIMAN -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="pimpinan" data-name="saniman" data-role="pj. kepala desa"    data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="pimpinan" data-name="saniman" data-role="pj. kepala desa" data-aos="fade-left" data-aos-duration="600" data-aos-delay="50">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/saniman.webp') }}', 'SANIMAN', 'PJ. KEPALA DESA - Penjabat Kepala Desa Pemerintah Desa Sungai Bakau Kecil')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1249,7 +1272,7 @@
                     </div>
                 </div>
                 <!-- RIANDI PRAYUDA S,Pd -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="pimpinan" data-name="riandi prayuda s,pd" data-role="sekretaris desa"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="pimpinan" data-name="riandi prayuda s,pd" data-role="sekretaris desa" data-aos="fade-left" data-aos-duration="600" data-aos-delay="100">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/riandi.webp') }}', 'RIANDI PRAYUDA S,Pd', 'SEKRETARIS DESA - Sekretaris Desa & Koordinator Administrasi Desa')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1274,7 +1297,7 @@
                     </div>
                 </div>
                 <!-- HAQQI WIRAKARYADI, S.Pd -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="haqqi wirakaryadi, s.pd" data-role="kasi pemerintahan"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="haqqi wirakaryadi, s.pd" data-role="kasi pemerintahan" data-aos="fade-left" data-aos-duration="600" data-aos-delay="150">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/haqqi.webp') }}', 'HAQQI WIRAKARYADI, S.Pd', 'KASI PEMERINTAHAN - Kepala Seksi Pemerintahan Desa')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1299,7 +1322,7 @@
                     </div>
                 </div>
                 <!-- MASUDI EDI MULYONO -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="masudi edi mulyono" data-role="kasi pelayanan"    data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="masudi edi mulyono" data-role="kasi pelayanan" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/masudi.webp') }}', 'MASUDI EDI MULYONO', 'KASI PELAYANAN - Kepala Seksi Pelayanan Masyarakat')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1324,7 +1347,7 @@
                     </div>
                 </div>
                 <!-- USNI HUSIN -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="usni husin" data-role="kasi kesejahteraan"    data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="usni husin" data-role="kasi kesejahteraan" data-aos="fade-left" data-aos-duration="600" data-aos-delay="50">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/usni.webp') }}', 'USNI HUSIN', 'KASI KESEJAHTERAAN - Kepala Seksi Kesejahteraan Sosial & Pembangunan')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1349,7 +1372,7 @@
                     </div>
                 </div>
                 <!-- PUTRI NURMALASARI, S.Si -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="putri nurmalasari, s.si" data-role="kaur perencanaan"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="putri nurmalasari, s.si" data-role="kaur perencanaan" data-aos="fade-left" data-aos-duration="600" data-aos-delay="100">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/putri.webp') }}', 'PUTRI NURMALASARI, S.Si', 'KAUR PERENCANAAN - Kepala Urusan Perencanaan & Evaluasi Program')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1374,7 +1397,7 @@
                     </div>
                 </div>
                 <!-- EVA RAYANI -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="eva rayani" data-role="kaur umum"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="eva rayani" data-role="kaur umum" data-aos="fade-left" data-aos-duration="600" data-aos-delay="150">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/eva.webp') }}', 'EVA RAYANI', 'KAUR UMUM - Kepala Urusan Umum & Rumah Tangga Desa')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1399,7 +1422,7 @@
                     </div>
                 </div>
                 <!-- BURHANUDIN -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="burhanudin" data-role="kaur keuangan"    data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kasi-kaur" data-name="burhanudin" data-role="kaur keuangan" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/burhanudin.webp') }}', 'BURHANUDIN', 'KAUR KEUANGAN - Kepala Urusan Keuangan & Perbendaharaan Desa')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1424,7 +1447,7 @@
                     </div>
                 </div>
                 <!-- HAIRIDIANSYAH A.md -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="hairidiansyah a.md" data-role="kepala dusun senggiring"    data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="hairidiansyah a.md" data-role="kepala dusun senggiring" data-aos="fade-left" data-aos-duration="600" data-aos-delay="50">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/hairidiansyah.webp') }}', 'HAIRIDIANSYAH A.md', 'KEPALA DUSUN SENGGIRING - Kepala Dusun Senggiring (RT 001 - RT 003, RT 020)')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1449,7 +1472,7 @@
                     </div>
                 </div>
                 <!-- ZULMI ARIANSYAH S.Pd -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="zulmi ariansyah s.pd" data-role="kepala dusun benteng timur"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="zulmi ariansyah s.pd" data-role="kepala dusun benteng timur" data-aos="fade-left" data-aos-duration="600" data-aos-delay="100">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/zulmi.webp') }}', 'ZULMI ARIANSYAH S.Pd', 'KEPALA DUSUN BENTENG TIMUR - Kepala Dusun Benteng Timur (RT 007 - RT 009, RT 018, RT 036)')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1474,7 +1497,7 @@
                     </div>
                 </div>
                 <!-- LILY MAULINA S.Kom -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="lily maulina s.kom" data-role="kepala dusun benteng raya"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="lily maulina s.kom" data-role="kepala dusun benteng raya" data-aos="fade-left" data-aos-duration="600" data-aos-delay="150">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/lily.webp') }}', 'LILY MAULINA S.Kom', 'KEPALA DUSUN BENTENG RAYA - Kepala Dusun Benteng Raya (RT 004 - RT 006, RT 031)')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1499,7 +1522,7 @@
                     </div>
                 </div>
                 <!-- ISMAIL -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="ismail" data-role="kepala dusun sepakat tengah"    data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="ismail" data-role="kepala dusun sepakat tengah" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/ismail.webp') }}', 'ISMAIL', 'KEPALA DUSUN SEPAKAT TENGAH - Kepala Dusun Sepakat Tengah (RT 010 - RT 014, RT 019, RT 033, RT 035)')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1524,7 +1547,7 @@
                     </div>
                 </div>
                 <!-- KHOLIS -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="kholis" data-role="kepala dusun sepakat darat"    data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="kholis" data-role="kepala dusun sepakat darat" data-aos="fade-left" data-aos-duration="600" data-aos-delay="50">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/kholis.webp') }}', 'KHOLIS', 'KEPALA DUSUN SEPAKAT DARAT - Kepala Dusun Sepakat Darat (RT 015 - RT 017, RT 030, RT 034, RT 037)')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1549,7 +1572,7 @@
                     </div>
                 </div>
                 <!-- A. RANI BAHARI -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="a. rani bahari" data-role="kepala dusun kedaung"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="a. rani bahari" data-role="kepala dusun kedaung" data-aos="fade-left" data-aos-duration="600" data-aos-delay="100">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/rani.webp') }}', 'A. RANI BAHARI', 'KEPALA DUSUN KEDAUNG - Kepala Dusun Kedaung (RT 021 - RT 023)')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1574,7 +1597,7 @@
                     </div>
                 </div>
                 <!-- HAIDIN -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="haidin" data-role="kepala dusun senambang"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="haidin" data-role="kepala dusun senambang" data-aos="fade-left" data-aos-duration="600" data-aos-delay="150">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/haidin.webp') }}', 'HAIDIN', 'KEPALA DUSUN SENAMBANG - Kepala Dusun Senambang (RT 024 - RT 026, RT 032)')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1599,7 +1622,7 @@
                     </div>
                 </div>
                 <!-- SAMURI -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="samuri" data-role="kepala dusun konsasi"    data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="kadus" data-name="samuri" data-role="kepala dusun konsasi" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/samuri.webp') }}', 'SAMURI', 'KEPALA DUSUN KONSASI - Kepala Dusun Konsasi (RT 027 - RT 029)')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1624,7 +1647,7 @@
                     </div>
                 </div>
                 <!-- FITRIANI -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="fitriani" data-role="staf tata usaha & umum"    data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="fitriani" data-role="staf tata usaha & umum" data-aos="fade-left" data-aos-duration="600" data-aos-delay="50">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/fitriani.webp') }}', 'FITRIANI', 'STAF TATA USAHA & UMUM - Staf Pelaksana Urusan Tata Usaha & Administrasi Umum')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1649,7 +1672,7 @@
                     </div>
                 </div>
                 <!-- ZAINUDDIN -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="zainuddin" data-role="staf kasi pelayanan"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="zainuddin" data-role="staf kasi pelayanan" data-aos="fade-left" data-aos-duration="600" data-aos-delay="100">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/zainuddin.webp') }}', 'ZAINUDDIN', 'STAF KASI PELAYANAN - Staf Pelaksana Seksi Pelayanan Masyarakat')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1674,7 +1697,7 @@
                     </div>
                 </div>
                 <!-- HIKMATUN -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="hikmatun" data-role="staf kaur keuangan"    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="hikmatun" data-role="staf kaur keuangan" data-aos="fade-left" data-aos-duration="600" data-aos-delay="150">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/hikmatun.webp') }}', 'HIKMATUN', 'STAF KAUR KEUANGAN - Staf Pelaksana Urusan Keuangan & Kas Desa')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -1699,7 +1722,7 @@
                     </div>
                 </div>
                 <!-- SAHRUL ROZI -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="sahrul rozi" data-role="staf pbb kasi pemerintahan"    data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" data-aos-duration="800">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 aparat-card-item" data-cat="staf" data-name="sahrul rozi" data-role="staf pbb kasi pemerintahan" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card bg-white text-center d-flex flex-column">
                         <div class="position-relative overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/aparat/sahrul.webp') }}', 'SAHRUL ROZI', 'STAF PBB KASI PEMERINTAHAN - Staf Pelaksana PBB & Pendataan Seksi Pemerintahan')" style="height: 270px; background-color: #f8fafc;">
                             <picture>
@@ -3461,9 +3484,17 @@
                 var matchSearch = (!searchQuery || name.indexOf(searchQuery) !== -1 || role.indexOf(searchQuery) !== -1);
                 if (matchCat && matchSearch) {
                     el.classList.remove('d-none');
+                    el.classList.add('aos-animate');
+                    
+                    // Trigger animasi fade slide from right dengan dynamic stagger delay yang halus
+                    el.style.animation = 'none';
+                    void el.offsetWidth; // Force reflow agar animasi selalu ter-trigger ulang
+                    var delayMs = Math.min(visibleCount * 35, 250);
+                    el.style.animation = 'aparatFadeSlideRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) ' + delayMs + 'ms both';
                     visibleCount++;
                 } else {
                     el.classList.add('d-none');
+                    el.style.animation = '';
                 }
             });
             var noFound = document.getElementById('no-aparat-found');
@@ -3473,6 +3504,9 @@
                 } else {
                     noFound.classList.add('d-none');
                 }
+            }
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
             }
         }
 
