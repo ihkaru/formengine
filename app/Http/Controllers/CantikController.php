@@ -163,7 +163,13 @@ class CantikController extends Controller
                     'Jumlah_Memiliki_KTP' => 0,
                     'Jumlah_Penerima_PKH' => 0,
                     'Jumlah_Penerima_BPNT' => 0,
+                    'Jumlah_Penerima_BLTS' => 0,
+                    'Jumlah_Penerima_BLTDD' => 0,
+                    'Jumlah_Penerima_BCP' => 0,
+                    'Jumlah_Penerima_PIP' => 0,
+                    'Jumlah_Penerima_BPJS_PBI' => 0,
                     'Jumlah_Penerima_BLT' => 0,
+                    'Jumlah_Penerima_Bansos_KK' => 0,
                     'Jumlah_UMKM' => 0,
                     'Jumlah_BPJS' => 0,
                     'Jumlah_Penduduk_Putus_Sekolah' => 0,
@@ -193,15 +199,28 @@ class CantikController extends Controller
             $blts = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BLTS'] ?? 0);
             $bltdd = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BLTDD'] ?? 0);
             $bcp = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BCP'] ?? 0);
+            $pip = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan PIP'] ?? 0);
+            $bpjsPbi = (int)($row['Jika menerima bantuan, berapa jumlah keluarga penerima bantuan BPJS PBI'] ?? 0);
+
+            $isBansosKk = (
+                str_contains(strtoupper($row['Apakah rumah ini mendapat bantuan dari pemerintah (PKH, BPNT, BLTS, BCP, BLTDD, PIP, BPJS PBI)'] ?? ''), 'MENERIMA')
+                || ($pkh + $bpnt + $blts + $bltdd + $bcp + $pip + $bpjsPbi) > 0
+            ) ? 1 : 0;
 
             $aggregated[$rtName]['Jumlah_Penerima_PKH'] += $pkh;
             $aggregated[$rtName]['Jumlah_Penerima_BPNT'] += $bpnt;
+            $aggregated[$rtName]['Jumlah_Penerima_BLTS'] += $blts;
+            $aggregated[$rtName]['Jumlah_Penerima_BLTDD'] += $bltdd;
+            $aggregated[$rtName]['Jumlah_Penerima_BCP'] += $bcp;
+            $aggregated[$rtName]['Jumlah_Penerima_PIP'] += $pip;
+            $aggregated[$rtName]['Jumlah_Penerima_BPJS_PBI'] += $bpjsPbi;
             $aggregated[$rtName]['Jumlah_Penerima_BLT'] += ($blts + $bltdd + $bcp);
+            $aggregated[$rtName]['Jumlah_Penerima_Bansos_KK'] += $isBansosKk;
 
             $umkm = (int)($row['Jumlah_UMKM_Dalam_Keluarga'] ?? $row['Jumlah_UMKM'] ?? 0);
             $aggregated[$rtName]['Jumlah_UMKM'] += $umkm;
 
-            $bpjs = (int)($row['Jumlah_ART_Memiliki_BPJS'] ?? $row['Jumlah_BPJS'] ?? 0);
+            $bpjs = (int)($row['Jumlah_ART_Memiliki_BPJS'] ?? $row['Jumlah_BPJS'] ?? $bpjsPbi);
             $aggregated[$rtName]['Jumlah_BPJS'] += $bpjs;
         }
 
