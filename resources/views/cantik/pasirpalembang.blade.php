@@ -622,39 +622,35 @@
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Rilis Publik</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Penyusunan Publikasi Resmi &amp; Rilis Portal Web Desa Cantik</h5>
-                                <p class="text-muted small mb-3">Penyusunan 2 buku publikasi resmi (*Pasir Palembang Dalam Angka 2026* dan *Potensi Desa 2026*), pemasangan poster statistik di Kantor Desa, serta perilisan portal web interaktif Desa Cantik.</p>
+                                <p class="text-muted small mb-3">Penyusunan 2 buku publikasi resmi (*Pasir Palembang Dalam Angka 2026* dan *Potensi Desa 2026*) serta perilisan portal web interaktif lengkap dengan peta geospasial Leaflet, grafik interaktif, dan unduhan Excel.</p>
                                 
                                 <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-book-open text-primary me-2"></i>Produk Diseminasi yang Dirilis:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Publikasi 1:</strong> <em>"Desa Pasir Palembang Dalam Angka 2026"</em> (Buku rilis resmi kompilasi data statistik makro &amp; mikro).</li>
                                         <li class="mb-1"><strong>Publikasi 2:</strong> <em>"Potensi Desa Pasir Palembang 2026"</em> (Pemetaan potensi kewilayahan &amp; sarana prasarana 14 RT).</li>
-                                        <li class="mb-1"><strong>Pemasangan Poster Statistik:</strong> Diseminasi fisik poster data statistik di papan pengumuman Kantor Desa Pasir Palembang.</li>
                                         <li><strong>Portal Web Desa Cantik:</strong> Dashboard live dengan pencarian realtime, Leaflet Hybrid GPS Map, Chart.js, dan export multi-sheet Excel.</li>
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
-                                    <button type="button" class="btn btn-sm btn-outline-primary rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}', 'Pemasangan Poster Statistik di Kantor Desa', 'Publikasi dan pemasangan poster data statistik di papan informasi Kantor Desa Pasir Palembang 2026.')">
-                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Pemasangan
-                                    </button>
-                                    <a href="#publikasi" class="btn btn-sm btn-primary rounded-pill extra-small">
+                                    <a href="#publikasi" class="btn btn-sm btn-outline-primary rounded-pill extra-small">
                                         <i class="fas fa-book me-1"></i> Buka Buku Publikasi 2026
                                     </a>
                                 </div>
                             </div>
                             <div class="col-lg-5">
-                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}', 'Pemasangan Poster Statistik di Kantor Desa', 'Publikasi dan pemasangan poster data statistik di papan informasi Kantor Desa Pasir Palembang 2026.')">
-                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}', 'Publikasi Pasir Palembang Dalam Angka 2026', 'Publikasi resmi hasil pendataan lapangan Desa Cinta Statistik 2026 BPS Kabupaten Mempawah &amp; Pemdes Pasir Palembang.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px; background-color: #fbf9f5;">
                                         <picture>
-                                            <source srcset="{{ asset('images/pasirpalembang/pemasangan-poster.avif') }}" type="image/avif">
-                                            <source srcset="{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}" type="image/webp">
-                                            <img src="{{ asset('images/pasirpalembang/pemasangan-poster.webp') }}" alt="Pemasangan Poster di Kantor Desa Pasir Palembang" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1200" height="900">
+                                            <source srcset="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}" alt="Cover Pasir Palembang Dalam Angka 2026" class="img-fluid w-100 h-100 object-fit-contain p-2" loading="lazy" decoding="async" width="744" height="1024">
                                         </picture>
                                         <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
                                     </div>
                                     <div class="p-3 bg-light text-center">
-                                        <h6 class="fw-bold text-dark mb-1 small">Publikasi &amp; Pemasangan Poster</h6>
-                                        <p class="extra-small text-muted mb-0">Papan Informasi Kantor Desa Pasir Palembang 2026</p>
+                                        <h6 class="fw-bold text-dark mb-1 small">Publikasi Resmi &amp; Web Portal</h6>
+                                        <p class="extra-small text-muted mb-0">Rilis Publikasi PDF &amp; Portal Desa Cantik</p>
                                     </div>
                                 </div>
                             </div>
