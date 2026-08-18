@@ -246,7 +246,16 @@
             .hero-section { padding: 70px 0 50px; }
         }
 
-        /* Banner Word-by-Word Slide Up Animation */
+        /* Banner Word-by-Word Slide Up Animation & Anti-FOUC Flashing Fix */
+        [data-animate-text]:not(.text-split-done) {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        [data-animate-text].text-split-done {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.15s ease-in;
+        }
         .word-wrapper {
             display: inline-block;
             overflow: hidden;
@@ -358,6 +367,7 @@
                     newContent += wordHtml + ' ';
                 });
                 textEl.innerHTML = newContent.trim();
+                textEl.classList.add('text-split-done');
             });
 
             // Efek Parallax Persis seperti Desa Sejegi
