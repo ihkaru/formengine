@@ -198,7 +198,7 @@
             </div>
             <div class="row g-4">
                 <!-- Publikasi 1: Desa Pasir Palembang Dalam Angka 2026 -->
-                <div class="col-md-6 col-lg-6">
+                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                     <div class="card h-100 border rounded-4 shadow-sm p-3 text-center d-flex flex-column img-hover-card">
                         <div class="overflow-hidden rounded-3 border mb-3 img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-pasirpalembang-dalam-angka-2026.webp') }}', 'Cover Publikasi Desa Pasir Palembang Dalam Angka 2026', 'Publikasi resmi hasil pendataan lapangan Desa Cinta Statistik 2026 BPS Kabupaten Mempawah &amp; Pemerintah Desa Pasir Palembang.')" style="height: 260px; background-color: #fbf9f5; cursor: pointer;">
                             <picture>
@@ -221,7 +221,7 @@
                 </div>
 
                 <!-- Publikasi 2: Potensi Desa (Podes) 2026 -->
-                <div class="col-md-6 col-lg-6">
+                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-delay="250" data-aos-duration="800">
                     <div class="card h-100 border rounded-4 shadow-sm p-3 text-center d-flex flex-column img-hover-card">
                         <div class="overflow-hidden rounded-3 border mb-3 img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-podes-pasirpalembang-2026.webp') }}', 'Cover Publikasi Potensi Desa Pasir Palembang 2026', 'Publikasi resmi potensi kewilayahan, sarana dan prasarana fasilitas umum Desa Pasir Palembang 2026.')" style="height: 260px; background-color: #fbf9f5; cursor: pointer;">
                             <picture>
@@ -257,7 +257,7 @@
 
             <div class="row g-4">
                 <!-- Monografi Desa Pasir Palembang 2026 -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/monografi.webp') }}', 'Monografi Desa Pasir Palembang 2026', 'Profil Monografi Kependudukan, Potensi Peternakan, Perikanan, Sumber Daya Air &amp; Sarana Infrastruktur Desa Pasir Palembang 2026.')" style="height: 130px; background-color: #fbf9f5;">
                             <picture>
@@ -280,7 +280,7 @@
                     </div>
                 </div>
                 <!-- Infografis Demografi Card -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-demografi.webp') }}', 'Infografis Demografi Desa Pasir Palembang 2026', 'Visualisasi data statistik demografi dalam bentuk poster ringkas dan komunikatif.')" style="height: 130px; background-color: #f8fafc;">
                             <picture>
@@ -303,7 +303,7 @@
                     </div>
                 </div>
                 <!-- Dataset Excel Card -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Dataset Excel SDI 2026', 'Tabel kompilasi potensi RT &amp; Fasilitas umum Desa Pasir Palembang 2026.')" style="height: 130px; background-color: #f8fafc;">
                             <picture>
@@ -326,7 +326,7 @@
                     </div>
                 </div>
                 <!-- SOP Permintaan Data 2026 Card -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/cover-sop-pasirpalembang-2026.webp') }}', 'SOP Permintaan Data Desa Pasir Palembang 2026', 'Standar Operasional Prosedur Pelayanan &amp; Permintaan Data Statistik Sektoral Desa Pasir Palembang 2026.')" style="height: 130px; background-color: #fbf9f5;">
                             <picture>
@@ -365,7 +365,7 @@
 
             <div class="row g-4">
                 <!-- Poster 1: Demografi -->
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-demografi.webp') }}', 'Infografis Profil Demografi Desa Pasir Palembang 2026', 'Visualisasi data rasio gender 50.7% Laki-laki vs 49.3% Perempuan, total 3.680 jiwa, serta komposisi per RT.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
                             <picture>
@@ -390,7 +390,7 @@
                 </div>
 
                 <!-- Poster 2: Pekerjaan & Pendidikan -->
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-pekerjaan-pendidikan.webp') }}', 'Infografis Pekerjaan &amp; Pendidikan Pasir Palembang 2026', 'Data 56.8% sektor pertanian/perkebunan utama, serta 18 anak putus sekolah di 5 dusun.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
                             <picture>
@@ -415,7 +415,7 @@
                 </div>
 
                 <!-- Poster 3: Hunian Warga -->
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-hunian.webp') }}', 'Infografis Kondisi Hunian Warga Pasir Palembang 2026', '865 rumah berpenghuni, struktur atap seng 94.8%, lantai semen 52%, dinding tembok 70.7%, fasilitas BAB &amp; pembakaran sampah.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
                             <picture>
@@ -440,7 +440,7 @@
                 </div>
 
                 <!-- Poster 4: Distribusi Bansos -->
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-bansos.webp') }}', 'Infografis Distribusi Bantuan Sosial Pasir Palembang 2026', '58.3% (494 keluarga) penerima bantuan sosial, didominasi BPJS PBI (449) &amp; BPNT (227), serta sebaran per RT.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
                             <picture>
@@ -465,7 +465,7 @@
                 </div>
 
                 <!-- Poster 5: Fasilitas Publik -->
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6" data-aos="fade-left" data-aos-delay="500" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-white shadow-sm text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/infografis-fasilitas.webp') }}', 'Infografis Fasilitas Publik Pasir Palembang 2026', 'Kondisi 30 jalan/gang, 28 fasilitas ibadah, 60% jalan aspal/beton, 41.4% sinyal 4G/LTE sangat baik.')" style="height: 220px; background-color: #f8fafc; cursor: pointer;">
                             <picture>
@@ -502,7 +502,7 @@
             </div>
 
             <div class="row g-3">
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/kantor-desa.webp') }}', 'Kantor Desa Pasir Palembang', 'Tampak depan posko &amp; kantor Desa Cantik Pasir Palembang 2026.')" style="cursor: pointer;">
                         <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
                             <picture><source srcset="{{ asset('images/pasirpalembang/kantor-desa.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/kantor-desa.webp') }}" class="w-100 h-100 object-fit-cover hover-zoom" alt="Kantor Desa Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
@@ -512,7 +512,7 @@
                         <p class="extra-small text-muted mt-1 mb-0">Posko data &amp; sekretariat Desa Cantik Pasir Palembang 2026.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}', 'Pelatihan CAPI AppSheet', 'Pembekalan CAPI AppSheet bagi Agen Statistik Desa Pasir Palembang di Kantor BPS Mempawah 2026.')" style="cursor: pointer;">
                         <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
                             <picture><source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/pelatihan-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pelatihan CAPI Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
@@ -522,7 +522,7 @@
                         <p class="extra-small text-muted mt-1 mb-0">Pembekalan CAPI AppSheet bagi Agen Statistik Desa.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}', 'Diseminasi Hasil CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Pasir Palembang di Kantor BPS Mempawah 2026.')" style="cursor: pointer;">
                         <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
                             <picture><source srcset="{{ asset('images/pasirpalembang/diseminasi-capi.avif') }}" type="image/avif"><source srcset="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" type="image/webp"><img src="{{ asset('images/pasirpalembang/diseminasi-capi.webp') }}" class="w-100 h-100 object-fit-cover" alt="Diseminasi CAPI Pasir Palembang" loading="lazy" decoding="async" width="1000" height="750"></picture>
@@ -532,7 +532,7 @@
                         <p class="extra-small text-muted mt-1 mb-0">Pelatihan diseminasi hasil wawancara CAPI mikro bangunan &amp; rumah tangga.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-white p-2 text-center d-flex flex-column" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah Tahun 2026.')" style="cursor: pointer;">
                         <div class="overflow-hidden rounded-3 mb-2" style="height: 140px;">
                             <picture><source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif"><source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp"><img src="{{ asset('images/pencanangan-2026.webp') }}" class="w-100 h-100 object-fit-cover" alt="Pencanangan Desa Cantik 2026" loading="lazy" decoding="async" width="1000" height="750"></picture>
