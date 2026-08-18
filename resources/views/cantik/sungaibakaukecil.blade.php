@@ -858,7 +858,7 @@
             </div>
             <div class="row g-4">
                 <!-- Infografis 1: Profil Demografi -->
-                <div class="col-lg-4 col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="150" data-aos-duration="900">
+                <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}', 'Infografis Profil Demografi 2026', 'Struktur kependudukan, piramida kelompok usia, rasio gender, sebaran RT per dusun, dan persentase kepemilikan E-KTP (71,17%).')" style="height: 280px; background-color: #f8fafc;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/infografis-demografi.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}" alt="Infografis Profil Demografi Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 6px;" loading="lazy" decoding="async" width="723" height="1024"></picture>
@@ -887,7 +887,7 @@
                 </div>
 
                 <!-- Infografis 2: Pendidikan & Kesejahteraan Sosial -->
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-pendidikan-sosial.webp') }}', 'Infografis Pendidikan &amp; Kesejahteraan Sosial 2026', 'Pemetaan tingkat pendidikan, sebaran penerima bantuan sosial PKH/BPNT/BLT, serta mitigasi 32 anak putus sekolah.')" style="height: 280px; background-color: #f8fafc;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/infografis-pendidikan-sosial.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/infografis-pendidikan-sosial.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/infografis-pendidikan-sosial.webp') }}" alt="Infografis Pendidikan dan Kesejahteraan Sosial" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 6px;" loading="lazy" decoding="async" width="724" height="1024"></picture>
@@ -916,7 +916,7 @@
                 </div>
 
                 <!-- Infografis 3: Fasilitas & Infrastruktur -->
-                <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="450" data-aos-duration="900">
+                <div class="col-lg-4 col-md-6" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
                     <div class="card h-100 border rounded-4 shadow-sm overflow-hidden img-hover-card">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-fasilitas-infrastruktur.webp') }}', 'Infografis Fasilitas &amp; Infrastruktur 2026', 'Inventarisasi 49 fasilitas umum desa (53,1% sarana ibadah), kondisi 77,6% akses aspal/beton, dan sebaran 1.397 bumbung rumah.')" style="height: 280px; background-color: #f8fafc;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/infografis-fasilitas-infrastruktur.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/infografis-fasilitas-infrastruktur.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/infografis-fasilitas-infrastruktur.webp') }}" alt="Infografis Fasilitas dan Infrastruktur Desa" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 6px;" loading="lazy" decoding="async" width="721" height="1024"></picture>
@@ -957,7 +957,7 @@
             </div>
             <div class="row g-4 justify-content-center">
                 <!-- Publikasi 1: SBK Dalam Angka -->
-                <div class="col-md-6 col-lg-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="150" data-aos-duration="900">
+                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                     <div class="card h-100 border rounded-4 shadow-sm p-3 text-center d-flex flex-column img-hover-card">
                         <div class="overflow-hidden rounded-3 border mb-3 img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.webp') }}', 'Cover Publikasi Desa Sungai Bakau Kecil Dalam Angka 2026', 'Publikasi resmi hasil pendataan lapangan Desa Cinta Statistik 2026 BPS Kabupaten Mempawah &amp; Pemerintah Desa Sungai Bakau Kecil.')" style="height: 260px; background-color: #fbf9f5;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/cover-sbk-dalam-angka-2026.webp') }}" alt="Cover Sungai Bakau Kecil Dalam Angka 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="733" height="1024"></picture>
@@ -976,7 +976,7 @@
                 </div>
 
                 <!-- Publikasi 2: Potensi Desa (Podes) -->
-                <div class="col-md-6 col-lg-6">
+                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-delay="250" data-aos-duration="800">
                     <div class="card h-100 border rounded-4 shadow-sm p-3 text-center d-flex flex-column img-hover-card">
                         <div class="overflow-hidden rounded-3 border mb-3 img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-podes-sbk-2026.webp') }}', 'Cover Publikasi Potensi Desa Sungai Bakau Kecil 2026', 'Publikasi potensi kewilayahan, sarana dan prasarana fasilitas umum 37 RT di Sungai Bakau Kecil.')" style="height: 260px; background-color: #fbf9f5;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/cover-podes-sbk-2026.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/cover-podes-sbk-2026.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/cover-podes-sbk-2026.webp') }}" alt="Cover Potensi Desa Sungai Bakau Kecil 2026" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="723" height="1024"></picture>
@@ -1002,7 +1002,7 @@
             <p class="text-muted small mb-4">Layanan aksesibilitas data bagi masyarakat, akademisi, dan perangkat daerah Kabupaten Mempawah.</p>
             <div class="row g-4">
                 <!-- Monografi -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/monografi.webp') }}', 'Monografi Desa Sungai Bakau Kecil 2026', 'Profil Monografi Kependudukan, Wilayah &amp; Sarana Infrastruktur Desa')" style="height: 130px;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/monografi.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/monografi.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/monografi.webp') }}" alt="Monografi Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
@@ -1023,7 +1023,7 @@
                     </div>
                 </div>
                 <!-- Infografis -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}', 'Infografis Demografi Desa 2026', 'Visualisasi data statistik demografi dalam bentuk poster ringkas dan komunikatif.')" style="height: 130px; background-color: #f8fafc;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/infografis-demografi.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/infografis-demografi.webp') }}" alt="Infografis Demografi Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: contain; padding: 4px;" loading="lazy" decoding="async" width="723" height="1024"></picture>
@@ -1042,7 +1042,7 @@
                     </div>
                 </div>
                 <!-- Tabel Excel Raw Data -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350" data-aos-duration="850">
+                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Tabel Data Excel (SDI) 2026', 'Workbook multi-sheet lengkap: Ringkasan SDI, 8 Indikator RT, Variabel Mentah, Rekap Dusun &amp; 49 Fasilitas.')" style="height: 130px; background-color: #f8fafc;">
                             <picture>
@@ -1065,7 +1065,7 @@
                     </div>
                 </div>
                 <!-- SOP Permintaan Data -->
-                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="450" data-aos-duration="850">
+                <div class="col-lg-3 col-md-6" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
                     <div class="p-3 border rounded-4 h-100 bg-light text-center d-flex flex-column img-hover-card">
                         <div class="mb-3 overflow-hidden rounded-3 border img-zoom-wrapper clickable-img" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/cover-sop-sbk-2026.webp') }}', 'SOP Permintaan Data Desa Sungai Bakau Kecil 2026', 'Standar Operasional Prosedur Pelayanan &amp; Permintaan Data Statistik Sektoral Desa Sungai Bakau Kecil 2026.')" style="height: 130px; background-color: #fbf9f5;">
                             <picture>
@@ -1103,7 +1103,7 @@
                 <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 font-monospace fw-bold">5 Foto Dokumentasi</span>
             </div>
             <div class="row g-3">
-                <div class="col-md-4 col-lg-4" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="150" data-aos-duration="850">
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}', 'Pemerintah Desa Sungai Bakau Kecil', 'Pusat koordinasi &amp; kesiapan posko pelayanan data Desa Cantik 2026.')">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/kantor-desa.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/kantor-desa.webp') }}" alt="Pemerintah Desa Sungai Bakau Kecil" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
@@ -1117,7 +1117,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" data-aos-duration="850">
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="150" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-1.webp') }}', 'Pelatihan Agen Statistik RT', 'Pembekalan metodologi CAPI AppSheet &amp; verifikasi indikator SDI oleh BPS Mempawah.')">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-1.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-1.webp') }}" alt="Pembekalan & Pelatihan Agen Statistik" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>
@@ -1131,7 +1131,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4">
+                <div class="col-md-4 col-lg-4" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-2.webp') }}', 'Wawancara CAPI dengan Ketua RT', 'Pengumpulan 26 variabel potensi kewilayahan RT secara komprehensif di lapangan.')">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 200px;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-2.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-2.webp') }}" alt="Wawancara CAPI dengan Ketua RT" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
@@ -1145,7 +1145,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6">
+                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-delay="250" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-3.webp') }}', 'Tagging GPS Sarana & Fasilitas Umum', 'Inventarisasi geospasial titik koordinat tempat ibadah, sekolah, dan posyandu desa.')">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-3.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-3.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-3.webp') }}" alt="Tagging GPS Sarana & Fasilitas" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
@@ -1159,7 +1159,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6">
+                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/dokum-4.webp') }}', 'Quality Control & Ground Check Data', 'Pemeriksaan ulang akurasi data hasil pendataan bersama aparatur desa dan BPS.')">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/dokum-4.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/dokum-4.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/dokum-4.webp') }}" alt="Ground Check & Quality Control Data" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="960" height="1280"></picture>
@@ -1173,7 +1173,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="450" data-aos-duration="850">
+                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-delay="350" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/sungaibakaukecil/diseminasi.webp') }}', 'Diseminasi Hasil Pendataan CAPI', 'Pelatihan diseminasi hasil pendataan CAPI Desa Sungai Bakau Kecil di Kantor BPS Mempawah 2026.')">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
                             <picture><source srcset="{{ asset('images/sungaibakaukecil/diseminasi.avif') }}" type="image/avif"><source srcset="{{ asset('images/sungaibakaukecil/diseminasi.webp') }}" type="image/webp"><img src="{{ asset('images/sungaibakaukecil/diseminasi.webp') }}" alt="Diseminasi Hasil Pendataan CAPI" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>
@@ -1187,7 +1187,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="550" data-aos-duration="850">
+                <div class="col-md-6 col-lg-6" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
                     <div class="border rounded-4 overflow-hidden shadow-sm h-100 bg-light img-hover-card" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Desa Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')">
                         <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 220px;">
                             <picture><source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif"><source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp"><img src="{{ asset('images/pencanangan-2026.webp') }}" alt="Pencanangan Desa Cantik 2026" class="img-fluid w-100 h-100" style="object-fit: cover;" loading="lazy" decoding="async" width="1000" height="750"></picture>

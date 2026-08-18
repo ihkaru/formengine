@@ -66,7 +66,7 @@
 
         <!-- Visualisasi Grafik Demografi & Fasilitas -->
         <div class="row g-4 mb-5" data-aos="fade-up" data-aos-duration="1000">
-            <div class="col-lg-6">
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100" data-aos-duration="800">
                 <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
                     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                         <h5 class="fw-bold text-dark mb-0"><i class="fas fa-chart-bar me-2 text-primary"></i>Komposisi Demografi Per RT</h5>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="250" data-aos-duration="800">
                 <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
                     <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-pie me-2 text-success"></i>Persebaran Kategori Fasilitas Umum</h5>
                     <div style="height: 320px;">
