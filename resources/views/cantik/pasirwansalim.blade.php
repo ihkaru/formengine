@@ -25,6 +25,9 @@
                 <button class="btn btn-sm btn-light rounded-pill px-3 fw-bold" onclick="loadDataFromSheets()">
                     <i class="fas fa-redo me-1"></i> Sync Sekarang
                 </button>
+                <a href="#gsbpm-flow" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
+                    <i class="fas fa-project-diagram me-1"></i> Alur GSBPM
+                </a>
                 <a href="#tabel-rt" class="btn btn-sm btn-outline-light rounded-pill px-3 fw-bold">
                     <i class="fas fa-table me-1"></i> Tabel Potensi RT
                 </a>
@@ -218,6 +221,650 @@
 
         <!-- Dukungan Pemkab (Reusable Component) -->
         <x-ui.dukungan-pemkab village-name="Kelurahan Pasir Wan Salim" year="2026" />
+
+        <!-- ============================================================== -->
+        <!--  ALUR PENYELENGGARAAN PEMBINAAN KELURAHAN CINTA STATISTIK (GSBPM) -->
+        <!-- ============================================================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="gsbpm-flow" data-aos="fade-up" data-aos-duration="1000" style="overflow: hidden;">
+            
+            <!-- Header Section -->
+            <div class="d-flex justify-content-between align-items-start align-items-md-center mb-3 flex-wrap gap-3">
+                <div>
+                    <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 fw-bold extra-small">
+                            <i class="fas fa-certificate me-1"></i> Standar Internasional BPS &amp; UNECE (GSBPM)
+                        </span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1 fw-bold extra-small">
+                            <i class="fas fa-database me-1"></i> Satu Data Indonesia (SDI)
+                        </span>
+                    </div>
+                    <h4 class="fw-bold text-dark mb-1">
+                        <i class="fas fa-project-diagram me-2 text-primary"></i>Alur Penyelenggaraan Pembinaan Kelurahan Cinta Statistik (GSBPM)
+                    </h4>
+                    <p class="text-muted small mb-0">Rangkaian 8 fase pembinaan statistik sektoral Kelurahan Pasir Wan Salim 2026 mengadopsi standar <em>Generic Statistical Business Process Model</em> (GSBPM v5.1).</p>
+                </div>
+                <div class="d-flex gap-2 align-items-center flex-wrap">
+                    <a href="#metadataTab" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold shadow-sm">
+                        <i class="fas fa-database me-1"></i> Buka Metadata SDI
+                    </a>
+                    <button type="button" class="btn btn-sm btn-dark rounded-pill px-3 fw-semibold font-monospace" id="gsbpm-play-btn" onclick="toggleGsbpmAutoPlay()" title="Klik untuk Jeda/Lanjut Rotasi Otomatis">
+                        <i class="fas fa-pause fa-xs text-warning me-1" id="gsbpm-play-icon"></i>
+                        <span id="gsbpm-timer-badge">Auto: ON (6.5s)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress Track Bar -->
+            <div class="gsbpm-progress-container mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="extra-small fw-bold text-primary" id="gsbpm-step-label">
+                        <i class="fas fa-spinner fa-spin me-1 text-primary"></i> Fase 1 dari 8: Specify Needs (Identifikasi Kebutuhan)
+                    </span>
+                    <span class="extra-small text-muted fw-bold font-monospace" id="gsbpm-progress-pct">12.5% Selesai</span>
+                </div>
+                <div class="progress rounded-pill bg-light border" style="height: 6px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="gsbpm-progress-bar" role="progressbar" style="width: 12.5%; transition: width 0.4s ease;"></div>
+                </div>
+            </div>
+
+            <!-- Custom Modern Stepper CSS -->
+            <style>
+                .gsbpm-scroll-track {
+                    overflow-x: auto !important;
+                    overflow-y: hidden !important;
+                    scrollbar-width: none !important;
+                    -ms-overflow-style: none !important;
+                    scroll-behavior: smooth;
+                    padding: 4px 2px 10px 2px;
+                }
+                .gsbpm-scroll-track::-webkit-scrollbar {
+                    display: none !important;
+                }
+
+                .gsbpm-nav-btn {
+                    background: #f8fafc;
+                    border: 1.5px solid #e2e8f0 !important;
+                    border-radius: 16px !important;
+                    padding: 10px 14px !important;
+                    min-width: 135px;
+                    max-width: 160px;
+                    height: 100%;
+                    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                    text-align: left;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    position: relative;
+                    cursor: pointer;
+                }
+                .gsbpm-nav-btn:hover {
+                    background: #ffffff;
+                    border-color: #cbd5e1 !important;
+                    transform: translateY(-3px);
+                    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+                }
+                .gsbpm-nav-btn.active {
+                    background: #ffffff !important;
+                    border-color: var(--primary, #064E3B) !important;
+                    box-shadow: 0 6px 20px rgba(6, 78, 59, 0.16) !important;
+                    transform: translateY(-2px);
+                }
+                .gsbpm-nav-btn.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -1px;
+                    left: 14px;
+                    right: 14px;
+                    height: 3.5px;
+                    background: var(--primary, #064E3B);
+                    border-radius: 4px 4px 0 0;
+                }
+                .gsbpm-num-badge {
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 50%;
+                    background: #e2e8f0;
+                    color: #475569;
+                    font-size: 0.72rem;
+                    font-weight: 800;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.2s ease;
+                }
+                .gsbpm-nav-btn.active .gsbpm-num-badge {
+                    background: var(--primary, #064E3B);
+                    color: #ffffff;
+                    box-shadow: 0 2px 8px rgba(6, 78, 59, 0.35);
+                }
+                .gsbpm-nav-btn .phase-title {
+                    font-size: 0.88rem;
+                    font-weight: 700;
+                    color: #1e293b;
+                    margin-top: 6px;
+                    margin-bottom: 2px;
+                    line-height: 1.2;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .gsbpm-nav-btn.active .phase-title {
+                    color: var(--primary, #064E3B);
+                }
+                .gsbpm-nav-btn .phase-desc {
+                    font-size: 0.72rem;
+                    color: #64748b;
+                    line-height: 1.2;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .gsbpm-nav-arrow {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    background: #ffffff;
+                    border: 1px solid #e2e8f0;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                    color: var(--primary, #064E3B);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    flex-shrink: 0;
+                }
+                .gsbpm-nav-arrow:hover {
+                    background: var(--primary, #064E3B);
+                    color: #ffffff;
+                    border-color: var(--primary, #064E3B);
+                    transform: scale(1.08);
+                }
+            </style>
+
+            <!-- Modern Stepper Carousel with Arrow Navs -->
+            <div class="position-relative mb-4">
+                <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="gsbpm-nav-arrow d-none d-md-flex" onclick="scrollGsbpmTrack('left')" title="Geser Kiri">
+                        <i class="fas fa-chevron-left fa-xs"></i>
+                    </button>
+                    
+                    <div class="gsbpm-scroll-track flex-grow-1" id="gsbpm-scroll-track">
+                        <ul class="nav nav-pills flex-nowrap gap-2" id="gsbpm-tabs" role="tablist">
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link active gsbpm-nav-btn" id="tab-gsbpm-1" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-1" type="button" role="tab" aria-selected="true" onclick="manualSelectGsbpmTab(0)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">01</span>
+                                        <i class="fas fa-clipboard-check text-primary extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Specify Needs</div>
+                                    <div class="phase-desc">Identifikasi Kebutuhan</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-2" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-2" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(1)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">02</span>
+                                        <i class="fas fa-drafting-compass text-info extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Design</div>
+                                    <div class="phase-desc">Metadata &amp; Kuesioner</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-3" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-3" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(2)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">03</span>
+                                        <i class="fas fa-cubes text-secondary extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Build</div>
+                                    <div class="phase-desc">CAPI &amp; Database</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-4" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-4" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(3)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">04</span>
+                                        <i class="fas fa-mobile-alt text-success extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Collect</div>
+                                    <div class="phase-desc">Pelatihan &amp; Survei RT</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-5" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-5" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(4)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">05</span>
+                                        <i class="fas fa-brain text-warning extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Process</div>
+                                    <div class="phase-desc">AI Gemini &amp; Validasi</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-6" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-6" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(5)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">06</span>
+                                        <i class="fas fa-chart-line text-danger extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Analyze</div>
+                                    <div class="phase-desc">8 Indikator &amp; Wawasan</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-7" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-7" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(6)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">07</span>
+                                        <i class="fas fa-globe text-primary extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Disseminate</div>
+                                    <div class="phase-desc">Monografi &amp; Web</div>
+                                </button>
+                            </li>
+                            <li class="nav-item flex-shrink-0" role="presentation">
+                                <button class="nav-link gsbpm-nav-btn" id="tab-gsbpm-8" data-bs-toggle="pill" data-bs-target="#pane-gsbpm-8" type="button" role="tab" aria-selected="false" onclick="manualSelectGsbpmTab(7)">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="gsbpm-num-badge">08</span>
+                                        <i class="fas fa-sync-alt text-success extra-small"></i>
+                                    </div>
+                                    <div class="phase-title">Evaluate</div>
+                                    <div class="phase-desc">SOP Layanan Data</div>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="gsbpm-nav-arrow d-none d-md-flex" onclick="scrollGsbpmTrack('right')" title="Geser Kanan">
+                        <i class="fas fa-chevron-right fa-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content Panes -->
+            <div class="tab-content" id="gsbpm-panes">
+                
+                <!-- FASE 1: SPECIFY NEEDS -->
+                <div class="tab-pane fade show active" id="pane-gsbpm-1" role="tabpanel">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-7">
+                                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 1: Specify Needs</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-primary"></i> Mei - Awal Juni 2026</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Selesai &amp; Diresmikan</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Identifikasi Kebutuhan Data &amp; Pencanangan Resmi Kelurahan Cantik</h5>
+                                <p class="text-muted small mb-3">Langkah inisiasi pembinaan statistik sektoral yang diawali koordinasi antara BPS Kabupaten Mempawah dan Pemerintah Kelurahan Pasir Wan Salim hingga pencanangan serentak oleh Pemkab Mempawah.</p>
+                                
+                                <div class="bg-light p-3 rounded-3 border mb-3">
+                                    <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-list-check text-primary me-2"></i>Aktivitas Konkret yang Dilalui:</h6>
+                                    <ul class="extra-small text-muted mb-0 ps-3">
+                                        <li class="mb-1"><strong>Koordinasi Awal BPS Mempawah:</strong> Tim pembina BPS Mempawah hadir melakukan audiensi ke kantor Kelurahan Pasir Wan Salim.</li>
+                                        <li class="mb-1"><strong>Persetujuan Pemkel Pasir Wan Salim:</strong> Lurah dan jajaran staf menyepakati komitmen pelaksanaan pembinaan statistik terpadu.</li>
+                                        <li class="mb-1"><strong>Pencanangan di Mempawah Command Center:</strong> Deklarasi resmi Desa &amp; Kelurahan Cantik 2026 bersama Bupati/Sekda Mempawah di Kantor Bupati.</li>
+                                        <li><strong>Penetapan Agen Statistik Kelurahan:</strong> Penunjukan aparatur kelurahan dan operator IT sebagai Agen Statistik resmi.</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button type="button" class="btn btn-sm btn-outline-primary rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Kelurahan Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')">
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Pencanangan
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pencanangan-2026.webp') }}', 'Pencanangan Kelurahan Cantik 2026', 'Deklarasi &amp; Pencanangan Resmi Desa &amp; Kelurahan Cinta Statistik Kabupaten Mempawah 2026 oleh BPS &amp; Pemkab.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/pencanangan-2026.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pencanangan-2026.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pencanangan-2026.webp') }}" alt="Pencanangan Desa Cantik 2026" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                                    </div>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Pencanangan Kelurahan Cantik 2026</h6>
+                                        <p class="extra-small text-muted mb-0">Mempawah Command Center, Kantor Bupati Mempawah</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE 2: DESIGN -->
+                <div class="tab-pane fade" id="pane-gsbpm-2" role="tabpanel">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-7">
+                                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                    <span class="badge bg-info-subtle text-info border border-info-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 2: Design</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-info"></i> Awal Juni 2026</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Selesai (SDI Compliant)</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Desain Kuesioner &amp; Standardisasi Metadata Statistik (SDI)</h5>
+                                <p class="text-muted small mb-3">Perancangan instrumen pencacahan mikro berbasis agregat 9 RT dan 5 fasilitas umum dengan mengacu pada standar Metadata Satu Data Indonesia (SDI).</p>
+                                
+                                <div class="bg-light p-3 rounded-3 border mb-3">
+                                    <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-table-list text-info me-2"></i>Komponen Metadata &amp; Instrumen yang Disusun:</h6>
+                                    <ul class="extra-small text-muted mb-0 ps-3">
+                                        <li class="mb-1"><strong>MS-Kegiatan:</strong> Pendataan Potensi RT &amp; Fasilitas Kelurahan Cantik Pasir Wan Salim 2026.</li>
+                                        <li class="mb-1"><strong>MS-Variabel (26 Variabel RT + 10 Variabel Fasilitas):</strong> Definisi operasional demografi, lansia, bansos, kepemilikan sanitasi, serta koordinat GPS fasilitas.</li>
+                                        <li class="mb-1"><strong>MS-Indikator (8 Indikator Prioritas):</strong> Rumus Sex Ratio, Rata-rata ART, Proporsi Lansia, Bansos, Putus Sekolah, Kepadatan Hunian, dan Aksesibilitas.</li>
+                                        <li><strong>Desain Kuesioner Digital:</strong> Penyesuaian formulir wawancara ketua RT agar ramah diisi melalui smartphone CAPI.</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <a href="#metadataTab" class="btn btn-sm btn-info text-dark rounded-pill extra-small fw-bold">
+                                        <i class="fas fa-eye me-1"></i> Lihat Tab Metadata SDI
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}', 'Kantor Kelurahan Pasir Wan Salim', 'Pusat posko koordinasi data Kelurahan Cantik Pasir Wan Salim 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/pasirwansalim/kantor-kelurahan.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" alt="Kantor Kelurahan Pasir Wan Salim" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                                    </div>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Standardisasi Metadata &amp; Instrumen</h6>
+                                        <p class="extra-small text-muted mb-0">Posko Kelurahan Cantik Pasir Wan Salim 2026</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE 3: BUILD -->
+                <div class="tab-pane fade" id="pane-gsbpm-3" role="tabpanel">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-7">
+                                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                    <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 3: Build</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-secondary"></i> Juni 2026</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Siap Pakai</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Pengembangan Aplikasi CAPI Mobile AppSheet &amp; Sinkronisasi Cloud</h5>
+                                <p class="text-muted small mb-3">Pembangunan aplikasi survei berbasis Android/iOS menggunakan AppSheet yang terhubung langsung secara real-time ke basis data cloud Google Sheets.</p>
+                                
+                                <div class="bg-light p-3 rounded-3 border mb-3">
+                                    <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-cogs text-secondary me-2"></i>Fitur Sistem CAPI yang Dikonfigurasi:</h6>
+                                    <ul class="extra-small text-muted mb-0 ps-3">
+                                        <li class="mb-1"><strong>Logika Validasi Real-Time:</strong> Mencegah kesalahan input logika (contoh: Jumlah bansos tidak melampaui jumlah KK terdaftar).</li>
+                                        <li class="mb-1"><strong>Geotagging GPS Otomatis:</strong> Pengambilan titik koordinat akurat pada fasilitas publik (latitude &amp; longitude).</li>
+                                        <li class="mb-1"><strong>Modul Kamera &amp; Unggah Foto:</strong> Dokumentasi visual kondisi fisik fasilitas kelurahan langsung dari lapangan.</li>
+                                        <li><strong>Integrasi Google Sheets:</strong> Penyimpanan data tabel `Appsheet_RT` dan `Appsheet_Fasilitas` secara terpusat dan aman.</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <a href="#tabel-rt" class="btn btn-sm btn-outline-secondary rounded-pill extra-small">
+                                        <i class="fas fa-table me-1"></i> Lihat Data CAPI Hasil Sinkronisasi
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Workbook Data Excel SDI 2026', 'Struktur 5 Sheet Data Mentah &amp; Indikator SDI Kelurahan Pasir Wan Salim 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px; background-color: #f8fafc;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/excel-sdi-cover.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/excel-sdi-cover.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/excel-sdi-cover.webp') }}" alt="Arsitektur Database Cloud & CAPI" class="img-fluid w-100 h-100 object-fit-contain p-2" loading="lazy" decoding="async" width="800" height="600">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                                    </div>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Arsitektur CAPI AppSheet &amp; Database</h6>
+                                        <p class="extra-small text-muted mb-0">Integrasi Cloud Google Sheets &amp; Geolocation GPS</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE 4: COLLECT -->
+                <div class="tab-pane fade" id="pane-gsbpm-4" role="tabpanel">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-7">
+                                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 4: Collect</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-success"></i> Juni - Juli 2026</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> 100% Terdata (9 RT &amp; 5 Fasilitas)</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Pelatihan Agen Statistik &amp; Pendataan Terpusat Ketua RT via CAPI</h5>
+                                <p class="text-muted small mb-3">Pelatihan intensif bagi Agen Statistik Kelurahan di BPS Mempawah serta pencacahan terpusat terhadap seluruh 9 Ketua RT dan inventarisasi fasilitas umum.</p>
+                                
+                                <div class="bg-light p-3 rounded-3 border mb-3">
+                                    <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-users-viewfinder text-success me-2"></i>Pelaksanaan Lapangan:</h6>
+                                    <ul class="extra-small text-muted mb-0 ps-3">
+                                        <li class="mb-1"><strong>Pelatihan Agen Statistik:</strong> BPS Mempawah membekali agen statistik pengoperasian CAPI, konsep GSBPM, dan tata cara wawancara.</li>
+                                        <li class="mb-1"><strong>Pendataan Terpusat:</strong> Para Ketua RT diwawancarai oleh Agen Statistik Kelurahan menggunakan CAPI berdasarkan data registrasi terkini.</li>
+                                        <li><strong>Observasi Fasilitas Umum:</strong> Agen statistik melakukan geotagging GPS dan foto kondisi sarana publik di seluruh RW.</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}', 'Pengumpulan Data Lapangan CAPI', 'Wawancara CAPI potensi keluarga dan bangunan warga di Pasir Wan Salim 2026.')">
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Lapangan
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}', 'Pengumpulan Data Lapangan CAPI', 'Wawancara CAPI potensi keluarga dan bangunan warga di Pasir Wan Salim 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-1.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-1.webp') }}" alt="Pengumpulan Data Lapangan CAPI" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                                    </div>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Pengumpulan Data Lapangan CAPI</h6>
+                                        <p class="extra-small text-muted mb-0">Wawancara 9 Ketua RT &amp; Geotagging Fasilitas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE 5: PROCESS -->
+                <div class="tab-pane fade" id="pane-gsbpm-5" role="tabpanel">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-7">
+                                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                    <span class="badge bg-warning-subtle text-dark border border-warning-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 5: Process</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-warning"></i> Juli 2026</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Verifikasi AI Lulus</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Pengolahan &amp; Verifikasi Data Berbasis AI Gemini di Google Sheets</h5>
+                                <p class="text-muted small mb-3">Pembersihan data (*data cleaning*), rekonsiliasi anomali, dan pelatihan validasi otomatis memanfaatkan kecerdasan buatan (Gemini AI) yang terpasang di Google Sheets.</p>
+                                
+                                <div class="bg-light p-3 rounded-3 border mb-3">
+                                    <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-wand-magic-sparkles text-warning me-2"></i>Inovasi Pengolahan Data:</h6>
+                                    <ul class="extra-small text-muted mb-0 ps-3">
+                                        <li class="mb-1"><strong>Pembersihan &amp; Imputasi Data:</strong> Koreksi penulisan nama RT/RW, penyesuaian format numerik, dan deteksi duplikasi ID.</li>
+                                        <li class="mb-1"><strong>Verifikasi AI Gemini di Google Sheets:</strong> Formula prompt AI untuk mendeteksi outlier data sosial, lansia, dan bansos.</li>
+                                        <li><strong>Agregasi Hierarki SDI:</strong> Perhitungan rekapitulasi data otomatis dari tingkat 9 RT ke RW hingga total Kelurahan.</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button type="button" class="btn btn-sm btn-outline-warning text-dark rounded-pill extra-small" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}', 'Pelatihan Pengolahan Data CAPI', 'Proses verifikasi data dan pembekalan analitika data di Kantor BPS Mempawah 2026.')">
+                                        <i class="fas fa-eye me-1"></i> Pratinjau Foto Pengolahan
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}', 'Pelatihan Pengolahan Data CAPI', 'Proses verifikasi data dan pembekalan analitika data di Kantor BPS Mempawah 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-2.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-2.webp') }}" alt="Pelatihan Pengolahan Data CAPI & AI" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                                    </div>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Pengolahan &amp; Validasi AI Gemini</h6>
+                                        <p class="extra-small text-muted mb-0">Verifikasi Anomali di Google Sheets &bull; BPS Mempawah</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE 6: ANALYZE -->
+                <div class="tab-pane fade" id="pane-gsbpm-6" role="tabpanel">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-7">
+                                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 6: Analyze</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-danger"></i> Akhir Juli 2026</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Analisis Tuntas</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Analisis 8 Indikator SDI &amp; Perumusan Rekomendasi Kelurahan</h5>
+                                <p class="text-muted small mb-3">Kalkulasi 8 indikator statistik strategis Satu Data Indonesia serta perumusan wawasan analitik terkait demografi, proporsi lansia, dan penerima bansos.</p>
+                                
+                                <div class="bg-light p-3 rounded-3 border mb-3">
+                                    <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-chart-pie text-danger me-2"></i>Hasil Analisis &amp; Wawasan Sektoral:</h6>
+                                    <ul class="extra-small text-muted mb-0 ps-3">
+                                        <li class="mb-1"><strong>Kalkulasi 8 Indikator SDI:</strong> Sex Ratio, Rata-rata ART, Proporsi Lansia, KTP-el, Penerima Bansos, Kepadatan Hunian, dan Akses Fasilitas.</li>
+                                        <li class="mb-1"><strong>Wawasan Kesejahteraan Sosial:</strong> Analisis sebaran penerima bantuan sosial PKH/BPNT di 9 RT.</li>
+                                        <li><strong>Rekomendasi Kebijakan:</strong> Masukan data mikro untuk musrenbang dan penyusunan program kerja kelurahan berbasis bukti.</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <a href="#sop-layanan" class="btn btn-sm btn-outline-danger rounded-pill extra-small">
+                                        <i class="fas fa-chart-line me-1"></i> Lihat Produk Statistik Kelurahan
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}', 'Analisis Data Kelurahan Pasir Wan Salim', 'Pembekalan interpretasi indikator statistik di Kantor Kelurahan Pasir Wan Salim 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-3.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-3.webp') }}" alt="Analisis Data Kelurahan" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                                    </div>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Analisis &amp; Wawasan Sektoral</h6>
+                                        <p class="extra-small text-muted mb-0">Perhitungan 8 Indikator Statistik Prioritas SDI</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE 7: DISSEMINATE -->
+                <div class="tab-pane fade" id="pane-gsbpm-7" role="tabpanel">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-7">
+                                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 7: Disseminate</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-primary"></i> Agustus 2026</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Rilis Publik</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Penyusunan Monografi Kelurahan &amp; Rilis Portal Web Interaktif</h5>
+                                <p class="text-muted small mb-3">Penyusunan buku *Monografi Kelurahan Pasir Wan Salim 2026* serta perilisan portal web interaktif lengkap dengan peta geospasial Leaflet, visualisasi grafik, dan unduhan workbook Excel.</p>
+                                
+                                <div class="bg-light p-3 rounded-3 border mb-3">
+                                    <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-book-open text-primary me-2"></i>Produk Diseminasi yang Dirilis:</h6>
+                                    <ul class="extra-small text-muted mb-0 ps-3">
+                                        <li class="mb-1"><strong>Monografi Kelurahan 2026:</strong> Ringkasan profil demografi, wilayah, dan rekapitulasi data potensi 9 RT.</li>
+                                        <li class="mb-1"><strong>Portal Web Kelurahan Cantik:</strong> Dashboard live dengan pencarian realtime, Leaflet Hybrid GPS Map, dan Chart.js.</li>
+                                        <li><strong>Export Excel SDI Multi-Sheet:</strong> Unduhan data mikro terstruktur 5 sheet untuk kebutuhan analitik.</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <a href="#sop-layanan" class="btn btn-sm btn-outline-primary rounded-pill extra-small">
+                                        <i class="fas fa-book me-1"></i> Buka Produk Monografi &amp; Excel
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}', 'Monografi Kelurahan Pasir Wan Salim 2026', 'Publikasi resmi hasil pendataan lapangan Kelurahan Cantik 2026 BPS Kabupaten Mempawah &amp; Pemkel Pasir Wan Salim.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/pasirwansalim/kantor-kelurahan.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirwansalim/kantor-kelurahan.webp') }}" alt="Monografi Kelurahan Pasir Wan Salim" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                                    </div>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">Monografi Resmi &amp; Web Portal</h6>
+                                        <p class="extra-small text-muted mb-0">Rilis Publikasi Monografi &amp; Portal Kelurahan Cantik</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE 8: EVALUATE -->
+                <div class="tab-pane fade" id="pane-gsbpm-8" role="tabpanel">
+                    <div class="p-4 rounded-4 bg-white border shadow-sm">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-7">
+                                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 8: Evaluate</span>
+                                    <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-success"></i> Berkelanjutan 2026+</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> SOP Aktif</span>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">Evaluasi Kualitas, Penerapan SOP Permintaan Data &amp; Keberlanjutan</h5>
+                                <p class="text-muted small mb-3">Penilaian menyeluruh terhadap kualitas data, pembentukan mekanisme pelayanan data resmi melalui SOP kelurahan, dan rencana pemutakhiran statistik mandiri berkala.</p>
+                                
+                                <div class="bg-light p-3 rounded-3 border mb-3">
+                                    <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-clipboard-check text-success me-2"></i>Mekanisme Evaluasi &amp; Layanan Berkelanjutan:</h6>
+                                    <ul class="extra-small text-muted mb-0 ps-3">
+                                        <li class="mb-1"><strong>SOP Permintaan Data 2026:</strong> Standardisasi alur permohonan data statistik bagi akademisi, instansi pemerintah, dan masyarakat.</li>
+                                        <li class="mb-1"><strong>Review Kinerja Agen Statistik:</strong> Evaluasi ketepatan waktu pengumpulan, kelengkapan metadata, dan kepatuhan prinsip Satu Data Indonesia.</li>
+                                        <li><strong>Kemandirian Statistik Kelurahan:</strong> Komitmen pemutakhiran data secara periodik berbasis aplikasi CAPI mandiri.</li>
+                                    </ul>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <a href="#sop-layanan" class="btn btn-sm btn-outline-success rounded-pill extra-small">
+                                        <i class="fas fa-file-signature me-1"></i> Standar Layanan SOP Data
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}', 'SOP Pelayanan Data Kelurahan Pasir Wan Salim 2026', 'Standar Pelayanan Data Berkelanjutan 2026.')">
+                                    <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px;">
+                                        <picture>
+                                            <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-4.avif') }}" type="image/avif">
+                                            <source srcset="{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}" type="image/webp">
+                                            <img src="{{ asset('images/pasirwansalim/pendataan-capi-4.webp') }}" alt="SOP Permintaan Data Kelurahan" class="img-fluid w-100 h-100 object-fit-cover" loading="lazy" decoding="async" width="1000" height="750">
+                                        </picture>
+                                        <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Perbesar</div>
+                                    </div>
+                                    <div class="p-3 bg-light text-center">
+                                        <h6 class="fw-bold text-dark mb-1 small">SOP Permintaan Data &amp; Evaluasi</h6>
+                                        <p class="extra-small text-muted mb-0">Standar Pelayanan Data Berkelanjutan 2026</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <!-- Produk Statistik & SOP Permintaan Data -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="sop-layanan" data-aos="fade-up" data-aos-duration="1000">
@@ -894,5 +1541,127 @@
                 modal.show();
             }
         }
+
+        // ==========================================
+        // GSBPM 8-PHASE SMART CONTROLLER (6.5s Timer + Progress Track)
+        // ==========================================
+        var gsbpmCurrentIndex = 0;
+        var gsbpmTotalTabs = 8;
+        var gsbpmAutoInterval = null;
+        var gsbpmIsPaused = false;
+        var gsbpmAutoDuration = 6500; // 6.5 detik per fase
+
+        var gsbpmPhaseMeta = [
+            { num: 1, title: 'Specify Needs', desc: 'Identifikasi Kebutuhan & Pencanangan Kelurahan Cantik' },
+            { num: 2, title: 'Design', desc: 'Desain Kuesioner & Metadata SDI (MS-Kegiatan/Variabel/Indikator)' },
+            { num: 3, title: 'Build', desc: 'Pembangunan CAPI AppSheet & Database Sektoral' },
+            { num: 4, title: 'Collect', desc: 'Pelatihan Agen Statistik & Survei CAPI 9 RT' },
+            { num: 5, title: 'Process', desc: 'Pemrosesan Data, AI Gemini & Validasi Sektoral' },
+            { num: 6, title: 'Analyze', desc: 'Analisis 8 Indikator Prioritas SDI & Wawasan Wilayah' },
+            { num: 7, title: 'Disseminate', desc: 'Diseminasi Hasil & Publikasi Web Portal Kelurahan' },
+            { num: 8, title: 'Evaluate', desc: 'Evaluasi Pembinaan & SOP Layanan Permintaan Data' }
+        ];
+
+        function startGsbpmAutoRotate() {
+            if (gsbpmAutoInterval) clearInterval(gsbpmAutoInterval);
+            gsbpmAutoInterval = setInterval(function() {
+                if (!gsbpmIsPaused) {
+                    gsbpmCurrentIndex = (gsbpmCurrentIndex + 1) % gsbpmTotalTabs;
+                    selectGsbpmTab(gsbpmCurrentIndex, false);
+                }
+            }, gsbpmAutoDuration);
+        }
+
+        function selectGsbpmTab(index, isManual) {
+            gsbpmCurrentIndex = index;
+            var tabBtn = document.getElementById('tab-gsbpm-' + (index + 1));
+            if (tabBtn && typeof bootstrap !== 'undefined') {
+                var tabInstance = bootstrap.Tab.getInstance(tabBtn) || new bootstrap.Tab(tabBtn);
+                tabInstance.show();
+                
+                // Update Progress bar & Label
+                var pct = Math.round(((index + 1) / gsbpmTotalTabs) * 100);
+                var pBar = document.getElementById('gsbpm-progress-bar');
+                var pPct = document.getElementById('gsbpm-progress-pct');
+                var sLabel = document.getElementById('gsbpm-step-label');
+
+                if (pBar) pBar.style.width = pct + '%';
+                if (pPct) pPct.innerText = pct + '% Selesai (Fase ' + (index + 1) + '/8)';
+                if (sLabel && gsbpmPhaseMeta[index]) {
+                    sLabel.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Fase ' + (index + 1) + ' dari 8: <strong>' + gsbpmPhaseMeta[index].title + '</strong> — ' + gsbpmPhaseMeta[index].desc;
+                }
+
+                // Smooth Scroll Track to center active tab
+                var track = document.getElementById('gsbpm-scroll-track');
+                if (track) {
+                    var tabLeft = tabBtn.offsetLeft;
+                    var tabWidth = tabBtn.offsetWidth;
+                    var trackWidth = track.offsetWidth;
+                    var scrollPos = tabLeft - (trackWidth / 2) + (tabWidth / 2);
+                    track.scrollTo({ left: Math.max(0, scrollPos), behavior: 'smooth' });
+                }
+            }
+        }
+
+        function manualSelectGsbpmTab(index) {
+            selectGsbpmTab(index, true);
+            startGsbpmAutoRotate();
+        }
+
+        function scrollGsbpmTrack(direction) {
+            var track = document.getElementById('gsbpm-scroll-track');
+            if (track) {
+                var scrollAmount = 280;
+                track.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        function toggleGsbpmAutoPlay() {
+            gsbpmIsPaused = !gsbpmIsPaused;
+            var pIcon = document.getElementById('gsbpm-play-icon');
+            var tBadge = document.getElementById('gsbpm-timer-badge');
+            var btn = document.getElementById('gsbpm-play-btn');
+
+            if (gsbpmIsPaused) {
+                if (pIcon) pIcon.className = 'fas fa-play fa-xs text-success me-1';
+                if (tBadge) tBadge.innerText = 'Auto: PAUSED';
+                if (btn) {
+                    btn.classList.remove('btn-dark');
+                    btn.classList.add('btn-outline-dark');
+                }
+            } else {
+                if (pIcon) pIcon.className = 'fas fa-pause fa-xs text-warning me-1';
+                if (tBadge) tBadge.innerText = 'Auto: ON (6.5s)';
+                if (btn) {
+                    btn.classList.remove('btn-outline-dark');
+                    btn.classList.add('btn-dark');
+                }
+                startGsbpmAutoRotate();
+            }
+        }
+
+        // Pause on mouse hover, resume on mouse leave & init
+        document.addEventListener('DOMContentLoaded', function() {
+            var gsbpmContainer = document.getElementById('gsbpm-flow');
+            if (gsbpmContainer) {
+                gsbpmContainer.addEventListener('mouseenter', function() {
+                    gsbpmIsPaused = true;
+                    var tBadge = document.getElementById('gsbpm-timer-badge');
+                    if (tBadge && !document.getElementById('gsbpm-play-btn').classList.contains('btn-outline-dark')) {
+                        tBadge.innerText = 'Auto: PAUSED (Hover)';
+                    }
+                });
+                gsbpmContainer.addEventListener('mouseleave', function() {
+                    if (!document.getElementById('gsbpm-play-btn').classList.contains('btn-outline-dark')) {
+                        gsbpmIsPaused = false;
+                        var tBadge = document.getElementById('gsbpm-timer-badge');
+                        if (tBadge) tBadge.innerText = 'Auto: ON (6.5s)';
+                    }
+                });
+            }
+            // Inisialisasi awal Fase 1
+            selectGsbpmTab(0, false);
+            startGsbpmAutoRotate();
+        });
     </script>
 </x-layouts.app>

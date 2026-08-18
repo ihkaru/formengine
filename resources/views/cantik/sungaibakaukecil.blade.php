@@ -181,14 +181,14 @@
                 <div>
                     <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
                         <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 fw-bold extra-small">
-                            <i class="fas fa-certificate me-1"></i> Standar Internasional BPS &amp; UNECE
+                            <i class="fas fa-certificate me-1"></i> Standar Internasional BPS &amp; UNECE (GSBPM)
                         </span>
                         <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1 fw-bold extra-small">
                             <i class="fas fa-database me-1"></i> Satu Data Indonesia (SDI)
                         </span>
                     </div>
                     <h4 class="fw-bold text-dark mb-1">
-                        <i class="fas fa-project-diagram me-2 text-primary"></i>Alur Penyelenggaraan Pembinaan Desa Cinta Statistik
+                        <i class="fas fa-project-diagram me-2 text-primary"></i>Alur Penyelenggaraan Pembinaan Desa Cinta Statistik (GSBPM)
                     </h4>
                     <p class="text-muted small mb-0">Rangkaian 8 fase pembinaan statistik sektoral Desa Sungai Bakau Kecil 2026 mengadopsi standar <em>Generic Statistical Business Process Model</em> (GSBPM v5.1).</p>
                 </div>
