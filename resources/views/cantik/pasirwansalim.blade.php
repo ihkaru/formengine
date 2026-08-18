@@ -15,7 +15,7 @@
             </div>
             <h1 class="fw-bold display-5 mb-2">Kelurahan Pasir Wan Salim</h1>
             <p class="lead mx-auto text-white-50 mb-4" style="max-width:800px;">
-                Kecamatan Mempawah Timur, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT &amp; Inventarisasi Fasilitas Umum Berbasis Satu Data Indonesia (SDI).
+                Kecamatan Mempawah Timur, Kabupaten Mempawah — Pendataan Potensi Kewilayahan RT Berbasis Satu Data Indonesia (SDI).
             </p>
             <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
                 <div class="sync-wrap text-white small fw-semibold">
@@ -50,172 +50,97 @@
             <x-ui.kpi-card title="Bumbung Rumah" icon="fa-building" id="kpi-bumbung" sub-id="kpi-kepadatan" sub-label="Kepadatan" sub-color="text-info" />
             <x-ui.kpi-card title="Penduduk Lansia" icon="fa-user-clock" id="kpi-lansia" sub-id="kpi-pct-lansia" sub-label="Proporsi" sub-color="text-warning" />
             <x-ui.kpi-card title="Penerima Bansos" icon="fa-hand-holding-heart" id="kpi-bansos" sub-label="PKH &amp; BPNT" />
-            <x-ui.kpi-card title="Fasilitas Publik" icon="fa-map-marker-alt" id="kpi-fasilitas" sub-label="Terdata &amp; Aktif" />
+            <x-ui.kpi-card title="UMKM Produktif" icon="fa-store" id="kpi-umkm" sub-id="kpi-bpjs-summary" sub-label="Unit Usaha Terdata" sub-color="text-success" />
         </div>
 
         <!-- Metadata SDI 2026 (Reusable Component) -->
-        <x-widgets.sdi-metadata-tab village-name="Kelurahan Pasir Wan Salim" :rt-count="9" :var-rt-count="26" :var-fas-count="10" />
+        <x-widgets.sdi-metadata-tab village-name="Kelurahan Pasir Wan Salim" :rt-count="17" :var-rt-count="26" :var-fas-count="0" />
 
         <!-- Flashcard Interaktif & Trivia Stats (Reusable Component) -->
         <x-widgets.flashcard-deck village-name="Kelurahan Pasir Wan Salim" title="Flashcard Trivia &amp; Wawasan Data Kelurahan" />
 
         <!-- Charts Section -->
         <div class="row g-4 mb-5">
-            <div class="col-lg-8">
+            <div class="col-lg-7">
                 <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
                     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                         <div>
-                            <h5 class="fw-bold text-dark mb-1"><i class="fas fa-chart-bar me-2 text-primary"></i>Jumlah Penduduk &amp; KK Per RT</h5>
-                            <p class="text-muted extra-small mb-0"><i class="fas fa-arrows-left-right me-1 text-primary"></i>Grafik sebaran penduduk laki-laki, perempuan &amp; kepala keluarga</p>
+                            <h5 class="fw-bold text-dark mb-1"><i class="fas fa-chart-bar me-2 text-primary"></i>Distribusi Penduduk &amp; KK Per RT</h5>
+                            <p class="text-muted extra-small mb-0"><i class="fas fa-arrows-left-right me-1 text-primary"></i>Grafik sebaran penduduk laki-laki, perempuan &amp; kepala keluarga di 17 RT</p>
                         </div>
-                        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill" id="rt-chart-count-badge">Wilayah Terdata</span>
+                        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill" id="rt-chart-count-badge">17 RT Terdata</span>
                     </div>
                     <div style="overflow-x: auto; overflow-y: hidden; width: 100%; -webkit-overflow-scrolling: touch;" class="pb-2">
-                        <div id="chartDemografiContainer" style="width: 100%; min-width: 550px; height: 350px; position: relative;">
+                        <div id="chartDemografiContainer" style="width: 100%; min-width: 650px; height: 350px; position: relative;">
                             <canvas id="chartDemografi"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
-                    <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-pie me-2 text-success"></i>Kategori Fasilitas Kelurahan</h5>
-                    <canvas id="chartFasilitas" style="max-height:350px;"></canvas>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold text-dark mb-1"><i class="fas fa-chart-pie me-2 text-success"></i>Cakupan BPJS Kesehatan</h5>
+                            <p class="text-muted extra-small mb-0">Proporsi kepemilikan jaminan BPJS penduduk</p>
+                        </div>
+                        <span class="badge bg-success-subtle text-success fw-bold px-3 py-1 rounded-pill extra-small" id="bpjs-pct-badge">86.1% Tercover</span>
+                    </div>
+                    <div style="height: 300px; position: relative;" class="d-flex align-items-center justify-content-center">
+                        <canvas id="chartBpjs"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Interactive Facility Map -->
-        <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="peta-sebaran">
-            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                <div>
-                    <h4 class="fw-bold text-primary mb-0"><i class="fas fa-map-marked-alt me-2"></i>Peta Persebaran Sarana &amp; Fasilitas Publik</h4>
-                    <p class="text-muted small mb-0">Lokasi fasilitas publik dan infrastruktur wilayah Kelurahan Pasir Wan Salim.</p>
-                </div>
-                <span class="badge bg-success text-white px-3 py-2 rounded-pill fw-bold" id="map-count-badge">5 Titik Fasilitas</span>
-            </div>
-            <div id="map" style="height: 440px; width: 100%; border-radius: 16px; z-index: 1;"></div>
-        </div>
-
-        <!-- Tables Section -->
+        <!-- Tables Section: 17 RT Potensi Kewilayahan -->
         <div class="card border-0 shadow-sm rounded-4 mb-5 p-4 bg-white" id="tabel-rt">
-            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
                 <div>
-                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-table me-2 text-primary"></i>Daftar Potensi RT &amp; Fasilitas Umum</h4>
-                    <p class="text-muted small mb-0">Agregasi data mikro statistik kewilayahan hasil pembinaan Desa Cantik 2026.</p>
+                    <h4 class="fw-bold text-dark mb-1"><i class="fas fa-table me-2 text-primary"></i>Daftar Potensi 17 RT / Wilayah</h4>
+                    <p class="text-muted small mb-0">Agregasi data mikro statistik kewilayahan 17 RT Kelurahan Pasir Wan Salim berbasis SDI.</p>
                 </div>
-                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 py-2 fw-bold shadow-sm" onclick="downloadComprehensiveSDIWorkbookPasirWanSalim()">
-                    <i class="fas fa-file-excel me-1"></i> Unduh Data Excel Lengkap (.xlsx)
-                </button>
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                    <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 py-2 fw-bold shadow-sm" onclick="downloadComprehensiveSDIWorkbookPasirWanSalim()">
+                        <i class="fas fa-file-excel me-1"></i> Unduh Data Excel Lengkap (.xlsx)
+                    </button>
+                </div>
             </div>
-            <ul class="nav nav-pills mb-3 flex-nowrap overflow-x-auto text-nowrap" id="pills-tab" role="tablist">
-                <li class="nav-item"><button class="nav-link active rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#pills-rt">Potensi RT (Agregat)</button></li>
-                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#pills-fas">Sarana &amp; Fasilitas Publik</button></li>
-            </ul>
-            <div class="tab-content">
-                <!-- Tab 1: RT Agregat -->
-                <div class="tab-pane fade show active" id="pills-rt">
-                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                        <div class="col-md-4 col-12">
-                            <input type="text" id="search-rt" class="form-control form-control-sm rounded-pill" placeholder="Cari Nama RT / RW..." onkeyup="filterTableRT()">
-                        </div>
-                        <div class="btn-group btn-group-sm rounded-pill p-1 bg-light border text-nowrap flex-wrap flex-sm-nowrap" role="group">
-                            <button type="button" class="btn btn-primary rounded-pill px-3 fw-semibold active" id="btn-mode-variabel" onclick="switchRTTableMode('variabel')">
-                                <i class="fas fa-list me-1"></i> Variabel Mentah
-                            </button>
-                            <button type="button" class="btn btn-outline-success rounded-pill px-3 fw-semibold" id="btn-mode-indikator" onclick="switchRTTableMode('indikator')">
-                                <i class="fas fa-chart-line me-1"></i> 8 Indikator SDI Per RT
-                            </button>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle small text-nowrap" id="table-rt">
-                            <thead class="table-light user-select-none text-nowrap" id="table-rt-thead">
-                                <tr>
-                                    <th>Nama RT / Wilayah</th>
-                                    <th>L</th>
-                                    <th>P</th>
-                                    <th>Total Penduduk</th>
-                                    <th>Total KK</th>
-                                    <th>Bumbung Rumah</th>
-                                    <th>Lansia</th>
-                                    <th>Penerima Bansos</th>
-                                    <th>UMKM</th>
-                                    <th>BPJS</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-rt-tbody">
-                                <tr><td colspan="10" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i>Memuat data RT...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
-                <!-- Tab 2: Fasilitas -->
-                <div class="tab-pane fade" id="pills-fas">
-                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                        <div class="col-md-4 col-12">
-                            <input type="text" id="search-fas" class="form-control form-control-sm rounded-pill" placeholder="Cari Fasilitas / Sarana..." onkeyup="filterTableFas()">
-                        </div>
-                        <span class="badge bg-secondary-subtle text-dark px-3 py-2 rounded-pill fw-semibold">5 Fasilitas Terdata</span>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle small text-nowrap" id="table-fas">
-                            <thead class="table-light user-select-none text-nowrap">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Fasilitas</th>
-                                    <th>Kategori</th>
-                                    <th>Wilayah RW</th>
-                                    <th>Kondisi Bangunan</th>
-                                    <th>Aksesibilitas</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-fas-tbody">
-                                <tr>
-                                    <td>1</td>
-                                    <td class="fw-bold">Kantor Kelurahan Pasir Wan Salim</td>
-                                    <td><span class="badge bg-primary">Pemerintahan</span></td>
-                                    <td>RW 01</td>
-                                    <td><span class="badge bg-success">Baik</span></td>
-                                    <td>Aspal / Beton (Roda 4)</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td class="fw-bold">Poskesdes / Posyandu Melati</td>
-                                    <td><span class="badge bg-danger">Kesehatan</span></td>
-                                    <td>RW 02</td>
-                                    <td><span class="badge bg-success">Baik</span></td>
-                                    <td>Aspal / Beton (Roda 4)</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td class="fw-bold">SD Negeri 05 Pasir Wan Salim</td>
-                                    <td><span class="badge bg-warning text-dark">Pendidikan</span></td>
-                                    <td>RW 01</td>
-                                    <td><span class="badge bg-success">Baik</span></td>
-                                    <td>Aspal (Roda 4)</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td class="fw-bold">Masjid Jami Pasir Wan Salim</td>
-                                    <td><span class="badge bg-success">Sarana Ibadah</span></td>
-                                    <td>RW 02</td>
-                                    <td><span class="badge bg-success">Baik</span></td>
-                                    <td>Aspal (Roda 4)</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td class="fw-bold">Sentra Kuliner &amp; Olahan UMKM Pesisir</td>
-                                    <td><span class="badge bg-info text-dark">Ekonomi</span></td>
-                                    <td>RW 08</td>
-                                    <td><span class="badge bg-success">Baik</span></td>
-                                    <td>Aspal (Roda 4)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <div class="col-md-4 col-12">
+                    <input type="text" id="search-rt" class="form-control form-control-sm rounded-pill" placeholder="Cari Nama RT / RW..." onkeyup="filterTableRT()">
                 </div>
+                <div class="btn-group btn-group-sm rounded-pill p-1 bg-light border text-nowrap flex-wrap flex-sm-nowrap" role="group">
+                    <button type="button" class="btn btn-primary rounded-pill px-3 fw-semibold active" id="btn-mode-variabel" onclick="switchRTTableMode('variabel')">
+                        <i class="fas fa-list me-1"></i> Variabel Mentah
+                    </button>
+                    <button type="button" class="btn btn-outline-success rounded-pill px-3 fw-semibold" id="btn-mode-indikator" onclick="switchRTTableMode('indikator')">
+                        <i class="fas fa-chart-line me-1"></i> 8 Indikator SDI Per RT
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle small text-nowrap" id="table-rt">
+                    <thead class="table-light user-select-none text-nowrap" id="table-rt-thead">
+                        <tr>
+                            <th>Nama RT / Wilayah</th>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>Total Penduduk</th>
+                            <th>Total KK</th>
+                            <th>Bumbung Rumah</th>
+                            <th>Lansia</th>
+                            <th>Penerima Bansos</th>
+                            <th>UMKM</th>
+                            <th>BPJS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-rt-tbody">
+                        <tr><td colspan="10" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i>Memuat data RT...</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -543,14 +468,14 @@
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Selesai (SDI Compliant)</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Desain Kuesioner &amp; Standardisasi Metadata Statistik (SDI)</h5>
-                                <p class="text-muted small mb-3">Perancangan instrumen pencacahan mikro berbasis agregat 9 RT dan 5 fasilitas umum dengan mengacu pada standar Metadata Satu Data Indonesia (SDI).</p>
+                                <p class="text-muted small mb-3">Perancangan instrumen pencacahan mikro berbasis agregat 17 RT dengan mengacu pada standar Metadata Satu Data Indonesia (SDI).</p>
                                 
                                 <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-table-list text-info me-2"></i>Komponen Metadata &amp; Instrumen yang Disusun:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
-                                        <li class="mb-1"><strong>MS-Kegiatan:</strong> Pendataan Potensi RT &amp; Fasilitas Kelurahan Cantik Pasir Wan Salim 2026.</li>
-                                        <li class="mb-1"><strong>MS-Variabel (26 Variabel RT + 10 Variabel Fasilitas):</strong> Definisi operasional demografi, lansia, bansos, kepemilikan sanitasi, serta koordinat GPS fasilitas.</li>
-                                        <li class="mb-1"><strong>MS-Indikator (8 Indikator Prioritas):</strong> Rumus Sex Ratio, Rata-rata ART, Proporsi Lansia, Bansos, Putus Sekolah, Kepadatan Hunian, dan Aksesibilitas.</li>
+                                        <li class="mb-1"><strong>MS-Kegiatan:</strong> Pendataan Potensi RT Kelurahan Cantik Pasir Wan Salim 2026.</li>
+                                        <li class="mb-1"><strong>MS-Variabel (26 Variabel RT):</strong> Definisi operasional demografi, lansia, bansos, kepemilikan sanitasi, UMKM, dan kepemilikan BPJS Kesehatan.</li>
+                                        <li class="mb-1"><strong>MS-Indikator (8 Indikator Prioritas):</strong> Rumus Sex Ratio, Rata-rata ART, Proporsi Lansia, Bansos, Putus Sekolah, Kepadatan Hunian, dan UMKM.</li>
                                         <li><strong>Desain Kuesioner Digital:</strong> Penyesuaian formulir wawancara ketua RT agar ramah diisi melalui smartphone CAPI.</li>
                                     </ul>
                                 </div>
@@ -597,9 +522,9 @@
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-cogs text-secondary me-2"></i>Fitur Sistem CAPI yang Dikonfigurasi:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Logika Validasi Real-Time:</strong> Mencegah kesalahan input logika (contoh: Jumlah bansos tidak melampaui jumlah KK terdaftar).</li>
-                                        <li class="mb-1"><strong>Geotagging GPS Otomatis:</strong> Pengambilan titik koordinat akurat pada fasilitas publik (latitude &amp; longitude).</li>
-                                        <li class="mb-1"><strong>Modul Kamera &amp; Unggah Foto:</strong> Dokumentasi visual kondisi fisik fasilitas kelurahan langsung dari lapangan.</li>
-                                        <li><strong>Integrasi Google Sheets:</strong> Penyimpanan data tabel `Appsheet_RT` dan `Appsheet_Fasilitas` secara terpusat dan aman.</li>
+                                        <li class="mb-1"><strong>Geotagging Lokasi Rumah:</strong> Pengambilan titik koordinat akurat bumbung tempat tinggal warga.</li>
+                                        <li class="mb-1"><strong>Modul Kamera &amp; Foto Bangunan:</strong> Dokumentasi visual kondisi fisik rumah langsung dari lapangan.</li>
+                                        <li><strong>Integrasi Google Sheets:</strong> Penyimpanan data tabel `Appsheet_RT` secara terpusat dan aman.</li>
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
@@ -609,7 +534,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-5">
-                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Workbook Data Excel SDI 2026', 'Struktur 5 Sheet Data Mentah &amp; Indikator SDI Kelurahan Pasir Wan Salim 2026.')">
+                                <div class="card border rounded-4 overflow-hidden shadow-sm img-hover-card clickable-img" onclick="openImagePreviewModal('{{ asset('images/excel-sdi-cover.webp') }}', 'Workbook Data Excel SDI 2026', 'Struktur 4 Sheet Data Mentah &amp; Indikator SDI Kelurahan Pasir Wan Salim 2026.')">
                                     <div class="overflow-hidden border-bottom img-zoom-wrapper" style="height: 190px; background-color: #f8fafc;">
                                         <picture>
                                             <source srcset="{{ asset('images/excel-sdi-cover.avif') }}" type="image/avif">
@@ -620,7 +545,7 @@
                                     </div>
                                     <div class="p-3 bg-light text-center">
                                         <h6 class="fw-bold text-dark mb-1 small">Arsitektur CAPI AppSheet &amp; Database</h6>
-                                        <p class="extra-small text-muted mb-0">Integrasi Cloud Google Sheets &amp; Geolocation GPS</p>
+                                        <p class="extra-small text-muted mb-0">Integrasi Cloud Google Sheets &bull; 17 RT</p>
                                     </div>
                                 </div>
                             </div>
@@ -636,17 +561,17 @@
                                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
                                     <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill extra-small fw-bold">Fase 4: Collect</span>
                                     <span class="badge bg-light text-dark border rounded-pill extra-small"><i class="fas fa-calendar-alt me-1 text-success"></i> Juni - Juli 2026</span>
-                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> 100% Terdata (9 RT &amp; 5 Fasilitas)</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> 100% Terdata (17 RT &amp; 801 Rumah Tangga)</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Pelatihan Agen Statistik &amp; Pendataan Terpusat Ketua RT via CAPI</h5>
-                                <p class="text-muted small mb-3">Pelatihan intensif bagi Agen Statistik Kelurahan di BPS Mempawah serta pencacahan terpusat terhadap seluruh 9 Ketua RT dan inventarisasi fasilitas umum.</p>
+                                <p class="text-muted small mb-3">Pelatihan intensif bagi Agen Statistik Kelurahan di BPS Mempawah serta pencacahan terpusat terhadap seluruh 17 Ketua RT dan pendataan rumah tangga.</p>
                                 
                                 <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-users-viewfinder text-success me-2"></i>Pelaksanaan Lapangan:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Pelatihan Agen Statistik:</strong> BPS Mempawah membekali agen statistik pengoperasian CAPI, konsep GSBPM, dan tata cara wawancara.</li>
                                         <li class="mb-1"><strong>Pendataan Terpusat:</strong> Para Ketua RT diwawancarai oleh Agen Statistik Kelurahan menggunakan CAPI berdasarkan data registrasi terkini.</li>
-                                        <li><strong>Observasi Fasilitas Umum:</strong> Agen statistik melakukan geotagging GPS dan foto kondisi sarana publik di seluruh RW.</li>
+                                        <li><strong>Verifikasi Rumah Tangga:</strong> Agen statistik melakukan geotagging dan pendataan karakteristik 801 bumbung rumah tangga.</li>
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
@@ -667,7 +592,7 @@
                                     </div>
                                     <div class="p-3 bg-light text-center">
                                         <h6 class="fw-bold text-dark mb-1 small">Pengumpulan Data Lapangan CAPI</h6>
-                                        <p class="extra-small text-muted mb-0">Wawancara 9 Ketua RT &amp; Geotagging Fasilitas</p>
+                                        <p class="extra-small text-muted mb-0">Wawancara 17 Ketua RT &amp; 801 Bumbung Rumah</p>
                                     </div>
                                 </div>
                             </div>
@@ -693,7 +618,7 @@
                                     <ul class="extra-small text-muted mb-0 ps-3">
                                         <li class="mb-1"><strong>Pembersihan &amp; Imputasi Data:</strong> Koreksi penulisan nama RT/RW, penyesuaian format numerik, dan deteksi duplikasi ID.</li>
                                         <li class="mb-1"><strong>Verifikasi AI Gemini di Google Sheets:</strong> Formula prompt AI untuk mendeteksi outlier data sosial, lansia, dan bansos.</li>
-                                        <li><strong>Agregasi Hierarki SDI:</strong> Perhitungan rekapitulasi data otomatis dari tingkat 9 RT ke RW hingga total Kelurahan.</li>
+                                        <li><strong>Agregasi Hierarki SDI:</strong> Perhitungan rekapitulasi data otomatis dari tingkat 17 RT ke RW hingga total Kelurahan.</li>
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
@@ -733,13 +658,13 @@
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Analisis Tuntas</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Analisis 8 Indikator SDI &amp; Perumusan Rekomendasi Kelurahan</h5>
-                                <p class="text-muted small mb-3">Kalkulasi 8 indikator statistik strategis Satu Data Indonesia serta perumusan wawasan analitik terkait demografi, proporsi lansia, dan penerima bansos.</p>
+                                <p class="text-muted small mb-3">Kalkulasi 8 indikator statistik strategis Satu Data Indonesia serta perumusan wawasan analitik terkait demografi, proporsi lansia, UMKM, dan penerima bansos.</p>
                                 
                                 <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-chart-pie text-danger me-2"></i>Hasil Analisis &amp; Wawasan Sektoral:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
-                                        <li class="mb-1"><strong>Kalkulasi 8 Indikator SDI:</strong> Sex Ratio, Rata-rata ART, Proporsi Lansia, KTP-el, Penerima Bansos, Kepadatan Hunian, dan Akses Fasilitas.</li>
-                                        <li class="mb-1"><strong>Wawasan Kesejahteraan Sosial:</strong> Analisis sebaran penerima bantuan sosial PKH/BPNT di 9 RT.</li>
+                                        <li class="mb-1"><strong>Kalkulasi 8 Indikator SDI:</strong> Sex Ratio, Rata-rata ART, Proporsi Lansia, KTP-el, Penerima Bansos, Kepadatan Hunian, dan UMKM Produktif.</li>
+                                        <li class="mb-1"><strong>Wawasan Kesejahteraan Sosial:</strong> Analisis sebaran penerima bantuan sosial PKH/BPNT dan kepemilikan BPJS Kesehatan di 17 RT.</li>
                                         <li><strong>Rekomendasi Kebijakan:</strong> Masukan data mikro untuk musrenbang dan penyusunan program kerja kelurahan berbasis bukti.</li>
                                     </ul>
                                 </div>
@@ -780,14 +705,14 @@
                                     <span class="badge bg-success-subtle text-success rounded-pill extra-small"><i class="fas fa-check-circle me-1"></i> Rilis Publik</span>
                                 </div>
                                 <h5 class="fw-bold text-dark mb-2">Penyusunan Monografi Kelurahan &amp; Rilis Portal Web Interaktif</h5>
-                                <p class="text-muted small mb-3">Penyusunan buku *Monografi Kelurahan Pasir Wan Salim 2026* serta perilisan portal web interaktif lengkap dengan peta geospasial Leaflet, visualisasi grafik, dan unduhan workbook Excel.</p>
+                                <p class="text-muted small mb-3">Penyusunan buku *Monografi Kelurahan Pasir Wan Salim 2026* serta perilisan portal web interaktif lengkap dengan visualisasi grafik, tabel agregasi 17 RT, dan unduhan workbook Excel.</p>
                                 
                                 <div class="bg-light p-3 rounded-3 border mb-3">
                                     <h6 class="fw-bold text-dark small mb-2"><i class="fas fa-book-open text-primary me-2"></i>Produk Diseminasi yang Dirilis:</h6>
                                     <ul class="extra-small text-muted mb-0 ps-3">
-                                        <li class="mb-1"><strong>Monografi Kelurahan 2026:</strong> Ringkasan profil demografi, wilayah, dan rekapitulasi data potensi 9 RT.</li>
-                                        <li class="mb-1"><strong>Portal Web Kelurahan Cantik:</strong> Dashboard live dengan pencarian realtime, Leaflet Hybrid GPS Map, dan Chart.js.</li>
-                                        <li><strong>Export Excel SDI Multi-Sheet:</strong> Unduhan data mikro terstruktur 5 sheet untuk kebutuhan analitik.</li>
+                                        <li class="mb-1"><strong>Monografi Kelurahan 2026:</strong> Ringkasan profil demografi, wilayah, dan rekapitulasi data potensi 17 RT.</li>
+                                        <li class="mb-1"><strong>Portal Web Kelurahan Cantik:</strong> Dashboard live dengan pencarian realtime dan Chart.js visualisasi.</li>
+                                        <li><strong>Export Excel SDI Multi-Sheet:</strong> Unduhan data mikro terstruktur 4 sheet untuk kebutuhan analitik.</li>
                                     </ul>
                                 </div>
                                 <div class="d-flex gap-2 flex-wrap">
@@ -1011,56 +936,12 @@
     <script>
         var rawRTData = [];
         var currentRTMode = 'variabel';
-        var mapInstance = null;
         var chartDemografiInstance = null;
-        var chartFasilitasInstance = null;
-
-        var fasilitasData = [
-            { nama: "Kantor Kelurahan Pasir Wan Salim", kategori: "Pemerintahan", rw: "RW 01", lat: 0.327415, lng: 108.970008, icon: "fa-building-columns", color: "#2563eb" },
-            { nama: "Poskesdes / Posyandu Melati", kategori: "Kesehatan", rw: "RW 02", lat: 0.325654, lng: 108.969271, icon: "fa-heart-pulse", color: "#dc2626" },
-            { nama: "SD Negeri 05 Pasir Wan Salim", kategori: "Pendidikan", rw: "RW 01", lat: 0.327639, lng: 108.970337, icon: "fa-graduation-cap", color: "#f59e0b" },
-            { nama: "Masjid Jami Pasir Wan Salim", kategori: "Sarana Ibadah", rw: "RW 02", lat: 0.326071, lng: 108.969709, icon: "fa-mosque", color: "#16a34a" },
-            { nama: "Sentra Kuliner Pesisir UMKM", kategori: "Ekonomi", rw: "RW 08", lat: 0.323709, lng: 108.980095, icon: "fa-store", color: "#0891b2" }
-        ];
+        var chartBpjsInstance = null;
 
         document.addEventListener('DOMContentLoaded', function() {
-            initMap();
             loadDataFromSheets();
         });
-
-        function initMap() {
-            if (mapInstance) return;
-            mapInstance = L.map('map').setView([0.326, 108.973], 15);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; OpenStreetMap'
-            }).addTo(mapInstance);
-
-            var bounds = [];
-            fasilitasData.forEach(function(f) {
-                bounds.push([f.lat, f.lng]);
-                var popupContent = '<div class="p-2" style="font-family:sans-serif;">'
-                    + '<h6 class="fw-bold mb-1">' + escHtml(f.nama) + '</h6>'
-                    + '<div class="small text-muted mb-1"><i class="fas ' + f.icon + ' me-1" style="color:' + f.color + '"></i>' + escHtml(f.kategori) + ' (' + escHtml(f.rw) + ')</div>'
-                    + '<div class="extra-small text-muted">Kondisi: Baik | Akses Roda 4</div>'
-                    + '</div>';
-
-                var marker = L.circleMarker([f.lat, f.lng], {
-                    radius: 8,
-                    fillColor: f.color,
-                    color: '#ffffff',
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 0.95
-                }).bindPopup(popupContent);
-
-                marker.addTo(mapInstance);
-            });
-
-            if (bounds.length > 0) {
-                mapInstance.fitBounds(bounds, { padding: [30, 30] });
-            }
-        }
 
         function loadDataFromSheets() {
             var syncIcon = document.getElementById('sync-icon');
@@ -1151,8 +1032,9 @@
             if (document.getElementById('kpi-kepadatan')) document.getElementById('kpi-kepadatan').innerText = kepadatan + ' Jiwa/Rumah';
             if (document.getElementById('kpi-lansia')) document.getElementById('kpi-lansia').innerText = totalLansia.toLocaleString('id-ID');
             if (document.getElementById('kpi-pct-lansia')) document.getElementById('kpi-pct-lansia').innerText = pctLansia + '%';
-            if (document.getElementById('kpi-bansos')) document.getElementById('kpi-bansos').innerText = totalBansos.toLocaleString('id-ID') + ' Penerima';
-            if (document.getElementById('kpi-fasilitas')) document.getElementById('kpi-fasilitas').innerText = fasilitasData.length + ' Fasilitas';
+            if (document.getElementById('kpi-bansos')) document.getElementById('kpi-bansos').innerText = totalBansos.toLocaleString('id-ID') + ' Kasus';
+            if (document.getElementById('kpi-umkm')) document.getElementById('kpi-umkm').innerText = totalUMKM.toLocaleString('id-ID') + ' Unit';
+            if (document.getElementById('kpi-bpjs-summary')) document.getElementById('kpi-bpjs-summary').innerText = 'BPJS: ' + totalBPJS.toLocaleString('id-ID') + ' Jiwa';
 
             var chartBadge = document.getElementById('rt-chart-count-badge');
             if (chartBadge) chartBadge.innerText = rawRTData.length + ' RT Terdata';
@@ -1245,7 +1127,7 @@
         }
 
         function renderCharts() {
-            // Demografi Chart
+            // Demografi Bar Chart
             if (document.getElementById('chartDemografi')) {
                 if (chartDemografiInstance) chartDemografiInstance.destroy();
                 var labels = rawRTData.map(function(r) { return r.Nama_RT; });
@@ -1273,29 +1155,34 @@
                 });
             }
 
-            // Fasilitas Pie Chart
-            if (document.getElementById('chartFasilitas')) {
-                if (chartFasilitasInstance) chartFasilitasInstance.destroy();
-                var ctx2 = document.getElementById('chartFasilitas').getContext('2d');
+            // BPJS Doughnut Chart
+            if (document.getElementById('chartBpjs')) {
+                if (chartBpjsInstance) chartBpjsInstance.destroy();
+                var totalBpjs = rawRTData.reduce(function(acc, r) { return acc + (parseInt(r.Jumlah_BPJS || 0) || 0); }, 0);
+                var totalPop = rawRTData.reduce(function(acc, r) { return acc + r._pop; }, 0);
+                var nonBpjs = Math.max(0, totalPop - totalBpjs);
+                var bpjsPct = totalPop > 0 ? ((totalBpjs / totalPop) * 100).toFixed(1) : 0;
+                var badge = document.getElementById('bpjs-pct-badge');
+                if (badge) badge.innerText = bpjsPct + '% Tercover';
 
-                var katCounts = {};
-                fasilitasData.forEach(function(f) {
-                    katCounts[f.kategori] = (katCounts[f.kategori] || 0) + 1;
-                });
-
-                chartFasilitasInstance = new Chart(ctx2, {
+                var ctxBpjs = document.getElementById('chartBpjs').getContext('2d');
+                chartBpjsInstance = new Chart(ctxBpjs, {
                     type: 'doughnut',
                     data: {
-                        labels: Object.keys(katCounts),
+                        labels: ['Memiliki BPJS (' + totalBpjs.toLocaleString('id-ID') + ')', 'Belum Terdata BPJS (' + nonBpjs.toLocaleString('id-ID') + ')'],
                         datasets: [{
-                            data: Object.values(katCounts),
-                            backgroundColor: ['#2563eb', '#dc2626', '#f59e0b', '#16a34a', '#0891b2']
+                            data: [totalBpjs, nonBpjs],
+                            backgroundColor: ['#10b981', '#cbd5e1'],
+                            borderWidth: 2,
+                            borderColor: '#ffffff'
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { position: 'bottom' } }
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        }
                     }
                 });
             }
@@ -1304,13 +1191,6 @@
         function filterTableRT() {
             var q = (document.getElementById('search-rt').value || '').toLowerCase();
             document.querySelectorAll('#table-rt tbody tr').forEach(function(tr) {
-                tr.style.display = tr.innerText.toLowerCase().indexOf(q) !== -1 ? '' : 'none';
-            });
-        }
-
-        function filterTableFas() {
-            var q = (document.getElementById('search-fas').value || '').toLowerCase();
-            document.querySelectorAll('#table-fas tbody tr').forEach(function(tr) {
                 tr.style.display = tr.innerText.toLowerCase().indexOf(q) !== -1 ? '' : 'none';
             });
         }
@@ -1363,16 +1243,15 @@
                 [2, "Penduduk Laki-Laki", totalL, "Jiwa", (totalPop > 0 ? (totalL / totalPop * 100).toFixed(2) : 0) + "% dari total penduduk"],
                 [3, "Penduduk Perempuan", totalP, "Jiwa", (totalPop > 0 ? (totalP / totalPop * 100).toFixed(2) : 0) + "% dari total penduduk"],
                 [4, "Rasio Jenis Kelamin (Sex Ratio) [#1]", totalP > 0 ? parseFloat((totalL / totalP * 100).toFixed(2)) : 0, "L / 100 P", "Jumlah penduduk laki-laki per 100 perempuan"],
-                [5, "Jumlah Kepala Keluarga (KK)", totalKK, "KK", "Tersebar di seluruh wilayah RT"],
+                [5, "Jumlah Kepala Keluarga (KK)", totalKK, "KK", "Tersebar di seluruh 17 RT"],
                 [6, "Rata-rata Anggota Rumah Tangga (ART) [#2]", totalKK > 0 ? parseFloat((totalPop / totalKK).toFixed(2)) : 0, "Jiwa / KK", "Rata-rata tanggungan per Kepala Keluarga"],
                 [7, "Jumlah Bangunan Rumah Tinggal", totalBumbung, "Unit Rumah", "Total bangunan fisik tempat tinggal"],
                 [8, "Kepadatan Hunian (Jiwa / Rumah) [#7]", totalBumbung > 0 ? parseFloat((totalPop / totalBumbung).toFixed(2)) : 0, "Jiwa / Rumah", "Rata-rata penghuni per unit rumah"],
                 [9, "Populasi Lansia (≥ 65 Tahun)", totalLansia, "Jiwa", "Kelompok penduduk lanjut usia"],
                 [10, "Proporsi Penduduk Lansia [#3]", totalPop > 0 ? (totalLansia / totalPop * 100).toFixed(2) + "%" : "0%", "Persen", "Persentase lansia terhadap total penduduk"],
                 [11, "Total KK Penerima Bantuan Sosial", totalBansos, "KK", "Penerima manfaat program PKH & BPNT"],
-                [12, "Jumlah UMKM Produktif Terdata", totalUMKM, "Unit", "Usaha mikro binaan"],
-                [13, "Cakupan BPJS Kesehatan", totalBPJS, "Jiwa", "Warga yang memiliki jaminan kesehatan BPJS"],
-                [14, "Sarana & Fasilitas Publik", fasilitasData.length, "Unit", "Fasilitas pemerintahan, pendidikan, kesehatan, ibadah"]
+                [12, "Jumlah UMKM Produktif Terdata", totalUMKM, "Unit", "Usaha mikro binaan keluarga"],
+                [13, "Cakupan BPJS Kesehatan", totalBPJS, "Jiwa", "Warga yang memiliki jaminan kesehatan BPJS"]
             ];
 
             // Sheet 2: 8 Indikator SDI Per RT
@@ -1431,17 +1310,7 @@
                 ]);
             });
 
-            // Sheet 4: Sarana & Fasilitas
-            var s4Rows = [
-                ["No", "Nama Fasilitas / Sarana", "Kategori", "Wilayah RW", "Kondisi Bangunan", "Aksesibilitas", "Koordinat GPS"],
-                [1, "Kantor Kelurahan Pasir Wan Salim", "Pemerintahan", "RW 01", "Baik", "Aspal / Beton (Roda 4)", "0.327415, 108.970008"],
-                [2, "Poskesdes / Posyandu Melati", "Kesehatan", "RW 02", "Baik", "Aspal / Beton (Roda 4)", "0.325654, 108.969271"],
-                [3, "SD Negeri 05 Pasir Wan Salim", "Pendidikan", "RW 01", "Baik", "Aspal (Roda 4)", "0.327639, 108.970337"],
-                [4, "Masjid Jami Pasir Wan Salim", "Sarana Ibadah", "RW 02", "Baik", "Aspal (Roda 4)", "0.326071, 108.969709"],
-                [5, "Sentra Kuliner Pesisir UMKM", "Ekonomi", "RW 08", "Baik", "Aspal (Roda 4)", "0.323709, 108.980095"]
-            ];
-
-            // Sheet 5: Rekapitulasi Dusun / RW
+            // Sheet 4: Rekapitulasi Dusun / RW
             var rwGroups = {};
             rawRTData.forEach(function(r) {
                 var rwName = "RW 01";
@@ -1463,13 +1332,13 @@
                 rwGroups[rwName].umkm += parseInt(r.Jumlah_UMKM || 0);
             });
 
-            var s5Rows = [
+            var s4Rows = [
                 ["No", "Wilayah RW", "Total Penduduk", "L", "P", "Total KK", "Bumbung Rumah", "Lansia", "Bansos (KK)", "UMKM"]
             ];
             var rwIdx = 1;
             Object.keys(rwGroups).sort().forEach(function(rwKey) {
                 var g = rwGroups[rwKey];
-                s5Rows.push([rwIdx++, rwKey, g.pop, g.l, g.p, g.kk, g.bumbung, g.lansia, g.bansos, g.umkm]);
+                s4Rows.push([rwIdx++, rwKey, g.pop, g.l, g.p, g.kk, g.bumbung, g.lansia, g.bansos, g.umkm]);
             });
 
             var filename = 'Data_SDI_Lengkap_Kelurahan_Pasir_Wan_Salim_2026.xlsx';
@@ -1506,11 +1375,7 @@
 
                 var ws4 = XLSX.utils.aoa_to_sheet(s4Rows);
                 autoColWidth(ws4, s4Rows);
-                XLSX.utils.book_append_sheet(wb, ws4, "Sarana & Fasilitas");
-
-                var ws5 = XLSX.utils.aoa_to_sheet(s5Rows);
-                autoColWidth(ws5, s5Rows);
-                XLSX.utils.book_append_sheet(wb, ws5, "Rekapitulasi RW");
+                XLSX.utils.book_append_sheet(wb, ws4, "Rekapitulasi RW");
 
                 XLSX.writeFile(wb, filename);
             }
@@ -1555,7 +1420,7 @@
             { num: 1, title: 'Specify Needs', desc: 'Identifikasi Kebutuhan & Pencanangan Kelurahan Cantik' },
             { num: 2, title: 'Design', desc: 'Desain Kuesioner & Metadata SDI (MS-Kegiatan/Variabel/Indikator)' },
             { num: 3, title: 'Build', desc: 'Pembangunan CAPI AppSheet & Database Sektoral' },
-            { num: 4, title: 'Collect', desc: 'Pelatihan Agen Statistik & Survei CAPI 9 RT' },
+            { num: 4, title: 'Collect', desc: 'Pelatihan Agen Statistik & Survei CAPI 17 RT' },
             { num: 5, title: 'Process', desc: 'Pemrosesan Data, AI Gemini & Validasi Sektoral' },
             { num: 6, title: 'Analyze', desc: 'Analisis 8 Indikator Prioritas SDI & Wawasan Wilayah' },
             { num: 7, title: 'Disseminate', desc: 'Diseminasi Hasil & Publikasi Web Portal Kelurahan' },
